@@ -453,7 +453,6 @@ section {
 	margin-top: 5px;
 	margin-bottom: 5px;
 	float: right;
-	width: 50px;
 	font-size: 17px;
 	margin-left: 10px;
 	border-radius: 100%;
@@ -725,13 +724,13 @@ a, a:hover, a:focus, a:active, a.active{
 	color: #34a853 !important;
 }
 
-#main-search-bar{
+#main-search-bar, #main-search-xs-bar{
 	padding: 10px;
     font-size: 14px;
-    height: 44px;
+    height: 40px;
     font-weight: 200;
-    /*width: 21%;*/
-    border-radius: 0px;
+    width: 90%;
+    border-radius: 20px 0px 0px 20px;
     /*margin-top: -2px;
     margin-bottom: 0px;*/
     text-align: -webkit-center;
@@ -751,9 +750,14 @@ a, a:hover, a:focus, a:active, a.active{
     -moz-box-shadow: 0px 0px 4px -1px rgba(0,0,0,0.5) ;
     box-shadow: 0px 0px 4px -1px rgba(0,0,0,0.5) ;
 }
-#main-search-bar-addon{
-	border: none;
-	background-color: white !important;
+#main-search-bar-addon, #main-search-xs-bar-addon{
+	border: 1px solid #dadada !important;
+    background-color: #dadada !important;
+    font-size: 14px;
+    padding: 12px 7px;
+    width: 10%;
+    border-radius: 0px 20px 20px 0px !important;
+    border-left: 0px !important;
 }
 #second-search-bar{
 	padding:10px;
@@ -1158,6 +1162,7 @@ h3.title_panel_map{
 }
 .menu-btn-scope-filter{
 	border-radius: 20px;
+	max-width: 20%;
 }
 .menu-btn-start-search, .menu-btn-scope-filter{
     /* border: 2px solid green !important; */
@@ -1203,7 +1208,7 @@ h3.title_panel_map{
  }
 #filter-scopes-menu:after, #filter-scopes-menu:before {
     bottom: 100%;
-    left: 143px;
+    left: 40%;
     border: solid transparent;
     content: " ";
     height: 0;
@@ -1228,6 +1233,10 @@ h3.title_panel_map{
 .portfolio-modal{
 	padding-right:0px !important;
 	background-color: white;
+	z-index:20000;
+}
+#modalRegisterSuccess, #modalSendAgainSuccess, #modalNewPasswordSuccess{
+	z-index:20000;	
 }
 .portfolio-modal .close-modal{
 	z-index:10;
@@ -1826,7 +1835,7 @@ margin-right: 5px;
 }
 
 .xdsoft_datetimepicker{
-	z-index: 20000 !important;
+	z-index: 200000 !important;
 }
 
 /************************************************************************************/
@@ -2034,10 +2043,7 @@ margin-right: 5px;
     .col-footer a{
     	padding:10px;
     }
-	#affix-sub-menu.affix{
-		top: 45px;
-	}
-
+	
 	.btn-menu-to-app{
 		font-size:18px;
 	}
@@ -2121,4 +2127,46 @@ margin-right: 5px;
 	.open-type-filter{
 		
 	}	
+	header{
+        min-height: initial;
+    }
+    .menu-btn-scope-filter{
+        margin: 0px;
+    	box-shadow: none !important;
+    	max-width: inherit;
+    	border-radius: 0px;
+    }
+    .menu-btn-scope-filter.active, .menu-btn-scope-filter:hover, .menu-btn-scope-filter.active:hover {
+        background-color: transparent !important;
+        color: #ea4335 !important;
+        box-shadow: none !important; 
+        border: none !important;
+    	border-bottom: 2px solid #ea4335 !important;
+    }
+    .btn-show-filters{
+        margin-top: 10px !important;
+        float: right;
+    }
+    #filters-nav{
+    	display:none;
+    }
+    #text-search-menu{
+        display: block !important;
+    }
+    #text-search-menu:after, #filter-scopes-menu:after, #text-search-menu:before, #filter-scopes-menu:before {
+        border-bottom-color: transparent;
+    }
+    .main-search-bar, .main-search-bar-addon{
+        border-radius: 0px !important;
+    }
+    .dropdown-xs-view .dropdown-menu{
+        top: 39px !important;
+        left: -22px !important;
+        right: -15px !important;
+    }   
+    .dropdown-xs-view .dropdown-menu:before, .dropdown-xs-view .dropdown-menu:after{
+        border-bottom-color:inherit !important;
+    }
 }
+
+label.error{color:red;}

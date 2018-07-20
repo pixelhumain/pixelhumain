@@ -18,7 +18,7 @@
 		//COMMON [FOOTER]
 		"If the link doesn&apos;t work, you can copy it in your browser&apos;s address"=> "Si le lien ne fonctionne pas vous pouvez le copier dans l&apos;adresse de votre navigateur",
 		"See you soon on" => "A tr&egrave;s bient&ocirc;t sur",
-		"The team of communecter"=> "L&apos;&eacute;quipe de Communecter",
+		"The team of {what}"=> "L&apos;&eacute;quipe de {what}",
 		"You can unsubscribe on mail received on turn off mail notication on your settings or you can choose parameters of mail notifications in the same space"=>"Vous pouvez vous d&eacute;sinscrire des mails reçu en d&eacute;sactivant les notifications par mail dans vos r&eacute;glages personnels ou vous pouvez r&eacute;gler les paramètres de notifications par mail au même lien",
 		"here" => "ici",
 		"Mail send from"=>"Mail envoy&eacute; depuis",
@@ -93,24 +93,25 @@
 		"{who} added your contact in {where} on {website}"=>"{who} a ajouté votre contact dans {where} sur {website}",
 		"Your email has been referenced on {website}"=>"Votre email a été référencé sur {website}",
 		"{who} indicated your email as contact on {what}"=>"{who} a indiqué votre email comme contact sur {what}",
-		"If you don't know Communecter, it is this territorial search engine and social network respectful of your data. In this open source website, every body can contribute and enrich common knowledge"=>"Si vous ne connaissez pas Communecter, c'est ce réseau social citoyen et local respectueux de vos données personnelles. Dans ce siteweb libre, chacun peut contribuer et enrichir la connaissance commune de nos territoires",
-		"If you do not have an account yet, come to discover this tools made for you and your community"=>"Si vous n'avez pas encore de compte, venez vite découvrir cet outil fait pour vous et votre communauté",
-		"You will enjoy to communicate about the projects, the events of {what} in your territory. You will have the chance to express your needs and search actors around you. You will also be able to discuss and organize your community..."=>"Vous pourrez profiter d'une communication efficace des projets et des événements de {what}. Vous aurez la possibilité d'exprimer vos besoins et rechercher des acteurs autour de vous. Vous pourrez même organiser et discuter avec votre communauté...",
-		"And all of this into an <b>ethical</b> and <b>responsible</b> environment"=>"Et tout cela dans un environnement <b>éthique</b> et <b>responsable</b>",
-		"Don't wait anymore and join us !!"=>"N'attendez plus une seconde et rejoignez nous !!",
-
-
-
-
-
-
+		"If you don't know Communecter, it is this territorial search engine and social network respectful of your data. In this open source website, every body can contribute and enrich common knowledge"=>"Si vous ne connaissez pas Communecter, c'est ce <b>réseau social citoyen et local</b> respectueux de vos données personnelles. Sur ce site web libre, chacun peut contribuer et enrichir la connaissance commune de nos territoires",
+		"If you do not have an account yet, come to discover this tools made for you and your community"=>"Si vous n'avez pas encore de compte, venez vite le découvrir. Cet outil est fait pour vous et votre communauté",
+		"You will enjoy to communicate about the projects, the events of {what} in your territory. You will have the chance to express your needs and search actors around you. You will also be able to discuss and organize your community..."=>"Vous pourrez dès créer des évènements et profiter des outils de communication pour faire connaître {what}. Vous aurez la possibilité d'exprimer vos besoins, et rechercher des acteurs autour de vous. Vous pourrez même discuter avec votre communauté et prendre des décisions ensemble.",
+		"And all of this into an <b>ethical</b> and <b>responsible</b> environment"=>"Et tout cela dans un environnement <b>éthique</b> et <b>responsable</b>.",
+		"Don't wait anymore and join us !!"=>"Ce réseau n'attends plus que vous !",
+		//SUBJECT
+		"A citizen ask to become {what} of {where}"=>"Un citoyen demande à devenir {what} de {where}",
+		'You have been invited to {website} by {who}'=>"Vous avez été inivité-e sur {website} par {who}",
+		"Confirm your account on {website}"=>"Confirmez votre inscription sur {website}",
+		"Retreive your password on {website}"=>'Réinitialisation du mot de passe sur {website}',
+		"New user on {website}"=>"Nouvel-le utilisateur-trice sur {website}",
+		"New professional account on {website}"=>"Nouveau compte professionel crée sur {website}",
+);
 		// post
 		"{who} writes a post" => "{who} a écrit un post",
 		"{who} writes posts"=>"{who} a écrit plusieurs posts",
-		"{who} write posts" => "{who} ont écrit plusieurs posts",
 		// add
-		"{who} added a new project : {what}" => "{who} a ajouté un projet : {what}",
+		"{who} write posts" => "{who} ont écrit plusieurs posts",
 		"{who} added a new event : {what}" => "{who} a ajouté un événement : {what}",
+		"{who} added a new project : {what}" => "{who} a ajouté un projet : {what}",
 		"{who} added a new point of interest : {what}" => "{who} a ajouté un point d'intéret : {what}",
-);	
 ?> 

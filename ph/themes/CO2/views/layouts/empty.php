@@ -11,7 +11,7 @@
   <meta name="robots" content="Index,Follow" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="<?php echo $this->module->assetsUrl?>/images/logo.png"/>
+  <link rel="shortcut icon" href="<?php echo $this->module->assetsUrl?>/images/logo.png"/>  
   <title><?php echo CHtml::encode( (isset($this->module->pageTitle))?$this->module->pageTitle:""); ?></title>
    
  <?php  
@@ -23,49 +23,81 @@ $cs->registerScriptFile(Yii::app() -> createUrl(Yii::app()->params["module"]["pa
     
     '/plugins/bootstrap/css/bootstrap.min.css',
     '/plugins/bootstrap/js/bootstrap.min.js' ,
+    '/plugins/bootbox/bootbox.min.js' , 
     //'/plugins/font-awesome/css/font-awesome.min.css',
     //'/plugins/font-awesome-custom/css/font-awesome.css',
     '/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.css',
     '/plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js' ,
     '/plugins/blockUI/jquery.blockUI.js' ,
+    '/plugins/jquery-cookie/jquery.cookie.js' ,
+    '/plugins/jquery-validation/dist/jquery.validate.min.js',
     
     '/plugins/font-awesome/css/font-awesome.min.css',
     '/plugins/toastr/toastr.js' , 
     '/plugins/toastr/toastr.min.css',
 
-    '/plugins/cryptoJS-v3.1.2/rollups/aes.js'
+    '/plugins/cryptoJS-v3.1.2/rollups/aes.js',
+    '/plugins/fine-uploader/jquery.fine-uploader/fine-uploader-gallery.css',
+    '/plugins/fine-uploader/jquery.fine-uploader/jquery.fine-uploader.js',
+    '/plugins/fine-uploader/jquery.fine-uploader/fine-uploader-new.min.css'
   );
   HtmlHelper::registerCssAndScriptsFiles($cssJs, Yii::app()->request->baseUrl);
   
   $cssJs = array(
+    '/assets/css/freelancer.css',
     '/assets/css/CO2/CO2-boot.css',
     '/assets/css/CO2/CO2-color.css',
     '/assets/css/CO2/CO2.css',
     '/assets/css/plugins.css',
+    '/assets/css/default/dynForm.css',
+    
   );
   HtmlHelper::registerCssAndScriptsFiles($cssJs, Yii::app()->theme->baseUrl);
 
+  $cssAnsScriptFilesModule = array( 
+    '/assets/js/coController.js',
+    '/assets/js/dataHelpers.js',
+  );
+  HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
 
   
   $cs = Yii::app()->getClientScript();
   $cs->registerScriptFile(Yii::app()->request->baseUrl. '/plugins/jQuery/jquery-2.1.1.min.js' );
   ?>
   
-  <script type="text/javascript">
+  <?php 
+    $layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
+    $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
+    $CO2DomainName = Yii::app()->params["CO2DomainName"];
+      $parentModuleId = ( @Yii::app()->params["module"]["parent"] ) ?  Yii::app()->params["module"]["parent"] : $this->module->id;
+
+  $this->renderPartial($layoutPath.'initJs', 
+                                 array( "me"=>$me, "parentModuleId" => $parentModuleId, "myFormContact" => @$myFormContact, "communexion" => CO2::getCommunexionCookies()));
+
+    ?>
+  
+  <?php 
+    if ( $this->module->id == "survey" && strrpos(@$_GET['id'], "cte") !== false ){
+      $CO2DomainName = "cte";
+      $this->renderPartial( "co2.views.custom.init",array( "custom" => "forms.cte" ) );
+    }
+   ?>
+ <script type="text/javascript">
+  // **************************************
+  //THEME TEMPLATE : CO2 / <?php echo $CO2DomainName ?> / EMPTY
+  // **************************************
    var initT = new Object();
    var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
-   var moduleId = "<?php echo $this->module->id?>";
-   debug = false;
+   //var moduleId = "<?php echo $this->module->id?>";
+   var debug = <?php echo (YII_DEBUG) ? "true" : "false" ?>;
+
    </script>
 </head>
 
 <body class="body">
   <div class="main-container col-md-12 col-sm-12 col-xs-12 no-padding">
 
-<?php 
-    $layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
-    $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
-    $CO2DomainName = Yii::app()->params["CO2DomainName"];
+<?php
     $this->renderPartial( $layoutPath.'menus/'.$CO2DomainName, 
                             array( "layoutPath"=>$layoutPath , 
                                     "subdomain"=>"", //$subdomain,
@@ -73,21 +105,17 @@ $cs->registerScriptFile(Yii::app() -> createUrl(Yii::app()->params["module"]["pa
                                     "mainTitle"=>"", //$mainTitle,
                                     "placeholderMainSearch"=>"", //$placeholderMainSearch,
                                     "type"=>@$type,
-                                    "me" => $me) );
-
+                                    "me" => $me ) );
 
     echo $content; ?> 
 </div>
 
 <?php 
-  $parentModuleId = ( @Yii::app()->params["module"]["parent"] ) ?  Yii::app()->params["module"]["parent"] : $this->module->id;
-
-  $this->renderPartial($layoutPath.'initJs', 
-                                 array( "me"=>$me, "parentModuleId" => $parentModuleId, "myFormContact" => @$myFormContact, "communexion" => CO2::getCommunexionCookies()));
 ?>
-<script type="text/javascript">
 
-  jQuery(document).ready(function() {
+<script type="text/javascript">
+//var custom = {};            
+  jQuery(document).ready(function() { 
       $(".btn-show-mainmenu").click(function(){
           $("#dropdown-user").addClass("open");
       });

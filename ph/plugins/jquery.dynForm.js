@@ -219,12 +219,12 @@ var uploadObj = {
 	gotoUrl : null,
 	isSub : false,
 	update  : false,
+	docListIds : [],
 	folder : "communecter", //on force pour pas casser toutes les vielles images
 	contentKey : "profil",
 	path : null,
 	extra : null,
 	set : function(type,id, file){
-		//alert("uploadObj set"+type);
 		if(notNull(file) && file){
 			mylog.log("set uploadObj", id,type,uploadObj.folder,uploadObj.contentKey);
 			uploadObj.type = type;
@@ -236,6 +236,9 @@ var uploadObj = {
 			uploadObj.type = type;
 			uploadObj.id = id;
 			uploadObj.path = baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+uploadObj.folder+"/folder/"+type+"/ownerId/"+id+"/input/qqfile/contentKey/"+uploadObj.contentKey;
+			if(typeof uploadObj.domTarget !="undefined"){
+				$(uploadObj.domTarget).fineUploader('setEndpoint', uploadObj.path);
+			}
 		} else {
 			uploadObj.type = null;
 			uploadObj.id = null;
@@ -265,7 +268,7 @@ var dyFObj = {
 	//ex : dyFObj.elementObj.dynForm.jsonSchema.canSubmitIf
 	canSubmitIf : function () { 
     	var valid = true;
-    	console.log("canSubmitIf");
+    	mylog.log("canSubmitIf");
     	//on peut ajouter des regles dans la map definition 
     	if(	jsonHelper.notNull("dyFObj.elementObj.dynForm.jsonSchema.canSubmitIf", "function") )
     		valid = dyFObj.elementObj.dynForm.jsonSchema.canSubmitIf();
@@ -389,12 +392,19 @@ var dyFObj = {
 	saveElement : function  ( formId,collection,ctrl,saveUrl,afterSave ) { 
 		//alert("saveElement");
 		mylog.warn("---------------- saveElement",formId,collection,ctrl,saveUrl,afterSave );
-		formData = $(formId).serializeFormJSON();
+		if( typeof formId == "object" )
+			formData = formId;
+		else	
+			formData = $(formId).serializeFormJSON();
+
+		if( !formData.id && uploadObj.id ){
+			mylog.log("no formData id, using uploadObj.id : ",uploadObj.id);
+			formData.id = uploadObj.id;
+		}
 		mylog.log("before",formData);
 
 		if( jsonHelper.notNull( "dyFObj.elementObj.dynForm.jsonSchema.formatData","function") )
 			formData = dyFObj.elementObj.dynForm.jsonSchema.formatData(formData);
-
 
 		formData = dyFObj.formatData(formData,collection,ctrl);
 		mylog.log("saveElement", formData);
@@ -450,14 +460,16 @@ var dyFObj = {
 		    	success: function(data){
 		    		mylog.warn("saveElement ajax result");
 		    		mylog.dir(data);
-					if(data.result == false){
+					if(data.result == false)
+					{
 		                toastr.error(data.msg);
 		                //reset save btn 
 		                $("#btn-submit-form").html('Valider <i class="fa fa-arrow-circle-right"></i>').prop("disabled",false).one(function() { 
 							$( settings.formId ).submit();	        	
 				        });
 		           	}
-		            else {
+		            else 
+		            {
 		            	if(typeof data.msg != "undefined") 
 		            		toastr.success(data.msg);
 		            	else{
@@ -484,7 +496,7 @@ var dyFObj = {
 			                }
 						}
 		            }
-		            uploadObj.set()
+		            //uploadObj.set()
 		    	}
 		    });
 		}
@@ -496,7 +508,11 @@ var dyFObj = {
 	   	uploadObj.set();
 	    uploadObj.update = false;
 	},
-	editElement : function (type,id){
+	editStep : function ( form,data,afterLoad ){
+		mylog.log("step",form, data);
+		dyFObj.openForm( form ,afterLoad , data);
+	},
+	editElement : function (type,id, subType){
 		mylog.warn("--------------- editElement ",type,id);
 		//get ajax of the elemetn content
 		uploadObj.set(type,id);
@@ -517,9 +533,10 @@ var dyFObj = {
 				if(data.map["_id"])
 					delete data.map["_id"];
 				mylog.dir(data);
-				console.log("editElement", data);
+				mylog.log("editElement", data);
 				dyFObj.elementData = data;
-				typeForm = (jsonHelper.notNull( "modules."+type+".form") ) ? type : dyFInputs.get(type).ctrl;
+				typeModules=(notNull(subType)) ? subType : type; 
+				typeForm = (jsonHelper.notNull( "modules."+typeModules+".form") ) ? typeModules : dyFInputs.get(typeModules).ctrl;
 				dyFObj.openForm( typeForm ,null, data.map);
 	        } else {
 	           toastr.error("something went wrong!! please try again.");
@@ -552,7 +569,7 @@ var dyFObj = {
 				afterLoad : afterLoad,
 				data : data
 			};
-			toastr.error(tradDynForm["mustbeconnectforcreateform"]);
+			toastr.error(tradDynForm.mustbeconnectforcreateform);
 			$('#modalLogin').modal("show");
 		}
 	},
@@ -602,6 +619,7 @@ var dyFObj = {
 			if ( type.indexOf(".js")>-1)  
 				dfPath = type;
 
+			mylog.log("getDynFormObj",type,dfPath);
 			lazyLoad( dfPath, 
 				null,
 				function() { 
@@ -612,7 +630,7 @@ var dyFObj = {
 					
 				  	dyFInputs.get(type).dynForm = dynForm;
 					dyFObj[dyFObj.activeElem] = dyFInputs.get(type);
-					if( notNull(dyFInputs.get(type).col) ) 
+					if( notNull( dyFInputs.get(type).col) ) 
 						uploadObj.type = dyFInputs.get(type).col;
     				callback( afterLoad, data );
 				});
@@ -640,7 +658,7 @@ var dyFObj = {
 	  	dyFInputs.init();
 	  	afterLoad = ( notNull(afterLoad) ) ? afterLoad : null;
 	  	data = ( notNull(data) ) ? data : {}; 
-	  	dyFObj.buildDynForm(afterLoad, data,dyFObj[dyFObj.activeElem],dyFObj.activeModal+" #ajaxFormModal");
+	  	dyFObj.buildDynForm( afterLoad, data,dyFObj[dyFObj.activeElem],dyFObj.activeModal+" #ajaxFormModal");
 	},
 	buildDynForm : function (afterLoad,data,obj,formId) { 
 		mylog.warn("--------------- buildDynForm", dyFObj[dyFObj.activeElem], afterLoad,data);
@@ -678,7 +696,8 @@ var dyFObj = {
 				    if( typeof bindLBHLinks != "undefined")
 			        	bindLBHLinks();
 			    },
-			    onSave : function(){
+			    onSave : function()
+			    {
 
 			      	mylog.log("onSave")
 
@@ -704,20 +723,15 @@ var dyFObj = {
 			$('#modalLogin').modal("show");
 		}
 	},
-
-
-
-	
-
 	//generate Id for upload feature of this element 
 	setMongoId : function(type,callback) { 
 		//alert("setMongoId"+type);
 		uploadObj.type = type;
 		mylog.warn("uploadObj ",uploadObj);
-		if( !$("#ajaxFormModal #id").val() && !uploadObj.update )
+		if(  !$("#ajaxFormModal #id").val() && !uploadObj.update )
 		{
 			getAjax( null , baseUrl+"/api/tool/get/what/mongoId" , function(data){
-				mylog.log("setMongoId uploadObj.id", data.id);
+				//alert("setMongoId uploadObj.id", data.id);
 				uploadObj.set(type,data.id);
 				$("#ajaxFormModal #id").val(data.id);
 				if( typeof callback === "function" )
@@ -747,8 +761,7 @@ var dyFObj = {
 	*	each input field type has a corresponding HTMl to build
 	***************************************** */
 	
-	buildInputField : function (id, field, fieldObj,formValues, tooltip)
-	{
+	buildInputField : function (id, field, fieldObj,formValues, tooltip){
 		var fieldHTML = '<div class="form-group '+field+fieldObj.inputType+'">';
 		var required = "";
 		if(fieldObj.rules && fieldObj.rules.required)
@@ -756,7 +769,7 @@ var dyFObj = {
 
 		tooltip = (tooltip) ? '<i class=" fa fa-question-circle pull-right tooltips text-red" data-toggle="tooltip" data-placement="top" title="'+tooltip+'"></i>' : '';
 		if(fieldObj.label)
-			fieldHTML += '<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="'+field+'">'+
+			fieldHTML += '<label class="col-xs-12 text-left control-label no-padding" for="'+field+'">'+
 			              '<i class="fa fa-chevron-down"></i> ' +  fieldObj.label+required+tooltip+
 			            '</label>';
 
@@ -871,9 +884,9 @@ var dyFObj = {
 		***************************************** */
 		else if ( fieldObj.inputType == "checkboxSimple" ) {
    			if(value == "") value="25/01/2014";
-   			console.log("fieldObj ???",fieldObj, ( fieldObj.checked == "true" ));
+   			mylog.log("fieldObj ???",fieldObj, ( fieldObj.checked == "true" ));
 			var thisValue = ( fieldObj.checked == "true" ) ? "true" : "false";
-			console.log("fieldObj ??? thisValue", thisValue);
+			mylog.log("fieldObj ??? thisValue", thisValue);
 			//var onclick = ( fieldObj.onclick ) ? "onclick='"+fieldObj.onclick+"'" : "";
 			//var switchData = ( fieldObj.switch ) ? "data-on-text='"+fieldObj.params.onText+"' data-off-text='"+fieldObj.params.offText+"' data-label-text='"+fieldObj.switch.labelText+"' " : "";
 			mylog.log("build field "+field+">>>>>> checkbox");
@@ -980,15 +993,19 @@ var dyFObj = {
         else if ( fieldObj.inputType == "uploader" ) {
         	if(placeholder == "")
         		placeholder="add Image";
-        	mylog.log("build field "+field+">>>>>> uploader");
-        	fieldHTML += '<div class="'+fieldClass+' fine-uploader-manual-trigger" data-type="citoyens" data-id="'+userId+'"></div>';
+        	mylog.log("build field "+field+">>>>>> uploader" );
+        	var uploaderId=(fieldObj.domElement) ? fieldObj.domElement : "imageElement"; 
+        	fieldHTML += '<div class=" col-xs-12 '+fieldClass+' fine-uploader-manual-trigger"  id="'+uploaderId+'" data-type="citoyens" data-id="'+userId+'"></div>';
+        	
         	if(fieldObj.docType=="image")
-			fieldHTML += 	'<script type="text/template" id="qq-template-gallery">';
+				fieldHTML += 	'<script type="text/template" id="qq-template-gallery">';
 			else
-			fieldHTML += 	'<script type="text/template" id="qq-template-manual-trigger">';
+				fieldHTML += 	'<script type="text/template" id="qq-template-manual-trigger">';
+
 			fieldHTML += 	'<div class="qq-uploader-selector qq-uploader';
 			if(fieldObj.docType=="image")
-			fieldHTML +=		' qq-gallery';
+				fieldHTML +=		' qq-gallery';
+
 			fieldHTML +=		'" qq-drop-area-text="'+tradDynForm.dropfileshere+'">'+
 							'<div class="qq-total-progress-bar-container-selector qq-total-progress-bar-container">'+
 							'<div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-total-progress-bar-selector qq-progress-bar qq-total-progress-bar"></div>'+
@@ -1007,61 +1024,61 @@ var dyFObj = {
 							'<span class="qq-drop-processing-spinner-selector qq-drop-processing-spinner"></span>'+
 							'</span>';
 			if(fieldObj.docType=="image"){
-			fieldHTML += 	'<ul class="qq-upload-list-selector qq-upload-list" role="region" aria-live="polite" aria-relevant="additions removals">'+
-							'<li>'+
-							'<span role="status" class="qq-upload-status-text-selector qq-upload-status-text"></span>'+
-							'<div class="qq-progress-bar-container-selector qq-progress-bar-container">'+
-							'<div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-progress-bar-selector qq-progress-bar"></div>'+
-							'</div>'+
-							'<span class="qq-upload-spinner-selector qq-upload-spinner"></span>'+
-							'<div class="qq-thumbnail-wrapper">'+
-							'<img class="qq-thumbnail-selector" qq-max-size="120" qq-server-scale>'+
-							'</div>'+
-							'<button type="button" class="qq-upload-cancel-selector qq-upload-cancel">X</button>'+
-							'<button type="button" class="qq-upload-retry-selector qq-upload-retry">'+
-							'<span class="qq-btn qq-retry-icon" aria-label="Retry"></span>'+
-							'Retry'+
-							'</button>'+
-							''+
-							'<div class="qq-file-info">'+
-							'<div class="qq-file-name">'+
-							'<span class="qq-upload-file-selector qq-upload-file"></span>'+
-							//'<span class="qq-edit-filename-icon-selector qq-edit-filename-icon" aria-label="Edit filename"></span>'+
-							'</div>'+
-							'<input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">'+
-							'<span class="qq-upload-size-selector qq-upload-size"></span>'+
-							'<button type="button" class="qq-btn qq-upload-delete-selector qq-upload-delete">'+
-							'<span class="qq-btn qq-delete-icon" aria-label="Delete"></span>'+
-							'</button>'+
-							'<button type="button" class="qq-btn qq-upload-pause-selector qq-upload-pause">'+
-							'<span class="qq-btn qq-pause-icon" aria-label="Pause"></span>'+
-							'</button>'+
-							'<button type="button" class="qq-btn qq-upload-continue-selector qq-upload-continue">'+
-							'<span class="qq-btn qq-continue-icon" aria-label="Continue"></span>'+
-							'</button>'+
-							'</div>'+
-							'</li>'+
-							'</ul>';
+				fieldHTML += 	'<ul class="qq-upload-list-selector qq-upload-list" role="region" aria-live="polite" aria-relevant="additions removals">'+
+								'<li>'+
+								'<span role="status" class="qq-upload-status-text-selector qq-upload-status-text"></span>'+
+								'<div class="qq-progress-bar-container-selector qq-progress-bar-container">'+
+								'<div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-progress-bar-selector qq-progress-bar"></div>'+
+								'</div>'+
+								'<span class="qq-upload-spinner-selector qq-upload-spinner"></span>'+
+								'<div class="qq-thumbnail-wrapper">'+
+								'<img class="qq-thumbnail-selector" qq-max-size="120" qq-server-scale>'+
+								'</div>'+
+								'<button type="button" class="qq-upload-cancel-selector qq-upload-cancel">X</button>'+
+								'<button type="button" class="qq-upload-retry-selector qq-upload-retry">'+
+								'<span class="qq-btn qq-retry-icon" aria-label="Retry"></span>'+
+								'Retry'+
+								'</button>'+
+								''+
+								'<div class="qq-file-info">'+
+								'<div class="qq-file-name">'+
+								'<span class="qq-upload-file-selector qq-upload-file"></span>'+
+								//'<span class="qq-edit-filename-icon-selector qq-edit-filename-icon" aria-label="Edit filename"></span>'+
+								'</div>'+
+								'<input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">'+
+								'<span class="qq-upload-size-selector qq-upload-size"></span>'+
+								'<button type="button" class="qq-btn qq-upload-delete-selector qq-upload-delete">'+
+								'<span class="qq-btn qq-delete-icon" aria-label="Delete"></span>'+
+								'</button>'+
+								'<button type="button" class="qq-btn qq-upload-pause-selector qq-upload-pause">'+
+								'<span class="qq-btn qq-pause-icon" aria-label="Pause"></span>'+
+								'</button>'+
+								'<button type="button" class="qq-btn qq-upload-continue-selector qq-upload-continue">'+
+								'<span class="qq-btn qq-continue-icon" aria-label="Continue"></span>'+
+								'</button>'+
+								'</div>'+
+								'</li>'+
+								'</ul>';
 			}else{
-			fieldHTML += 	'<ul class="qq-upload-list-selector qq-upload-list" aria-live="polite" aria-relevant="additions removals">'+
-				                '<li>'+
-				                    '<div class="qq-progress-bar-container-selector">'+
-				                        '<div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-progress-bar-selector qq-progress-bar"></div>'+
-				                    '</div>'+
-				                    '<span class="qq-upload-spinner-selector qq-upload-spinner"></span>'+
-				                    '<img class="qq-thumbnail-selector" qq-max-size="100" qq-server-scale>'+
-				                    '<span class="qq-upload-file-selector qq-upload-file"></span>'+
-				                    //'<span class="qq-edit-filename-icon-selector qq-edit-filename-icon" aria-label="Edit filename"></span>'+
-				                    '<input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">'+
-				                    '<span class="qq-upload-size-selector qq-upload-size"></span>'+
-				                    '<button type="button" class="qq-btn qq-upload-cancel-selector qq-upload-cancel">Cancel</button>'+
-				                    '<button type="button" class="qq-btn qq-upload-retry-selector qq-upload-retry">Retry</button>'+
-				                    '<button type="button" class="qq-btn qq-upload-delete-selector qq-upload-delete">Delete</button>'+
-				                    '<span role="status" class="qq-upload-status-text-selector qq-upload-status-text"></span>'+
-				                '</li>'+
-				            '</ul>';
+				fieldHTML += '<ul class="qq-upload-list-selector qq-upload-list" aria-live="polite" aria-relevant="additions removals">'+
+					                '<li>'+
+					                    '<div class="qq-progress-bar-container-selector">'+
+					                        '<div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-progress-bar-selector qq-progress-bar"></div>'+
+					                    '</div>'+
+					                    '<span class="qq-upload-spinner-selector qq-upload-spinner"></span>'+
+					                    '<img class="qq-thumbnail-selector" qq-max-size="100" qq-server-scale>'+
+					                    '<span class="qq-upload-file-selector qq-upload-file"></span>'+
+					                    //'<span class="qq-edit-filename-icon-selector qq-edit-filename-icon" aria-label="Edit filename"></span>'+
+					                    '<input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">'+
+					                    '<span class="qq-upload-size-selector qq-upload-size"></span>'+
+					                    '<button type="button" class="qq-btn qq-upload-cancel-selector qq-upload-cancel">Cancel</button>'+
+					                    '<button type="button" class="qq-btn qq-upload-retry-selector qq-upload-retry">Retry</button>'+
+					                    '<button type="button" class="qq-btn qq-upload-delete-selector qq-upload-delete">Delete</button>'+
+					                    '<span role="status" class="qq-upload-status-text-selector qq-upload-status-text"></span>'+
+					                '</li>'+
+					            '</ul>';
 			}
-			fieldHTML += 				''+
+			fieldHTML += ''+
 							'<dialog class="qq-alert-dialog-selector">'+
 							'<div class="qq-dialog-message-selector"></div>'+
 							'<div class="qq-dialog-buttons">'+
@@ -1087,14 +1104,35 @@ var dyFObj = {
 							'</dialog>'+
 							'</div>'+
 							'</script>';
+			if(typeof dyFObj.init.uploader == "undefined") dyFObj.init.uploader=new Object;
+			uploadObject=new Object; 
 			if( fieldObj.showUploadBtn )
-        		dyFObj.init.initValues.showUploadBtn = fieldObj.showUploadBtn;
+        		uploadObject.showUploadBtn = fieldObj.showUploadBtn;
         	if( fieldObj.filetypes )
-        		dyFObj.init.initValues.filetypes = fieldObj.filetypes;
+        		uploadObject.filetypes = fieldObj.filetypes;
         	if( fieldObj.template )
-        		dyFObj.init.initValues.template = fieldObj.template;
-			if( $.isFunction( fieldObj.afterUploadComplete ) )
-        		dyFObj.init.initValues.afterUploadComplete = fieldObj.afterUploadComplete;
+        		uploadObject.template = fieldObj.template;
+			if( fieldObj.itemLimit )
+        		uploadObject.itemLimit = fieldObj.itemLimit;
+			if(fieldObj.endPoint){
+				uploadObject.endPoint = fieldObj.endPoint;
+				if(uploadObject.endPoint.indexOf("ownerId") < 0){
+					uploadObject.endPoint=uploadObject.endPoint+"/folder/citoyens/ownerId/"+userId;
+				}
+			}
+			if(typeof dySObj == "undefined" && $.isFunction( fieldObj.afterUploadComplete ))
+        		uploadObject.afterUploadComplete = fieldObj.afterUploadComplete;
+        	else if(typeof dySObj != "undefined" && Object.keys(dySObj.surveys).length != 0 && typeof fieldObj.afterUploadComplete == "string"){
+        		uploadObject.afterUploadComplete = function(){
+        			window.location=baseUrl+fieldObj.afterUploadComplete;
+        		};
+        	}else if(typeof updateForm != "undefined"){
+        		uploadObject.afterUploadComplete = function(){
+        			window.location.reload();
+        		};
+        	}
+        	dyFObj.init.uploader[uploaderId]=new Object;
+        	dyFObj.init.uploader[uploaderId]=uploadObject;
         }
 
         /* **************************************
@@ -1109,7 +1147,7 @@ var dyFObj = {
         		value =moment(parseInt(value)*1000).format('DD/MM/YYYY');
         		//alert("switch:"+value);
         	}
-        	fieldHTML += iconOpen+'<input type="text" class="form-control dateInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
+        	fieldHTML += iconOpen+'<input type="text" autocomplete="off" class="form-control dateInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
         }
 
         /* **************************************
@@ -1119,7 +1157,7 @@ var dyFObj = {
         	if(placeholder == "")
         		placeholder="25/01/2014 08:30";
         	mylog.log("build field "+field+">>>>>> datetime");
-        	fieldHTML += iconOpen+'<input type="text" class="form-control dateTimeInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
+        	fieldHTML += iconOpen+'<input type="text" autocomplete="off" class="form-control dateTimeInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
         }
         /* **************************************
 		* DATE RANGE INPUT 
@@ -1203,8 +1241,8 @@ var dyFObj = {
 			if( formValues.address && formValues.geo && formValues.geoPosition ){
 				var initAddress = function(){
 					mylog.warn("init Adress location",formValues.address.addressLocality,formValues.address.postalCode);
-					dyFInputs.locationObj.copyMapForm2Dynform({address:formValues.address,geo:formValues.geo,geo:formValues.geoPosition});
-					dyFInputs.locationObj.addLocationToForm({address:formValues.address,geo:formValues.geo,geo:formValues.geoPosition}, -1);
+					dyFInputs.locationObj.copyMapForm2Dynform({address:formValues.address,geo:formValues.geo,geoPosition:formValues.geoPosition});
+					dyFInputs.locationObj.addLocationToForm({address:formValues.address,geo:formValues.geo,geoPosition:formValues.geoPosition});
 				};
 			}     
 			if( formValues.addresses ){
@@ -1291,10 +1329,10 @@ var dyFObj = {
 				if(typeof fieldObj.initOptions != "undefined")
 					initOptions=fieldObj.initOptions;
 
-				console.log("initField", fieldObj, fieldObj.value);
+				mylog.log("initField", fieldObj, fieldObj.value);
 					
 				$.each(fieldObj.value, function(optKey,optVal) { 
-					console.log("initField", optKey, "fieldObj.value", fieldObj.value, "class ."+field+fieldObj.inputType, "optVal", optVal, "field", field, initOptions);
+					mylog.log("initField", optKey, "fieldObj.value", fieldObj.value, "class ."+field+fieldObj.inputType, "optVal", optVal, "field", field, initOptions);
 					if(optKey == 0)
 	                    $(".addmultifield").val(optVal);
 	                else {
@@ -1430,27 +1468,28 @@ var dyFObj = {
         		//authorName=newsContext.authorName;
         	}
         	fieldHTML='<div id="createNews" class="form-group">'+
-        			'<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="post">'+
+        			'<label class="col-xs-12 text-left control-label no-padding" for="post">'+
 			            '<i class="fa fa-chevron-down"></i> '+tradDynForm.writenewshere+
 			        '</label>'+
-			        '<div id="mentionsText" class="col-md-12 col-sm-12 col-xs-12 no-padding">'+
+			        '<div id="mentionsText" class="col-xs-12 no-padding">'+
         				'<textarea name="newsText"></textarea>'+
         			'</div>'+
-					'<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="post">'+
+					'<label class="col-xs-12 text-left control-label no-padding" for="post">'+
 			            '<i class="fa fa-chevron-down"></i> '+tradDynForm.tags+
 			        '</label>'+
         			'<div class="no-padding">'+
           				'<input id="tags" type="" data-type="select2" name="tags" placeholder="#Tags" value="" style="width:100%;">'+
       				'</div>'+
-        			'<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="post">'+
+        			'<label class="col-xs-12 text-left control-label no-padding" for="post">'+
 			            '<i class="fa fa-chevron-down"></i> '+tradDynForm.newsvisibility+
 			        '</label>'+
-        			'<div class="dropdown no-padding col-md-12 col-sm-12 col-xs-12">'+
-          				'<a data-toggle="dropdown" class="btn btn-default col-md-12 col-sm-12 col-xs-12" id="btn-toogle-dropdown-scope" href="javascript:;">'+
+        			'<div class="dropdown no-padding col-xs-12">'+
+          				'<a data-toggle="dropdown" class="btn btn-default col-xs-12" id="btn-toogle-dropdown-scope" href="javascript:;">'+
           					'<i class="fa fa-connectdevelop"></i> '+tradDynForm.network+' <i class="fa fa-caret-down" style="font-size:inherit;"></i>'+
           				'</a>'+
           				'<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">';
-          					if(newsContext.targetType != "events"){
+          	if(newsContext.targetType != "events")
+          	{
             fieldHTML+=		'<li>'+
               					'<a href="javascript:;" id="scope-my-network" class="scopeShare" data-value="private">'+
               						'<h4 class="list-group-item-heading"><i class="fa fa-lock"></i> '+tradDynForm.private+'</h4>'+
@@ -1473,12 +1512,13 @@ var dyFObj = {
 			            '</ul>'+
 			            '<input type="hidden" name="scope" id="scope" value="restricted"/>'+
 	        		'</div>';
-	        		if(newsContext.targetType!="citoyens"){
-	        fieldHTML+=		'<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="post">'+
+	        if(newsContext.targetType!="citoyens")
+	        {
+	        fieldHTML+=		'<label class="col-xs-12 text-left control-label no-padding" for="post">'+
 			            '<i class="fa fa-chevron-down"></i> '+tradDynForm.newsauthor+
 		            '</label>'+
         			'<div class="dropdown no-padding col-md-12">'+
-          				'<a data-toggle="dropdown" class="btn btn-default col-md-12 col-sm-12 col-xs-12 text-left" id="btn-toogle-dropdown-targetIsAuthor" href="javascript:;">'+
+          				'<a data-toggle="dropdown" class="btn btn-default col-xs-12 text-left" id="btn-toogle-dropdown-targetIsAuthor" href="javascript:;">'+
            					'<img height=20 width=20 src="'+targetImg+'">'+  
            					' '+newsContext.targetName+
 				            ' <i class="fa fa-caret-down" style="font-size:inherit;"></i>'+
@@ -1516,7 +1556,7 @@ var dyFObj = {
         	mylog.log("build field "+field+">>>>>> scope");
         		//fieldClass += " select2TagsInput select2ScopeInput";				
 				fieldHTML += '<div class="col-md-12 no-padding">'+
-								'<div class="col-md-12 col-sm-12 col-xs-12">'+
+								'<div class="col-xs-12">'+
 									'<div class="btn-group  btn-group-justified margin-bottom-10 hidden-xs btn-group-scope-type" role="group">'+
 										'<select id="select-country"></select>'+
 									'</div>'+
@@ -1539,7 +1579,7 @@ var dyFObj = {
 											'<button type="button" class="btn btn-default tooltips" data-scope-type="zone"'+
 												'data-toggle="tooltip" data-placement="top" '+
 												'title="'+tradDynForm["Add a zone"]+'">'+
-												'<strong><i class="fa fa-bullseye"></i></strong> '+tradDynForm["Zone"]+
+												'<strong><i class="fa fa-bullseye"></i></strong> '+tradDynForm.Zone+
 											'</button>'+
 										'</div>'+
 									'</div>'+
@@ -1564,7 +1604,7 @@ var dyFObj = {
 											'<button type="button" class="btn btn-default tooltips" data-scope-type="zone"'+
 											'data-toggle="tooltip" data-placement="top" '+
 											'title="'+tradDynForm["Add a zone"]+'">'+
-											'<strong><i class="fa fa-bullseye"></i></strong> '+tradDynForm["Zone"]+
+											'<strong><i class="fa fa-bullseye"></i></strong> '+tradDynForm.Zone+
 											'</button>'+
 										'</div>'+
 									'</div>'+
@@ -1607,12 +1647,94 @@ var dyFObj = {
 							'</div>';
 
 					
-        }
-        else if ( fieldObj.inputType == "password" ) {
+        } else if ( fieldObj.inputType == "formLocality") {
+        	mylog.log("build field "+field+">>>>>> formLocality");
+       		
+        	fieldHTML += "<div class='col-md-6 col-xs-12 inline-block padding-15 form-in-map formLocality col-md-6'>"+
+        					'<label style="font-size: 13px;" class="col-xs-12 text-left control-label no-padding" for="newElement_country">'+
+								'<i class="fa fa-chevron-down"></i> '+tradDynForm.country+
+				            '</label>'+
+							"<select class='col-md-10 col-xs-12' name='newElement_country' id='newElement_country'>"+
+								"<option value=''>"+trad.chooseCountry+"</option>";
+								$.each(dyFObj.formInMap.countryList, function(key, v){
+									fieldHTML += "<option value='"+v.countryCode+"'>"+v.name+"</option>";
+								});
+				fieldHTML += "</select>"+
+							"<div id='divCity' class='hidden dropdown pull-left col-md-12 col-xs-12 no-padding'> "+
+								'<label style="font-size: 13px;" class="col-xs-12 text-left control-label no-padding" for="newElement_city">'+
+									'<i class="fa fa-chevron-down"></i> '+trad.city  +
+								'</label>'+
+						  		"<input autocomplete='off' class='col-md-10 col-xs-12' type='text' name='newElement_city' placeholder='"+trad['Search a city, a town or a postal code']+"'>"+
+								"<ul class='dropdown-menu col-md-10 col-xs-12' id='dropdown-newElement_locality-found' style='margin-top: -2px; background-color : #ea9d13; max-height : 300px ; overflow-y: auto'>"+
+									"<li><a href='javascript:' class='disabled'>"+tradDynForm.searchACityATownOrAPostalCode +"</a></li>"+
+								"</ul>"+
+					  		"</div>"+
+							"<div id='divStreetAddress' class='hidden dropdown pull-left col-md-12 col-xs-12 no-padding'> "+
+								'<label style="font-size: 13px;" class="col-xs-12 text-left control-label no-padding" for="newElement_street">'+
+									'<i class="fa fa-chevron-down"></i> '+trad.streetFormInMap +
+					            '</label>'+
+								"<input class='col-md-9 col-xs-9'  autocomplete='off' type='text' style='margin-right:-3px;' name='newElement_street' placeholder='"+trad.streetFormInMap +"'>"+
+								"<a href='javascript:;' class='col-md-1 col-xs-1 btn btn-default' style='padding:3px;border-radius:0 4px 4px 0 ; height: 33px;' type='text' id='newElement_btnSearchAddress'><i class='fa fa-search'></i></a>"+
+							"</div>"+
+							"<div class='dropdown pull-left col-xs-12 no-padding'> "+
+						  		"<ul class='dropdown-menu' id='dropdown-newElement_streetAddress-found' style='margin-top: -15px; background-color : #ea9d13; max-height : 300px ; overflow-y: auto'>"+
+						  			"<li><a href='javascript:' class='disabled'>"+trad.currentlyresearching +"</a></li>"+
+						  		"</ul>"+
+							"</div>"+
+							"<div id='alertGeo' class='alert alert-warning col-xs-12 hidden' style='margin-bottom: 0px;'>"+
+							  "<strong>Warning!</strong> "+tradDynForm.doNotForgetToGeolocateYourAddress+
+							"</div></div>"+
+							"<div id='sumery' class='text-dark col-md-6 col-xs-12 no-padding'>"+
+								"<h4 class='text-center'>"+tradDynForm.addressSummary +" : </h4>"+
+								"<div id='street_sumery' class='col-xs-12'>"+
+									"<span>"+trad.streetFormInMap +" : </span>"+
+									"<b><span id='street_sumery_value'></span></b>"+
+								"</div>"+
+								"<div id='cp_sumery' class='col-xs-12'>"+
+									"<span>"+trad.postalCode +" : </span>"+
+									"<b><span id='cp_sumery_value'></span></b>"+
+								"</div>"+
+								"<div id='city_sumery' class='col-xs-12'>"+
+									"<span>"+trad.city +" : </span>"+
+									"<b><span id='city_sumery_value'></span></b>"+
+								"</div>"+
+								"<div id='country_sumery' class='col-xs-12'>"+
+									"<span>"+tradDynForm.country +" : </span>"+
+									"<b><span id='country_sumery_value'></span></b>"+
+								"</div>"+
+								"<hr class='col-md-12'>"+
+								"<a href='javascript:;' class='btn btn-success' type='text' id='btnValideAddress'>"+
+									tradDynForm.confirmAddress+
+								"</a>"+
+							"</div>";
+				fieldHTML +="<div id='divNewAddress' class='text-dark col-xs-12 no-padding '>"+
+								"<a href='javascript:;' class='btn btn-success' style='margin-bottom: 10px;' type='text' id='newAddress'>"+
+									'<i class="fa fa-plus"></i> '+tradDynForm.addANewAddress +
+								"</a>"+
+							"</div>";
+
+
+   //     		var isSelect2 = (fieldObj.isSelect2) ? "select2Input" : "";
+   //     		fieldHTML += '<select class="'+isSelect2+' '+fieldClass+'" '+multiple+' name="'+field+'" id="'+field+'" style="width: 100%;height:30px;" data-placeholder="'+placeholder+'">';
+			// if(placeholder)
+			// 	fieldHTML += '<option class="text-red" style="font-weight:bold" disabled selected>'+placeholder+'</option>';
+			// else
+			// 	fieldHTML += '<option></option>';
+
+			// var selected = "";
+			// mylog.log("fieldObj select", fieldObj);
+			// //initialize values
+			// if(fieldObj.options)
+			// 	fieldHTML += buildSelectOptions(fieldObj.options, ((typeof fieldObj.value != "undefined")?fieldObj.value:value));
+
+			// if( fieldObj.groupOptions )
+			// 	fieldHTML += buildSelectGroupOptions(fieldObj.groupOptions, ((typeof fieldObj.value != "undefined")?fieldObj.value:value));
+			
+			// fieldHTML += '</select>';
+        } else if ( fieldObj.inputType == "password" ) {
         	mylog.log("build field "+field+">>>>>> password");
         	fieldHTML += '<input id="'+field+'" name="'+field+'" class="form-control" type="password"/>';
-       	}
-        else {
+       	} else {
         	mylog.log("build field "+field+">>>>>> input text");
         	fieldHTML += iconOpen+'<input type="text" class="form-control '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
         }
@@ -1642,6 +1764,15 @@ var dyFObj = {
 		mylog.info("bindForm :: connecting submit btn to $.validate pluggin");
 		mylog.dir(formRules);
 		var errorHandler = $('.errorHandler', $(params.formId));
+
+		// $(params.formId).unbind('keydown').keydown(function(event) 
+		//   {
+		//   	if ( event.keyCode == 13)
+		//     {
+		// 		event.preventDefault();
+		// 		//alert("enter");
+		// 	}
+		// });
 
 		$(params.formId).validate({
 
@@ -1685,6 +1816,10 @@ var dyFObj = {
 			},
 			invalidHandler : function(event, validator) {//display error alert on form submit
 				errorHandler.show();
+				
+				//alert("error form");
+				//$(".btn-next").html('<span class="text-red">Errors <i class="fa fa-warning"></i></span>');
+				
 				// $("#btn-submit-form").html('Valider <i class="fa fa-arrow-circle-right"></i>').prop("disabled",false).one(function() { 
 				// 	$( settings.formId ).submit();	        	
 		  //       });
@@ -1745,6 +1880,7 @@ var dyFObj = {
 						{
 						  "tags": dyFObj.init.initValues[ $(this).attr("id") ].tags ,
 						  "tokenSeparators": [','],
+						  "minimumInputLength" : 3,
 						  "placeholder" : ( $(this).attr("placeholder") ) ? $(this).attr("placeholder") : "",
 						};
 						if(dyFObj.init.initValues[ $(this).attr("id") ].maximumSelectionLength)
@@ -1756,7 +1892,7 @@ var dyFObj = {
 						if(typeof mainTag != "undefined")
 							$(this).val([mainTag]).trigger('change');
 					}
-				 });
+				});
 			} else
 				mylog.error("select2 library is missing");
 		} 
@@ -1765,7 +1901,9 @@ var dyFObj = {
 		* DATE INPUT , we use http://xdsoft.net/jqplugins/datetimepicker/
 		***************************************** */
 		function loadDateTimePicker(callback) {
+			mylog.log("loadDateTimePicker");
 			if( ! jQuery.isFunction(jQuery.datetimepicker) ) {
+				mylog.log("loadDateTimePicker2");
 				lazyLoad( baseUrl+'/plugins/xdan.datetimepicker/jquery.datetimepicker.full.min.js', 
 						  baseUrl+'/plugins/xdan.datetimepicker/jquery.datetimepicker.min.css',
 						  callback);
@@ -1843,18 +1981,17 @@ var dyFObj = {
 		/* **************************************
 		* Location type 
 		***************************************** */
-		if(  $(".locationBtn").length)
-		{
+		if(  $(".locationBtn").length){
 			//todo : for generic dynForm check if map exist 
 			$(".locationBtn").off().on( "click", function(){ 
 				
 		        //if(typeof showFormInMap != "undefined"){ showFormInMap(); }
 		        if(typeof formInMap.showMarkerNewElement != "undefined"){
 		        	$("#ajax-modal").modal("hide");
-		        	console.log(".locationBtn");
+		        	mylog.log(".locationBtn");
 					formInMap.actived = true ;
 			        showMap(true);
-		        	console.log(".locationBtn showMarkerNewElement");
+		        	mylog.log(".locationBtn showMarkerNewElement");
 		        	formInMap.showMarkerNewElement(); 
 		        }
 		    });
@@ -1877,9 +2014,9 @@ var dyFObj = {
 		/* **************************************
 		* Image uploader , we use https://github.com/FineUploader/fine-uploader
 		***************************************** */
-		if(  $(".fine-uploader-manual-trigger").length)
+		if(typeof dyFObj.init.uploader != "undefined" && Object.keys(dyFObj.init.uploader).length)
 		{
-			function loadFineUploader(callback,template) {
+			/*function loadFineUploader(callback,template) {
 				if( ! jQuery.isFunction(jQuery.fineUploader) ) {
 					if(template=='qq-template-manual-trigger')
 						var cssLazy=baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/fine-uploader-new.min.css';
@@ -1889,155 +2026,189 @@ var dyFObj = {
 							  cssLazy,
 							  callback);
 			    }
-			}
-			var docListIds=[];
-			var FineUploader = function(){
-				mylog.log("init fineUploader");
-				$(".fine-uploader-manual-trigger").fineUploader({
-		            template: (dyFObj.init.initValues.template) ? dyFObj.init.initValues.template : 'qq-template-manual-trigger',
-		            request: {
-		                endpoint: uploadObj.path
-		            },
-		            validation: {
-		                allowedExtensions: (dyFObj.init.initValues.filetypes) ? dyFObj.init.initValues.filetypes : ['jpeg', 'jpg', 'gif', 'png'],
-		                sizeLimit: 2000000
-		            },
-		            messages: {
-				        sizeError : '{file} '+tradDynForm.istooheavy+'! '+tradDynForm.limitmax+' : {sizeLimit}.',
-				        typeError : '{file} '+tradDynForm.invalidextension+'. '+tradDynForm.extensionacceptable+': {extensions}.'
-				    },
-		            callbacks: {
-		            	//when a img is selected
-					    onSubmit: function(id, fileName) {
-					    	$('.fine-uploader-manual-trigger').fineUploader('setEndpoint',uploadObj.path);	
-					    	//$('.fine-uploader-manual-trigger').fineUploader('uploadStoredFiles');
-    					    if( dyFObj.init.initValues.showUploadBtn  ){
-						      	$('#trigger-upload').removeClass("hide").click(function(e) {
-				        			$('.fine-uploader-manual-trigger').fineUploader('uploadStoredFiles');
-						        	urlCtrl.loadByHash(location.hash);
-				        			$('#ajax-modal').modal("hide");
-						        });
-
-					        }
+			}*/
+			uploadObj.docListIds=[];
+			$.each(dyFObj.init.uploader, function(e,v){
+				var domElement="#"+e;
+				//var FineUploader = function(){
+					if(typeof v.endPoint == "undefined")
+						uploadObj.domTarget=domElement;
+					mylog.log("init fineUploader");
+					var endPointUploader=(typeof v.endPoint != "undefined") ? baseUrl+"/"+moduleId+v.endPoint : uploadObj.path;
+					$(domElement).fineUploader({
+			            template: (v.template) ? v.template : 'qq-template-manual-trigger',
+			            itemLimit: (v.itemLimit) ? v.itemLimit : 0,
+			            request: {
+			                endpoint: endPointUploader
+			            },
+			            validation: {
+			                allowedExtensions: (v.filetypes) ? v.filetypes : ['jpeg', 'jpg', 'gif', 'png'],
+			                sizeLimit: 2000000
+			            },
+			            messages: {
+					        sizeError : '{file} '+tradDynForm.istooheavy+'! '+tradDynForm.limitmax+' : {sizeLimit}.',
+					        typeError : '{file} '+tradDynForm.invalidextension+'. '+tradDynForm.extensionacceptable+': {extensions}.'
 					    },
-					    onCancel: function(id) {
-					    	if(($("ul.qq-upload-list > li").length-1)<=0)
-					    		$('#trigger-upload').addClass("hide");
-	        			},
-	        			
-					    //launches request endpoint
-					    //onUpload: function(id, fileName) {
-					      //alert(" > upload : "+id+fileName+contextData.type+contextData.id);
-					      //alert(" > request : "+ uploadObj.id +" :: "+ uploadObj.type);
-					      //console.log('onUpload uplaodObj',uploadObj);
-					      //var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
-					      //console.log('onUpload getEndpoint',ex);
-					    //},
-					    //launched on upload
-					    //onProgress: function(id, fileName, uploadedBytes,totalBytes) {
-					    	/*console.log('onProgress uplaodObj',uploadObj);
-					    	var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
-					    	console.log('onProgress getEndpoint',ex);
-					    	console.log('getInProgress',$('.fine-uploader-manual-trigger').fineUploader('getInProgress'));*/
-					      //alert("progress > "+" :: "+ uploadObj.id +" :: "+ uploadObj.type);
-					    //},
-					    //when every img finish upload process whatever the status
-					    onComplete: function(id, fileName,responseJSON,xhr) {
-					    	
-					    	console.log(responseJSON);
-					    	
-					    	if($("#ajaxFormModal #newsCreation").val()=="true"){
-					    		docListIds.push(responseJSON.id.$id);
-					    	}
-					    	if(!responseJSON.result){
-					    		toastr.error(trad["somethingwentwrong"]+" : "+responseJSON.msg );		
-					    		console.error(trad["somethingwentwrong"] , responseJSON.msg)
-					    	}
-					    },
-					    //when all upload is complete whatever the result
-					    onAllComplete: function(succeeded, failed) {
-					     	toastr.info( "Fichiers bien chargés !!");
-					      	if($("#ajaxFormModal #newsCreation").val()=="true"){
-					      		console.log("docslist",docListIds);
-					      		//var mentionsInput=[];
-					      		/*$('#ajaxFormModal #createNews textarea').mentionsInput('getMentions', function(data) {
-      								mentionsInput=data;
-    							});*/
-					      		var media=new Object;
-					      		if(uploadObj.contentKey=="file"){
-					      			media.type="gallery_files";
-					      			media.countFiles=docListIds.length;
-					      			media.files=docListIds;
-					      		}else{
-					      			media.type="gallery_images";
-					      			media.countImages=docListIds.length;
-					      			media.images=docListIds;
-					      		}
-					    		var addParams = {
-	              				  type: "news",
-	              				  parentId: uploadObj.id,
-	              				  parentType: uploadObj.type,
-	              				  scope:$("#ajaxFormModal #createNews #scope").val(),
-	              				  text:$("#ajaxFormModal #createNews textarea").val(),
-	              				  media: media
-	            				};
-	            				if ($("#ajaxFormModal #createNews #tags").val() != "")
-									addParams.tags = $("#ajaxFormModal #createNews #tags").val().split(",");
-								if($('#ajaxFormModal #createNews #authorIsTarget').length && $('#ajaxFormModal #createNews #authorIsTarget').val()==1)
-									addParams.targetIsAuthor = true;
-								/*if (mentionsResult.mentionsInput.length != 0){
-									addParams.mentions=mentionsResult.mentionsInput;
-									addParams.text=mentionsResult.text;
-								}*/
-								addParams=mentionsInit.beforeSave(addParams,'#ajaxFormModal #createNews textarea');
-								$.ajax({
-							        type: "POST",
-							        url: baseUrl+"/"+moduleId+"/news/save?tpl=co2",
-							        //dataType: "json",
-							        data: addParams,
-									type: "POST",
-							    })
-							    .done(function (data) {
+					    
+			            callbacks: {
+			            	//when a img is selected
+						    onSubmit: function(id, fileName) {
 						    		
-									return true;
-							    }).fail(function(){
-								   toastr.error("Something went wrong, contact your admin"); 
-								   $("#btn-submit-form i").removeClass("fa-circle-o-notch fa-spin").addClass("fa-arrow-circle-right");
-								   $("#btn-submit-form").prop('disabled', false);
-							    });
-							}
-					    if( jQuery.isFunction(dyFObj.init.initValues.afterUploadComplete) )
-					      	dyFObj.init.initValues.afterUploadComplete();
-					     	uploadObj.gotoUrl = null;
-					    },
-					    onError: function(id) {
-					      toastr.info(trad["somethingwentwrong"]);
-					    }
-					},
-		            thumbnails: {
-		                placeholders: {
-		                    waitingPath: baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/processing.gif',
-		                    notAvailablePath: baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/retry.gif'
-		                }
-		            },
-		            autoUpload: false
-		        });
-				/*console.log(params);
-				if(typeof params.formValues.images != "undefined" && params.formValues.images.length > 0){
-					var imagesArray=[];
-					$.each(params.formValues.images,function(e,v){
-						var image={
-							"name":"ressource"+e,
-							"uuid":v.id,
-							"thumbnailUrl":v.imageThumbPath
-						};
-						imagesArray.push(image);
-					});
-					uploader.addInitialFiles(imagesArray);
-				}*/
-			};
-			if(  $(".fine-uploader-manual-trigger").length)
-				loadFineUploader(FineUploader,dyFObj.init.initValues.template);
+						    	if(typeof v.endPoint == "undefined")
+						    		$(domElement).fineUploader('setEndpoint',uploadObj.path);
+						    	//	$(domElement).fineUploader('uploadStoredFiles');
+	    					    if( v.showUploadBtn  ){
+							      	$('#trigger-upload').removeClass("hide").click(function(e) {
+					        			$(domElement).fineUploader('uploadStoredFiles');
+							        	urlCtrl.loadByHash(location.hash);
+					        			$('#ajax-modal').modal("hide");
+							        });
+
+						        }
+						    },
+						    onCancel: function(id) {
+						    	if(($("ul.qq-upload-list > li").length-1)<=0)
+						    		$('#trigger-upload').addClass("hide");
+		        			},
+		        			
+						    //launches request endpoint
+						    //onUpload: function(id, fileName) {
+						      //alert(" > upload : "+id+fileName+contextData.type+contextData.id);
+						      //alert(" > request : "+ uploadObj.id +" :: "+ uploadObj.type);
+						      //mylog.log('onUpload uplaodObj',uploadObj);
+						      //var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
+						      //mylog.log('onUpload getEndpoint',ex);
+						    //},
+						    //launched on upload
+						    //onProgress: function(id, fileName, uploadedBytes,totalBytes) {
+						    	/*mylog.log('onProgress uplaodObj',uploadObj);
+						    	var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
+						    	mylog.log('onProgress getEndpoint',ex);
+						    	mylog.log('getInProgress',$('.fine-uploader-manual-trigger').fineUploader('getInProgress'));*/
+						      //alert("progress > "+" :: "+ uploadObj.id +" :: "+ uploadObj.type);
+						    //},
+						    //when every img finish upload process whatever the status
+						    onComplete: function(id, fileName,responseJSON,xhr) {
+						    	
+						    	//mylog.log(responseJSON);
+						    	if(typeof responseJSON.survey != "undefined" && responseJSON.survey){
+						    		documentEl={
+						    			formId:dySObj.surveys.id,
+						    			answerSection: dySObj.activeSectionKey,
+						    			answerKey : responseJSON.survey,
+						    			documentId :responseJSON.id.$id
+						    		};
+						    		if(typeof updateForm !="undefined" && notNull(updateForm)){
+						    			documentEl.formId = updateForm.form;
+	    								documentEl.answerSection = updateForm.step; 
+	    							}
+						    		$.ajax({
+								        type: "POST",
+								        url: baseUrl+"/survey/co/updatedocumentids",
+								        //dataType: "json",
+								        data: documentEl,
+										type: "POST",
+								    })
+								    .done(function (data){}).fail(function(){
+									  // toastr.error("Something went wrong, contact your admin"); 
+									   $("#btn-submit-form i").removeClass("fa-circle-o-notch fa-spin").addClass("fa-arrow-circle-right");
+									   $("#btn-submit-form").prop('disabled', false);
+								    });
+						    	}
+						    	if($("#ajaxFormModal #newsCreation").val()=="true"){
+						    		uploadObj.docListIds.push(responseJSON.id.$id);
+						    	}
+						    	if(!responseJSON.result){
+						    		toastr.error(trad.somethingwentwrong+" : "+responseJSON.msg );		
+						    		mylog.error(trad.somethingwentwrong , responseJSON.msg)
+						    	}
+						    },
+						    //when all upload is complete whatever the result
+						    onAllComplete: function(succeeded, failed) {
+						    	mylog.log("ooooooooooooo",succeeded,failed);
+						     	toastr.info( "Fichiers bien chargés !!");
+						     	
+						      	if($("#ajaxFormModal #newsCreation").val()=="true"){
+						      		//var mentionsInput=[];
+						      		/*$('#ajaxFormModal #createNews textarea').mentionsInput('getMentions', function(data) {
+	      								mentionsInput=data;
+	    							});*/
+						      		var media=new Object;
+						      		if(uploadObj.contentKey=="file"){
+						      			media.type="gallery_files";
+						      			media.countFiles=uploadObj.docListIds.length;
+						      			media.files=uploadObj.docListIds;
+						      		}else{
+						      			media.type="gallery_images";
+						      			media.countImages=uploadObj.docListIds.length;
+						      			media.images=uploadObj.docListIds;
+						      		}
+						    		var addParams = {
+		              				  type: "news",
+		              				  parentId: uploadObj.id,
+		              				  parentType: uploadObj.type,
+		              				  scope:$("#ajaxFormModal #createNews #scope").val(),
+		              				  text:$("#ajaxFormModal #createNews textarea").val(),
+		              				  media: media
+		            				};
+		            				if ($("#ajaxFormModal #createNews #tags").val() != "")
+										addParams.tags = $("#ajaxFormModal #createNews #tags").val().split(",");
+									if($('#ajaxFormModal #createNews #authorIsTarget').length && $('#ajaxFormModal #createNews #authorIsTarget').val()==1)
+										addParams.targetIsAuthor = true;
+									/*if (mentionsResult.mentionsInput.length != 0){
+										addParams.mentions=mentionsResult.mentionsInput;
+										addParams.text=mentionsResult.text;
+									}*/
+									addParams=mentionsInit.beforeSave(addParams,'#ajaxFormModal #createNews textarea');
+									$.ajax({
+								        type: "POST",
+								        url: baseUrl+"/"+moduleId+"/news/save?tpl=co2",
+								        //dataType: "json",
+								        data: addParams,
+										type: "POST",
+								    })
+								    .done(function (data) {
+							    		
+										return true;
+								    }).fail(function(){
+									   toastr.error("Something went wrong, contact your admin"); 
+									   $("#btn-submit-form i").removeClass("fa-circle-o-notch fa-spin").addClass("fa-arrow-circle-right");
+									   $("#btn-submit-form").prop('disabled', false);
+								    });
+								}
+						    	if(typeof v.afterUploadComplete != "undefined" && jQuery.isFunction(v.afterUploadComplete) )
+						      		v.afterUploadComplete();
+						     	uploadObj.gotoUrl = null;
+						    },
+						    onError: function(id) {
+						      toastr.info(trad.somethingwentwrong);
+						    }
+						},
+			            thumbnails: {
+			                placeholders: {
+			                    waitingPath: baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/processing.gif',
+			                    notAvailablePath: baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/retry.gif'
+			                }
+			            },
+			            autoUpload: false
+			        });
+					/*mylog.log(params);
+					if(typeof params.formValues.images != "undefined" && params.formValues.images.length > 0){
+						var imagesArray=[];
+						$.each(params.formValues.images,function(e,v){
+							var image={
+								"name":"ressource"+e,
+								"uuid":v.id,
+								"thumbnailUrl":v.imageThumbPath
+							};
+							imagesArray.push(image);
+						});
+						uploader.addInitialFiles(imagesArray);
+					}*/
+				//};
+				//if($(domElement).length)
+				//loadFineUploader(FineUploader,v.template);
+			});
 		}
 
 		/* **************************************
@@ -2068,7 +2239,14 @@ var dyFObj = {
 				format: 'DD/MM/YYYY h:mm A' 
 			});*/
 		}
-
+		/* **************************************
+		* formLocality 
+		***************************************** */
+		if(  $(".formLocality").length ){
+			//alert("formLocality");
+			dyFObj.formInMap.init();
+		}
+		
 		
 		/* **************************************
 		* PROPERTIES 
@@ -2095,7 +2273,7 @@ var dyFObj = {
 		***************************************** */
 		if(  $(".wysiwygInput").length )
 		{
-			console.log("wysiwygInput wysiwygInput");
+			mylog.log("wysiwygInput wysiwygInput");
 				var initField = function(){
 					$(".wysiwygInput").summernote({
 
@@ -2133,7 +2311,7 @@ var dyFObj = {
 		***************************************** */
 		if(  $(".markdownInput").length )
 		{
-			console.log("markdownInput");
+			mylog.log("markdownInput");
 			var initField = function(){
 				$(".markdownInput").markdown({
 						savable:true,
@@ -2174,10 +2352,10 @@ var dyFObj = {
 		* val can be a value when type array or {"label":"","value":""} when type property
 		***************************************** */
 		initValues : {},
+		uploader : {},
 		initSelect : {},
 		initSelectNetwork : [],
-		addfield : function ( parentContainer,val,name, type ) 
-		{
+		addfield : function ( parentContainer,val,name, type ) {
 			mylog.log("dyFObj.init.addfield",parentContainer+' .inputs',val,name);
 			if(!$.isEmptyObject($(parentContainer+' .inputs')))
 		    {
@@ -2204,13 +2382,13 @@ var dyFObj = {
 						  "tokenSeparators": [','],
 						  "placeholder" : ( $("#"+e).attr("placeholder") ) ? $("#"+e).attr("placeholder") : "",
 						};
-						mylog.log( "here3");
+						
 						if(dyFObj.init.initValues[ e ].maximumSelectionLength)
 							selectOptions.maximumSelectionLength = dyFObj.init.initValues[e]["maximumSelectionLength"];
-						mylog.log( "here3");
+						
 						if(typeof dyFObj.init.initSelectNetwork != "undefined" && typeof dyFObj.init.initSelectNetwork[e] != "undefined" && dyFObj.init.initSelectNetwork[e].length > 0)
 							selectOptions.data=dyFObj.init.initSelectNetwork[e];
-						mylog.log( "here3");
+						
 						$("#"+e).removeClass("form-control").select2(selectOptions);
 						if(typeof mainTag != "undefined")
 							$("#"+e).val([mainTag]).trigger('change');
@@ -2285,8 +2463,7 @@ var dyFObj = {
 		/* **************************************
 		* build HTML for each element of a property list 
 		***************************************** */
-		propertyLineHTML : function (propVal,name)
-		{
+		propertyLineHTML : function (propVal,name){
 			var count = $(".addmultifield").length;
 			mylog.log("dyFObj.init.propertyLineHTML", propVal, typeof propVal, name, count);
 			if( !notEmpty(propVal) ) 
@@ -2324,8 +2501,7 @@ var dyFObj = {
 		/* **************************************
 		* build HTML for each element of array
 		***************************************** */
-		arrayLineHTML : function (val,name)
-		{
+		arrayLineHTML : function (val,name){
 			mylog.log("dyFObj.init.arrayLineHTML : ",val);
 			if( typeof val == "undefined" ) 
 		    	val = "";
@@ -2441,7 +2617,7 @@ var dyFObj = {
 			var countRange=$("#hoursRange"+addToDay+" .hoursRange").length;
 			mylog.log("countRange", countRange);
 			//alert(countRange);
-			str='<div class="col-md-12 col-sm-12 col-xs-12 hoursRange no-padding hoursRange'+countRange+'" data-value="'+countRange+'">'+
+			str='<div class="col-xs-12 hoursRange no-padding hoursRange'+countRange+'" data-value="'+countRange+'">'+
 					'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding">'+
 	        		'<i class="fa fa-hourglass-start"></i> Start hour'+
 	    			'</label>'+
@@ -2487,8 +2663,8 @@ var dyFObj = {
 			}
 			mylog.log("allWeek", allWeek);
 			//((allWeek == true) ? "style='display:none;'" : "")
-			var str = "<div class='col-md-12 col-sm-12 col-xs-12 no-padding'>"+
-				"<div id='selectedDays' class='col-md-12 col-sm-12 col-xs-12 text-center margin-bottom-10' "+((allWeek == true) ? "style='display:none;'" : "")+">";
+			var str = "<div class='col-xs-12 no-padding'>"+
+				"<div id='selectedDays' class='col-xs-12 text-center margin-bottom-10' "+((allWeek == true) ? "style='display:none;'" : "")+">";
 					$.each(arrayDayKeys,function(e,v){
 						var active = ((typeof data != "object" || typeof data[e] == "object" ) ? "active"  : "");
 						str+="<div class='inline'>"+
@@ -2496,7 +2672,7 @@ var dyFObj = {
 							"</div>";
 					});
 			str+="</div>"+
-				"<div id='daysList' class='col-md-12 col-sm-12 col-xs-12 no-padding'>";
+				"<div id='daysList' class='col-xs-12 no-padding'>";
 					$.each(arrayDayKeys,function(e,v){
 
 						var noneDay = ( (typeof data != "object" || typeof data[e] == "object")  ? ""  : "display:none;");
@@ -2506,18 +2682,18 @@ var dyFObj = {
 						// mylog.log("noneDay", noneDay);
 						// mylog.log("checked", checked);
 						// mylog.log("noneHours", noneHours);
-				str+=	"<div class='col-md-12 col-sm-12 col-xs-12 padding-bottom-10 padding-top-10 margin-bottom-5 shadow2' id='contentDays"+v+"' style='border-bottom:1px solid lightgray; "+noneDay+"'>"+
-							"<div class='col-md-12 col-sm-12 col-xs-12 no-padding'>"+
+				str+=	"<div class='col-xs-12 padding-bottom-10 padding-top-10 margin-bottom-5 shadow2' id='contentDays"+v+"' style='border-bottom:1px solid lightgray; "+noneDay+"'>"+
+							"<div class='col-xs-12 no-padding'>"+
 								'<label class="col-md-4 col-sm-5 col-xs-6 text-left control-label no-padding no-margin" for="allDaysMo">'+
 									'<i class="fa fa-calendar"></i> '+arrayKeyTrad[v].label+
 								'</label>'+
 								'<input type="checkbox" class="allDaysWeek" id="allDays'+v+'" value="true" data-key="'+v+'" '+checked+'/> '+tradDynForm.allday+
 							"</div>"+
-							'<div class="col-md-12 col-sm-12 col-xs-12" id="hoursRange'+v+'" '+noneHours+'>';
+							'<div class="col-xs-12" id="hoursRange'+v+'" '+noneHours+'>';
 								if( typeof data[e] == "object" && notNull(data[e].hours) ){
 									$.each(data[e].hours,function(kHour,vHour){
 										mylog.log("hours", kHour, vHour);
-										str +='<div class="col-md-12 col-sm-12 col-xs-12 hoursRange no-padding hoursRange'+kHour+'" data-value="'+kHour+'">'+
+										str +='<div class="col-xs-12 hoursRange no-padding hoursRange'+kHour+'" data-value="'+kHour+'">'+
 												'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding">'+
 								        		'<i class="fa fa-hourglass-start"></i> Start hour'+
 								    			'</label>'+
@@ -2538,7 +2714,7 @@ var dyFObj = {
 
 									});
 								}else{
-									str+= '<div class="col-md-12 col-sm-12 col-xs-12 hoursRange no-padding" data-value="0">'+
+									str+= '<div class="col-xs-12 hoursRange no-padding" data-value="0">'+
 										'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding" for="allDaysMo">'+
 											'<i class="fa fa-hourglass-start"></i> Start hour'+
 										'</label>'+
@@ -2568,8 +2744,7 @@ var dyFObj = {
 		/* **************************************
 		* init Boostrap Switch
 		***************************************** */
-		initbootstrapSwitch : function (el,change, css)
-		{
+		initbootstrapSwitch : function (el,change, css){
 			mylog.log("dyFObj.init.initbootstrapSwitch", el,change, css);
 			var initSwitch = function(){
 				mylog.log("init bootstrap switch");
@@ -2654,9 +2829,13 @@ var dyFObj = {
 									"</a>" +
 								"</div>";
 						msg = "Verifiez si le contact est dans Communecter";
+					}else if(dySObj.surveys != null){
+						str +='<a href="javascript:;" onclick="dySObj.goForward(\''+id+'\',\''+addslashes(elem.name)+'\', \''+elem.slug+'\', \''+elem.email+'\' );" class="btn btn-xs btn-danger col-xs-12 w50p text-left padding-5 margin-5">'+
+							"<span>"+ htmlIco +"</span> <span> " + elem.name+"</br>"+where+ "</span>"+
+						"</a>"; 
 					}else{
 						str += 	"<a target='_blank' href='#page.type."+ elem.type +".id."+ id +"' class='btn btn-xs btn-danger col-xs-12 w50p text-left padding-5 margin-5' style='height:42px' >"+
-								"<span>"+ htmlIco +"</span> <span> " + elem.name+"</br>"+where+ "</span>"
+								"<span>"+ htmlIco +"</span> <span> " + elem.name+"</br>"+where+ "</span>"+
 							"</a>";
 					}
 					//str += directory.lightPanelHtml(elem);  
@@ -2678,7 +2857,558 @@ var dyFObj = {
 				
 	          }
 	 	});
-	}
+	},
+	formInMap : {
+		actived : false,
+		timeoutAddCity : null,
+		countryList : null,
+		NE_insee : "",
+		NE_lat : "",
+		NE_lng : "",
+		NE_city : "",
+		NE_cp : "",
+		NE_street : "",
+		NE_country : "",
+		NE_level4 : "",
+		NE_level4Name : "",
+		NE_level3 : "",
+		NE_level3Name : "",
+		NE_level2 : "",
+		NE_level2Name : "",
+		NE_level1 : "",
+		NE_level1Name : "",
+		NE_localityId : "",
+		NE_betweenCP : false,
+		geoShape : "",
+		typeSearchInternational : "",
+		formType : "",
+		updateLocality : false,
+		addressesIndex : false,
+		saveCities : {},
+		bindActived : false,
+		init : function(){
+			mylog.log("forminmap showMarkerNewElement");
+			mylog.log("formType", dyFObj.formInMap.formType);
+			$(".locationBtn").addClass("hidden");
+			
+			dyFObj.formInMap.initCountry();
+
+			$('[name="newElement_country"]').val(dyFObj.formInMap.NE_country);
+
+			if(dyFObj.formInMap.NE_country != ""){
+				$("#divPostalCode").removeClass("hidden");
+				$("#divCity").removeClass("hidden");
+			}
+			mylog.log("dyFObj.formInMap.bindActived", dyFObj.formInMap.bindActived);
+			if(dyFObj.formInMap.bindActived == false)
+				dyFObj.formInMap.bindFormInMap();
+
+			if(userId == "" || dyFObj.formInMap.NE_insee == "")
+				$("#divStreetAddress").addClass("hidden");
+			else
+				$("#divStreetAddress").removeClass("hidden");
+
+			dyFObj.formInMap.resumeLocality();
+
+			if(typeof networkJson == "undefined" || networkJson == null)
+				$("#mapLegende").addClass("hidden");
+
+			dyFObj.formInMap.newAddress(false);
+			//mylog.log("here");
+			//dyFInputs.locationObj.init();
+			mylog.log("forminmap showMarkerNewElement END!");
+		},
+		initCountry : function(){
+			if ( 	typeof dySObj != "undefined" && 
+					typeof dySObj.surveys != "undefined" && 
+					typeof dySObj.surveys.parentSurvey != "undefined" && 
+					typeof dySObj.surveys.parentSurvey.countryCode != "undefined" && 
+					dySObj.surveys.parentSurvey.countryCode != ""){
+				dyFObj.formInMap.NE_country = dySObj.surveys.parentSurvey.countryCode;
+			} else if( notNull(currentUser) && notNull(currentUser.addressCountry) && dyFObj.formInMap.NE_country== "" ){
+				dyFObj.formInMap.NE_country = currentUser.addressCountry;
+			}else{
+				dyFObj.formInMap.NE_country = "";
+			}
+		},
+		initVarNE : function(){
+			mylog.log("initVarNE");
+			dyFObj.formInMap.NE_insee = "";
+			dyFObj.formInMap.NE_lat = "";
+			dyFObj.formInMap.NE_lng = "";
+			dyFObj.formInMap.NE_city = "";
+			dyFObj.formInMap.NE_cp = "";
+			dyFObj.formInMap.NE_street = "";
+			dyFObj.formInMap.NE_country = "";
+			dyFObj.formInMap.NE_level4 = "";
+			dyFObj.formInMap.NE_level4Name = "";
+			dyFObj.formInMap.NE_level3 = "";
+			dyFObj.formInMap.NE_level3Name = "";
+			dyFObj.formInMap.NE_level2 = "";
+			dyFObj.formInMap.NE_level2Name = "";
+			dyFObj.formInMap.NE_level1 = "";
+			dyFObj.formInMap.NE_level1Name = "";
+			dyFObj.formInMap.NE_localityId = "";
+			dyFObj.formInMap.NE_betweenCP = false;
+
+			dyFObj.formInMap.initCountry();
+		},
+		initDropdown : function(){
+			mylog.log("initDropdown");
+			$("#dropdown-newElement_cp-found").html("<li><a href='javascript:' class='disabled'>"+trad['Currently researching']+"</a></li>");
+			$("#dropdown-newElement_city-found").html("<li><a href='javascript:' class='disabled'>"+trad['Search a city, a town or a postal code'] +"</a></li>");
+		},
+		initHtml : function(){
+			dyFObj.formInMap.initCountry();	
+			//$('[name="newElement_country"]').val(dyFObj.formInMap.NE_country);
+			$('[name="newElement_city"]').val("");
+			$('[name="newElement_street"]').val("");
+
+			$("#divStreetAddress").addClass("hidden");
+
+			if(dyFObj.formInMap.NE_country == ""){
+				$("#divCity").addClass("hidden");
+			}
+			dyFObj.formInMap.showWarningGeo(false);
+		},
+		resumeLocality : function(cancel){
+			if(dyFObj.formInMap.NE_street != ""){
+				$('#street_sumery_value').html(dyFObj.formInMap.NE_street );
+				$('#street_sumery').removeClass("hidden");
+			}else
+				$('#street_sumery').addClass("hidden");
+
+			if(dyFObj.formInMap.NE_cp != ""){
+				$('#cp_sumery_value').html(dyFObj.formInMap.NE_cp );
+				$('#cp_sumery').removeClass("hidden");
+			}else
+				$('#cp_sumery').addClass("hidden");
+
+			if(dyFObj.formInMap.NE_city != ""){
+				$('#city_sumery_value').html(dyFObj.formInMap.NE_city);
+				$('#city_sumery').removeClass("hidden");
+			}else
+				$('#city_sumery').addClass("hidden");
+
+			if(dyFObj.formInMap.NE_country != ""){
+				$('#country_sumery_value').html(dyFObj.formInMap.NE_country);
+				$('#country_sumery').removeClass("hidden");
+			}else
+				$('#country_sumery').addClass("hidden");
+
+
+			if(dyFObj.formInMap.NE_country != "" && dyFObj.formInMap.NE_city != ""){
+				//$("#btnValideAddress").prop('disabled', false);
+				$("#btnValideAddress").show();
+			}else{
+				//$("#btnValideAddress").prop('disabled', true);
+				$("#btnValideAddress").hide();
+			}
+		},
+		bindFormInMap : function(){
+			mylog.log("bindFormInMap");
+
+			$('#ajaxFormModal  #newElement_country').change(function(){
+				mylog.log("formInMap.NE_country D", $(this).val(), $('#ajaxFormModal  #newElement_country').val());
+				dyFObj.formInMap.initVarNE();
+				dyFObj.formInMap.NE_country = $(this).val() ;
+				mylog.log("formInMap.NE_country M", dyFObj.formInMap.NE_country );
+				dyFObj.formInMap.resumeLocality();
+				//dyFObj.formInMap.initHtml();
+				// $("#country_sumery_value").html($('[name="newElement_country"]').val());
+				// $('[name="newElement_city"]').val("");
+				// $("#country_sumery_value").html($('[name="newElement_country"]').val());
+				// $("#btnValideAddress").prop('disabled', true);
+				$("#btnValideAddress").hide();
+				$("#divStreetAddress").addClass("hidden");
+
+				dyFObj.formInMap.initDropdown();
+				mylog.log("formInMap.NE_country F", dyFObj.formInMap.NE_country, typeof dyFObj.formInMap.NE_country, dyFObj.formInMap.NE_country.length);
+				if(dyFObj.formInMap.NE_country != ""){
+					$("#divCP").addClass("hidden");
+					$("#divCity").removeClass("hidden");
+				}else{
+					$("#divCity").addClass("hidden");
+				}
+					
+			});
+
+				// ---------------- newElement_city
+			$('[name="newElement_city"]').keyup(function(){ 
+				$("#dropdown-city-found").show();
+				mylog.log("newElement_city", $('[name="newElement_city"]').val().trim().length);
+				if($('[name="newElement_city"]').val().trim().length > 1){
+					dyFObj.formInMap.NE_city = $('[name="newElement_city"]').val();
+					dyFObj.formInMap.changeSelectCountrytim();
+
+					if(notNull(dyFObj.formInMap.timeoutAddCity)) 
+						clearTimeout(dyFObj.formInMap.timeoutAddCity);
+
+					dyFObj.formInMap.timeoutAddCity = setTimeout(function(){ 
+						dyFObj.formInMap.autocompleteFormAddress("locality", $('[name="newElement_city"]').val()); 
+					}, 500);
+
+				}
+			});
+			// ---------------- newElement_cp
+			$('[name="newElement_cp"]').keyup(function(){ 
+				mylog.log("newElement_cp", $('[name="newElement_cp"]').val().trim());
+				dyFObj.formInMap.NE_cp = $('[name="newElement_cp"]').val().trim();
+				dyFObj.formInMap.btnValideDisable( ($('[name="newElement_cp"]').val().trim().length == 0 ? true : false) );
+
+			});
+
+			// ---------------- newElement_streetAddress
+			$("#newElement_btnSearchAddress").click(function(){
+				$(".dropdown-menu").hide();
+				dyFObj.formInMap.searchAdressNewElement();
+			});
+
+			$('[name="newElement_street"]').keyup(function(){ 
+				dyFObj.formInMap.showWarningGeo( ( ( $('[name="newElement_street"]').val().length > 0 ) ? true : false ) );
+				dyFObj.formInMap.NE_street = $('[name="newElement_street"]').val().trim();
+				dyFObj.formInMap.resumeLocality();
+			});
+
+			// ---------------- newElement_streetAddress
+			$("#btnValideAddress").click(function(){
+				dyFObj.formInMap.valideLocality();
+			});
+
+
+			$("#newAddress").click(function(){
+				dyFObj.formInMap.newAddress(true);
+			});
+
+		},
+		showWarningGeo : function(bool){
+			mylog.log("showWarningGeo");
+			if(bool == true){
+				$("#alertGeo").removeClass("hidden");
+				$("#newElement_btnSearchAddress").removeClass("btn-default");
+				$("#newElement_btnSearchAddress").addClass("btn-warning");
+			}else{
+				$("#alertGeo").addClass("hidden");
+				$("#newElement_btnSearchAddress").removeClass("btn-warning");
+				$("#newElement_btnSearchAddress").addClass("btn-default");
+			}
+		},
+		createLocalityObj : function(withUnikey){
+			mylog.log("createLocalityObj", dyFObj.formInMap);
+			
+			var locality = {
+				address : {
+					"@type" : "PostalAddress",
+					codeInsee : dyFObj.formInMap.NE_insee,
+					streetAddress : dyFObj.formInMap.NE_street.trim(),
+					postalCode : dyFObj.formInMap.NE_cp,
+					addressLocality : dyFObj.formInMap.NE_city,
+					level1 : dyFObj.formInMap.NE_level1,
+					level1Name : dyFObj.formInMap.NE_level1Name,
+					addressCountry : dyFObj.formInMap.NE_country,
+					localityId : dyFObj.formInMap.NE_localityId
+					
+				},
+				geo : {
+					"@type" : "GeoCoordinates",
+					latitude : dyFObj.formInMap.NE_lat,
+					longitude : dyFObj.formInMap.NE_lng
+				},
+				geoPosition : {
+					"type" : "Point",
+					"coordinates" : [ parseFloat(dyFObj.formInMap.NE_lng), parseFloat(dyFObj.formInMap.NE_lat) ]
+				}
+			};
+
+			if( notEmpty(dyFObj.formInMap.NE_level2) && dyFObj.formInMap.NE_level2 != "undefined" ){
+				locality.address.level2 = dyFObj.formInMap.NE_level2;
+				locality.address.level2Name = dyFObj.formInMap.NE_level2Name;
+			}
+			if(notEmpty(dyFObj.formInMap.NE_level3 != "" && dyFObj.formInMap.NE_level3 != "undefined")){
+				locality.address.level3 = dyFObj.formInMap.NE_level3;
+				locality.address.level3Name = dyFObj.formInMap.NE_level3Name;
+			}
+			if(notEmpty(dyFObj.formInMap.NE_level4 != "" && dyFObj.formInMap.NE_level4 != "undefined")){
+				locality.address.level4 = dyFObj.formInMap.NE_level4;
+				locality.address.level4Name = dyFObj.formInMap.NE_level4Name;
+			}
+
+			if(typeof withUnikey != "undefined" && withUnikey == true){
+				var unikey = dyFObj.formInMap.NE_country + "_" + dyFObj.formInMap.NE_insee + "-" + dyFObj.formInMap.NE_cp;
+				locality.unikey = unikey;
+			}
+
+			return locality;
+		},
+		newAddress : function(newA){
+			mylog.log("newAddress ", newA);
+			if(notEmpty(newA) && newA == true ){
+				$('.formLocality').show();
+				$('#sumery').show();
+				$('#divNewAddress').hide();
+			}else{
+				$('.formLocality').hide();
+				$('#sumery').hide();
+				$('#divNewAddress').show();
+			}
+		},
+		valideLocality : function(country){
+			mylog.log("valideLocality ", notEmpty(dyFObj.formInMap.NE_lat));
+			if(notEmpty(dyFObj.formInMap.NE_lat)){
+				locObj = dyFObj.formInMap.createLocalityObj();
+				mylog.log("forminmap copyMapForm2Dynform", locObj);
+				dyFInputs.locationObj.copyMapForm2Dynform(locObj);
+				dyFInputs.locationObj.addLocationToForm(locObj);
+			}
+
+			dyFObj.formInMap.initVarNE();
+			dyFObj.formInMap.resumeLocality();
+			dyFObj.formInMap.initHtml();
+			dyFObj.formInMap.newAddress(false);
+
+
+		},
+		// Pour effectuer une recherche a la Réunion avec Nominatim, il faut choisir le code de la France, pas celui de la Réunion
+		changeCountryForNominatim : function(country){
+			var codeCountry = {
+				"FR" : ["RE", "GP", "GF", "MQ", "YT", "NC", "PM"]
+			};
+			$.each(codeCountry, function(key, countries){
+				if(countries.indexOf(country) != -1)
+			 		country = key;
+			});
+			return country ;
+		},
+		searchAdressNewElement : function(){ 
+			mylog.log("searchAdressNewElement");
+			var providerName = "";
+			var requestPart = "";
+
+			var street 	= ($('[name="newElement_street"]').val()  != "") ? $('[name="newElement_street"]').val() : "";
+			var city 	= dyFObj.formInMap.NE_city;
+			var cp 		= dyFObj.formInMap.NE_cp;
+			var countryCode = dyFObj.formInMap.NE_country;
+
+
+			if($('[name="newElement_street"]').val() != ""){
+				providerName = "nominatim";
+				dyFObj.formInMap.typeSearchInternational = "address";
+				//construction de la requete
+				requestPart = addToRequest(requestPart, street);
+				requestPart = addToRequest(requestPart, city);
+				requestPart = addToRequest(requestPart, cp);
+			}else{
+				providerName = "communecter"
+				dyFObj.formInMap.typeSearchInternational = "city";
+				//construction de la requete
+				if(cp != ""){
+					requestPart = addToRequest(requestPart, cp);
+				}
+			}
+
+			dyFObj.formInMap.NE_street = $('[name="newElement_street"]').val();
+
+			$("#dropdown-newElement_streetAddress-found").html("<li><a href='javascript:'><i class='fa fa-spin fa-refresh'></i> "+trad.currentlyresearching+"</a></li>");
+			$("#dropdown-newElement_streetAddress-found").show();
+			mylog.log("countryCode", countryCode);
+			
+			var countryDataGouv = ["FR","GP","MQ","GF","RE","PM","YT"];
+			if(countryDataGouv.indexOf(countryCode) != -1){
+				countryCode = dyFObj.formInMap.changeCountryForNominatim(countryCode);
+				mylog.log("countryCodeHere", countryCode);
+				callDataGouv(requestPart, countryCode);
+				
+			}else{
+				countryCode = dyFObj.formInMap.changeCountryForNominatim(countryCode);
+				mylog.log("countryCode", countryCode);
+				callNominatim(requestPart, countryCode);
+			}
+			
+			dyFObj.formInMap.btnValideDisable(false);
+		},
+		autocompleteFormAddress : function(currentScopeType, scopeValue){
+			mylog.log("autocompleteFormAddress", currentScopeType, scopeValue);
+			$("#dropdown-newElement_"+currentScopeType+"-found").html("<li><a href='javascript:'><i class='fa fa-refresh fa-spin'></i></a></li>");
+			$("#dropdown-newElement_"+currentScopeType+"-found").show();
+			$.ajax({
+				type: "POST",
+				url: baseUrl+"/"+moduleId+"/city/autocompletemultiscope",
+				data: {
+						type: currentScopeType, 
+						scopeValue: scopeValue,
+						geoShape: true,
+						formInMap: true,
+						countryCode : $('[name="newElement_country"]').val()
+				},
+				dataType: "json",
+				success: function(data){
+					mylog.log("autocompleteFormAddress success", data);
+					html="";
+					var inseeGeoSHapes = {};
+					dyFObj.formInMap.saveCities = {};
+					$.each(data.cities, function(key, value){
+						mylog.log("autocompleteFormAddress value", value);
+						var insee = value.insee;
+						var country = value.country;
+						if(notEmpty(value.save) &&  value.save == true){
+							dyFObj.formInMap.saveCities[insee] = value;
+						}
+						if(notEmpty(value.geoShape))
+							inseeGeoSHapes[insee] = value.geoShape.coordinates[0];
+
+						if(currentScopeType == "city" || currentScopeType == "locality") { 
+							if(value.postalCodes.length > 0){
+								$.each(value.postalCodes, function(keyCP, valueCP){
+									var val = valueCP.name; 
+									var lbl = valueCP.postalCode ;
+									var lat = valueCP.geo.latitude;
+									var lng = valueCP.geo.longitude;
+
+									var lblList = value.name ;
+
+									if(valueCP.name != value.name)
+										lblList +=  ", " + valueCP.name ;
+
+									if(notEmpty(valueCP.postalCode))
+										lblList += ", " + valueCP.postalCode ;
+									
+									if(notEmpty(value.level4Name))
+										lblList += " ( " + value.level4Name + " ) ";
+									else if(notEmpty(value.level3Name))
+										lblList += " ( " + value.level3Name + " ) ";
+									else if(notEmpty(value.level2Name))
+										lblList += " ( " + value.level2Name + " ) ";
+
+									html += '<li><a href="javascript:;" data-type="'+currentScopeType+'" '+
+													'data-locId="'+key+'" '+
+													'data-level4="'+value.level4+'" data-level4name="'+value.level4Name+'"'+
+													'data-level3="'+value.level3+'" data-level3name="'+value.level3Name+'"'+
+													'data-level2="'+value.level2+'" data-level2name="'+value.level2Name+'"'+ 
+													'data-level1="'+value.level1+'" data-level1name="'+value.level1Name+'"'+ 
+													'data-country="'+country+'" '+
+													'data-city="'+val+'" data-cp="'+lbl+'" '+
+													'data-lat="'+lat+'" data-lng="'+lng+'" '+
+													'data-insee="'+insee+'" class="item-city-found">'+lblList+'</a></li>';
+								});
+							}else{
+								var val = value.name; 
+								var lat = value.geo.latitude;
+								var lng = value.geo.longitude;
+								var lblList = value.name ;
+								if(notEmpty(value.level4Name))
+									lblList += " ( " + value.level4Name + " ) ";
+								else if(notEmpty(value.level3Name))
+									lblList += " ( " + value.level3Name + " ) ";
+								else if(notEmpty(value.level2Name))
+									lblList += " ( " + value.level2Name + " ) ";
+
+								html += '<li><a href="javascript:;" data-type="'+currentScopeType+'" '+
+													'data-locid="'+key+'" ';
+								html +=	'data-level4="'+value.level4+'" data-level4name="'+value.level4Name+'"'+
+										'data-level3="'+value.level3+'" data-level3name="'+value.level3Name+'"'+
+										'data-level2="'+value.level2+'" data-level2name="'+value.level2Name+'"'+ 
+										'data-level1="'+value.level1+'" data-level1name="'+value.level1Name+'"';
+								html += 'data-country="'+country+'" '+
+										'data-city="'+val+'" data-lat="'+lat+'" '+
+										'data-lng="'+lng+'" data-insee="'+insee+'" '+
+										'class="item-city-found-uncomplete">'+lblList+'</a></li>';
+							}
+						};
+					});
+
+					if(html == "") html = "<i class='fa fa-ban'></i> "+trad.noresult;
+					$("#dropdown-newElement_"+currentScopeType+"-found").html(html);
+					$("#dropdown-newElement_"+currentScopeType+"-found").show();
+
+					$(".item-city-found, .item-cp-found").click(function(){
+						dyFObj.formInMap.add(true, $(this), inseeGeoSHapes);
+					});
+
+					$(".item-city-found-uncomplete").click(function(){
+						dyFObj.formInMap.add(false, $(this), inseeGeoSHapes);
+					});
+				},
+				error: function(error){
+					$("#dropdown-newElement_"+currentScopeType+"-found").html("error");
+					mylog.log("Une erreur est survenue pendant autocompleteMultiScope", error);
+				}
+			});
+		},
+		add : function(complete, data, inseeGeoSHapes){
+			mylog.log("add", complete, data, inseeGeoSHapes);
+			
+			dyFObj.formInMap.NE_insee = data.data("insee");
+			dyFObj.formInMap.NE_lat = data.data("lat");
+			dyFObj.formInMap.NE_lng = data.data("lng");
+			dyFObj.formInMap.NE_city = data.data("city");
+			dyFObj.formInMap.NE_country = data.data("country");
+			dyFObj.formInMap.NE_level4 = (notEmpty(data.data("level4")) ? data.data("level4") : null) ;
+			dyFObj.formInMap.NE_level4Name = (notEmpty(data.data("level4name")) ? data.data("level4name") : null) ;
+			dyFObj.formInMap.NE_level3 = (notEmpty(data.data("level3")) ? data.data("level3") : null) ;
+			dyFObj.formInMap.NE_level3Name = (notEmpty(data.data("level3name")) ? data.data("level3name") : null) ;
+			dyFObj.formInMap.NE_level2 = (notEmpty(data.data("level2")) ? data.data("level2") : null) ;
+			dyFObj.formInMap.NE_level2Name = (notEmpty(data.data("level2name")) ? data.data("level2name") : null);
+			dyFObj.formInMap.NE_level1 = (notEmpty(data.data("level1")) ? data.data("level1") : null) ;
+			dyFObj.formInMap.NE_level1Name = (notEmpty(data.data("level1name")) ? data.data("level1name") : null) ;
+			dyFObj.formInMap.NE_localityId = data.data("locid");
+
+			if(complete == true){
+				dyFObj.formInMap.NE_cp = data.data("cp");
+			}else if ( 	notEmpty(dyFObj.formInMap.saveCities) && 
+						notEmpty(dyFObj.formInMap.saveCities[dyFObj.formInMap.NE_insee]) &&
+						notEmpty(dyFObj.formInMap.saveCities[dyFObj.formInMap.NE_insee].betweenCP)
+						)
+				dyFObj.formInMap.NE_betweenCP = dyFObj.formInMap.saveCities[dyFObj.formInMap.NE_insee].betweenCP ;
+
+			$("#dropdown-newElement_cp-found, #dropdown-newElement_city-found, #dropdown-newElement_streetAddress-found, #dropdown-newElement_locality-found").hide();
+			//dyFObj.formInMap.updateSummeryLocality(data);
+			mylog.log("dyFObj.formInMap.NE_betweenCP ", dyFObj.formInMap.NE_betweenCP );
+			dyFObj.formInMap.btnValideDisable( (dyFObj.formInMap.NE_betweenCP == false ? false : true) );
+			
+			if(userId == "")
+				$("#divStreetAddress").addClass("hidden");
+			else
+				$("#divStreetAddress").removeClass("hidden");
+			$('[name="newElement_city"]').val(dyFObj.formInMap.NE_city);
+			dyFObj.formInMap.resumeLocality();
+
+		},
+		changeSelectCountrytim : function(){
+			mylog.log("changeSelectCountrytim", dyFObj.formInMap.NE_country);
+			mylog.log("dyFObj.formInMap.NE_cp.substring(0, 3)");
+			var countryFR = ["FR","GP","MQ","GF","RE","PM","YT"];
+			var regexNumber = new RegExp("[1-9]+") ;
+			if(countryFR.indexOf(dyFObj.formInMap.NE_country) != -1 && regexNumber.test(dyFObj.formInMap.NE_country) ) {
+				var name = $('[name="newElement_city"]').val();
+				if(name.substring(0, 3) == "971")
+					$('[name="newElement_country"]').val("GP");
+				else if(name.substring(0, 3) == "972")
+					$('[name="newElement_country"]').val("MQ");
+				else if(name.substring(0, 3) == "973")
+					$('[name="newElement_country"]').val("GF");
+				else if(name.substring(0, 3) == "974")
+					$('[name="newElement_country"]').val("RE");
+				else if(name.substring(0, 3) == "975")
+					$('[name="newElement_country"]').val("PM");
+				else if(name.substring(0, 3) == "976")
+					$('[name="newElement_country"]').val("YT");
+				else
+					$('[name="newElement_country"]').val("FR");
+			}
+		},
+		btnValideDisable : function(bool){
+			mylog.log("btnValideDisable",bool);
+			//$("#btnValideAddress").prop('disabled', bool);
+
+			if(bool == true){
+				$("#btnValideAddress").show();
+			}else{
+				$("#btnValideAddress").hide();
+			}
+		}
+	},
+	
+
 }
 //TODO : refactor into dyfObj.inputs
 var dyFInputs = {
@@ -2758,7 +3488,35 @@ var dyFInputs = {
 		}
 		
 	},
+	formLocality :function(label, placeholder) {
+		mylog.log("inputText ", inputObj);
+		var inputObj = {
+			label : label,
+	    	placeholder : ( notEmpty(placeholder) ? placeholder : "... " ),
+	        inputType : "formLocality"
+	    };
 
+		if(dyFObj.formInMap.countryList == null){
+			$("#btn-submit-form").prop('disabled', true);
+			$.ajax({
+				type: "POST",
+				url: baseUrl+"/"+moduleId+"/opendata/getcountries/hasCity/true",
+				dataType: "json",
+				async: false,
+				success: function(data){
+					mylog.log("getcountries data",data);
+					dyFObj.formInMap.countryList = data;
+					$("#btn-submit-form").prop('disabled', false);
+					return inputObj;
+				},
+				error: function(error){
+					mylog.log("error", error);
+				}
+			});
+		}
+	   	//alert("HERE");
+    	return inputObj;
+    },
 	inputText :function(label, placeholder, rules, custom) { 
 		var inputObj = {
 			label : label,
@@ -2771,7 +3529,7 @@ var dyFInputs = {
     	return inputObj;
     },
     slug :function(label, placeholder, rules) { 
-    	console.log("rooooles",rules);
+    	mylog.log("rooooles",rules);
 		var inputObj = {
 			label : label,
 	    	placeholder : ( notEmpty(placeholder) ? placeholder : "... " ),
@@ -2792,12 +3550,12 @@ var dyFInputs = {
             			var value = $(this).val();
             			if(formInMap.formType.timer != false) clearTimeout(formInMap.formType.timer);
             			formInMap.formType.timer = setTimeout(function(){ 
-        					console.log("checking slug", true);
+        					mylog.log("checking slug", true);
             				$("#ajaxFormModal #slug").data("checking", true);
             				slugUnique(value); 
             			}, 1000);
             			
-            		}else{ console.log("already checking slug"); }
+            		}else{ mylog.log("already checking slug"); }
         		} else {
             		$("#ajaxFormModal #slug").parent().removeClass("has-success").addClass("has-error");//.find("span").text("Please enter at least 3 characters.");
             	}
@@ -2818,9 +3576,9 @@ var dyFInputs = {
 	    };
 	    if(type){
 	    	mylog.log("NAMEOFYOUR", dyFInputs.get(type).ctrl, trad[dyFInputs.get(type).ctrl]);
-	    	inputObj.label = tradDynForm["nameofyour"]+" " + trad[dyFInputs.get(type).ctrl]+" ";
+	    	inputObj.label = tradDynForm.nameofyour+" " + trad[dyFInputs.get(type).ctrl]+" ";
 	    	if(type=="classified") 
-	    		inputObj.label = tradDynForm["titleofyour"]+" "+ trad[type]+" ";
+	    		inputObj.label = tradDynForm.titleofyour+" "+ trad[type]+" ";
 
 	    	inputObj.placeholder = inputObj.label + " ...";
 
@@ -2915,8 +3673,8 @@ var dyFInputs = {
 		return inputObj;
 	},
 	organizerId : function( organizerId, organizerType ){
-		return dyFInputs.inputSelectGroup( 	tradDynForm["whoorganizedevent"]+" ?", 
-											tradDynForm["whoorganize"]+" ?", 
+		return dyFInputs.inputSelectGroup( 	tradDynForm.whoorganizedevent+" ?", 
+											tradDynForm.whoorganize+" ?", 
 											firstOptions(), 
 											parentList( ["organizations","projects"], organizerId, organizerType ), 
 											{ required : true },
@@ -2938,12 +3696,12 @@ var dyFInputs = {
 											});
 	},
 	tags : function(list, placeholder, label) { 
-    	tagsL = (list) ? list : tagsList;
+    	//var tagsL = (list) ? list : tagsList;
     	return {
 			inputType : "tags",
-			placeholder : placeholder != null ? placeholder : tradDynForm["tags"],
-			values : tagsL,
-			label : (label != null) ? label : tradDynForm["addtags"]
+			placeholder : placeholder != null ? placeholder : tradDynForm.tags,
+			values : (list) ? list : tagsList,
+			label : (label != null) ? label : tradDynForm.addtags
 		}
 	},
 	radio : function(label,keyValues) { 
@@ -2982,15 +3740,15 @@ var dyFInputs = {
     	return {
 	    	inputType : "uploader",
 	    	docType : "image",
-	    	label : (label != null) ? label : tradDynForm["imageshere"]+" :", 
+	    	label : (label != null) ? label : tradDynForm.imageshere+" :", 
 	    	showUploadBtn : false,
 	    	template:'qq-template-gallery',
 	    	filetypes:['jpeg', 'jpg', 'gif', 'png'],
 	    	afterUploadComplete : function(){
-	    		//alert("afterUploadComplete :: "+uploadObj.gotoUrl);
-		    	dyFObj.closeForm();
-				//alert( "image upload then goto : "+uploadObj.gotoUrl );
-	            urlCtrl.loadByHash( (uploadObj.gotoUrl) ? uploadObj.gotoUrl : location.hash );
+	    	    if(typeof urlCtrl != "undefined") {
+	            	dyFObj.closeForm();
+	            	urlCtrl.loadByHash( (uploadObj.gotoUrl) ? uploadObj.gotoUrl : location.hash );
+	            }
 		    }
     	}
     },
@@ -3058,7 +3816,7 @@ var dyFInputs = {
 	    return res;
 	},
     price :function(label, placeholder, rules, custom) { 
-		var inputObj = dyFInputs.inputText(tradDynForm["pricesymbole"], tradDynForm["pricesymbole"]+" ...") ;
+		var inputObj = dyFInputs.inputText(tradDynForm.pricesymbole, tradDynForm.pricesymbole+" ...") ;
 	    inputObj.init = function(){
     		$('input#price').filter_input({regex:'[0-9]'});
       	};
@@ -3074,11 +3832,11 @@ var dyFInputs = {
     text :function (label,placeholder,rules) {  
     	var inputObj = {
     		inputType : "text",
-	    	label : ( notEmpty(label) ? label : tradDynForm["mainemail"] ),
+	    	label : ( notEmpty(label) ? label : tradDynForm.mainemail ),
 	    	placeholder : ( notEmpty(placeholder) ? placeholder : "exemple@mail.com" ),
 	    	rules : ( notEmpty(rules) ? rules : { email: true } )
 	    }
-	    console.log("create form input email", inputObj);
+	    mylog.log("create form input email", inputObj);
 	    return inputObj;
 	},
 	
@@ -3124,7 +3882,7 @@ var dyFInputs = {
 		return inputObj;  
 	},
 	location : {
-		label : tradDynForm["location"],
+		label : tradDynForm.location,
        	inputType : "location"
     },
     locationObj : {
@@ -3148,9 +3906,9 @@ var dyFInputs = {
 		    dyFInputs.locationObj.countLocation = 0 ;
 		},
 		init : function () {
-			mylog.log("init loc");
+			console.log("init loc");
 			$(".deleteLocDynForm").click(function(){
-				mylog.log("deleteLocDynForm", $(this).data("index"));
+				console.log("deleteLocDynForm", $(this).data("index"));
 				var index = $(this).data("index");
 				var indexLoc = $(this).data("indexLoc");
 				if(index == -1 && dyFInputs.locationObj.elementLocations.length > 1){
@@ -3257,7 +4015,7 @@ var dyFInputs = {
 			//elementLocation.push(positionObj);
 		},
 		addLocationToForm : function (locObj, index){
-			mylog.warn("---------------addLocationToForm----------------");
+			mylog.warn("---------------addLocationToForm----------------", locObj, index);
 			mylog.dir(locObj);
 			var strHTML = "";
 			if( locObj.address.addressCountry)
@@ -3274,7 +4032,7 @@ var dyFInputs = {
 			if( dyFInputs.locationObj.countLocation == 0){
 				btnSuccess = "btn-success";
 				//locCenter = "<span class='lblcentre'>(localité centrale)</span>";
-				locCenter = "<span class='lblcentre'> "+tradDynForm["mainLocality"]+"</span>"; 
+				locCenter = "<span class='lblcentre'> "+tradDynForm.mainLocality+"</span>"; 
 				boolCenter=true;
 			}
 
@@ -3291,14 +4049,15 @@ var dyFInputs = {
 					  "<a href='javascript:dyFInputs.locationObj.setAsCenter("+dyFInputs.locationObj.countLocation+")' class='centers center"+dyFInputs.locationObj.countLocation+" locationEl"+dyFInputs.locationObj.countLocation+" btn btn-xs "+btnSuccess+"'> <i class='fa fa-map-marker'></i>"+locCenter+"</a> <br/>";
 			}*/
 			if(typeof index != "undefined"){
+				mylog.log("---------------addLocationToForm---------------- IF", index);
 				strHTML =  
-			        "<div class='col-md-12 col-sm-12 col-xs-12 text-left shadow2 padding-15 margin-top-15 margin-bottom-15'>" + 
+			        "<div class='col-xs-12 text-left shadow2 padding-15 margin-top-15 margin-bottom-15'>" + 
 			          "<span class='pull-left locationEl"+dyFInputs.locationObj.countLocation+" locel text-red bold'>"+ 
 			            "<i class='fa fa-home fa-2x'></i> "+ 
 			            strHTML+ 
 			          "</span> "+ 
-			 
-			          "<a href='javascript:;' data-index='"+index+"' data-indexLoc='"+dyFInputs.locationObj.countLocation+"' "+ 
+
+			          "<a href='javascript:echo;' data-index='"+index+"' data-indexLoc='"+dyFInputs.locationObj.countLocation+"' "+ 
 			            "class='deleteLocDynForm locationEl"+dyFInputs.locationObj.countLocation+" btn btn-sm btn-danger pull-right'> "+ 
 			            "<i class='fa fa-times'></i> "+tradDynForm.clear+ 
 			          "</a>"+ 
@@ -3310,8 +4069,9 @@ var dyFInputs = {
 			           
 			        "</div>"; 
 			} else {
+				mylog.log("---------------addLocationToForm---------------- ESLE", index);
 				strHTML =  
-			        "<div class='col-md-12 col-sm-12 col-xs-12 text-left shadow2 padding-15 margin-top-15 margin-bottom-15'>" + 
+			        "<div class='col-xs-12 text-left shadow2 padding-15 margin-top-15 margin-bottom-15'>" + 
 			          "<span class='pull-left locationEl"+dyFInputs.locationObj.countLocation+" locel text-red bold'>"+ 
 			            "<i class='fa fa-home fa-2x'></i> "+ 
 			            strHTML+ 
@@ -3388,7 +4148,7 @@ var dyFInputs = {
 						if( typeof center != "undefined" && center && prop==0){
 							btnSuccess = "btn-success";
 							//locCenter = "<span class='lblcentre'>(localité centrale)</span>";
-							locCenter = "<span class='lblcentre'> "+tradDynForm["mainLocality"]+"</span>"; 
+							locCenter = "<span class='lblcentre'> "+tradDynForm.mainLocality+"</span>"; 
 							boolCenter=true;
 						}
 						domParent.find(".removeLocalityBtn").attr("href","javascript:dyFInputs.locationObj.removeLocation("+prop+","+boolCenter+")");
@@ -3401,8 +4161,9 @@ var dyFInputs = {
 				}
 				if(typeof center != "undefined" && center)
 					dyFInputs.locationObj.setAsCenter(0);
+				$(".locationBtn").html("<i class='fa fa-home'></i> "+tradDynForm.secondLocality);
 			} else{
-				$(".locationBtn").html("<i class='fa fa-home'></i> "+tradDynForm["mainLocality"]);
+				$(".locationBtn").html("<i class='fa fa-home'></i> "+tradDynForm.mainLocality);
 				//dyFInputs.locationObj.centerLocation = null;
 			}
 			
@@ -3422,7 +4183,7 @@ var dyFInputs = {
 			$(".centers").removeClass('btn-success');
 			$(".lblcentre").remove();
 			$.each(dyFInputs.locationObj.elementLocations,function(i, v) {
-				console.log(v); 
+				mylog.log(v); 
 				if(typeof v.center != "undefined" && v.center)
 					delete v.center;
 			})
@@ -3434,7 +4195,7 @@ var dyFInputs = {
 		}
     },
     scope : {
-		label : tradDynForm["localization"],
+		label : tradDynForm.localization,
        	inputType : "scope",
        	init : function () {
        		mylog.log("scopeObj", dyFInputs.scopeObj.scopeObj);
@@ -3585,7 +4346,7 @@ var dyFInputs = {
 
     },
     inputUrl :function (label,placeholder,rules, custom) {  
-    	label = ( notEmpty(label) ? label : tradDynForm["mainurl"] );
+    	label = ( notEmpty(label) ? label : tradDynForm.mainurl );
     	placeholder = ( notEmpty(placeholder) ? placeholder : "http://www.exemple.org" );
     	rules = ( notEmpty(rules) ? rules : { url: true } );
     	custom = ( notEmpty(custom) ? custom : "<div class='resultGetUrl resultGetUrl0 col-sm-12'></div>" );
@@ -3601,8 +4362,8 @@ var dyFInputs = {
 	    return inputObj;
 	},
     urls : {
-    	label : tradDynForm["freeinfourl"],
-    	placeholder : tradDynForm["freeinfourl"]+" ...",
+    	label : tradDynForm.freeinfourl,
+    	placeholder : tradDynForm.freeinfourl+" ...",
         inputType : "array",
         value : [],
         init:function(){
@@ -3611,7 +4372,7 @@ var dyFInputs = {
     },
     multiChoice : {
     	label : tradDynForm["Add answers"],
-    	placeholder : tradDynForm["answer"]+" ...",
+    	placeholder : tradDynForm.answer+" ...",
         inputType : "array",
         value : [],
         init:function(){
@@ -3620,7 +4381,7 @@ var dyFInputs = {
     },
     videos : {
     	label : "Your media videos here",
-    	placeholder : tradDynForm["sharevideourl"]+" ...",
+    	placeholder : tradDynForm.sharevideourl+" ...",
         inputType : "array",
         value : [],
         initOptions : {type:"video",labelAdd:"Add video link"},
@@ -3630,7 +4391,7 @@ var dyFInputs = {
     },
     urlsOptionnel : {
         inputType : "array",
-        placeholder : tradDynForm["urlandaddinfoandaction"],
+        placeholder : tradDynForm.urlandaddinfoandaction,
         value : [],
         init:function(){
             processUrl.getMediaFromUrlContent(".addmultifield0", ".resultGetUrl0",1);
@@ -3648,7 +4409,7 @@ var dyFInputs = {
     		$("#ajaxFormModal #url").bind("input keyup",function(e) {
             	processUrl.refUrl($(this).val());
             	/*if(result){
-            		console.log(result);
+            		mylog.log(result);
             	}*/
         	});
             //$(".urltext").css("display","none");
@@ -3664,10 +4425,10 @@ var dyFInputs = {
 	    	checked : checked, //$("#ajaxFormModal #"+id).val(),
 	    	init : function(){
 	    		//var checked = $("#ajaxFormModal #"+id).val();
-	    		console.log("checkcheck2", checked, "#ajaxFormModal #"+id);
+	    		mylog.log("checkcheck2", checked, "#ajaxFormModal #"+id);
 	    		var idTrue = "#ajaxFormModal ."+id+"checkboxSimple .btn-dyn-checkbox[data-checkval='true']";
 	    		var idFalse = "#ajaxFormModal ."+id+"checkboxSimple .btn-dyn-checkbox[data-checkval='false']";
-	    		console.log("checkcheck2", checked, "#ajaxFormModal #"+id);
+	    		mylog.log("checkcheck2", checked, "#ajaxFormModal #"+id);
 	    		$("#ajaxFormModal #"+id).val(checked);
 
 	    		if(typeof params["labelInformation"] != "undefined")
@@ -3701,7 +4462,7 @@ var dyFInputs = {
 	    		$("#ajaxFormModal ."+id+"checkboxSimple .btn-dyn-checkbox").click(function(){
 	    			var checkval = $(this).data('checkval');
 	    			$("#ajaxFormModal #"+id).val(checkval);
-	    			console.log("EVENT CLICK ON CHECKSIMPLE", checkval);
+	    			mylog.log("EVENT CLICK ON CHECKSIMPLE", checkval);
 	    			
 	    			if(checkval) {
 	    				$(idTrue).addClass("bg-green-k").removeClass("letter-green");
@@ -3764,7 +4525,7 @@ var dyFInputs = {
 	    		"onChange" : function(){
 	    			var checkbox = $("#ajaxFormModal #"+id).is(':checked');
 	    			$("#ajaxFormModal #"+id).val($("#ajaxFormModal #"+id).is(':checked'));
-	    			console.log("on change checkbox",$("#ajaxFormModal #"+id).val());
+	    			mylog.log("on change checkbox",$("#ajaxFormModal #"+id).val());
 	        		//$("#ajaxFormModal #"+id+"checkbox").append("<span class='lbl-status-check'></span>");
 	    			if (checkbox) {
 	    				$("#ajaxFormModal ."+id+"checkbox .lbl-status-check").html(
@@ -3772,13 +4533,13 @@ var dyFInputs = {
 	    				$(params["inputId"]).show(400);
 	    				/*if(id=="amendementActivated"){
 	    					var am = $("#ajaxFormModal #voteActivated").val();
-	    					console.log("am", am);
+	    					mylog.log("am", am);
 	    					if(am == "true")
 	    						$("#ajaxFormModal .voteActivatedcheckbox .bootstrap-switch-handle-on").click();
 	    				}
 	    				if(id=="voteActivated"){
 	    					var am = $("#ajaxFormModal #amendementActivated").val();
-	    					console.log("vote", am);
+	    					mylog.log("vote", am);
 	    					if(am == "true")
 	    						$("#ajaxFormModal .amendementActivatedcheckbox .bootstrap-switch-handle-on").click();
 	    				}*/
@@ -3804,9 +4565,9 @@ var dyFInputs = {
 	        	})
 	        },
 	    	"switch" : {
-	    		"onText" : tradDynForm["yes"],
-	    		"offText" : tradDynForm["no"],
-	    		"labelText":tradDynForm["allday"],
+	    		"onText" : tradDynForm.yes,
+	    		"offText" : tradDynForm.no,
+	    		"labelText":tradDynForm.allday,
 	    		"onChange" : function(){
 	    			var allDay = $("#ajaxFormModal #allDay").is(':checked');
 	    			var startDate = "";
@@ -3903,9 +4664,9 @@ var dyFInputs = {
 	        },
 	        options: {"allWeek" : true},
 	    	"switch" : {
-	    		"onText" : tradDynForm["yes"],
-	    		"offText" : tradDynForm["no"],
-	    		"labelText":tradDynForm["allweek"],
+	    		"onText" : tradDynForm.yes,
+	    		"offText" : tradDynForm.no,
+	    		"labelText":tradDynForm.allweek,
 	    		"css":{"min-width": "300px","margin": "10px"},
 	    		"onChange" : function(){
 	    			var allWeek = $("#ajaxFormModal #openingHours").is(':checked');
@@ -4089,16 +4850,16 @@ var processUrl = {
 	        url: baseUrl+"/"+moduleId+"/app/checkurlexists",
 	        data: { url: url },
 	        dataType: "json",
-	        success: function(data){ console.log("checkUrlExists", data);
+	        success: function(data){ mylog.log("checkUrlExists", data);
 	            if(data.status == "URL_EXISTS")
 	            urlExists = true;
 	            else
 	            urlExists = false;
-	            console.log("checkUrlExists", data);
+	            mylog.log("checkUrlExists", data);
 	            refUrl(url);
 	        },
 	        error: function(data){
-	            console.log("check url exists error");
+	            mylog.log("check url exists error");
 	        }
 	    });
 	},
@@ -4289,7 +5050,7 @@ var processUrl = {
 				    if(stitle=="" || stitle=="undefined")
 				   		stitle = $('blockquote', tempDom).html();
 
-				   	//console.log("STITLE", stitle);
+				   	//mylog.log("STITLE", stitle);
 
 					if(stitle=="" || stitle=="undefined")
 				   		stitle = $('h2', tempDom).html();
@@ -4314,13 +5075,13 @@ var processUrl = {
 					var description = $(tempDom).find('meta[name=description]').attr("content");
 
 					var keywords = $(tempDom).find('meta[name=keywords]').attr("content");
-					//console.log("keywords", keywords);
+					//mylog.log("keywords", keywords);
 
 					var arrayKeywords = new Array();
 					if(typeof keywords != "undefined")
 						arrayKeywords = keywords.split(",");
 
-					//console.log("arrayKeywords", arrayKeywords);
+					//mylog.log("arrayKeywords", arrayKeywords);
 
 					//if(typeof arrayKeywords[0] != "undefined") $("#form-keywords1").val(arrayKeywords[0]); else $("#form-keywords1").val("");
 					//if(typeof arrayKeywords[1] != "undefined") $("#form-keywords2").val(arrayKeywords[1]); else $("#form-keywords2").val("");
@@ -4336,7 +5097,7 @@ var processUrl = {
 				   	params.hostname=hostname,
 				   	params.description=description,
 				   	params.tags=arrayKeywords;
-					console.log(params);
+					mylog.log(params);
 					/*$("#form-title").val(title);
 	                $("#form-favicon").val(faviconSrc);
 	                $("#form-description").val(description);*/
@@ -4587,4 +5348,10 @@ var processUrl = {
 		content += '<div class="extracted_url padding-10">'+ inc_image +'</div>'+inputToSave;
 	    return content;
 	}
+}
+
+function addToSurvey(id, type){
+	//name = cotmp[id].name;
+	mylog.log("fillSurvey", id, type );
+	
 }

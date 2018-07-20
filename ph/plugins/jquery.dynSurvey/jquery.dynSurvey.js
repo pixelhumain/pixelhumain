@@ -48,14 +48,14 @@ onSave: (optional) overloads the generic saveProcess
 			};
 
 			var settings = $.extend({}, defaults, options);
-			console.log(settings);
+			mylog.log(settings);
 			$this = this;
 			survey = settings.surveyObj;
 			dySObj.navBtnAction = false;
 
-			console.info("build Form dynamically into form tag : ",settings.surveyId);
-			console.dir(settings.surveyObj);
-			console.dir(settings.surveyValues);
+			mylog.info("build Form dynamically into form tag : ",settings.surveyId);
+			mylog.dir(settings.surveyObj);
+			mylog.dir(settings.surveyValues);
 
 			/* **************************************
 			* BUILD FORM based on surveyObj
@@ -94,7 +94,7 @@ onSave: (optional) overloads the generic saveProcess
 			var lastSection = "";
 			$.each(settings.surveyObj,function( sectionId ,sectionObj ) 
 			{ 
-				console.info("building section : ",sectionIndex ,sectionId);
+				mylog.info("building section : ",sectionIndex ,sectionId);
 				var sectionClass = (sectionIndex>0) ? "hide" : ""
 				
 				$("#wizard").append("<div id='"+sectionId+"' class='section"+sectionIndex+" "+sectionClass+"'></div>");
@@ -113,12 +113,18 @@ onSave: (optional) overloads the generic saveProcess
 						++countProperties;
     			}
 				var inc=1;
+				var secJsonSchema = sectionObj.dynForm.jsonSchema;
+				// if( typeof secJsonSchema.beforeBuild == "function" )
+			 //        secJsonSchema.beforeBuild();
+
 				$.each(sectionObj.dynForm.jsonSchema.properties,function(field,fieldObj) { 
 					if(fieldObj.rules)
 						form.rules[field] = fieldObj.rules;
-					console.log("////////SETTTINGSSSS///////");
-					console.log(settings.surveyValues);
-					dyFObj.buildInputField("#"+sectionId,field, fieldObj, settings.surveyValues,sectionObj.key);
+					mylog.log("////////SETTTINGSSSS///////");
+					mylog.log(settings.surveyValues);
+
+					dyFObj.buildInputField("#"+sectionId,field, fieldObj, settings.surveyValues);//,sectionObj.key);
+					
 					//Only the last section carries the submit button
 					if( sectionIndex == Object.keys(settings.surveyObj).length-1 && countProperties==inc){
 						fieldHTML = '<div class="form-actions">'+
@@ -134,7 +140,7 @@ onSave: (optional) overloads the generic saveProcess
 					else if(countProperties==inc)
 					{
 						fieldHTML = '<div class="form-actions">';
-						fieldHTML += '<a href="javascript:;" class="btn-next btn btn-blue pull-right next-step">'+
+						fieldHTML += '<a href="javascript:;" class="btn-next btn btn-blue pull-right next-step" style="margin-bottom :40px;">'+
 										'Suivant <i class="fa fa-arrow-circle-right"></i>'+
 									'</a> ';
 						fieldHTML += (sectionIndex>0) ? ' <a href="javascript:;" class="btn-prev btn btn-blue pull-right back-step">'+
@@ -143,8 +149,15 @@ onSave: (optional) overloads the generic saveProcess
 						$("#"+sectionId).append(fieldHTML);
 					}
 					inc++;
-						
 				});
+
+				if( typeof secJsonSchema.afterBuild == "function" )
+			        secJsonSchema.afterBuild();
+		        
+		        //incase we need a second global post process
+		        if( secJsonSchema.onLoads && typeof secJsonSchema.onLoads.onload == "function" )
+		        	secJsonSchema.onLoads.onload();
+
 				sectionIndex++;
 			})
 			numberOfSteps = sectionIndex;
@@ -164,7 +177,7 @@ onSave: (optional) overloads the generic saveProcess
 			***************************************** */
 			dyFObj.bindDynFormEvents(settings,form.rules);
 			if(typeof (settings.onLoad) != "undefined")
-				console.dir(settings.onLoad);
+				mylog.dir(settings.onLoad);
 			if(settings.onLoad && jQuery.isFunction( settings.onLoad ) )
 				settings.onLoad();
 		    
@@ -185,6 +198,7 @@ onSave: (optional) overloads the generic saveProcess
 var dySObj = {
 	navBtnAction : false,
 	activeSection : 0,
+	activeSectionId : null,
 	//contains the structured survey by sections
 	survey : null,
 	surveys : {},
@@ -198,7 +212,7 @@ var dySObj = {
 	*/
 	getSurveyJson : function (name,DSPath,type,callback) {
 
-	    console.log("getSurveyJson",name,DSPath,type);
+	    mylog.warn("getSurveyJson",name,DSPath,type);
 	    dynForm = null;
 	    dType = ( type ) ? type : "json";
 	    if( jsonHelper.notNull( "dySObj.surveys."+name) ){
@@ -207,7 +221,7 @@ var dySObj = {
 	    }
 	    else 
 	    {
-	        console.log( "getSurveyJson ajax", dType );
+	        mylog.log( "getSurveyJson ajax", dType );
 	        
 	        $.ajax({
 	          type: "GET",
@@ -215,17 +229,17 @@ var dySObj = {
 	          dataType: dType
 	        }).done( function(data){
 	            if(dynForm) {
-	            	console.log("getSurveyJson dynForm",name,dynForm);
-	                // tmpO = {};
-	                // tmpO[name] = dynForm;
+	            	mylog.log("getSurveyJson dynForm",name,dynForm);
+	                //tmpO = {};
+	                //tmpO[name] = dynForm;
 	                dySObj.surveys[name] = dynForm;
 	            }
 	            else if (typeof data.json != "undefined"){
-	            	console.log("getSurveyJson data.json",name,data.json);
+	            	mylog.log("getSurveyJson data.json",name,data.json);
 	                dySObj.surveys[name] = data.json;
 	            }
 	            else {
-	                console.log("getSurveyJson data["+name+"] ",data[name]);
+	                mylog.log("getSurveyJson data["+name+"] ",data[name]);
 	                dySObj.surveys[name] = data[name];
 	            }
 	            
@@ -238,13 +252,14 @@ var dySObj = {
 	        });
 	    }
 	},
+
 	//	binding validation events to the survey instance 
 	bindSurvey : function (params, formRules) {
 		/* **************************************
 		* FORM VALIDATION and save process binding
 		***************************************** */
-		console.info("bindSurvey :: connecting submit btn to $.validate pluggin");
-		console.dir(formRules);
+		mylog.info("bindSurvey :: connecting submit btn to $.validate pluggin");
+		mylog.dir(formRules);
 		var errorHandler = $('.errorHandler', $(params.surveyId));
 		$(params.surveyId).validate({
 
@@ -252,17 +267,16 @@ var dySObj = {
 
 			submitHandler : function(form) {
 				errorHandler.hide();
-				console.info("form submitted "+params.surveyId);
+				mylog.info("form submitted "+params.surveyId);
 				if(params.onSave && jQuery.isFunction( params.onSave ) ){
-					console.log(params.onSave);
 					params.onSave(params);
 					return false;
 		        } 
 		        else 
 		        {
 		        	toastr.info("default SaveProcess : "+params.savePath);
-		        	console.info("default SaveProcess",params.savePath);
-		        	console.dir($(params.surveyId).serializeFormJSON());
+		        	mylog.info("default SaveProcess",params.savePath);
+		        	mylog.dir($(params.surveyId).serializeFormJSON());
 		        	$.ajax({
 		        	  type: "POST",
 		        	  url: params.savePath,
@@ -272,7 +286,7 @@ var dySObj = {
 		                
 		                if( afterDynBuildSave && typeof afterDynBuildSave == "function" )
 		                    afterDynBuildSave(data.map,data.id);
-		                console.info('saved successfully !');
+		                mylog.info('saved successfully !');
 
 		        	});
 					return false;
@@ -291,18 +305,28 @@ var dySObj = {
 		wizardContent.smartWizard({
             selected: 0,
             keyNavigation: false,
-            //onLeaveStep: function(){ console.log("leaveAStepCallback");},
+            //onLeaveStep: function(){ mylog.log("leaveAStepCallback");},
             onShowStep: function(obj, context)
             {
-            	console.log("test onShowStep",dySObj.navBtnAction,context.toStep,context.fromStep,Math.abs( context.toStep - context.fromStep));
+            	mylog.log("test onShowStep",dySObj.navBtnAction,context.toStep,context.fromStep,Math.abs( context.toStep - context.fromStep));
             	if( !dySObj.navBtnAction ){
 	            	$(".section"+dySObj.activeSection).addClass("hide");
 	            	dySObj.activeSection =  context.toStep -1 ;
-					console.log("top wisard direct link",dySObj.activeSection);
+					mylog.log("top wisard direct link",dySObj.activeSection);
 					$(".section"+dySObj.activeSection).removeClass("hide");	
+
 				}
 				dySObj.activeSection =  context.toStep -1 ;
 				dySObj.animateBar(dySObj.activeSection+1);
+				dySObj.activeSectionId = "#section"+(dySObj.activeSection+1);
+				dySObj.activeSectionKey = dySObj.surveys.sections["section"+(dySObj.activeSection+1)].key;
+
+				var sectionKey = "section"+(dySObj.activeSection+1);
+				mylog.warn("open Section ",dySObj.activeSectionKey,"activeSectionId", "section"+(dySObj.activeSection+1))
+				if( dySObj.surveys.sections[sectionKey].type == "dynForm" && 
+					typeof dySObj.surveys.sections[sectionKey].dynForm.jsonSchema.beforeBuild == "function" &&
+					typeof dySObj.surveys.json[ dySObj.activeSectionKey ].id == "undefined" )
+					dySObj.surveys.sections[sectionKey].dynForm.jsonSchema.beforeBuild();
             },
         });
         dySObj.animateBar();
@@ -314,18 +338,7 @@ var dySObj = {
 		{
 			if( dySObj.validateForm( dySObj.activeSection ) )
 			{
-				if(dySObj.surveys.sections["section"+(dySObj.activeSection+1)].type == "dynForm")
-					alert("might have to save somehting here");
-				$( ".section"+dySObj.activeSection ).addClass("hide");
-				dySObj.activeSection++;
-				console.log("btn-next",dySObj.activeSection);
-				$( ".section"+dySObj.activeSection ).removeClass("hide");
-				dySObj.navBtnAction = true;
-				wizardContent.smartWizard("goForward");
-				dySObj.navBtnAction = false;
-				dySObj.animateBar(dySObj.activeSection+1);
-				if( dySObj.surveys.sections["section"+dySObj.activeSection].onNext && jQuery.isFunction( dySObj.surveys.sections["section"+dySObj.activeSection].onNext ) )
-					dySObj.surveys.sections["section"+dySObj.activeSection].onNext();
+				dySObj.goForward();
 			}
 		});
 
@@ -333,89 +346,173 @@ var dySObj = {
 		{
 			$(".section"+dySObj.activeSection).addClass("hide");
 			dySObj.activeSection--;
-			console.log("btn-prev",dySObj.activeSection);
+			mylog.log("btn-prev",dySObj.activeSection);
 			$(".section"+dySObj.activeSection).removeClass("hide");	
 			dySObj.navBtnAction = true;
 			wizardContent.smartWizard("goBackward");
 			dySObj.navBtnAction = false;
 			dySObj.animateBar(dySObj.activeSection+1);
-			if( dySObj.surveys.sections["section"+dySObj.activeSection].onPrev && jQuery.isFunction( dySObj.surveys.sections["section"+dySObj.activeSection].onPrev ) )
-				dySObj.surveys.sections["section"+dySObj.activeSection].onPrev();
+			if( dySObj.surveys.sections[ "section"+dySObj.activeSection ].onPrev && jQuery.isFunction( dySObj.surveys.sections["section"+dySObj.activeSection].onPrev ) )
+				dySObj.surveys.sections[ "section"+dySObj.activeSection ].onPrev();
 		});
+
+		dataHelper.activateMarkdown(".markdown");
 	},
+
 	// init the dynSurvey instance 
 	buildSurvey : function () {  
 		$("#surveyDesc").hide();
-	    //alert("buildSurvey : "+surveyJson);
-	    dySObj.survey = dySObj.surveys.sections;
+	    mylog.log("buildSurvey sections: ",dySObj.surveys.sections);
+	    //dySObj.survey = dySObj.surveys.sections;
+
+	    $(dySObj.surveyId).unbind('keydown').keydown(function(event) 
+		  {
+		  	if ( event.keyCode == 13)
+		    {
+		    	//console.log($(':focus')[0].localName,$.inArray($(':focus')[0].localName, ["textarea","TEXTAREA"]));
+		    	if($.inArray($(':focus')[0].localName, ["textarea","TEXTAREA"]) == -1 )
+					event.preventDefault();
+				//alert("enter");
+			}
+		});
+
 	    var form = $.dynSurvey({
 	        surveyId : dySObj.surveyId,
 	        surveyObj : dySObj.surveys.sections,
 	        surveyValues : {},
+	        collection : "answers",
+	        key : "answers",
+	        savePath : baseUrl+"/survey/co/save",
 	        onLoad : function(){
 	            //$(".description1, .description2, .description3, .description4, .description5, .description6").focus().autogrow({vertical: true, horizontal: false});
 	        },
 	        onSave : function(params) {
-	            //console.dir( $(params.surveyId).serializeFormJSON() );
-	            var result = {};
-	            result[str]={};
-	            console.log(params.surveyObj);
+	            mylog.log("onSave" );
+	            var result = {
+	            	"user" : userId,
+	            	"name" : userConnected.name,
+	            	"email" : userConnected.email,
+	            	"formId" : dySObj.surveys.id,
+	            	"t" : dySObj.surveys.t,
+	            	"h" : dySObj.surveys.h,
+	            	"answers" : {}
+	            };
+	            if(dySObj.surveys.parentSurvey)
+	            	result.parentSurvey = dySObj.surveys.parentSurvey.id;
+	            var reloadInside= true;
+	            mylog.log(params.surveyObj);
 	            $.each( params.surveyObj,function(section,sectionObj) { 
-	                result[str][sectionObj.key] = {};
-	                console.log(sectionObj.dynForm.jsonSchema.properties);
-	                $.each( sectionObj.dynForm.jsonSchema.properties,function(field,fieldObj) { 
-	                    console.log(sectionObj.key+"."+field, $("#"+section+" #"+field).val() );
-	                    if( fieldObj.inputType ){
-	                        result[str][sectionObj.key][field] = {};
-	                        result[str][sectionObj.key][field] = $("#"+section+" #"+field).val();
-	                    }
-	                });
+	            	//alert("key"+sectionObj.key);
+	            	result["answers"][sectionObj.key] = {};
+	            	if( typeof dySObj.surveys.json[sectionObj.key].saveElement == "undefined" )
+	            	{
+	            		mylog.log(sectionObj.dynForm.jsonSchema.properties);
+		                $.each( sectionObj.dynForm.jsonSchema.properties,function(field,fieldObj) { 
+		                    mylog.log(sectionObj.key+"."+field, $("#"+section+" #"+field).val() );
+		                    if( fieldObj.inputType ){
+		                        if(fieldObj.inputType=="uploader"){
+		                     		if( $('#'+section+' #'+fieldObj.domElement).fineUploader('getUploads').length > 0 ){
+		                     			reloadInside=false;
+		    							$('#'+section+' #'+fieldObj.domElement).fineUploader('uploadStoredFiles');
+		    							result["answers"][sectionObj.key][field] = "";
+		                        	}
+		                        }else{
+		                        	result["answers"][sectionObj.key][field] = {};
+		                        	result["answers"][sectionObj.key][field] = $("#"+section+" #"+field).val();
+		                        }
+		                    }
+		                });
+		            } 
+		            else 
+		            {
+		            	result["answers"][sectionObj.key]["parentType"] = dySObj.surveys.json[sectionObj.key].parentType;
+		            	result["answers"][sectionObj.key]["parentId"] = dySObj.surveys.json[sectionObj.key].parentId;
+		            	result["answers"][sectionObj.key]["type"] = dySObj.surveys.json[sectionObj.key].type;
+		            	result["answers"][sectionObj.key]["id"] = dySObj.surveys.json[sectionObj.key].id;
+		            	result["answers"][sectionObj.key]["name"] = dySObj.surveys.json[ sectionObj.key ].name;
+		            	result["answers"][sectionObj.key]["email"] = dySObj.surveys.json[ sectionObj.key ].email;
+		            }
 	            });
-	            console.dir( result );
+	            mylog.log("onsave result", params, result);
 	            $.ajax({
 	              type: "POST",
 	              url: params.savePath,
-	              data: {},
+	              data: result,
 	              dataType: "json"
 	            }).done( function(data){
-	                toastr.success("values well updated') ?>");
+	            	if(data.result == true){
+	            		if( dySObj.surveys.parentSurvey && 
+	            			dySObj.surveys.parentSurvey.surveyType == "surveyList" && 
+	            			Object.keys( dySObj.surveys.parentSurvey.scenario).indexOf(dySObj.surveys.id) < Object.keys( dySObj.surveys.parentSurvey.scenario).length-1 ){
+	            			var ix = Object.keys( dySObj.surveys.parentSurvey.scenario).indexOf(dySObj.surveys.id)+1;
+	            			if(reloadInside)
+	            				window.location = baseUrl+"/survey/co/index/id/"+Object.keys( dySObj.surveys.parentSurvey.scenario )[ix];
+	            		} else {
+		                	toastr.success("answers saved");
+		                	if(dySObj.surveys.parentSurvey.custom.endTpl){
+		                		if(reloadInside)
+		                			window.location = baseUrl+"/survey/co/index/id/"+dySObj.surveys.parentSurvey.id;
+		                	}
+		                	else
+		                		$("#ajaxFormModal").html('<h1>Well done ! Thank you for your participation. </h1>');
+		                }
+	            	}
+	                else 
+	                	toastr.error(data.result);
 	            });
-	        },
-	        collection : "commonsChart",
-	        key : "SCSurvey",
-	        savePath : baseUrl+"/"+moduleId+"/co/edit"
+
+	            //alert("final saved it all");
+	            return false;
+	        }
 	    });
 	},
+	
 	// transfroms a list of dynform definitions into the needed survey structure
 	buildSurveySections : function (){
-	    console.log( "buildSurveySections" );
+	    mylog.log( "buildSurveySections" );
 	    dySObj.surveys.sections={};
-	    var i=1;
+	    var sec=1;
 	    $.each(dySObj.surveys.json, function(e,form){
 	    	var type = (dySObj.surveys.json[e].dynType) ? dySObj.surveys.json[e].dynType : "dynForm";
-	        dySObj.surveys.sections["section"+i] = {dynForm : form, key : e,type : type};
-	        i++;
+	        dySObj.surveys.sections[ "section"+sec ] = { dynForm : form, key : e, type : type };
+	        sec++;
 	    });
 	    return dySObj.surveys.sections;
 	},
 	//takes a full scenario defnition and :
-	// builds & returns a survey Json
-	buildOneSurveyFromScenario : function (scenario){
-	    dySObj.surveys.json={};
-	    var i=1;
+	// builds & returns a survey Json asynchronesly
+	buildOneSurveyFromScenario : function (){
+		mylog.log( "buildOneSurvey scenario x",dySObj.surveys.scenario);
+	    //dySObj.surveys.json={};
 	    //structure the survey json like a given survey
-	    $.each( scenario, function(s,step){
-	    	console.log( "buildOneSurveySectionsFromScenario step",s,step );
+	    $.each( dySObj.surveys.scenario, function(s,step) {
+	    	mylog.warn( "buildOneSurvey step",s,step );
+
+	    	//this step of the survey of a form definition 
+	    	// in the step it self as json
 	    	if( step.json ){
-	    		//this step allready has a survey definition 
+	    		
+	    		mylog.log("buildOne by json");
 	    		dynType = (step.dynType) ? step.dynType : "dynForm" ;
-	    		$.each(step.json, function(e,form){
-	    			dySObj.surveys.json[e] = form;
-			        dySObj.surveys.json[e].dynType = dynType;
-			    });
-	    	} else if( step.path ){
-	    		//ajax get form or survey
-	    		dySObj.surveys.json[s]=null;
+	    		if(dynType == "dynSurvey" ){
+		    		$.each(step.json, function(e,form){		
+		    			dySObj.surveys.json[e] = form;
+				        dySObj.surveys.json[e].dynType = dynType;
+				        mylog.log("step dynSurvey step ",e,dynType);
+				    }); 
+		    	} else {
+		    		dySObj.surveys.json[s] = step.json;
+			        dySObj.surveys.json[s].dynType = dynType;
+			        mylog.log("step dynForm step ",s,dynType);
+		    	}
+			    mylog.log("json",dySObj.surveys.json);
+	    	} 
+	    	//the form description is in a file get by ajax
+	    	//ajax get form or survey following submitted path
+	    	else if( step.path ) {
+	    		
+	    		//mylog.warn("buildOne by path");
+	    		
 	    		dType = (step.type) ? step.type : "json" ;
                 dynType = (step.dynType) ? step.dynType : "dynForm" ;
 
@@ -427,38 +524,47 @@ var dySObj = {
 		        else if(step.where == "parentModuleUrl")
 		            path = parentModuleUrl+step.path;
 
-	    		dySObj.getSurveyJson ( s , path, dType, function() { 
+		        //mylog.log( "buildOneSurvey scenario xx");
+		        dySObj.surveys.json[s] = null; //important for asyncCheck
+		        dySObj.getSurveyJson ( s , path, dType, function() { 
+		        	mylog.log( "buildOne >>>>>>", s ,typeof dySObj.surveys.json);
+	    			if(typeof dySObj.surveys.json == "undefined")
+	    				dySObj.surveys.json={};
 	    			dySObj.surveys.json[s] = dySObj.surveys[s];
-	    			dynType = (dySObj.surveys.scenario[s].dynType) ? dySObj.surveys.scenario[s].dynType : "dynForm" ;
-	    			dySObj.surveys.json[s].dynType = dynType;
-	    			if( dySObj.asyncSurveyLoadedCheck() )
-	    				$("#startSurvey").removeClass("hidden");
+	    			//DEBUG WITH A DYNsURVEY
+	    			dySObj.surveys.json[s].dynType = ( dySObj.surveys.scenario[s].dynType ) ? dySObj.surveys.scenario[s].dynType : "dynForm";
+	    			if( dySObj.surveys.scenario[s].saveElement )
+	    				dySObj.surveys.json[s].saveElement = true; 
+	    			dySObj.asyncSurveyLoadedCheck();
+	    				
 	            } );
-
 	    	} 
 	    });
-	    console.log( "buildOneSurveySectionsFromScenario",dySObj.surveys.json );
-	    return dySObj.surveys.json;
+	    mylog.log( "buildOneSurvey json",dySObj.surveys.json );
+	    dySObj.asyncSurveyLoadedCheck();	
 	},
 	// checks no empty dynforms in dySObj.surveys.json
+	//if so show the start btn
 	asyncSurveyLoadedCheck : function() {
-		console.log( "asyncSurveyLoadedCheck",dySObj.surveys.json );
+		mylog.log( "asyncSurveyLoadedCheck",dySObj.surveys.json );
 		res = true;
 		$.each( dySObj.surveys.json, function(s,step) {
 			if(step == null)
 				res = false;
 		});
-		return res; 
+		mylog.log( "asyncSurveyLoadedCheck res",res );
+		if(res)
+			$("#startSurvey").removeClass("hidden");
 	},
 	openSurvey : function (key,type,dynType) { 
-	    //$(".card-text,.card .btn").hide();
-	    //alert(dynType);
-	    console.log("openSurvey",key,type,dynType);
+	    $("#surveyBtn").hide();
+	    mylog.log("openSurvey",key,type,dynType);
 	    if(dynType == "oneSurvey"){
 	    	dySObj.buildSurveySections(); 
 	        dySObj.buildSurvey();
-	    } else if(typeof dySObj.surveys.scenario[key].json == "object"){
-	        console.warn("openSurvey :: get survey json exist");
+	    } 
+	    else if(typeof dySObj.surveys.scenario[key].json == "object"){
+	        mylog.warn("openSurvey :: get survey json exist");
 
 	        if(dynType == "dynSurvey"){
 	        	dySObj.buildSurveySections( dySObj.surveys.scenario[key].json );
@@ -466,7 +572,6 @@ var dySObj = {
 	        }
 	        else 
 	            dyFObj.openForm( dySObj.surveys.scenario[key].json );
-
 	    }
 	    else if( dySObj.surveys.scenario[ key ].path ){
 
@@ -481,7 +586,7 @@ var dySObj = {
 	        
 	        if( dynType == "dynSurvey" ){
 	            //surveys like surveys/assets/js/surveys/dynsurvey.js
-	            console.warn("openSurvey :: get survey json by path", path);
+	            mylog.warn("openSurvey :: get survey json by path", path);
 	            dySObj.getSurveyJson ( key , path,type, function() { 
 	            	dySObj.buildSurveySections( surveys[key] );
 	                dySObj.buildSurvey();
@@ -491,13 +596,13 @@ var dySObj = {
 	        else {
 	            //existing forms connected to co2 
 	            if( jsonHelper.notNull( "typeObj."+key) ){
-	                console.warn("openSurvey:: get form by key",key);
+	                mylog.warn("openSurvey:: get form by key",key);
 	                dyFObj.openForm( key ); 
 	            }
 	            else 
 	            { 
 	                //forms defined elsewhere like surveys/assets/js/surveys/login.js
-	                console.warn("openSurvey :: get form json by path",key,path);
+	                mylog.warn("openSurvey :: get form json by path",key,path);
 	                dySObj.getSurveyJson ( key , path,type,function() {
 	                    dyFObj.openForm( surveys[key] );
 	                } );
@@ -508,7 +613,7 @@ var dySObj = {
 	},
 
 	animateBar : function (val) {
-    	console.log("animateBar");
+    	mylog.log("animateBar");
         if ((typeof val == 'undefined') || val == "") {
             val = 1;
         };
@@ -518,26 +623,188 @@ var dySObj = {
 
     // complete Form secion validations  
 	validateForm : function  ( sectionIndex, surveyId ) { 
-		console.log( "validateForm", sectionIndex, dySObj.surveyId );
+		mylog.log( "validateForm1", sectionIndex, dySObj.surveyId );
 		var counter = 0;
 		var result = true;
-		$.each( dySObj.survey , function( sectionId ,sectionObj ) 
-		{ 
-			console.log( "validateForm",sectionId, counter, sectionIndex );
-			if( counter == sectionIndex )
-			{
-				console.dir(sectionObj.dynForm);
-				$.each(sectionObj.dynForm.jsonSchema.properties , function(field,fieldObj) 
-				{ 
+		$.each( dySObj.surveys.sections , function( sectionId ,sectionObj ) { 
+			mylog.log( "validateForm",sectionId, counter, sectionIndex );
+			if( counter == sectionIndex ){
+				mylog.dir(sectionObj.dynForm);
+				$.each(sectionObj.dynForm.jsonSchema.properties , function(field,fieldObj) { 
 					if( fieldObj.rules ){
 						var res = $(dySObj.surveyId).validate().element("#"+field);
 						if(!res)
 							result = false;
 					}
+					//mylog.log("field",field,result);
 				});
 			}
 			counter++;
 		});
+		if(!result){
+			$(".btn-next").html('<span class="text-red"><i class="fa fa-warning"></i> Régler les erreurs</span>');
+			$('html, body').stop().animate({scrollTop: 0}, 500, '');
+		}else{
+			$(".btn-next").html('<span class="text-dark">Suivant <i class="fa fa-arrow-circle-right"></i></span>');
+		}
 		return result;
+	}, 
+	goForward : function (existedElementId, elementSlug, elementName, eltMail){
+		var sec = "section"+(dySObj.activeSection+1);
+		var sectionKey = dySObj.surveys.sections[sec].key;
+		if( dySObj.surveys.sections[sec].type == "dynForm")
+		{
+			if( typeof dySObj.surveys.scenario[sectionKey].saveElement == "object" && existedElementId==null)
+			{
+				var  save = dySObj.surveys.scenario[dySObj.surveys.sections[sec].key].saveElement;
+				saveData = {};
+				dyFObj.elementObj = dySObj.surveys.sections[sec];
+                $.each( dyFObj.elementObj.dynForm.jsonSchema.properties,function(field,fieldObj) { 
+                    mylog.log(sectionKey+"."+field, $("#"+sec+" #"+field).val() );
+                    if( fieldObj.inputType ) {
+                        saveData[field] = {};
+                        saveData[field] = $("#"+sec+" #"+field).val();
+                    }
+                });
+                mylog.dir( saveData );
+                var saveP = dySObj.surveys.scenario[sectionKey].saveElement;
+
+                if( typeof dySObj.surveys.scenario[sectionKey].linkTo != "undefined" && answers ){
+                	linkToT = dySObj.surveys.scenario[sectionKey].linkTo.split(".");
+                	$.each( answers,function(i,a) { 
+                		if( linkToT[0] == a.formId )
+                		{
+                			if( typeof a.answers[ linkToT[1] ] != "undefined" )
+                			{
+	                			saveData.parentId = a.answers[ linkToT[1] ].id;
+	                			saveData.parentType = a.answers[ linkToT[1] ].type;
+	                		}
+                		}
+                	});
+                	mylog.log("linkTo",saveData);
+                }
+
+                dyFObj.saveElement(saveData, saveP.collection, saveP.ctrl,null, function(data) { 
+                	mylog.warn("saved",data);
+                	//if( $(uploadObj.domTarget).fineUploader('getUploads').length > 0 ){
+		    		//	$(uploadObj.domTarget).fineUploader('uploadStoredFiles');
+	    			//}
+                	//alert("switch btn color to red to indicate, and disable form");
+	            	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].type = dySObj.surveys.sections[sec].key;
+	            	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].id = data.id;
+	            	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].name = data.map.name;
+	            	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].email = data.map.email;
+	            	/*if(typeof dySObj.surveys.sections["section"+(dySObj.activeSection+1)] != "undefined"
+		        		&& typeof dySObj.surveys.sections["section"+(dySObj.activeSection+1)].dynForm != "undefined")
+	            	{
+		        		$.each(dySObj.surveys.sections["section"+(dySObj.activeSection+1)].dynForm.jsonSchema.properties, function(e, v){
+		            		if(typeof v.docType != "undefined" && typeof v.linkTo != "undefined" && v.linkTo==dySObj.surveys.sections[sec].key){ 
+		            			typeOwner=v.linkTo+"s";
+		            			idOwner=dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].id;
+		            			endpoint=baseUrl+"/"+moduleId+v.endPoint+"/folder/"+typeOwner+"/ownerId/"+idOwner;
+								$("#"+v.domElement).fineUploader('setEndpoint', endpoint);
+							}
+						});
+		    		}*/
+		    		
+	    		   	var secJsonSchema = dySObj.surveys.json[sectionKey].jsonSchema;
+						if( typeof secJsonSchema.afterSave == "function" )
+							var elemText = "<h1>Form has been saved,<br/>"+
+						        		"to modify please go <a class='btn btn-xs btn-primary' href='"+baseUrl+"/co2#@"+data.map.slug+"' target='_blank'>here</a>"+
+						        		"once you finished the survey"+
+						        		"</h1>"+
+						        		"<button class='btn btn-primary' onclick='$(\'#section"+( dySObj.activeSection+1 )+"\').trigger(\"click'\")'>Next step</button>";
+							
+						if( $(uploadObj.domTarget).fineUploader('getUploads').length > 0 )
+						{
+				        	secJsonSchema.afterSave( data, function() { 
+					        	$("#section"+dySObj.activeSection).html(elemText);
+					        }); 
+				        } else 
+				        	$("#section"+dySObj.activeSection).html(elemText);
+
+                });
+			} 
+			else if(typeof dySObj.surveys.scenario[sectionKey].saveElement == "object" && notNull(existedElementId))
+			{
+				dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].type = dySObj.surveys.sections[sec].key;
+            	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].id = existedElementId;
+            	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].name = elementName;
+            	dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].email = eltMail;
+
+            	var secJsonSchema = dySObj.surveys.json[sectionKey].jsonSchema;
+				if( typeof secJsonSchema.afterSave == "function" )
+				{
+		        	var data={
+		        			type: dySObj.surveys.sections[sec].key, 
+		        			id : existedElementId, 
+		        			name : elementName, 
+		        			slug: elementSlug,
+		        			email: eltMail
+		        		};
+		        	//secJsonSchema.afterSave( data, function() { 
+			        	$("#section"+dySObj.activeSection).html(
+			        		"<h1>Form has been saved,<br/>"+
+			        		"to modify please go <a class='btn btn-xs btn-primary' href='"+baseUrl+"/co2#@"+elementSlug+"' target='_blank'>here</a>"+
+			        		"once you finished the survey"+
+			        		"</h1>"
+			        		/*"<button class='btn btn-primary' onclick='$(\'#section"+(dySObj.activeSection++)+"\').trigger(\'click'\)'>Next step</button>"*/);
+			        //}); 
+			    }
+			}
+			/*if(typeof dySObj.surveys.sections["section"+(dySObj.activeSection+1)] != "undefined"
+        		&& typeof dySObj.surveys.sections["section"+(dySObj.activeSection+1)].dynForm != "undefined"){
+        		$.each(dySObj.surveys.sections["section"+(dySObj.activeSection+1)].dynForm.jsonSchema.properties, function(e, v){
+            		if(typeof v.docType != "undefined" && typeof v.linkTo != "undefined" && v.linkTo==dySObj.surveys.sections[sec].key){ 
+            			if(v.linkTo=="citoyens"){
+            				typeOwner=v.linkTo;
+            				idOwner=userId;
+            			}else{
+            				typeOwner=v.linkTo+"s";
+            				idOwner=dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].id;
+            			}
+            			endpoint=baseUrl+"/"+moduleId+v.endPoint+"/folder/"+typeOwner+"/ownerId/"+idOwner;
+						$("#"+v.domElement).fineUploader('setEndpoint', endpoint);
+					}
+				});
+    		}*/
+			//alert(dySObj.surveys.json[v.linkTo].type);
+			$('html, body').stop().animate({scrollTop: 0}, 500, '');
+		} 
+		/*console.log("befffffffffore save fucking survey");
+		if(typeof dySObj.surveys.sections["section"+(dySObj.activeSection+1)] != "undefined"
+        		&& typeof dySObj.surveys.sections["section"+(dySObj.activeSection+1)].dynForm != "undefined"){
+				alert();
+        		$.each(dySObj.surveys.sections["section"+(dySObj.activeSection+1)].dynForm.jsonSchema.properties, function(e, v){
+            		if(v.inputType=="uploader" && typeof v.docType != "undefined" && v.docType=="file"){ 
+            			if( $('#'+v.domElement).fineUploader('getUploads').length > 0 ){
+		    				$('#'+v.domElement).fineUploader('uploadStoredFiles');
+		    						
+            			//alert("type:"+dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].type);
+            			//endpoint=baseUrl+"/"+moduleId+v.endPoint+"/folder/"+v.linkTo+"s/ownerId/"+dySObj.surveys.json[ dySObj.surveys.sections[sec].key ].id;
+						//$("#"+v.domElement).fineUploader('setEndpoint', endpoint);
+						}
+					}	
+				});
+    	}*/
+		/*else 
+		{
+			mylog.log ( "save "+sectionKey );
+			$.each( $("#"+sec+" textarea, #"+sec+" select, #"+sec+" input"),function(i,v){
+				mylog.log(i,$(v).attr("name"),$(v).val());
+				dySObj.surveys.answers[sectionKey][$(v).attr("name")] = $(v).val();
+			});
+		} */
+		$( ".section"+dySObj.activeSection ).addClass("hide");
+		dySObj.activeSection++;
+		mylog.log("btn-next",dySObj.activeSection);
+		$( ".section"+dySObj.activeSection ).removeClass("hide");
+		dySObj.navBtnAction = true;
+		wizardContent.smartWizard("goForward");
+		dySObj.navBtnAction = false;
+		dySObj.animateBar(dySObj.activeSection+1);
+		if( dySObj.surveys.sections["section"+dySObj.activeSection].onNext && jQuery.isFunction( dySObj.surveys.sections["section"+dySObj.activeSection].onNext ) )
+			dySObj.surveys.sections["section"+dySObj.activeSection].onNext();
 	}
 }
+

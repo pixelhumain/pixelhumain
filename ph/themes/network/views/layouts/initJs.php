@@ -12,9 +12,29 @@ $multiscopes = (empty($me) && isset( Yii::app()->request->cookies['multiscopes']
 
 
     var modules = {
-        "ressources": <?php echo json_encode( Ressource::getConfig() ) ?>,
-        "classifieds": <?php echo json_encode( Classified::getConfig() ) ?>,
+        //Configure here eco
+        "classifieds":<?php echo json_encode( Classified::getConfig("classifieds") ) ?>,
+        "jobs":<?php echo json_encode( Classified::getConfig("jobs") ) ?>,
+        "ressources":<?php echo json_encode( Classified::getConfig("ressources") ) ?>,
         "places": <?php echo json_encode( Place::getConfig() ) ?>,
+        "poi": <?php echo json_encode( Poi::getConfig() ) ?>,
+        "chat": <?php echo json_encode( Chat::getConfig() ) ?>,
+        "interop": <?php echo json_encode( Interop::getConfig() ) ?>,
+        "eco" : <?php echo json_encode( array(
+            "module" => "eco",
+            "url"    => Yii::app()->getModule( "eco" )->assetsUrl
+        )); ?>,
+        "survey" : <?php echo json_encode( array(
+            "url"    => Yii::app()->getModule( "survey" )->assetsUrl
+        )); ?>,
+        "co2" : <?php echo json_encode( array(
+            "url"    => Yii::app()->getModule( "co2" )->assetsUrl
+        )); ?>,
+        "cotools" : <?php echo json_encode( array(
+            "module" => "cotools",
+            "init"   => Yii::app()->getModule( "cotools" )->assetsUrl."/js/init.js" ,
+            "form"   => Yii::app()->getModule( "cotools" )->assetsUrl."/js/dynForm.js" ,
+        )); ?>
     };
 
     var themeUrl = "<?php echo Yii::app()->theme->baseUrl;?>";

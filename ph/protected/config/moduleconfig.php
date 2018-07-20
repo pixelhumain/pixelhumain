@@ -19,6 +19,8 @@ $activeModules = array(
 	'terla',
 	'chat',
 	'cococarto', 
-	"survey", 
-	"eco"
+	"survey",
+	"interop",
+	"eco",
+	"custom"
 	);
