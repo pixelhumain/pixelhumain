@@ -3437,35 +3437,24 @@ var dyFInputs = {
 
 						if(typeof networkJson.request.searchTag != "undefined"){
 							typeObj[key].dynForm.jsonSchema.properties.tags.data = networkJson.request.searchTag;
-							mylog.log("DATA NETWORK1", typeObj[key].dynForm.jsonSchema.properties.tags.data);
 						}
 
 						if(	typeof typeObj[key] != "undefined" &&
 							typeof typeObj[key].dynForm != "undefined" && 
 							typeof typeObj[key].dynForm.jsonSchema.properties.tags != "undefined"){
-							mylog.log("tags", typeof typeObj[key].dynForm.jsonSchema.properties.tags, typeObj[key].dynForm.jsonSchema.properties.tags);
-							mylog.log("networkTags", networkTags);
 							typeObj[key].dynForm.jsonSchema.properties.tags.values=networkTags;
 							if(typeof networkJson.request.mainTag != "undefined"){
 								typeObj[key].dynForm.jsonSchema.properties.tags.mainTag = networkJson.request.mainTag;
 								if(typeof typeObj[key].dynForm.jsonSchema.properties.tags.data == "undefined")
 									typeObj[key].dynForm.jsonSchema.properties.tags.data = [] ;
 
-								mylog.log("DATA NETWORK2", typeObj[key].dynForm.jsonSchema.properties.tags.data, networkJson.request.mainTag[0]);
-								
 								typeObj[key].dynForm.jsonSchema.properties.tags.data = $.merge(networkJson.request.mainTag, typeObj[key].dynForm.jsonSchema.properties.tags.data);
-								mylog.log("DATA NETWORK3", typeObj[key].dynForm.jsonSchema.properties.tags.data);
-
 							}
 						}
 
 						if(notNull(networkJson.dynForm)){
-							mylog.log("networkJson.dynForm");
-							mylog.log("networkJson.dynForm", "networkJson.dynForm");
 							if(notNull(networkJson.dynForm.extra)){
 								var nbListTags = 1 ;
-								mylog.log("networkJson.dynForm.extra.tags", "networkJson.dynForm.extra.tags"+nbListTags);
-								mylog.log(jsonHelper.notNull("networkJson.dynForm.extra.tags"+nbListTags));
 								while(jsonHelper.notNull("networkJson.dynForm.extra.tags"+nbListTags)){
 									typeObj[key].dynForm.jsonSchema.properties["tags"+nbListTags] = {
 										"inputType" : "tags",
@@ -3475,11 +3464,18 @@ var dyFInputs = {
 										"label" : networkJson.dynForm.extra["tags"+nbListTags].list
 									};
 									nbListTags++;
-									mylog.log("networkJson.dynForm.extra.tags", "networkJson.dynForm.extra.tags"+nbListTags);
-									mylog.log(jsonHelper.notNull("networkJson.dynForm.extra.tags"+nbListTags));
 								}
 								delete typeObj[key].dynForm.jsonSchema.properties.tags;
 							}
+						}
+
+						if(	typeof networkJson.request.parent != "undefined" && 
+							typeof networkJson.request.parent.id != "undefined" &&
+							typeof networkJson.request.parent.type != "undefined" ){
+							mylog.log("DATA NETWORK1 parent", networkJson.request.parent);
+							typeObj[key].dynForm.jsonSchema.properties.parentType = dyFInputs.inputHidden("");
+							typeObj[key].dynForm.jsonSchema.properties.parentId = dyFInputs.inputHidden("");
+							
 						}
 					}
 				}
