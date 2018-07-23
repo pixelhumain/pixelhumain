@@ -58,34 +58,34 @@
                     </div>
 
                     <div class="col-md-12 margin-top-15 text-dark">
-                        <button class="btn btn-default text-yellow inline-block margin-bottom-10"><i class="fa fa-plus-circle"></i> 
+                        <button class="btn btn-default text-yellow inline-block margin-bottom-10 btn-open-form"><i class="fa fa-plus-circle"></i> 
                             <span class="hidden-xs"><?php echo Yii::t("common","Invite someone") ?></span>
                         </button>
-                            <button class="btn btn-default text-green inline-block margin-bottom-10"><i class="fa fa-plus-circle"></i> 
+                            <button class="btn btn-default text-green inline-block margin-bottom-10 btn-open-form" data-form-subtype="NGO" data-form-type="organization"><i class="fa fa-plus-circle"></i> 
                                 <span class="hidden-xs"><?php echo Yii::t("common","Create a NGO") ?></span>
                             </button>
-                            <button class="btn btn-default text-azure inline-block margin-bottom-10"><i class="fa fa-plus-circle"></i> 
+                            <button class="btn btn-default text-azure inline-block margin-bottom-10 btn-open-form" data-form-subtype="LocalBusiness" data-form-type="organization"><i class="fa fa-plus-circle"></i> 
                                 <span class="hidden-xs"><?php echo Yii::t("common","Create an enterprise") ?></span>
                             </button>
-                            <button class="btn btn-default text-turq inline-block margin-bottom-10"><i class="fa fa-plus-circle"></i> 
+                            <button class="btn btn-default text-turq inline-block margin-bottom-10 btn-open-form" data-form-subtype="Group" data-form-type="organization"><i class="fa fa-plus-circle"></i> 
                                 <span class="hidden-xs"><?php echo Yii::t("common","Create a group") ?></span>
                             </button>
-                            <button class="btn btn-default text-orange inline-block margin-bottom-10"><i class="fa fa-plus-circle"></i> 
+                            <button class="btn btn-default text-orange inline-block margin-bottom-10 btn-open-form" data-form-type="event"><i class="fa fa-plus-circle"></i> 
                                 <span class="hidden-xs"><?php echo Yii::t("common","Create an event") ?></span>
                             </button>
-                            <button class="btn btn-default text-purple inline-block margin-bottom-10"><i class="fa fa-plus-circle"></i> 
+                            <button class="btn btn-default text-purple inline-block margin-bottom-10 btn-open-form" data-form-type="project"><i class="fa fa-plus-circle"></i> 
                                 <span class="hidden-xs"><?php echo Yii::t("common","Create a project") ?></span>
                             </button>
-                            <button class="btn btn-default text-red inline-block margin-bottom-10"><i class="fa fa-plus-circle"></i> 
+                            <button class="btn btn-default text-red inline-block margin-bottom-10btn-open-form" data-form-subtype="GovernmentOrganization" data-form-type="organization"><i class="fa fa-plus-circle"></i> 
                                 <span class="hidden-xs"><?php echo Yii::t("common","Add a governemental organization") ?></span>
                             </button>
-                            <button class="btn btn-default text-azure inline-block margin-bottom-10"><i class="fa fa-plus-circle"></i> 
+                            <button class="btn btn-default text-azure inline-block margin-bottom-10 btn-open-form" data-form-type="classifieds"><i class="fa fa-plus-circle"></i> 
                                 <span class="hidden-xs"><?php echo Yii::t("common","Create a classified ad") ?></span>
                             </button>
-                            <button class="btn btn-default text-vine inline-block margin-bottom-10"><i class="fa fa-plus-circle"></i> 
+                            <button class="btn btn-default text-vine inline-block margin-bottom-10 btn-open-form" data-form-type="ressources"><i class="fa fa-plus-circle"></i> 
                                 <span class="hidden-xs"><?php echo Yii::t("common","Create a ressource") ?></span>
                             </button>
-                            <button class="btn btn-default text-brown inline-block margin-bottom-10"><i class="fa fa-plus-circle"></i> 
+                            <button class="btn btn-default text-brown inline-block margin-bottom-10 btn-open-form" data-form-type="poi"><i class="fa fa-plus-circle"></i> 
                                 <span class="hidden-xs"><?php echo Yii::t("common","Create a point of interest") ?></span>
                             </button>
                        <hr>
@@ -234,7 +234,7 @@
                                 </div>
                             </div>
                         </a>
-                        <a href="javascript:" class="btn-create-elem col-lg-4 col-md-6 col-sm-6 col-xs-6" data-type="classified"
+                        <a href="javascript:" class="btn-create-elem col-lg-4 col-md-6 col-sm-6 col-xs-6" data-type="classifieds"
                             date-target="#modalMainMenu" data-dismiss="modal">
                             <div class="modal-body text-center">
                                 <h4 class="text-azure"><i class="fa fa-bullhorn padding-bottom-10"></i><br>
@@ -273,25 +273,25 @@
                             </div>
                         </a>
                         
-                        <!--<a href="javascript:" class="btn-create-elem col-lg-4 col-md-6 col-sm-6 col-xs-6" data-type="places"
+                        <a href="javascript:" class="btn-create-elem col-lg-4 col-md-6 col-sm-6 col-xs-6" data-type="poi"
                             date-target="#modalMainMenu" data-dismiss="modal">
                             <div class="modal-body text-center">
-                                <h4 class="text-brown"><i class="fa fa-home padding-bottom-10"></i><br>
-                                    <span class="font-light"> <?php echo Yii::t("common","Place") ?></span>
+                                <h4 class="text-green-poi"><i class="fa fa-home padding-bottom-10"></i><br>
+                                    <span class="font-light"> <?php echo Yii::t("common","Point of interest") ?></span>
                                 </h4>
                                 
                                 <div class="col-md-12 no-padding text-center">
-                                    <h5><?php echo Yii::t("docs","Every place hides creativity and life") ?>
+                                    <h5><?php echo Yii::t("docs","Every point hides creativity and life") ?>
                                         <small class="hidden-xs" style="text-transform: none;"><br>
-                                            <?php echo Yii::t("docs","Places are centers of meeting, collective creation and are full of energy") ?>
+                                            <?php echo Yii::t("docs","Points of interests are centers of meeting, collective creation and are full of energy") ?>
                                         </small>
                                     </h5>
-                                    <button class="btn btn-default text-brown margin-bottom-15"><i class="fa fa-plus-circle"></i> 
-                                        <span class="hidden-xs"><?php echo Yii::t("common","Create a place") ?></span>
+                                    <button class="btn btn-default text-green-poi margin-bottom-15"><i class="fa fa-plus-circle"></i> 
+                                        <span class="hidden-xs"><?php echo Yii::t("common","Create a point of interest") ?></span>
                                     </button>
                                 </div>
                             </div>
-                        </a>-->
+                        </a>
 
                         <div class="col-md-12 col-sm-12 col-xs-12 text-center">
                             <hr>
