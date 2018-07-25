@@ -43,6 +43,27 @@
 						</ul>
 					</div>
 				</div>
+
+				<?php if (!empty($params['request']['searchType']) && in_array(Classified::COLLECTION, $params['request']['searchType']) ){ ?>
+					<div id="divClasssified" class="">
+					<div class="panel-heading" style="background-color: #f5f5f5;">
+						<h4 class="left-title-menu" onclick="manageCollapse('classified', 'false')">
+							<a data-toggle="collapse" href="#classified" style="color:#719FAB" data-label="classified">
+								<?php echo Yii::t("common","All functions") ?>
+								<i class="fa fa-chevron-right right" aria-hidden="true" id="fa_classified"></i>
+							</a>
+						</h4>
+					</div>
+					<div id="list_classified" class="panel-collapse collapse">
+						<ul class="list-group">
+							<li class="list-group-item"><input type="checkbox" class="checkbox classifiedFilterAuto" value="creator" data-parent="classified" data-label="creator"/><?php echo Yii::t("common","Offer") ?></li>
+							<li class="list-group-item"><input type="checkbox" class="checkbox classifiedFilterAuto" value="members" data-parent="classified" data-label="members"/><?php echo Yii::t("common","Formation") ?></li>
+							<li class="list-group-item"><input type="checkbox" class="checkbox classifiedFilterAuto" value="admin" data-parent="classified" data-label="admin"/><?php echo Yii::t("common","Annonce") ?></li>
+						</ul>
+					</div>
+				</div>
+				<?php } ?>
+				
 	
 				
 		

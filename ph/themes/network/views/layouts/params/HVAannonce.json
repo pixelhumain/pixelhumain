@@ -1,0 +1,62 @@
+{
+    "name" : "Annonces de l'Haute Vallée de l'Aude",
+    "mode" : "server",
+    "skin" : {
+        "logo" : false,
+        "title" : "Annonces de l'Haute Vallée de l'Aude",
+        "shortDescription" : "Toutes les annonces du Haute Vallée de l'Aude",
+        "displayScope" : false,
+        "docs":true,
+        "displayCommunexion" : true,
+        "displayNotifications" : true,
+        "profilBar" : false,
+        "breadcrum" : true,
+        "displayButtonGridList" : false,
+        "class" : {
+            "mainContainer" : false
+        },
+        "iconeAdd" : false,
+        "iconeSearchPlus" : false,
+        "loginTitle":"",
+        "front" : {
+            "organization" : false,
+            "project" : true,
+            "event" : true,
+            "community" : true,
+            "dda" : false,
+            "live" : false,
+            "search" : false,
+            "need" : true,
+            "poi" : true
+        },
+        "menu" : {
+            "aroundMe":false,
+            "connectLink":false,
+            "add":true,
+            "detail":true,
+            "news":true,
+            "directory":true,
+            "gallery":true
+        }
+    },
+    "add" : {
+        "organization" : true,
+        "project" : true
+    },
+    "filter" : {
+        "types" : false
+    },
+    "result" : {
+        "displayImage" : true,
+        "displayType" : false,
+        "fullLocality" : true,
+        "datesEvent" : false,
+        "displayShortDescription" : true
+    },
+    "request" : {
+        "pagination" : 1000,
+        "searchType" : [
+            "classifieds"
+        ]
+    }
+}
