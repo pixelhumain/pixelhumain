@@ -51,6 +51,8 @@
 		"Call ressources you need or purpose it.<br/> Sharing our knowledge to built it better"=>"Chercher une ressource manquante ou la mettre à disposition.<br/> Partarger notre connaissance et nos compétences<br/>pour construire ensemble",
 		"Material, Conpetences, Services<br/>Together we are stronger"=>"Matériel, Compétences, Services<br/>Ensemble on est plus fort",
 		"Every place hides creativity and life"=>"Chaque lieu cache de la créativité et de la vie",
+		"Every point hides creativity and life"=>"Chaque point cache de la créativité et de la vie",
+		"Points of interests are centers of meeting, collective creation and are full of energy"=>"Les points d'intérêts sont des centres de rencontres, de création collectives et regorgent d'énergie",
 		"Places are centers of meeting, collective creation and are full of energy"=>"Les lieux sont des centres de rencontres, de création collectives et regorgent d'énergie",
 		"There is none sens to keep it for you<br/> Economy is capital"=>"Le garder pour soi n'a aucun sens.<br/> L'économie est capital",
 		"The market of classifieds is the creation of value.<br/> Exchange, hire, buy and sell localy faster and faster to produce value and develop a real economy."=>"Le marché des annonces crée de la valeur.<br/>Echanger, employer, acheter et vendre localement encore et encore pour produire de la valeur et développer une réelle économie",

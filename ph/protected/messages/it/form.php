@@ -183,5 +183,11 @@
 		"Select a city to share your survey with everybody in town !" => "Seleziona una città per mostrare i risultati del sondaggio a tutti coloro che si trovano in quella città!",
 		"Transform" => "Converti",
 		"into an Organization" => "in un'organizzazione",
+		
+		"Make your event publicly visible" => "Rendere l'evento visibile al pubblico",
+		"Make your project publicly visible" => "Rendete il vostro progetto visibile al pubblico",
+		"<b>Private :</b> Event visible only by its attendees and create contents only for attendees and admins<br/><b>Public :</b> Event visible in search engine, agenda and communication available for all" => "<b>Privato :</b>Evento visibile solo dai suoi partecipanti e creare contenuti solo per i partecipanti e gli amministratori<br/><b>Pubblico :</b>Evento visibile nel motore di ricerca, agenda e comunicazione disponibile per tutti",
+		"<b>Private :</b> Project visible only by its contributors and create contents accessible only by its community<br/><b>Public :</b> Project visible in search engine and communication available for all" => "<b>Privato :</b> Progetto visibile solo dai suoi contributori e creare contenuti accessibili solo dalla sua comunità<br/><b>Pubblico :</b> Progetto visibile nel motore di ricerca e comunicazione disponibile per tutti",
+		"Add a new address" => "Aggiungere un nuovo indirizzo",
 	)
 ?>
