@@ -491,6 +491,7 @@ return array(
 	"Settings" => "Paramètres",
 	"More" => "Plus",
 	"Confidentiality params" => "Paramètres de confidentialité",
+	"Confidentiality"=>"Confidentialité",
 	"Confidentiality of your personal informations" => "Confidentialité de vos informations personnelles",
 	"Settings {what}"=>"Paramètres {what}",
 	"I go" => "J&rsquo;y vais",

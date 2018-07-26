@@ -47,7 +47,7 @@
 		"You will set parameters of notifications you received about <b>activity on elements that you are connected : organizations, projects and events</b>"=>"Vous pouvez régler les notifications en rapport avec l'<b>activité provenant de votre communauté</b> : vos organisations, vos projets et vos événements",
 		"Alerts you received on your email adress"=>"Alertes que vous recevez sur votre email",
 		"Alerts you receive inside communecter"=>"Alertes que vous recevez dans communecter",
-
+		"All informations about your community's notifications"=>"Toutes l'informations sur les notifications concernant votre communauté",
 
 
 
