@@ -1331,6 +1331,26 @@ return array(
 	"What are you looking for" => "Cosa cerca",
 	"I don't like" => "Non mi piace",
 	"search by name or by #tag, ex: 'commun' or '#commun" => "ricerca per nome o per #tag, es: 'comune' o '#comunità'",
+	
+	"job" => "lavoro",
+	"jobs" => "posti di lavoro",
+	"Jobs" => "Offerte di lavoro",
+	"Start search by tags" => "Avviare la ricerca per tag",
+	"News feed" => "News feed",
+	"Fill in your CV" => "Compila il tuo CV",
+	"Section" => "Sezione",
+	"Subcategory" => "Sottocategoria",
+	"Price" => "Prezzo",
+	"Type" => "Tipo",
+	"Source data" => "Dati sorgente",
+	"Confirm address" => "Confermare indirizzo",
+	"Add a name" => "Aggiungere un nome",
+	"Search to save" => "Cerca di salvare",
+	"Do you want to receive a mail alert of new items" => "Desiderate ricevere un avviso via mail per i nuovi invii",
+	"Save this research as favorites and be alert" => "Salvare questa ricerca tra i preferiti e fare attenzione",
+	"Name of the research" => "Nome della ricerca",
+	"Be alerted of new items" => "Essere avvisati di nuovi elementi",
+	"Alert" => "Allarme",
 		
 );
 ?>
