@@ -36,5 +36,7 @@ return array(
 	"211" => "Questo nome utente è stato generato automaticamente dal nome utente.",
 	"212" => "A questa organizzazione è stato assegnato tipo \"Gruppo\". Si prega di cambiare il tipo di organizzazione se non corrisponde a questo tipo.",
 	"250" => "L'entità è stata aggiornata.",
+	
+	"300" => "",
 );
 ?>

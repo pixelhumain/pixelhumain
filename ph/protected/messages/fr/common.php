@@ -361,6 +361,7 @@ return array(
 	"True" => "Oui",
 	"Enter tagsList" => "Entrer des tags",
 	"Add a role"=>"Ajouter un rôle",
+	"Update the post"=>"Modifier votre publication",
 	//Color
 	"Green" => "Vert",
 	"Blue" => "bleu",
