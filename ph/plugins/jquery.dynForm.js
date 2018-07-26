@@ -3224,7 +3224,7 @@ var dyFObj = {
 				callNominatim(requestPart, countryCode);
 			}
 			
-			dyFObj.formInMap.btnValideDisable(false);
+			//dyFObj.formInMap.btnValideDisable(false);
 		},
 		autocompleteFormAddress : function(currentScopeType, scopeValue){
 			mylog.log("autocompleteFormAddress", currentScopeType, scopeValue);
