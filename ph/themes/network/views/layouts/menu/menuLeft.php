@@ -45,23 +45,25 @@
 				</div>
 
 				<?php if (!empty($params['request']['searchType']) && in_array(Classified::COLLECTION, $params['request']['searchType']) ){ ?>
-					<div id="divClasssified" class="">
-					<div class="panel-heading" style="background-color: #f5f5f5;">
-						<h4 class="left-title-menu" onclick="manageCollapse('classified', 'false')">
-							<a data-toggle="collapse" href="#classified" style="color:#719FAB" data-label="classified">
-								<?php echo Yii::t("common","All functions") ?>
-								<i class="fa fa-chevron-right right" aria-hidden="true" id="fa_classified"></i>
-							</a>
-						</h4>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding text-left subsub" id="sub-menu-left">
+						
+						<a href="javascript:;" class="btn btn-default text-dark margin-bottom-5 tagParent titleTag" style="margin-left:-5px;" data-keycat="classifieds">
+							<i class="fa fa-chevron-circle-down hidden-xs"></i> Type Annonces
+						</a><br>
+
+						<a href="javascript:;" class="btn btn-default text-azure margin-bottom-5 hidden classifiedsFilterAuto keycat-classifieds" data-filtre="classifieds" data-parent="classifieds">
+							<i class="fa fa-angle-right"></i> <?php echo Yii::t("common","Offer") ?>
+						</a><br class="hidden">
+
+						<a href="javascript:;" class="btn btn-default text-azure margin-bottom-5 hidden classifiedsFilterAuto keycat-classifieds" data-filtre="ressources" data-parent="classifieds">
+							<i class="fa fa-angle-right"></i> <?php echo Yii::t("common","Formation") ?>
+						</a><br class="hidden">
+
+						<a href="javascript:;" class="btn btn-default text-azure margin-bottom-5 hidden classifiedsFilterAuto keycat-classifieds" data-filtre="jobs" data-parent="classifieds">
+							<i class="fa fa-angle-right"></i> <?php echo Yii::t("common","Annonce") ?>
+						</a><br class="hidden">
+						
 					</div>
-					<div id="list_classified" class="panel-collapse collapse">
-						<ul class="list-group">
-							<li class="list-group-item"><input type="checkbox" class="checkbox classifiedFilterAuto" value="creator" data-parent="classified" data-label="creator"/><?php echo Yii::t("common","Offer") ?></li>
-							<li class="list-group-item"><input type="checkbox" class="checkbox classifiedFilterAuto" value="members" data-parent="classified" data-label="members"/><?php echo Yii::t("common","Formation") ?></li>
-							<li class="list-group-item"><input type="checkbox" class="checkbox classifiedFilterAuto" value="admin" data-parent="classified" data-label="admin"/><?php echo Yii::t("common","Annonce") ?></li>
-						</ul>
-					</div>
-				</div>
 				<?php } ?>
 				
 	
