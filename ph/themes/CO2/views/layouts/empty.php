@@ -80,6 +80,11 @@ $cs->registerScriptFile(Yii::app() -> createUrl(Yii::app()->params["module"]["pa
     if ( $this->module->id == "survey" && strrpos(@$_GET['id'], "cte") !== false ){
       $CO2DomainName = "cte";
       $this->renderPartial( "co2.views.custom.init",array( "custom" => "forms.cte" ) );
+    } else if($this->module->id == "onepage" && @$_GET['slug'] ){
+      $el = Slug::getElementBySlug($_GET['slug']);
+      if( @$el["el"]["custom"] ){
+        $this->renderPartial( "co2.views.custom.init",array( "custom" => $el["type"].".".$el["id"] ) );
+      }
     }
    ?>
  <script type="text/javascript">
