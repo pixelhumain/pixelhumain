@@ -1,23 +1,26 @@
-.notifications li {
+.notifications li, .notificationsElement li {
 		min-height:50px;
 		padding: 10px;
 		background-color: rgba(197, 225, 197, 0.3);
 		border-bottom: 1px dashed #bed1be;
 	}
-	.notifications li.read{
+	.notifications li.read, .notificationsElement li.read{
 		background-color:white !important;
 	}
-	.notifications{
+	.notifications, .notificationsElement{
 		/*background-color: white;*/
 		color: #528195;
 		padding: 2px 0px !important;
 	}
-	.notifications .pageslide-title{
+	.notifications .pageslide-title, .notificationsElement .pageslide-title{
 		padding-left: 10px;
 		text-align: inherit; 
 		color:#67B04C;
 		font-size: 14px !important;
 		text-transform: none !important;
+	}
+	.notificationsElement ul{
+		list-style: none;
 	}
 	#notificationPanelSearch{
 	position: fixed;
@@ -50,7 +53,7 @@
 		box-shadow: 0px 0px 3px 0px #656565;
 		filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=NaN, Strength=3);*/
 	}
-	.notifications a.notif{
+	.notifications a.notif, .notificationsElement a.notif{
 		padding-top: 0px !important;
 		background-color: transparent;
 		color: #354535;
@@ -76,7 +79,7 @@
    		font-style: italic;
 	}
 
-	.notifications .pageslide-list a .label{
+	.notifications .pageslide-list a .label, .notificationsElement .pageslide-list a .label{
 		opacity: 0.7;
 		font-size: 20px !important;
 		border-radius: 30px !important;
@@ -90,13 +93,13 @@
 		background-color: #56c557 !important;
 	}
 
-	.notifications .message,.notifications .time {
+	.notifications .message,.notifications .time, .notificationsElement .message,.notificationsElement .time {
 		width:100%;
 	}
-	.notifications .content-icon{
+	.notifications .content-icon, .notificationsElement .content-icon{
 		margin-right: 10px;
 	}
-	.notifications .time {
+	.notifications .time, .notificationsElement .time {
 	   color: #4d654d;
 	}
 	.btn-notification-action{
@@ -144,7 +147,36 @@
 		font-size:12px;
 	}
 
-
+.acceptBtn{
+		border-radius:3px !important;
+		color: white;
+		background-color: #71CE4E;
+		padding: 5px 10px;
+		margin-top: 5px;
+	}
+	.acceptBtn:hover{
+		color: #71CE4E !important;
+		background-color: white;
+		border: 1px solid #71CE4E;
+	}
+	.acceptBtn i{
+		font-size:12px;
+	}
+	.refuseBtn{
+		border-radius:3px !important;
+		color: white;
+		background-color: #E33551;
+		padding: 5px 10px;
+	margin-top: 5px;
+	}
+	.refuseBtn:hover{
+		color: #E33551 !important;
+		background-color: white;
+		border: 1px solid #E33551;
+	}
+	.refuseBtn i{
+		font-size:12px;
+	}
 
 #notificationPanelSearch{
 	overflow: visible !important;
