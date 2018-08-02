@@ -130,8 +130,8 @@
                 $class = "hidden" ;
                 if( empty($me) || empty($me["address"]) || empty($me["address"]["codeInsee"]))
                     $class = "";
-             if( Yii::app()->session["userIsAdmin"] || Yii::app()->session[ "userIsAdminPublic" ]) { 
-                $label=(Yii::app()->session["userIsAdmin"]) ? Yii::t("common", "Admin") : Yii::t("common", "Admin public");  
+             if( Form::canAdmin("cte") ) { 
+                $label = Yii::t("common", "Admin") ;  
                 ?>
                 <li role="separator" class="divider"></li>
                 <li class="text-admin">
