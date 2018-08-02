@@ -50,16 +50,13 @@ $cs->registerScriptFile(Yii::app() -> createUrl(Yii::app()->params["module"]["pa
     '/assets/css/CO2/CO2.css',
     '/assets/css/plugins.css',
     '/assets/css/default/dynForm.css',
-    
+    '/assets/js/coController.js',
   );
   HtmlHelper::registerCssAndScriptsFiles($cssJs, Yii::app()->theme->baseUrl);
-
-  $cssAnsScriptFilesModule = array( 
-    '/assets/js/coController.js',
-    '/assets/js/dataHelpers.js',
-  );
-  HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
-
+$cssJS = array(
+    '/js/dataHelpers.js'
+);
+HtmlHelper::registerCssAndScriptsFiles($cssJS, Yii::app()->getModule( "co2" )->getAssetsUrl() );
   
   $cs = Yii::app()->getClientScript();
   $cs->registerScriptFile(Yii::app()->request->baseUrl. '/plugins/jQuery/jquery-2.1.1.min.js' );
