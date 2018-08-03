@@ -42,6 +42,9 @@
     "add" : {
         "event" : true
     },
+    "filter" : {
+        "types" : false
+    },
     "result" : {
         "displayImage" : true,
         "displayType" : false,

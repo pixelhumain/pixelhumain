@@ -66,6 +66,26 @@
 					</div>
 				<?php } ?>
 				
+
+				<?php if (!empty($params['request']['searchType']) && in_array(Event::COLLECTION, $params['request']['searchType']) ){ ?>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding text-left subsub" id="sub-menu-left">
+						
+						<a href="javascript:;" class="btn btn-default text-dark margin-bottom-5 tagParent titleTag" style="margin-left:-5px;" data-keycat="dateevent">
+							<i class="fa fa-chevron-circle-down hidden-xs"></i> Dates
+						</a><br>
+
+						<span class="btn btn-default text-azure margin-bottom-5 hidden keycat-dateevent" data-parent="dateevent">
+							<i class="fa fa-angle-right"></i> <?php echo Yii::t("common","To") ?>
+							<input type="text" name="dateStartFiltre" id="dateStartFiltre" class="dateTimeInput">
+						</a><br class="hidden">
+
+						<a class="btn btn-default text-azure margin-bottom-5 hidden keycat-dateevent" data-parent="dateevent">
+							<i class="fa fa-angle-right"></i> <?php echo Yii::t("common","From") ?>
+							<input type="text" name="dateEndFiltre" id="dateEndFiltre" class="dateTimeInput">
+						</a><br class="hidden">
+						
+					</div>
+				<?php } ?>
 	
 				
 		
@@ -163,6 +183,33 @@ jQuery(document).ready(function() {
 			$(".keycat-"+$(this).data("keycat")).addClass("hidden");
 		}
 	});
+
+	
+
+
+	var initDateTime = function(){
+		mylog.log("init dateTimeInput");
+		jQuery.datetimepicker.setLocale('fr');
+		$(".dateTimeInput").datetimepicker({
+			weekStart: 1,
+			step: 15,
+			lang: 'fr',
+			format: 'd/m/Y H:i'
+		});
+	};
+	if(  $(".dateTimeInput").length){
+		loadDateTimePicker(initDateTime);
+	}
+
 });
 
+function loadDateTimePicker(callback) {
+	mylog.log("loadDateTimePicker");
+	if( ! jQuery.isFunction(jQuery.datetimepicker) ) {
+		mylog.log("loadDateTimePicker2");
+		lazyLoad( baseUrl+'/plugins/xdan.datetimepicker/jquery.datetimepicker.full.min.js', 
+				  baseUrl+'/plugins/xdan.datetimepicker/jquery.datetimepicker.min.css',
+				  callback);
+	}
+}
 </script>
