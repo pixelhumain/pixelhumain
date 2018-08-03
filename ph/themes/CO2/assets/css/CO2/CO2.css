@@ -168,6 +168,9 @@ header .container ,
 /*.intro-text a.menu-top {
     color: #34a853 !important;
 }*/
+.ws-pre-line{
+	white-space: pre-line;
+}
 .main-container{
 	background-color: white;
 	min-height:1000px;

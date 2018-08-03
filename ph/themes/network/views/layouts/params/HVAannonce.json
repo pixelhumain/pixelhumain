@@ -1,10 +1,10 @@
 {
-    "name" : "Evènement d'Haute Vallée de l'Aude",
+    "name" : "Annonces de l'Haute Vallée de l'Aude",
     "mode" : "server",
     "skin" : {
         "logo" : false,
-        "title" : "Evènement d'Haute Vallée de l'Aude",
-        "shortDescription" : "Toutes les évènement d'Haute Vallée de l'Aude",
+        "title" : "Annonces de l'Haute Vallée de l'Aude",
+        "shortDescription" : "Toutes les annonces du Haute Vallée de l'Aude",
         "displayScope" : false,
         "docs":true,
         "displayCommunexion" : true,
@@ -40,7 +40,8 @@
         }
     },
     "add" : {
-        "event" : true
+        "organization" : true,
+        "project" : true
     },
     "filter" : {
         "types" : false
@@ -54,16 +55,8 @@
     },
     "request" : {
         "pagination" : 1000,
-        "sourceKey" :[
-            "HVAevent"
-        ],
         "searchType" : [
-            "events"
-        ],
-        "parent" : {
-            "type" : "organizations",
-            "id" : "56580ad2dd04521c6f943180",
-            "name" : "Le Chaudron"
-        }
+            "classifieds"
+        ]
     }
 }

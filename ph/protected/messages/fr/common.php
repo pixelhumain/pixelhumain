@@ -539,6 +539,7 @@ return array(
 	"Add bookmark"=>"Ajouter un bookmark",
 	"Start search by tags"=>"Commencer la recherche par mots-clés",
 	"Launch invitations"=> "Lancer les invitations",
+	"My experiences"=>"Mes expériences",
 	// Menu Button - Top menu
 	"My News Stream"=>"Mon Fil d'actualité",
 	"Newspaper" => "Journal",
