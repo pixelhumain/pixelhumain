@@ -21,21 +21,26 @@ $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.m
 							<?php 
 							foreach ($data as $type => $elt) {
 								foreach ($elt as $key => $value) {
-									echo "Dans ".$value["name"]." :<br/><br/>";
 
-									if(!empty($value["post"])){
-										echo '<a href="'.$value["url"].'" style="color: #728289;font-family: Helvetica, Arial, sans-serif;font-weight: bold;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;">';
-										echo "<p>".Mail::translateLabel($value["post"])." </p></a><br/>";
+									//if(!empty($value["post"])){
+									echo "Dans ".$value["name"]." : <br/><br/>";
+									foreach ($value["data"] as $keyD => $valD) {
+										// if(!empty($value["post"])){
+										echo '<a href="'.$value["url"].'" target="_blanck" style="color: #728289;font-family: Helvetica, Arial, sans-serif;font-weight: bold;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;">';
+										echo "<p>".Mail::translateLabel($valD)." </p><br/>";
+										if(!empty($valD["value"]))
+											echo "<p>".$valD["value"]." </p></a><br/>";
+										//}
 									}
 
-									if(!empty($value["add"])){
+									// if(!empty($value["add"])){
 
-										foreach ($value["add"] as $keyAdd => $valueAdd) {
-											echo '<a href="'.$valueAdd["url"].'" style="color: #728289;font-family: Helvetica, Arial, sans-serif;font-weight: bold;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;">';
-											echo "<p>".Mail::translateLabel($valueAdd)." </p></a><br/>";
-										}
+									// 	foreach ($value["add"] as $keyAdd => $valueAdd) {
+									// 		echo '<a href="'.$valueAdd["url"].'" style="color: #728289;font-family: Helvetica, Arial, sans-serif;font-weight: bold;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;">';
+									// 		echo "<p>".Mail::translateLabel($valueAdd)." </p></a><br/>";
+									// 	}
 										
-									}
+									// }
 
 								}
 							}
