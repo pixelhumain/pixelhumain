@@ -1875,7 +1875,7 @@ var dyFObj = {
 					mylog.log( "id xxxxxxxxxxxxxxxxx " , $(this).attr("id") , dyFObj.init.initValues[ $(this).attr("id") ], dyFObj.init.initValues );
 					if( dyFObj.init.initValues[ $(this).attr("id") ] && !$(this).hasClass( "select2-container" ))
 					{
-						mylog.log( "here2");
+						mylog.log( "select2TagsInput", dyFObj.init.initValues[ $(this).attr("id") ]);
 						var selectOptions = 
 						{
 						  "tags": dyFObj.init.initValues[ $(this).attr("id") ].tags ,
@@ -3693,6 +3693,7 @@ var dyFInputs = {
 	},
 	tags : function(list, placeholder, label) { 
     	//var tagsL = (list) ? list : tagsList;
+    	mylog.log("updateRole tags", list, placeholder, label)
     	return {
 			inputType : "tags",
 			placeholder : placeholder != null ? placeholder : tradDynForm.tags,
