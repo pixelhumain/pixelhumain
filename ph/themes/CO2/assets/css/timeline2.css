@@ -301,7 +301,10 @@ h5.srcMedia{
     margin-right:15px;
     font-weight:700;
   }
-
+  .nbNewsComment{
+    font-weight: inherit !important;
+    cursor: pointer;
+  }
   #reasonComment{
     margin-top:15px;
   }
