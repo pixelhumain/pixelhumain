@@ -818,9 +818,18 @@ var dyFObj = {
         				dyFObj.init.initValues[field] = {};
         			dyFObj.init.initValues[field]["tags"] = fieldObj.values;
         		}
+
         		if(fieldObj.maximumSelectionLength)
         			dyFObj.init.initValues[field]["maximumSelectionLength"] =  fieldObj.maximumSelectionLength;
-        		mylog.log("fieldObj.data", fieldObj.data, fieldObj);
+        		mylog.log("select2TagsInput fieldObj.minimumInputLength", fieldObj.minimumInputLength);
+        		if(typeof fieldObj.minimumInputLength != "undefined" && typeof fieldObj.minimumInputLength == "number"){
+        			if(!dyFObj.init.initValues[field])
+        				dyFObj.init.initValues[field] = {};
+        			dyFObj.init.initValues[field]["minimumInputLength"] = fieldObj.minimumInputLength;
+        			mylog.log("select2TagsInput fieldObj dyFObj.init.initValues[field]", dyFObj.init.initValues[field]);
+        		}
+
+        		mylog.log("select2TagsInput fieldObj.data", fieldObj.data, fieldObj);
         		if(typeof fieldObj.data != "undefined"){
         			value = fieldObj.data;
 	        		//dyFObj.init.initSelectNetwork[field]=fieldObj.data;
@@ -1872,7 +1881,7 @@ var dyFObj = {
 			{
 				$.each($(".select2TagsInput"),function () 
 				{
-					mylog.log( "id xxxxxxxxxxxxxxxxx " , $(this).attr("id") , dyFObj.init.initValues[ $(this).attr("id") ], dyFObj.init.initValues );
+					mylog.log( "select2TagsInput id xxxxxxxxxxxxxxxxx " , $(this).attr("id") , dyFObj.init.initValues[ $(this).attr("id") ], dyFObj.init.initValues );
 					if( dyFObj.init.initValues[ $(this).attr("id") ] && !$(this).hasClass( "select2-container" ))
 					{
 						mylog.log( "select2TagsInput", dyFObj.init.initValues[ $(this).attr("id") ]);
@@ -1885,9 +1894,13 @@ var dyFObj = {
 						};
 						if(dyFObj.init.initValues[ $(this).attr("id") ].maximumSelectionLength)
 							selectOptions.maximumSelectionLength = dyFObj.init.initValues[$(this).attr("id")]["maximumSelectionLength"];
+						mylog.log( "select2TagsInput dyFObj.init.initValues", dyFObj.init.initValues);
+						if(typeof dyFObj.init.initValues[ $(this).attr("id") ].minimumInputLength == "number")
+							selectOptions.minimumInputLength = dyFObj.init.initValues[$(this).attr("id")]["minimumInputLength"];
+
 						if(typeof dyFObj.init.initSelectNetwork != "undefined" && typeof dyFObj.init.initSelectNetwork[$(this).attr("id")] != "undefined" && dyFObj.init.initSelectNetwork[$(this).attr("id")].length > 0)
 							selectOptions.data=dyFObj.init.initSelectNetwork[$(this).attr("id")];
-						
+						mylog.log( "select2TagsInput selectOptions ", selectOptions);
 						$(this).removeClass("form-control").select2(selectOptions);
 						if(typeof mainTag != "undefined")
 							$(this).val([mainTag]).trigger('change');
@@ -3691,14 +3704,15 @@ var dyFInputs = {
 												});
 											});
 	},
-	tags : function(list, placeholder, label) { 
+	tags : function(list, placeholder, label, minimumInputLength) { 
     	//var tagsL = (list) ? list : tagsList;
     	mylog.log("updateRole tags", list, placeholder, label)
     	return {
 			inputType : "tags",
 			placeholder : placeholder != null ? placeholder : tradDynForm.tags,
 			values : (list) ? list : tagsList,
-			label : (label != null) ? label : tradDynForm.addtags
+			label : (label != null) ? label : tradDynForm.addtags,
+			minimumInputLength : (minimumInputLength != null) ? minimumInputLength : 0
 		}
 	},
 	radio : function(label,keyValues) { 

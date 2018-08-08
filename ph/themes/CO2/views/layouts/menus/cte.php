@@ -86,9 +86,11 @@
                       $profilThumbImageUrl = Element::getImgProfil($me, "profilThumbImageUrl", $this->module->getParentAssetsUrl());
                       $countNotifElement = ActivityStream::countUnseenNotifications(Yii::app()->session["userId"], Person::COLLECTION, Yii::app()->session["userId"]);
                 ?> 
-                     <!-- #page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?> -->
-                    <a  href="#page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>"
-                        class="menu-name-profil lbh text-dark pull-right shadow2" 
+
+
+                    <a  href="<?php echo Yii::app()->getRequest()->getBaseUrl(true)."/#page.type.citoyens.id.".Yii::app()->session['userId']; ?>"
+                        class="menu-name-profil lbh text-dark pull-right shadow2"
+                        target="_blanck"
                         data-toggle="dropdown">
                             <small class="hidden-xs hidden-sm margin-left-10" id="menu-name-profil">
                                 <?php echo @$me["name"] ? $me["name"] : @$me["username"]; ?>
@@ -144,7 +146,7 @@
 
             <li role="separator" class="divider"></li>
             <li class="text-admin">
-                <a href="#page.type.<?php echo Person::COLLECTION ?>.id.<?php echo Yii::app()->session["userId"] ?>.view.settings" class="lbh bg-white">
+                <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true)."/#page.type.".Person::COLLECTION.".id.".Yii::app()->session["userId"].".view.settings" ; ?>" target="_blanck" lass="lbh bg-white">
                     <i class="fa fa-cogs"></i> <?php echo Yii::t("common", "My parameters") ; ?>
                 </a>
             </li>
