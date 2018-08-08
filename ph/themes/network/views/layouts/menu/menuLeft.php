@@ -1,29 +1,13 @@
 <?php 
 
 	//$newsToModerate = count(News::getNewsToModerate());
-	HtmlHelper::registerCssAndScriptsFiles( 
-		array(  '/css/calendar.css',) , 
-		Yii::app()->theme->baseUrl. '/assets');
+
 	$cssAnsScriptFilesModule = array(
-		'/css/default/menu.css',
-		//'/css/calendar.css',
-		'/js/default/calendar.js',
-		//'/css/menus/menuLeft.css'
+		'/assets/css/default/menu.css',
+		//'/assets/css/menus/menuLeft.css'
 	);
-	HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->getModule( "co2" )->assetsUrl);
+	HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
 
-
-	$cssAnsScriptFilesTheme = array(
-		//'/css/calendar.css',
-		'/plugins/moment/min/moment.min.js' ,
-        '/plugins/moment/min/moment-with-locales.min.js',
-		'/plugins/fullcalendar/fullcalendar/fullcalendar.min.js',
-        '/plugins/fullcalendar/fullcalendar/fullcalendar.css', 
-        '/plugins/fullcalendar/fullcalendar/locale/'.Yii::app()->language.'.js',
-
-        
-	);
-	HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesTheme, Yii::app()->request->baseUrl);
 	// $cssAnsScriptFilesModule = array(
 	// 	'/js/default/menu.js',
 	// );
@@ -102,9 +86,32 @@
 							<input type="text" name="dateEndFiltre" id="dateEndFiltre" class="dateTimeInput">
 						</span><br class="hidden">
 						
-
-						<div id='profil-content-calendar keycat-dateevent hidden' class='col-md-12 col-sm-12 col-xs-12 margin-bottom-20'></div>
 					</div>
+
+					<?php 
+
+					$listEventType = Lists::get(array("eventTypes")); 
+					//var_dump($listEventType);
+					if(!empty($listEventType) && !empty($listEventType["eventTypes"]) ){ ?>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding text-left subsub" id="sub-menu-left">
+						
+							<a href="javascript:;" class="btn btn-default text-dark margin-bottom-5 tagParent titleTag" style="margin-left:-5px;" data-keycat="eventTypes">
+								<i class="fa fa-chevron-circle-down hidden-xs"></i> Types d'évenements
+							</a><br>
+
+							<?php 
+							foreach ($listEventType["eventTypes"] as $key => $value) { ?>
+								<a href="javascript:;" class="btn btn-default text-azure margin-bottom-5 hidden eventsTypeAuto keycat-eventTypes" data-filtre="<?php echo $key ; ?>" data-parent="eventTypes">
+									<i class="fa fa-angle-right"></i> <?php echo Yii::t( "category",$value); ?>
+								</a><br class="hidden">
+							<?php } ?>
+							
+						</div>
+					<?php
+					}
+					?>
+
+					
 				<?php } ?>
 	
 				
@@ -206,7 +213,7 @@ jQuery(document).ready(function() {
 
 	
 
-	calendar.init("#profil-content-calendar"); 
+
 	var initDateTime = function(){
 		mylog.log("init dateTimeInput");
 		jQuery.datetimepicker.setLocale('fr');
