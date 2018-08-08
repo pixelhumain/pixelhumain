@@ -1,13 +1,29 @@
 <?php 
 
 	//$newsToModerate = count(News::getNewsToModerate());
-
+	HtmlHelper::registerCssAndScriptsFiles( 
+		array(  '/css/calendar.css',) , 
+		Yii::app()->theme->baseUrl. '/assets');
 	$cssAnsScriptFilesModule = array(
-		'/assets/css/default/menu.css',
-		//'/assets/css/menus/menuLeft.css'
+		'/css/default/menu.css',
+		//'/css/calendar.css',
+		'/js/default/calendar.js',
+		//'/css/menus/menuLeft.css'
 	);
-	HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->theme->baseUrl);
+	HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->getModule( "co2" )->assetsUrl);
 
+
+	$cssAnsScriptFilesTheme = array(
+		//'/css/calendar.css',
+		'/plugins/moment/min/moment.min.js' ,
+        '/plugins/moment/min/moment-with-locales.min.js',
+		'/plugins/fullcalendar/fullcalendar/fullcalendar.min.js',
+        '/plugins/fullcalendar/fullcalendar/fullcalendar.css', 
+        '/plugins/fullcalendar/fullcalendar/locale/'.Yii::app()->language.'.js',
+
+        
+	);
+	HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesTheme, Yii::app()->request->baseUrl);
 	// $cssAnsScriptFilesModule = array(
 	// 	'/js/default/menu.js',
 	// );
@@ -86,6 +102,8 @@
 							<input type="text" name="dateEndFiltre" id="dateEndFiltre" class="dateTimeInput">
 						</span><br class="hidden">
 						
+
+						<div id='profil-content-calendar keycat-dateevent hidden' class='col-md-12 col-sm-12 col-xs-12 margin-bottom-20'></div>
 					</div>
 				<?php } ?>
 	
@@ -188,7 +206,7 @@ jQuery(document).ready(function() {
 
 	
 
-
+	calendar.init("#profil-content-calendar"); 
 	var initDateTime = function(){
 		mylog.log("init dateTimeInput");
 		jQuery.datetimepicker.setLocale('fr');
