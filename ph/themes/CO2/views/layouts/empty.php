@@ -12,7 +12,13 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="<?php echo $this->module->assetsUrl?>/images/logo.png"/>  
-  <title><?php echo CHtml::encode( (isset($this->module->pageTitle))?$this->module->pageTitle:""); ?></title>
+  <title>
+    <?php 
+    if($this->pageTitle) echo CHtml::encode($this->pageTitle);
+    else if(isset($this->module->pageTitle))
+      echo CHtml::encode( $this->module->pageTitle);?>
+  </title>
+  <meta content="<?php echo ($this->pageTitle) ? CHtml::encode($this->pageTitle):""; ?> , <?php echo ($this->description) ? CHtml::encode($this->description):""; ?>" name="description" />
    
  <?php  
  $cs = Yii::app()->getClientScript();
