@@ -73,11 +73,12 @@ $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.m
 					</tr>
 					<tr style="padding: 0;vertical-align: top;text-align: center;">
 						<th style="color: #728289;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: center;line-height: 19px;">
-							<h6 style="text-align: center;">
+							<br/>
+							<h4 style="text-align: center;">
 								<a href="<?php echo $urlValidation ?>" style="color: #728289;font-family: Helvetica, Arial, sans-serif;font-weight: bold;padding: 0;margin: 0;text-align: center;line-height: 1.3;text-decoration: none;">
 									<?php echo Yii::t("mail","Confirm the invitation") ?>
 								</a>
-							</h6>
+							</h4>
 						</th>
 					</tr>
 					<tr style="padding: 0;vertical-align: top;text-align: left;">
