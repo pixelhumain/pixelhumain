@@ -513,7 +513,7 @@ var dyFObj = {
 		dyFObj.openForm( form ,afterLoad , data);
 	},
 	editElement : function (type,id, subType){
-		mylog.warn("--------------- editElement ",type,id);
+		mylog.warn("--------------- editElement ",type,id,subType);
 		//get ajax of the elemetn content
 		uploadObj.set(type,id);
 		uploadObj.update = true;
@@ -528,19 +528,24 @@ var dyFObj = {
 				//onLoad fill inputs
 				//will be sued in the dynform  as update 
 				data.map.id = data.map["_id"]["$id"];
-				if(typeof typeObj[type].formatData == "function")
+				if(typeObj[type] && typeof typeObj[type].formatData == "function")
 					data = typeObj[type].formatData();
 				if(data.map["_id"])
 					delete data.map["_id"];
-				mylog.dir(data);
-				mylog.log("editElement", data);
+				mylog.log("editElement data", data);
 				dyFObj.elementData = data;
 				typeModules=(notNull(subType)) ? subType : type; 
-				typeForm = (jsonHelper.notNull( "modules."+typeModules+".form") ) ? typeModules : dyFInputs.get(typeModules).ctrl;
+				if(typeof subType == "object")
+					typeForm = subType;
+				else if(jsonHelper.notNull( "modules."+typeModules+".form") ) 
+					typeForm = typeModules;
+				else
+					typeForm = dyFInputs.get(typeModules).ctrl;
+
+				mylog.log("editElement typeForm", typeForm);
 				dyFObj.openForm( typeForm ,null, data.map);
-	        } else {
+	        } else 
 	           toastr.error("something went wrong!! please try again.");
-	        }
 	    });
 	},
 	
@@ -762,6 +767,7 @@ var dyFObj = {
 	***************************************** */
 	
 	buildInputField : function (id, field, fieldObj,formValues, tooltip){
+		mylog.warn("------------------ buildInputField",id, field, formValues)
 		var fieldHTML = '<div class="form-group '+field+fieldObj.inputType+'">';
 		var required = "";
 		if(fieldObj.rules && fieldObj.rules.required)
@@ -788,7 +794,7 @@ var dyFObj = {
         	value = formValues[field];
         }
 
-        mylog.log("value network", value);
+        //mylog.log("value network", value);
         if(value!="")
         	mylog.warn("--------------- dynform form Values",field,value);
 
@@ -1307,7 +1313,7 @@ var dyFObj = {
         	fieldHTML +=   '<div class="inputs array">'+
 								'<div class="col-sm-10 no-padding">'+
 									'<img class="loading_indicator" src="'+parentModuleUrl+'/images/news/ajax-loader.gif" style="position: absolute;right: 5px;top: 10px;display:none;">'+
-									'<input type="text" name="'+field+'[]" class="addmultifield addmultifield0 form-control input-md value="" placeholder="'+placeholder+'"/>'+
+									'<input type="text" name="'+field+'[]" class="addmultifield addmultifield0 form-control input-md" value="" placeholder="'+placeholder+'"/>'+
 								'</div>'+
 								'<div class="col-sm-2 sectionRemovePropLineBtn">'+
 									'<a href="javascript:" data-id="'+field+fieldObj.inputType+'" class="removePropLineBtn col-md-12 btn btn-link letter-red" alt="Remove this line"><i class=" fa fa-minus-circle" ></i></a>'+
@@ -1889,7 +1895,7 @@ var dyFObj = {
 						{
 						  "tags": dyFObj.init.initValues[ $(this).attr("id") ].tags ,
 						  "tokenSeparators": [','],
-						  "minimumInputLength" : 3,
+						  //"minimumInputLength" : 3,
 						  "placeholder" : ( $(this).attr("placeholder") ) ? $(this).attr("placeholder") : "",
 						};
 						if(dyFObj.init.initValues[ $(this).attr("id") ].maximumSelectionLength)
@@ -3712,7 +3718,7 @@ var dyFInputs = {
 			placeholder : placeholder != null ? placeholder : tradDynForm.tags,
 			values : (list) ? list : tagsList,
 			label : (label != null) ? label : tradDynForm.addtags,
-			minimumInputLength : (minimumInputLength != null) ? minimumInputLength : 0
+			minimumInputLength : (minimumInputLength != null) ? minimumInputLength : 3
 		}
 	},
 	radio : function(label,keyValues) { 
