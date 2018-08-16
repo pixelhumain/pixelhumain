@@ -271,6 +271,7 @@ var urlCtrl = {
 	//back sert juste a differencier un load avec le back btn
 	//ne sert plus, juste a savoir d'ou vient drait l'appel
 	loadByHash : function ( hash , back ) {
+		alert("loadByHash"+hash);
 		// mylog.log("IS DIRECTORY ? ", 
 		// 			hash.indexOf("#default.directory"), 
 		// 			location.hash.indexOf("#default.directory"), CoAllReadyLoad);
@@ -419,7 +420,7 @@ var urlCtrl = {
 }
 
 function showAjaxPanel (url,title,icon, mapEnd , urlObj) { 
-	//alert("showAjaxPanel"+url);
+	alert("showAjaxPanel"+url);
 	$(".progressTop").show().val(20);
 	var dest = ( typeof urlObj == "undefined" || typeof urlObj.useHeader != "undefined" ) ? themeObj.mainContainer : ".pageContent" ;
 	mylog.log("showAjaxPanel", url, urlObj,dest,urlCtrl.afterLoad );	

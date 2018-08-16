@@ -62,7 +62,7 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header pull-left">
             
-            <a href="<?php echo Yii::app()->createUrl('/survey/co/index/id/cte'); ?>" class="btn btn-link menu-btn-back-category pull-left no-padding lbh" >
+            <a href="<?php echo Yii::app()->createUrl('/survey/co/index/id/cte'); ?>" class="btn btn-link menu-btn-back-category pull-left no-padding" >
                 <img src="<?php echo Yii::app()->getModule("survey")->assetsUrl; ?>/images/custom/cte/TCO-LOGO-WEB.png" class="logo-menutop pull-left" height=35 style="vertical-align: middle"/> <span style="display:block" class="padding-15 hidden-xs">TCO : 1er CONTRAT DE TRANSITION ÉCOLOGIQUE</span>
             </a>
            
@@ -86,10 +86,8 @@
                       $profilThumbImageUrl = Element::getImgProfil($me, "profilThumbImageUrl", $this->module->getParentAssetsUrl());
                       $countNotifElement = ActivityStream::countUnseenNotifications(Yii::app()->session["userId"], Person::COLLECTION, Yii::app()->session["userId"]);
                 ?> 
-
-
-                    <a  href="<?php echo Yii::app()->getRequest()->getBaseUrl(true)."/#page.type.citoyens.id.".Yii::app()->session['userId']; ?>"
-                        class="menu-name-profil lbh text-dark pull-right shadow2"
+                    <a  href="<?php echo Yii::app()->createUrl('/#page.type.'.Person::COLLECTION.'.id.'.Yii::app()->session['userId']); ?>"
+                        class="menu-name-profil text-dark pull-right shadow2"
                         target="_blanck"
                         data-toggle="dropdown">
                             <small class="hidden-xs hidden-sm margin-left-10" id="menu-name-profil">
@@ -97,7 +95,9 @@
                             </small> 
                             <img class="img-circle" id="menu-thumb-profil" 
                                  width="40" height="40" src="<?php echo $profilThumbImageUrl; ?>" alt="image" >
+
                     </a>
+                </a>
                 <?php } else { ?>
                     <li class="pull-right">
                         <?php //if($subdomain != "welcome"){ ?>

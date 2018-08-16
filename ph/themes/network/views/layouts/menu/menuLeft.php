@@ -77,14 +77,41 @@
 						<span class="btn btn-default text-azure margin-bottom-5 hidden keycat-dateevent" data-parent="dateevent">
 							<i class="fa fa-angle-right"></i> <?php echo Yii::t("common","To") ?>
 							<input type="text" name="dateStartFiltre" id="dateStartFiltre" class="dateTimeInput">
-						</a><br class="hidden">
+						</span>
 
-						<a class="btn btn-default text-azure margin-bottom-5 hidden keycat-dateevent" data-parent="dateevent">
+						<br class="hidden">
+
+						<span class="btn btn-default text-azure margin-bottom-5 hidden keycat-dateevent" data-parent="dateevent">
 							<i class="fa fa-angle-right"></i> <?php echo Yii::t("common","From") ?>
 							<input type="text" name="dateEndFiltre" id="dateEndFiltre" class="dateTimeInput">
-						</a><br class="hidden">
+						</span><br class="hidden">
 						
 					</div>
+
+					<?php 
+
+					$listEventType = Lists::get(array("eventTypes")); 
+					//var_dump($listEventType);
+					if(!empty($listEventType) && !empty($listEventType["eventTypes"]) ){ ?>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding text-left subsub" id="sub-menu-left">
+						
+							<a href="javascript:;" class="btn btn-default text-dark margin-bottom-5 tagParent titleTag" style="margin-left:-5px;" data-keycat="eventTypes">
+								<i class="fa fa-chevron-circle-down hidden-xs"></i> Types d'évenements
+							</a><br>
+
+							<?php 
+							foreach ($listEventType["eventTypes"] as $key => $value) { ?>
+								<a href="javascript:;" class="btn btn-default text-azure margin-bottom-5 hidden eventsTypeAuto keycat-eventTypes" data-filtre="<?php echo $key ; ?>" data-parent="eventTypes">
+									<i class="fa fa-angle-right"></i> <?php echo Yii::t( "category",$value); ?>
+								</a><br class="hidden">
+							<?php } ?>
+							
+						</div>
+					<?php
+					}
+					?>
+
+					
 				<?php } ?>
 	
 				
