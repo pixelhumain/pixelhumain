@@ -828,8 +828,6 @@ var dyFObj = {
         			dyFObj.init.initValues[field]["minimumInputLength"] = fieldObj.minimumInputLength;
         			mylog.log("select2TagsInput fieldObj dyFObj.init.initValues[field]", dyFObj.init.initValues[field]);
         		}
-
-        		mylog.log("select2TagsInput fieldObj.data", fieldObj.data, fieldObj);
         		if(typeof fieldObj.data != "undefined"){
         			value = fieldObj.data;
 	        		//dyFObj.init.initSelectNetwork[field]=fieldObj.data;

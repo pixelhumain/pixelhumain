@@ -266,6 +266,7 @@ var dySObj = {
 			rules : formRules,
 
 			submitHandler : function(form) {
+				$(dySObj.surveyId+" .finish-step").html( '<i class="fa  fa-spinner fa-spin fa-"></i>' ).prop("disabled",true);
 				errorHandler.hide();
 				mylog.info("form submitted "+params.surveyId);
 				if(params.onSave && jQuery.isFunction( params.onSave ) ){
