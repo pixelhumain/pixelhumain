@@ -4724,6 +4724,15 @@ var dyFInputs = {
 	    }
     	return inputObj;
     },
+    dateInput : function(typeDate, label, placeholder, rules){
+    	var inputObj = {
+	        inputType : ( notEmpty(typeDate) ? typeDate : "datetime" ),
+	        placeholder: ( notEmpty(placeholder) ? placeholder : "Saisir une date" ),
+	        label : ( notEmpty(label) ? label : "Saisir une date" ),
+	        rules : ( notEmpty(rules) ? rules : {} ) 
+	    }
+    	return inputObj;
+    },
     birthDate : {
         inputType : "date",
         label : tradDynForm.birthdate,
