@@ -232,7 +232,6 @@ var urlCtrl = {
 						//open path in a modal (#openModal)
 						if(pathT[0] == "modal"){
 							path = path.substring(5);
-							alert(baseUrl+'/'+moduleId+path);
 							smallMenu.openAjaxHTML(baseUrl+'/'+moduleId+path);
 						} else {
 							//console.log(">>>>>>>>>>>>>>>>>>> endPoint:",endPoint);
@@ -271,7 +270,6 @@ var urlCtrl = {
 	//back sert juste a differencier un load avec le back btn
 	//ne sert plus, juste a savoir d'ou vient drait l'appel
 	loadByHash : function ( hash , back ) {
-		alert("loadByHash"+hash);
 		// mylog.log("IS DIRECTORY ? ", 
 		// 			hash.indexOf("#default.directory"), 
 		// 			location.hash.indexOf("#default.directory"), CoAllReadyLoad);
