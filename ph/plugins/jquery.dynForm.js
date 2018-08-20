@@ -3850,6 +3850,16 @@ var dyFInputs = {
 	    mylog.log("create form input email", inputObj);
 	    return inputObj;
 	},
+
+	email :function (label,placeholder,rules) {  
+    	var inputObj = {
+    		inputType : "text",
+	    	label : ( notEmpty(label) ? label : tradDynForm.mainemail ),
+	    	placeholder : ( notEmpty(placeholder) ? placeholder : "exemple@mail.com" ),
+	    	rules : ( notEmpty(rules) ? rules : { email: true, required : true } )
+	    }
+	    return inputObj;
+	},
 	
 	emailOptionnel :function (label,placeholder,rules) {  
     	var inputObj = dyFInputs.text(label, placeholder, rules);
