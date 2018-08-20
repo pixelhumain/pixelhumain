@@ -127,18 +127,33 @@
  <div class="dropdown pull-right" id="dropdown-user">
     <div class="dropdown-main-menu">
         <ul class="dropdown-menu arrow_box">
+            
+            <li class="text-admin">
+                <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>/survey/co/index/id/cte"  lass="lbh bg-white">
+                    <i class="fa fa-home"></i> Accueil
+                </a>
+            </li>
 
               <?php 
                 $class = "hidden" ;
                 if( empty($me) || empty($me["address"]) || empty($me["address"]["codeInsee"]))
                     $class = "";
              if( Form::canAdmin("cte") ) { 
-                $label = Yii::t("common", "Admin") ;  
                 ?>
                 <li role="separator" class="divider"></li>
                 <li class="text-admin">
-                    <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>/survey/co/admin/id/cte" class="lbh bg-white">
-                        <i class="fa fa-user-secret"></i> <?php echo $label ; ?>
+                    <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>/survey/co/answers/id/cte" class="bg-white">
+                        <i class="fa fa-bars"></i> Réponses
+                    </a>
+                </li>
+                <li class="text-admin">
+                    <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>/survey/co/members/id/cte" class="bg-white">
+                        <i class="fa fa-users"></i> Membres
+                    </a>
+                </li>
+                <li class="text-admin">
+                    <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>/survey/co/roles/id/cte" class="bg-white">
+                        <i class="fa fa-file-text"></i> Fiches Actions
                     </a>
                 </li>
             <?php } ?>
@@ -163,7 +178,34 @@
         </ul>
     </div>
 </div>
-<?php } 
+<?php /* ?>
+<div id="affix-sub-menu" class="hidden-xs affix">
+    <div id="territorial-menu" class="col-md-10 col-sm-10 col-xs-12 margin-bottom-10">
+                            
+<a href="<?php echo Yii::app()->createUrl('/survey/co/index/id/cte'); ?>" class="#home btn btn-link pull-left btn-menu-to-app hidden-top link-submenu-header lbh-menu-app">
+<i class="fa fa-home"></i>
+<span class="searchModSpan">Accueil</span>
+<span class=" topbar-badge badge animated bounceIn badge-warning"></span>
+</a>  
+
+<a href="<?php echo Yii::app()->createUrl('/survey/co/admin/id/cte'); ?>" class="#liveModBtn btn btn-link pull-left btn-menu-to-app hidden-top link-submenu-header lbh-menu-app">
+<i class="fa fa-cogs"></i>
+<span class="liveModSpan">Admin</span>
+<span class=" topbar-badge badge animated bounceIn badge-warning"></span>
+</a>  
+
+<a href="<?php echo Yii::app()->createUrl('/survey/co/roles/id/cte'); ?>" class="#agendaModBtn btn btn-link pull-left btn-menu-to-app hidden-top link-submenu-header lbh-menu-app">
+<i class="fa fa-file-text"></i>
+<span class="agendaModSpan">Fiches Actions</span>
+<span class=" topbar-badge badge animated bounceIn badge-warning"></span>
+</a>  
+ 
+                </div>
+</div>
+
+<?php */
+    
+} 
 
 $this->renderPartial($layoutPath.'loginRegister', array("subdomain" => $subdomain)); 
 
