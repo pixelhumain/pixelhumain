@@ -261,7 +261,7 @@
 								<br><br>
 								<a href="#search" target="_blank">
 									<img class="img-responsive shadow2" style="margin:0 auto;margin-top: 0px;border-radius: 5px;" 
-									src="<?php echo $this->module->assetsUrl; ?>/images/home/searchengine.png"/>
+									src="<?php echo $this->module->assetsUrl; ?>/images/home/<?php echo Yii::app()->language ?>/searchengine.png"/>
 								</a>
 								<br>
 								<?php echo Yii::t("home","The specialty of <b>Communecter</b> is to give you access to the data you are interested in"); ?>,<br>
