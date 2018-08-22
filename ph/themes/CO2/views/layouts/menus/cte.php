@@ -129,8 +129,14 @@
         <ul class="dropdown-menu arrow_box">
             
             <li class="text-admin">
-                <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>/survey/co/index/id/cte"  lass="lbh bg-white">
+                <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>/survey/co/index/id/cte" class="lbh bg-white">
                     <i class="fa fa-home"></i> Accueil
+                </a>
+            </li>
+
+            <li class="text-admin">
+                <a href="https://www.communecter.org/#@cteTco" class=" bg-white">
+                    <i class="fa fa-university"></i> Organisation CTE TCO 
                 </a>
             </li>
 
