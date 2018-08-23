@@ -35,8 +35,15 @@
         <meta property="og:image" content="<?php echo $metaImg; ?>"/>
         <meta property="og:description" content="<?php echo $metaDesc; ?>"/>
         <meta property="og:title" content="<?php echo $metaTitle; ?>"/>
+        <?php 
+        $keywords = "";
+        if(isset($this->keywords)) $keywords = $this->keywords;
+        else if(isset($this->module->keywords)) $keywords = $this->module->keywords;?>
+        <meta name="keywords" lang="<?php echo Yii::app()->language; ?>" content="<?php echo CHtml::encode($keywords); ?>" > 
 
         <title><?php echo ( @Yii::app()->params["module"]["name"] ) ? Yii::app()->params["module"]["name"] :  $CO2DomainName; ?></title>
+
+        
 
         <link rel='shortcut icon' type='image/x-icon' href="<?php echo (isset( $this->module->assetsUrl ) ) ? $this->module->assetsUrl : ""?>/images/favicon.ico" /> 
 

@@ -40,8 +40,7 @@
         }
     },
     "add" : {
-        "organization" : true,
-        "project" : true
+        "classifieds" : true
     },
     "filter" : {
         "types" : false
@@ -58,5 +57,10 @@
         "searchType" : [
             "classifieds"
         ]
+    },
+    "parent" : {
+        "type" : "organizations",
+        "id" : "5b3a1e686ff992e74e8b456b",
+        "name" : "Portail des Initiatives de la Haute Vallée de l'Aude"
     }
 }
