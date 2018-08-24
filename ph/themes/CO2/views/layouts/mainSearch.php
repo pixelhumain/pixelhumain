@@ -352,6 +352,7 @@
                         lazyLoad( v.init , null,null);
                     }
                 });
+                
                 if(themeObj.firstLoad){
                     themeObj.firstLoad=false;
                     urlCtrl.loadByHash(location.hash,true);
