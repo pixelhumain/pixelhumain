@@ -611,7 +611,7 @@ var dyFObj = {
 			//a dynform can be called from a module , but comes from parent Co2 module
 			if ( moduleId != activeModuleId ){
 				dfPath = parentModuleUrl+'/js/dynForm/'+type+'.js';
-				mylog.log("properties from MODULE","modules/"+type+"/assets/js/dynform.js");
+				mylog.log("properties from MODULE CO2","modules/"+type+"/assets/js/dynform.js");
 			}
 			
 			//path is defined in the initJS modules obj
