@@ -1,70 +1,218 @@
 {
-    "name" : "Haute Vallée de l'Aude",
-    "mode" : "server",
-    "skin" : {
-        "logo" : false,
-        "title" : "Haute Vallée de l'Aude",
-        "shortDescription" : "Toutes les initiatives du Haute Vallée de l'Aude",
-        "displayScope" : false,
-        "docs":true,
-        "displayCommunexion" : true,
-        "displayNotifications" : true,
-        "profilBar" : false,
-        "breadcrum" : true,
-        "displayButtonGridList" : false,
-        "class" : {
-            "mainContainer" : false
+    "name": "Carte Zéro Déchet",
+    "mode": "server",
+    "skin": {
+        "title": "Carte Zéro Déchet Rouen",
+        "shortDescription": "Carte du Groupe Local Zero Déchet Rouen",
+        "displayScope": false,
+        "docs": true,
+        "displayCommunexion": true,
+        "displayNotifications": false,
+        "profilBar": false,
+        "breadcrum": true,
+        "displayButtonGridList": false,
+        "class": {
+            "mainContainer": false
         },
-        "iconeAdd" : false,
-        "iconeSearchPlus" : false,
-        "loginTitle":"",
-        "front" : {
-            "organization" : false,
-            "project" : true,
-            "event" : true,
-            "community" : true,
-            "dda" : false,
-            "live" : false,
-            "search" : false,
-            "need" : true,
-            "poi" : true
+        "iconeAdd": false,
+        "iconeSearchPlus": false,
+        "loginTitle": "",
+        "front": {
+            "organization": true,
+            "project": false,
+            "event": false,
+            "community": false,
+            "dda": false,
+            "live": false,
+            "search": false,
+            "need": false,
+            "poi": true
         },
-        "menu" : {
-            "aroundMe":false,
-            "connectLink":false,
-            "add":true,
-            "detail":true,
-            "news":true,
-            "directory":true,
-            "gallery":true
+        "menu": {
+            "aroundMe": false,
+            "connectLink": false,
+            "add": true,
+            "detail": true,
+            "news": true,
+            "directory": true,
+            "gallery": true
         }
     },
-    "add" : {
-        "organization" : true,
-        "project" : true
-    },
-    "result" : {
-        "displayImage" : true,
-        "displayType" : false,
-        "fullLocality" : true,
-        "datesEvent" : false,
-        "displayShortDescription" : true
-    },
-    "request" : {
-        "pagination" : 1000,
-        "sourceKey" :[
-            "HVAorga"
-        ],
-        "parent" : {
-            "type" : "organizations",
-            "id" : "56580ad2dd04521c6f943180"
+    "filter": {
+        "types": false,
+        "paramsFiltre": {
+            "conditionBlock": "or",
+            "conditionTagsInBlock": "and"
         },
-        "searchType" : [
-            "organizations",
-            "projects"
+        "linksTag": {
+            "Je me nourris": {
+                "tagParent": "Alimentation",
+                "background-color": "#f5f5f5",
+                "image": "Alimentation.png",
+                "tags": {
+                    "Caviste (Vrac)": [
+                        "Caviste",
+                        "Vrac"
+                    ],
+                    "Épicerie (Vrac)": [
+                        "Épicerie",
+                        "Vrac"
+                    ],
+                    "Épicerie (100% Vrac)": [
+                        "Vrac",
+                        "Épicerie",
+                        "100% Vrac"
+                    ],
+                    "Chocolaterie (Vrac)": [
+                        "Vrac",
+                        "Chocolaterie"
+                    ],
+                    "Miel (Vrac)": [
+                        "Vrac",
+                        "Miel"
+                    ],
+                    "Thé café (Vrac)": [
+                        "Vrac",
+                        "thé café"
+                    ],
+                    "Traiteur (Vrac)": [
+                        "Vrac",
+                        "Traiteur"
+                    ]
+                }
+            },
+            "Je prends soin de moi et de ma maison": {
+                "tagParent": "Maison",
+                "background-color": "#f5f5f5",
+                "image": "Logement.png",
+                "tags": {
+                    "Cosmétique (Vrac)": [
+                        "Cosmétique",
+                        "Vrac"
+                    ],
+                    "Droguerie (Vrac)": [
+                        "Droguerie",
+                        "Vrac"
+                    ]
+                }
+            },
+            "Je donne j'echange et j'achète d'occasion": {
+                "tagParent": "Equipement",
+                "background-color": "#f5f5f5",
+                "image": "Equipement.png",
+                "tags": {
+                    "Don": "Don",
+                    "Ressourcerie": "Ressourcerie",
+                    "Meubles (Occasion)": [
+                        "Meubles",
+                        "Occasion"
+                    ],
+                    "Électroménager (Occasion)": [
+                        "Électroménager",
+                        "Occasion"
+                    ],
+                    "Informatique (Occasion)": [
+                        "Informatique",
+                        "Occasion"
+                    ],
+                    "Jouets (Occasion)": [
+                        "Jouets",
+                        "Occasion"
+                    ],
+                    "Outils (Occasion)": [
+                        "Outils",
+                        "Occasion"
+                    ],
+                    "Puériculture (Occasion)": [
+                        "Puériculture",
+                        "Occasion"
+                    ],
+                    "Friperie": "Friperie",
+                    "Vêtements (Occasion)": [
+                        "Vêtements",
+                        "Occasion"
+                    ]
+                }
+            },
+            "Je fais moi même ou je répare": {
+                "tagParent": "Réparation",
+                "background-color": "#f5f5f5",
+                "image": "Reparation.png",
+                "tags": {
+                    "Réparation": "Réparation",
+                    "Fablab": "Fablab",
+                    "Repair Café": "RepairCafé",
+                    "Couturier": "Couturier"
+                }
+            },
+            "J'emprunte": {
+                "tagParent": "Surface",
+                "background-color": "#f5f5f5",
+                "image": "Loisir.png",
+                "tags": {
+                    "Bibliothèque": "Bibliothèque",
+                    "Ludothèque": "Ludothèque",
+                    "Médiathèque": "Médiathèque",
+                    "Outillothèque": "Outillothèque"
+                }
+            },
+            "Je composte et je recycle": {
+                "tagParent": "Conteneur",
+                "background-color": "#f5f5f5",
+                "image": "Service.png",
+                "tags": {
+                    "Compost": "Compost",
+                    "Emballage (recyclage)": [
+                        "Emballage",
+                        "Recyclage"
+                    ],
+                    "Textile (recyclage)": [
+                        "Textile",
+                        "Recyclage"
+                    ],
+                    "Verre (recyclage)": [
+                        "Verre",
+                        "Recyclage"
+                    ]
+                }
+            }
+        }
+    },
+    "add": {
+        "organization": true
+    },
+    "result": {
+        "displayImage": true,
+        "displayType": true,
+        "fullLocality": true,
+        "datesEvent": false,
+        "displayShortDescription": true
+    },
+    "request": {
+        "sourcekey": "zeroDechet",
+        "pagination": 1000,
+        "searchType": [
+            "organizations"
         ],
-        "searchLocalityDEPARTEMENT": [
-            "AUDE"
+        "searchLocalityREGION": [
+            "Rouen agglomération"
+        ],
+        "searchTag": [
+            "Recyclage",
+            "Compost",
+            "Ressourcerie",
+            "Friperie",
+            "Occasion",
+            "Don",
+            "Fablab",
+            "RepairCafé",
+            "Réparation",
+            "Bibliothèque",
+            "Ludothèque",
+            "Médiathèque",
+            "Outillothèque",
+            "Ressourcerie",
+            "Vrac"
         ]
     }
 }
