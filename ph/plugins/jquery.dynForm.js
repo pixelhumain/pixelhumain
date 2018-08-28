@@ -1294,7 +1294,12 @@ var dyFObj = {
 				};
 			}       
         } 
-
+        /* **************************************
+		* ARRAYFOMR , is a subdynForm, that builds a list of strutured answered using a
+		***************************************** */
+        else if ( fieldObj.inputType == "arrayForm" ) {
+        	mylog.log("build field "+field+">>>>>> array Form");
+       	}
         /* **************************************
 		* ARRAY , is a list of sequential values
 		***************************************** */

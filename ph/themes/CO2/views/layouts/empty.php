@@ -92,6 +92,8 @@ HtmlHelper::registerCssAndScriptsFiles($cssJS, Yii::app()->getModule( "co2" )->g
       $this->renderPartial( "co2.views.custom.init",array( "custom" => "forms.cte" ) );
   } else if($this->module->id == "onepage" && @$_GET['slug'] ){
       $el = Slug::getElementBySlug($_GET['slug']);
+      if(@$el["el"]["custom"]["menu"])
+        $CO2DomainName = $el["el"]["custom"]["menu"];
       if( @$el["el"]["custom"] ){
         $this->renderPartial( "co2.views.custom.init",array( "custom" => $el["type"].".".$el["id"] ) );
       }
