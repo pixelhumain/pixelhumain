@@ -140,10 +140,10 @@ function lazyLoad (js,css, callback, notBase) {
                type: "text/css",
                href: css 
             }).appendTo("head");
-          mylog.log("lazyLoad  before getScript",js);
+          //mylog.log("lazyLoad  before getScript",js);
         $.getScript( js, function( data, textStatus, jqxhr ) {
-          mylog.log("lazyLoad getScript");
-          if (typeof dynform !== undefined) alert("script has been loaded!");
+          //mylog.log("lazyLoad getScript");
+          //if (typeof dynform !== undefined) alert("script has been loaded!");
           if( typeof callback === "function")
             callback(data);
         });
