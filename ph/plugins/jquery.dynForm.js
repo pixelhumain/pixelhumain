@@ -4883,8 +4883,8 @@ var arrayForm = {
 	buildFormSchema : function(f, k, q, pos) { 
 		arrayForm.form = {
 			jsonSchema : {
-				title : (ctxDynForms[f][k][q]) ? ctxDynForms[f][k][q].title : form[scenarioKey][f].form.scenario[k].json.jsonSchema.title,
-				icon : (ctxDynForms[f][k][q]) ? ctxDynForms[f][k][q].icon : form[scenarioKey][f].form.scenario[k].json.jsonSchema.icon,
+				title : (jsonHelper.notNull( "ctxDynForms."+f+"."+k+"."+q)) ? ctxDynForms[f][k][q].title : form[scenarioKey][f].form.scenario[k].json.jsonSchema.title,
+				icon : (jsonHelper.notNull( "ctxDynForms."+f+"."+k+"."+q)) ? ctxDynForms[f][k][q].icon : form[scenarioKey][f].form.scenario[k].json.jsonSchema.icon,
 				onLoads : {
 					onload : function(){
 						dyFInputs.setHeader("bg-dark");
@@ -4920,7 +4920,7 @@ var arrayForm = {
 				    	window.location.reload(); 
 				    });
 				},
-				properties : (ctxDynForms[f][k][q]) ? ctxDynForms[f][k][q].properties : form[scenarioKey][f].form.scenario[k].json.jsonSchema.properties[q].properties
+				properties : (jsonHelper.notNull( "ctxDynForms."+f+"."+k+"."+q) ) ? ctxDynForms[f][k][q].properties : form[scenarioKey][f].form.scenario[k].json.jsonSchema.properties[q].properties
 			}
 		};
 		console.log("buildFormSchema AF form",arrayForm.form);
