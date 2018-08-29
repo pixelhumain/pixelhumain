@@ -4873,6 +4873,143 @@ var dyFInputs = {
 };
 
 /* ***********************************
+ARRAY FORM help create array filled by dynForm entries and defined by dynform properties
+considers existing varaible ssuch as 
+form
+scenarioKey
+********************************** */
+var arrayForm = {
+	form : null,
+	buildFormSchema : function(f, k, q, pos) { 
+		arrayForm.form = {
+			jsonSchema : {
+				title : (ctxDynForms[f][k][q]) ? ctxDynForms[f][k][q].title : form[scenarioKey][f].form.scenario[k].json.jsonSchema.title,
+				icon : (ctxDynForms[f][k][q]) ? ctxDynForms[f][k][q].icon : form[scenarioKey][f].form.scenario[k].json.jsonSchema.icon,
+				onLoads : {
+					onload : function(){
+						dyFInputs.setHeader("bg-dark");
+						$('.form-group div').removeClass("text-white");
+						dataHelper.activateMarkdown(".form-control.markdown");
+					}
+				},
+				save : function() { 
+					data = {
+		    			formId : f,
+		    			answerSection : f+".answers."+k+"."+q ,
+		    			arrayForm : true,
+		    			answers : arrayForm.getAnswers(arrayForm.form , true)
+		    		};
+		    		
+		    		//for saving edits
+		    		if(typeof pos != "undefined"){
+		    			data.answerSection = f+".answers."+k+"."+q+"."+pos;
+		    			data.edit = true;
+		    		}
+
+		    		data.collection = answerCollection;
+	    			data.id = answerId;
+	    			urlPath = baseUrl+"/survey/co/update2";
+		    		
+		    		console.log("save",data);
+
+		    		$.ajax({ type: "POST",
+				        url: urlPath,
+				        data: data,
+						type: "POST",
+				    }).done(function (data) {
+				    	window.location.reload(); 
+				    });
+				},
+				properties : (ctxDynForms[f][k][q]) ? ctxDynForms[f][k][q].properties : form[scenarioKey][f].form.scenario[k].json.jsonSchema.properties[q].properties
+			}
+		};
+		console.log("buildFormSchema AF form",arrayForm.form);
+		
+	},
+	add : function (f, k, q,pos,data) { 
+		console.log("add AF",f, k, q,pos,data);
+		arrayForm.buildFormSchema(f,k,q,pos);
+		if( typeof pos != "undefinde" )
+			dyFObj.openForm( arrayForm.form, null, answers[f].answers[k][q][pos] );
+		else 
+			dyFObj.openForm( arrayForm.form );
+	},
+	del : function  (f,k,q,pos) { 
+		console.log("del AF",f,k,q,pos);
+		var modal = bootbox.dialog({
+	        message: "Vous bien sur ?",
+	        title: "Confirmez",
+	        buttons: [
+	          {
+	            label: "Ok",
+	            className: "btn btn-primary pull-left",
+	            callback: function() {
+	            	
+				data = {
+					formId : f,
+					answerSection : f+".answers."+k+"."+q+"."+pos ,
+					answers : null,
+					pull : f+".answers."+k+"."+q
+					
+				};
+				
+				data.collection = answerCollection;
+				data.id = answerId;
+				urlPath = baseUrl+"/survey/co/update2";
+				
+				console.log("save",data);
+
+				$.ajax({ type: "POST",
+			        url: urlPath,
+			         data: data,
+					type: "POST",
+			    }).done(function (data) {
+			    	window.location.reload(); 
+			    });
+	            }
+	          },
+	          {
+	            label: "Annuler",
+	            className: "btn btn-default pull-left",
+	            callback: function() {}
+	          }
+	        ],
+	        show: false,
+	        onEscape: function() {
+	          modal.modal("hide");
+	        }
+	    });
+	    modal.modal("show");
+		
+	},
+	edit : function  (f,k, q,pos) { 
+		console.log("edit AF",f,k,q,pos);
+		arrayForm.add(f, k, q, pos);
+	},
+	getAnswers : function(dynJson)
+	{
+		var editAnswers = {};
+		$.each( dynJson.jsonSchema.properties , function(field,fieldObj) { 
+	        console.log($(this).data("step")+"."+field, $("#"+field).val() );
+	        if( fieldObj.inputType ){
+	            if(fieldObj.inputType=="uploader"){
+	         		if( $('#'+fieldObj.domElement).fineUploader('getUploads').length > 0 ){
+						$('#'+fieldObj.domElement).fineUploader('uploadStoredFiles');
+						editAnswers[field] = "";
+	            	}
+	            } else {
+	            	console.log(field,$("#"+field).val());
+	            	editAnswers[field] = $("#"+field).val();
+	            }
+	        }
+	    });
+	    
+		console.log("editAnswers",editAnswers);
+	    return editAnswers;
+	}
+}
+
+/* ***********************************
 			EXTRACTPROCCESS
 ********************************** */
 var processUrl = {
