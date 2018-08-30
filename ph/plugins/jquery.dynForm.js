@@ -3666,14 +3666,15 @@ var dyFInputs = {
         inputType : "custom",
         html:"<div id='similarLink'><div id='listSameName' style='overflow-y: scroll; height:150px;border: 1px solid black; display:none'></div></div>",
     },
-    inputSelect :function(label, placeholder, list, rules) {
+    inputSelect :function(label, placeholder, list, rules, init) {
     	mylog.log("inputSelect", label, placeholder, list, rules);
 		var inputObj = {
 			inputType : "select",
 			label : ( notEmpty(label) ? label : "" ),
 			placeholder : ( notEmpty(placeholder) ? placeholder : trad.choose ),
 			options : ( notEmpty(list) ? list : [] ),
-			rules : ( notEmpty(rules) ? rules : {} )
+			rules : ( notEmpty(rules) ? rules : {} ),
+			init : ( notEmpty(init) ? init : null )
 		};
 		return inputObj;
 	},
