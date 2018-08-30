@@ -1023,6 +1023,7 @@ var dyFObj = {
 							'<div class="qq-total-progress-bar-container-selector qq-total-progress-bar-container">'+
 							'<div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-total-progress-bar-selector qq-progress-bar qq-total-progress-bar"></div>'+
 							'</div>'+
+							//'<div class="qq-paste-element-triger"><input type="text" value="" placeholder="paste a link"/></div>'+
 							'<div class="qq-upload-drop-area-selector qq-upload-drop-area" qq-hide-dropzone>'+
 							'<span class="qq-upload-drop-area-text-selector"></span>'+
 							'</div>'+
@@ -2060,6 +2061,11 @@ var dyFObj = {
 					$(domElement).fineUploader({
 			            template: (v.template) ? v.template : 'qq-template-manual-trigger',
 			            itemLimit: (v.itemLimit) ? v.itemLimit : 0,
+			            paste: {
+					        defaultName: 'pasted_image',
+					        promptForName:false,
+					        targetElement: $(window)
+					    },
 			            request: {
 			                endpoint: endPointUploader
 			            },
@@ -2092,7 +2098,8 @@ var dyFObj = {
 						    	if(($("ul.qq-upload-list > li").length-1)<=0)
 						    		$('#trigger-upload').addClass("hide");
 		        			},
-		        			
+		        			 onPasteReceived: function(blob) {},
+
 						    //launches request endpoint
 						    //onUpload: function(id, fileName) {
 						      //alert(" > upload : "+id+fileName+contextData.type+contextData.id);
@@ -3785,7 +3792,7 @@ var dyFInputs = {
 	    	showUploadBtn : false,
 	    	docType : "file",
 	    	template:'qq-template-manual-trigger',
-	    	filetypes:["pdf","xls","xlsx","doc","docx","ppt","pptx","odt","ods","odp"],
+	    	filetypes:["pdf","xls","xlsx","doc","docx","ppt","pptx","odt","ods","odp", "csv"],
 	    	afterUploadComplete : function(){
 	    		//alert("afterUploadComplete :: "+uploadObj.gotoUrl);
 		    	dyFObj.closeForm();
@@ -5084,14 +5091,19 @@ var processUrl = {
 		       // var match_url = /\b(https?|ftp):\/\/([\-A-Z0-9. \-]+?|www\\.)(\/[\-A-Z0-9+&@#\/%=~_|!:,.;\-]*)?(\?[A-Z0-9+&@#\/%=~_|!:,.;\-]*)?/i;
 		       // var match_url=new RegExp("(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?");
 		        //var match_url=/[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
-		        var match_url=/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g;
+		        var match_url=/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ@:%_\+.~#?&//=]*)/g;
 
 		        if (match_url.test(getUrl.val())) 
 		        {
+		        	alert(getUrl.val());
+		        	console.log(getUrl.val().match(match_url));
 		        	extract_url=getUrl.val().match(match_url)[0];
+		        	alert(extract_url);
 		        	extract_url=extract_url.replace(/[\n]/gi," ");
+		        	alert(extract_url);
 		        	extract_url=extract_url.split(" ");
 		        	extract_url=extract_url[0];
+			        alert(extract_url);
 			        if(lastUrl != extract_url && processUrl.isLoading==false){
 			        	processUrl.isLoading=true;
 			        	var extracted_url = extract_url;
@@ -5209,16 +5221,15 @@ var processUrl = {
 		$("#refResult").addClass("hidden");
 		$("#send-ref").addClass("hidden");
 
-		urlValidated = "";
+		//urlValidated = "";
 
-	    $.ajax({ 
-	    	url: "//cors-anywhere.herokuapp.com/" + url, // 'http://google.fr', 
+	    //$.ajax({ 
+	    //	url: "//cors-anywhere.herokuapp.com/" + url, // 'http://google.fr', 
 	    	//crossOrigin: true,
-	    	timeout:10000,
-	        success:
-				function(data) {
-					
-				    var jq = $.parseHTML(data);
+	    //	timeout:10000,
+	      //  success:
+	    processUrl.extractUrl("", url,function(data) {
+				  /*  var jq = $.parseHTML(data);
 				    
 				    var tempDom = $('<output>').append($.parseHTML(data));
 				    var title = $('title', tempDom).html();
@@ -5247,16 +5258,16 @@ var processUrl = {
 	                if(typeof favicon != "undefined"){
 	                    var faviconSrc = hostname+favicon;
 	                    if(favicon.indexOf("http")>=0) faviconSrc = favicon;
-	                }
+	                }*/
 
-					var description = $(tempDom).find('meta[name=description]').attr("content");
+					//var description = $(tempDom).find('meta[name=description]').attr("content");
 
-					var keywords = $(tempDom).find('meta[name=keywords]').attr("content");
+					//var keywords = $(tempDom).find('meta[name=keywords]').attr("content");
 					//mylog.log("keywords", keywords);
 
 					var arrayKeywords = new Array();
-					if(typeof keywords != "undefined")
-						arrayKeywords = keywords.split(",");
+					if(typeof data.keywords != "undefined")
+						arrayKeywords = data.keywords;
 
 					//mylog.log("arrayKeywords", arrayKeywords);
 
@@ -5265,25 +5276,25 @@ var processUrl = {
 					//if(typeof arrayKeywords[2] != "undefined") $("#form-keywords3").val(arrayKeywords[2]); else $("#form-keywords3").val("");
 					//if(typeof arrayKeywords[3] != "undefined") $("#form-keywords4").val(arrayKeywords[3]); else $("#form-keywords4").val("");
 
-					if(description=="" || description=="undefined")
-				   		if(stitle=="" || stitle=="undefined")
-				   			description = stitle;
-				   	params = new Object;
+					//if(description=="" || description=="undefined")
+				   	//	if(stitle=="" || stitle=="undefined")
+				   	//		description = stitle;
+				   /*	params = new Object;
 				   	params.title=title,
 				   	params.favicon=faviconSrc,
 				   	params.hostname=hostname,
 				   	params.description=description,
 				   	params.tags=arrayKeywords;
-					mylog.log(params);
+					mylog.log(params);*/
 					/*$("#form-title").val(title);
 	                $("#form-favicon").val(faviconSrc);
 	                $("#form-description").val(description);*/
 					
 
 					//color
-					$("#ajaxFormModal #name").val(title);   	
+					$("#ajaxFormModal #name").val(data.name);   	
 				   	//color	
-					$("#ajaxFormModal #description").val(description); 
+					$("#ajaxFormModal #description").val(data.description); 
 				   	//color
 				   	if(notEmpty(arrayKeywords))		
 						$("#ajaxFormModal #tags").select2("val",arrayKeywords);
@@ -5316,8 +5327,8 @@ var processUrl = {
 				    tempDom = "";
 
 				    checkAllInfo();*/	
-				    return params;		   
-				},
+				    //return params;		   
+				/*},
 			error:function(xhr, status, error){
 				$("#lbl-url").removeClass("letter-green").addClass("letter-red");
 				$("#status-ref").html("<span class='letter-red'><i class='fa fa-ban'></i> URL INNACCESSIBLE</span>");
@@ -5327,7 +5338,7 @@ var processUrl = {
 					$("#lbl-url").removeClass("letter-green").addClass("letter-red");
 					$("#status-ref").html("<span class='letter-red'><i class='fa fa-ban'></i> 404 : URL INTROUVABLE OU INACCESSIBLE</span>");
 				}
-			}
+			}*/
 		});
 	},
 	isValidURL:function(url) {
