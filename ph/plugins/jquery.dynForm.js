@@ -861,7 +861,7 @@ var dyFObj = {
 		else if( fieldObj.inputType == "hidden" || fieldObj.inputType == "timestamp" ) {
 			if ( fieldObj.inputType == "timestamp" )
 				value = Date.now();
-			mylog.log("build field "+field+">>>>>> hidden, timestamp");
+			mylog.log("build field "+field+">>>>>> hidden, timestamp", value);
 			fieldHTML += '<input type="hidden" name="'+field+'" id="'+field+'" value="'+value+'"/>';
 		}
 		/* **************************************
@@ -4806,9 +4806,11 @@ var dyFInputs = {
         }
     },
     inputHidden :function(value, rules) { 
+    	console.log("inputHidden", value, rules);
 		var inputObj = { inputType : "hidden"};
 		if( notNull(value) ) inputObj.value = value ;
 		if( notNull(rules) ) inputObj.rules = rules ;
+		console.log("inputHidden and ", inputObj);
     	return inputObj;
     },
     get:function(type){
@@ -4918,7 +4920,7 @@ var arrayForm = {
 				        data: data,
 						type: "POST",
 				    }).done(function (data) {
-				    	window.location.reload(); 
+				    	//window.location.reload(); 
 				    });
 				},
 				properties : (jsonHelper.notNull( "ctxDynForms."+f+"."+k+"."+q) ) ? ctxDynForms[f][k][q].properties : form[scenarioKey][f].form.scenario[k].json.jsonSchema.properties[q].properties
