@@ -41,6 +41,8 @@ return array(
 	"211" => "Dieser Benutzername wurde automatisch aus dem Namen des Benutzers generiert.",
 	"212" => "Typ \"Groupe\" wurde dieser Organisation zugewiesen. Bitte ändern Sie die Art der Organisation, wenn sie nicht mit dieser übereinstimmt.",
 	"250" => "Das Objekt wurde aktualisiert.",
+	
+	"300" => "",
 );
 
 ?>
