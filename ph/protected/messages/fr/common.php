@@ -629,6 +629,7 @@ return array(
 	"folder"=>"dossier",
 	"Move in a folder"=>"Déplacer dans un dossier",
 	"Select a folder"=>"Sélectionner un dossier",
+	"Select an album"=>"Sélectionner un album",
 	"Move"=>"Déplacer",
 	"Please select documents"=>"Veuillez selectionner des documents",
 	"All files and folders in this folder will be deleted<br/>This action is irreversible"=>"Tous les fichiers et dossiers contenus dans ce dossier seront également supprimés<br/>Cette action est irréversible",
@@ -638,6 +639,8 @@ return array(
 	"Name of the folder"=>"Nom du dossier",
 	"Rename"=>"Renommer",
 	"options"=>"options",
+	"No album selected"=>"Aucun album selectionné",
+	"No folder selected"=>"Aucun dossier selectionné",
 	/*traduire un type de donnée (au singulier)*/
 	"person" => "citoyen",
 	"organization" => "organisation",

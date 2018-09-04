@@ -56,7 +56,7 @@ onSave: (optional) overloads the generic saveProcess
 				rules : {}
 			};
 			var fieldHTML = '';
-
+			dyFObj.initFieldOnload={};
 			/* **************************************
 			* Error Section
 			***************************************** */
@@ -224,22 +224,39 @@ var uploadObj = {
 	contentKey : "profil",
 	path : null,
 	extra : null,
-	set : function(type,id, file){
-		if(notNull(file) && file){
+	get : function(type,id, docT, contentK, foldKey, extraUrl){
+		docT=(notNull(docT) && docT) ? docT : "image";
+		path = baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+uploadObj.folder+"/folder/"+type+"/ownerId/"+id+"/input/qqfile/docType/"+docT;	
+		if(notNull(contentK) && contentK != "")
+			path += "/contentKey/"+contentK;
+		else if(docT == "image")
+			path += "/contentKey/profil";
+		if(notNull(foldKey) && foldKey != "")
+			path += "/folderId/"+foldKey;
+		if(notNull(extraUrl) && extraUrl != "")
+			path += extraUrl;
+		return path;
+	},
+	set : function(type,id, docT, contentK, foldKey, extraUrl){
+		if(typeof type != "undefined"){
 			mylog.log("set uploadObj", id,type,uploadObj.folder,uploadObj.contentKey);
 			uploadObj.type = type;
 			uploadObj.id = id;
-			uploadObj.path = baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+uploadObj.folder+"/folder/"+type+"/ownerId/"+id+"/input/qqfile/docType/file";
-		}
-		else if(typeof type != "undefined"){
-			mylog.log("set uploadObj", id,type,uploadObj.folder,uploadObj.contentKey);
-			uploadObj.type = type;
-			uploadObj.id = id;
-			uploadObj.path = baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+uploadObj.folder+"/folder/"+type+"/ownerId/"+id+"/input/qqfile/contentKey/"+uploadObj.contentKey;
-			if(typeof uploadObj.domTarget !="undefined"){
+			docT=(notNull(docT) && docT) ? docT : "image";
+			uploadObj.path = baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+uploadObj.folder+"/folder/"+type+"/ownerId/"+id+"/input/qqfile/docType/"+docT;
+			
+			if(notNull(contentK) && contentK != "")
+				uploadObj.path += "/contentKey/"+contentK;
+			else if(docT == "image")
+				uploadObj.path += "/contentKey/profil";
+			if(notNull(foldKey) && foldKey != "")
+				uploadObj.path += "/folderId/"+foldKey;
+			if(notNull(extraUrl) && extraUrl != "")
+				uploadObj.path += extraUrl;
+				
+			if(typeof uploadObj.domTarget !="undefined")
 				$(uploadObj.domTarget).fineUploader('setEndpoint', uploadObj.path);
-			}
-		} else {
+		}else {
 			uploadObj.type = null;
 			uploadObj.id = null;
 			uploadObj.path = null;
@@ -279,6 +296,7 @@ var dyFObj = {
 		//tmp
 		$('#btn-submit-form').show();
     },
+    initFieldOnload : {},
 	formatData : function (formData, collection,ctrl) { 
 		mylog.warn("----------- formatData",formData, collection,ctrl);
 		formData.collection = collection;
@@ -698,6 +716,11 @@ var dyFObj = {
 			        if( jsonHelper.notNull( "dyFObj."+dyFObj.activeElem+".dynForm.jsonSchema.onLoads."+afterLoad, "function") )
 			        	dyFObj[dyFObj.activeElem].dynForm.jsonSchema.onLoads[afterLoad](data);
 				    
+				    if(Object.keys(dyFObj.initFieldOnload).length > 0){
+				    	$.each(dyFObj.initFieldOnload, function(k, v){
+				    		v();
+				    	});
+				    }
 				    if( typeof bindLBHLinks != "undefined")
 			        	bindLBHLinks();
 			    },
@@ -1128,12 +1151,8 @@ var dyFObj = {
         		uploadObject.template = fieldObj.template;
 			if( fieldObj.itemLimit )
         		uploadObject.itemLimit = fieldObj.itemLimit;
-			if(fieldObj.endPoint){
-				uploadObject.endPoint = fieldObj.endPoint;
-				if(uploadObject.endPoint.indexOf("ownerId") < 0){
-					uploadObject.endPoint=uploadObject.endPoint+"/folder/citoyens/ownerId/"+userId;
-				}
-			}
+			if(fieldObj.endPoint)
+				uploadObject.endPoint=uploadObj.get("citoyens", userId, fieldObj.docType, null, null, fieldObj.endPoint);
 			if(typeof dySObj == "undefined" && $.isFunction( fieldObj.afterUploadComplete ))
         		uploadObject.afterUploadComplete = fieldObj.afterUploadComplete;
         	else if(typeof dySObj != "undefined" && Object.keys(dySObj.surveys).length != 0 && typeof fieldObj.afterUploadComplete == "string"){
@@ -1148,7 +1167,27 @@ var dyFObj = {
         	dyFObj.init.uploader[uploaderId]=new Object;
         	dyFObj.init.uploader[uploaderId]=uploadObject;
         }
-
+         /* **************************************
+		* Folder INPUT
+		***************************************** */
+        else if ( fieldObj.inputType == "folder" ) {
+        	dataField="data-type='"+fieldObj.contextType+"' data-id='"+fieldObj.contextId+"' data-doctype='"+fieldObj.docType+"' data-contentkey='"+fieldObj.contentKey+"'";
+        	fieldHTML += iconOpen+'<button class="form-control col-xs-6 selectFolder btn-success" '+dataField+'>'+trad.choose+'</button><span class="nameFolder-form">'+fieldObj.emptyMsg+'</span>';
+        	dyFObj.initFieldOnload.folder = function(){
+        		init={docType:fieldObj.docType};
+				if(typeof folderId != "undefined" && folderId != "" && navInFolders[folderId].docType == fieldObj.docType){
+					dyFObj.init.folderUploadEvent(fieldObj.contextType, fieldObj.contextId, fieldObj.docType, fieldObj.contentKey, folderId);
+					init.folderId=folderId;
+				}
+                $(".selectFolder").click(function(e){
+                	var $this=$(this);
+                	e.preventDefault();
+                	folder.showPanel("get", null, null, function(e){
+		    			dyFObj.init.folderUploadEvent($this.data("type"), $this.data("id"), $this.data("doctype"), $this.data("contentkey"), e);
+	    			}, init);
+	    		});
+            }
+        }
         /* **************************************
 		* DATE INPUT , we use bootstrap-datepicker
 		***************************************** */
@@ -2057,7 +2096,7 @@ var dyFObj = {
 					if(typeof v.endPoint == "undefined")
 						uploadObj.domTarget=domElement;
 					mylog.log("init fineUploader");
-					var endPointUploader=(typeof v.endPoint != "undefined") ? baseUrl+"/"+moduleId+v.endPoint : uploadObj.path;
+					var endPointUploader=(typeof v.endPoint != "undefined") ? v.endPoint : uploadObj.path;
 					$(domElement).fineUploader({
 			            template: (v.template) ? v.template : 'qq-template-manual-trigger',
 			            itemLimit: (v.itemLimit) ? v.itemLimit : 0,
@@ -2082,9 +2121,8 @@ var dyFObj = {
 			            	//when a img is selected
 						    onSubmit: function(id, fileName) {
 						    		
-						    	if(typeof v.endPoint == "undefined")
-						    		$(domElement).fineUploader('setEndpoint',uploadObj.path);
-						    	//	$(domElement).fineUploader('uploadStoredFiles');
+						    	//if(typeof v.endPoint == "undefined")
+						    	//	$(domElement).fineUploader('setEndpoint',uploadObj.path);
 	    					    if( v.showUploadBtn  ){
 							      	$('#trigger-upload').removeClass("hide").click(function(e) {
 					        			$(domElement).fineUploader('uploadStoredFiles');
@@ -2640,7 +2678,20 @@ var dyFObj = {
 		        });
 			  });
 		},
-
+		folderUploadEvent : function( type, id, docT, contentK, foldk){
+			if(foldk=="")
+				name=(docT=="image") ? trad.noalbumselected : trad.nofolderselected;
+			else
+				name=navInFolders[foldk].name;
+			$(".nameFolder-form").text(name);
+		    endPoint=uploadObj.get(type, id, docT, contentK, foldk);
+		    $("#imageElement").fineUploader('setEndpoint',endPoint);
+			uploadObj.gotoUrl="#page.type."+type+".id."+id+".view.gallery.dir."+docT;
+			if(contentK != "")
+				uploadObj.gotoUrl+=".key."+contentK;
+			if(foldk != "")
+				uploadObj.gotoUrl+=".folder."+foldk;
+		},
 		addHoursRange : function (addToDay){
 			mylog.log("dyFObj.init.addHoursRange", addToDay);
 			var countRange=$("#hoursRange"+addToDay+" .hoursRange").length;
@@ -3797,13 +3848,12 @@ var dyFInputs = {
 	    		//alert("afterUploadComplete :: "+uploadObj.gotoUrl);
 		    	dyFObj.closeForm();
 				//alert( "image upload then goto : "+uploadObj.gotoUrl );
-				if(location.hash.indexOf("view.library")>0){
-					navCollections=[];
-					buildNewBreadcrum("files");
-					getViewGallery(1,"","files");
-				}		
-				else
-	            	urlCtrl.loadByHash( (uploadObj.gotoUrl) ? uploadObj.gotoUrl : location.hash );
+				//if(location.hash.indexOf("view.gallery")>0){
+				//	buildNewBreadcrum("files");
+				//	getViewGallery(1,"","files");
+				//}		
+				//else
+	            urlCtrl.loadByHash( (uploadObj.gotoUrl) ? uploadObj.gotoUrl : location.hash );
 		    }
     	}
     },
