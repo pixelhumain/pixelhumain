@@ -62,7 +62,7 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header pull-left">
             
-            <a href="<?php echo Yii::app()->createUrl('/survey/co/index/id/cte'); ?>" class="btn btn-link menu-btn-back-category pull-left no-padding lbh" >
+            <a href="<?php echo Yii::app()->createUrl('/survey/co/index/id/cte'); ?>" class="btn btn-link menu-btn-back-category pull-left no-padding" >
                 <img src="<?php echo Yii::app()->getModule("survey")->assetsUrl; ?>/images/custom/cte/TCO-LOGO-WEB.png" class="logo-menutop pull-left" height=35 style="vertical-align: middle"/> <span style="display:block" class="padding-15 hidden-xs">TCO : 1er CONTRAT DE TRANSITION ÉCOLOGIQUE</span>
             </a>
            
@@ -86,16 +86,18 @@
                       $profilThumbImageUrl = Element::getImgProfil($me, "profilThumbImageUrl", $this->module->getParentAssetsUrl());
                       $countNotifElement = ActivityStream::countUnseenNotifications(Yii::app()->session["userId"], Person::COLLECTION, Yii::app()->session["userId"]);
                 ?> 
-                     <!-- #page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?> -->
-                    <a  href="#page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>"
-                        class="menu-name-profil lbh text-dark pull-right shadow2" 
+                    <a  href="<?php echo Yii::app()->createUrl('/#page.type.'.Person::COLLECTION.'.id.'.Yii::app()->session['userId']); ?>"
+                        class="menu-name-profil text-dark pull-right shadow2"
+                        target="_blanck"
                         data-toggle="dropdown">
                             <small class="hidden-xs hidden-sm margin-left-10" id="menu-name-profil">
                                 <?php echo @$me["name"] ? $me["name"] : @$me["username"]; ?>
                             </small> 
                             <img class="img-circle" id="menu-thumb-profil" 
                                  width="40" height="40" src="<?php echo $profilThumbImageUrl; ?>" alt="image" >
+
                     </a>
+                </a>
                 <?php } else { ?>
                     <li class="pull-right">
                         <?php //if($subdomain != "welcome"){ ?>
@@ -125,18 +127,39 @@
  <div class="dropdown pull-right" id="dropdown-user">
     <div class="dropdown-main-menu">
         <ul class="dropdown-menu arrow_box">
+            
+            <li class="text-admin">
+                <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>/survey/co/index/id/cte" class="lbh bg-white">
+                    <i class="fa fa-home"></i> Accueil
+                </a>
+            </li>
+
+            <li class="text-admin">
+                <a href="https://www.communecter.org/#@cteTco" class=" bg-white">
+                    <i class="fa fa-university"></i> Organisation CTE TCO 
+                </a>
+            </li>
 
               <?php 
                 $class = "hidden" ;
                 if( empty($me) || empty($me["address"]) || empty($me["address"]["codeInsee"]))
                     $class = "";
              if( Form::canAdmin("cte") ) { 
-                $label = Yii::t("common", "Admin") ;  
                 ?>
                 <li role="separator" class="divider"></li>
                 <li class="text-admin">
-                    <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>/survey/co/admin/id/cte" class="lbh bg-white">
-                        <i class="fa fa-user-secret"></i> <?php echo $label ; ?>
+                    <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>/survey/co/answers/id/cte" class="bg-white">
+                        <i class="fa fa-bars"></i> Réponses
+                    </a>
+                </li>
+                <li class="text-admin">
+                    <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>/survey/co/members/id/cte" class="bg-white">
+                        <i class="fa fa-users"></i> Membres
+                    </a>
+                </li>
+                <li class="text-admin">
+                    <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>/survey/co/roles/id/cte" class="bg-white">
+                        <i class="fa fa-file-text"></i> Fiches Actions
                     </a>
                 </li>
             <?php } ?>
@@ -144,7 +167,7 @@
 
             <li role="separator" class="divider"></li>
             <li class="text-admin">
-                <a href="#page.type.<?php echo Person::COLLECTION ?>.id.<?php echo Yii::app()->session["userId"] ?>.view.settings" class="lbh bg-white">
+                <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true)."/#page.type.".Person::COLLECTION.".id.".Yii::app()->session["userId"].".view.settings" ; ?>" target="_blanck" lass="lbh bg-white">
                     <i class="fa fa-cogs"></i> <?php echo Yii::t("common", "My parameters") ; ?>
                 </a>
             </li>
@@ -161,7 +184,34 @@
         </ul>
     </div>
 </div>
-<?php } 
+<?php /* ?>
+<div id="affix-sub-menu" class="hidden-xs affix">
+    <div id="territorial-menu" class="col-md-10 col-sm-10 col-xs-12 margin-bottom-10">
+                            
+<a href="<?php echo Yii::app()->createUrl('/survey/co/index/id/cte'); ?>" class="#home btn btn-link pull-left btn-menu-to-app hidden-top link-submenu-header lbh-menu-app">
+<i class="fa fa-home"></i>
+<span class="searchModSpan">Accueil</span>
+<span class=" topbar-badge badge animated bounceIn badge-warning"></span>
+</a>  
+
+<a href="<?php echo Yii::app()->createUrl('/survey/co/admin/id/cte'); ?>" class="#liveModBtn btn btn-link pull-left btn-menu-to-app hidden-top link-submenu-header lbh-menu-app">
+<i class="fa fa-cogs"></i>
+<span class="liveModSpan">Admin</span>
+<span class=" topbar-badge badge animated bounceIn badge-warning"></span>
+</a>  
+
+<a href="<?php echo Yii::app()->createUrl('/survey/co/roles/id/cte'); ?>" class="#agendaModBtn btn btn-link pull-left btn-menu-to-app hidden-top link-submenu-header lbh-menu-app">
+<i class="fa fa-file-text"></i>
+<span class="agendaModSpan">Fiches Actions</span>
+<span class=" topbar-badge badge animated bounceIn badge-warning"></span>
+</a>  
+ 
+                </div>
+</div>
+
+<?php */
+    
+} 
 
 $this->renderPartial($layoutPath.'loginRegister', array("subdomain" => $subdomain)); 
 

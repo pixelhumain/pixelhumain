@@ -17,6 +17,8 @@
 						$bgStyle="background-color: rgba(140, 91, 161, 0.6);";
 					else if($key=="event")
 						$bgStyle="background-color: rgba(255, 163, 0, 0.6);";
+					else if($key=="classifieds")
+						$bgStyle="background-color: #2BB0C6 ;";
 					else if($key=="person"){
 						$bgStyle="background-color: rgba(255, 200, 0, 0.6);";
 						$href="javascript:;";

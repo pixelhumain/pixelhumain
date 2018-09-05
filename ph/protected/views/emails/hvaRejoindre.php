@@ -1,19 +1,16 @@
 <?php
 $logoHeader=(@$logoHeader) ? $logoHeader : "";
 $urlRedirect=Yii::app()->getRequest()->getBaseUrl(true);
-$validationKey =Person::getValidationKeyCheck($invitedUserId);
-//$url = Yii::app()->getRequest()->getBaseUrl(true).(empty($url) ? "/".$this->module->id : $url)."/person/validateinvitation/user/".$invitedUserId.'/validationKey/'.$validationKey.'/invitation/1';
 
-$urlValidation = Yii::app()->getRequest()->getBaseUrl(true)."/".$this->module->id."/person/validateinvitation/user/".$invitedUserId.'/validationKey/'.$validationKey.'/invitation/1';
-Yii::app()->language = $language;
+//Yii::app()->language = $language;
 
-if(!empty($invitorUrl))
-	$invitorName='<a href="'.$invitorUrl.'" target="_blank">'.$invitorName.'</a>';
-if(@$url){
-    $urlRedirect=Yii::app()->getRequest()->getBaseUrl(true).$url;
-    $keyOn=(strrpos($url, "survey") !== false) ? str_replace("/", ".", $url) : ltrim($url, '/');
-    $urlValidation=Yii::app()->getRequest()->getBaseUrl(true)."/".$this->module->id."/person/validateinvitation/user/".$invitedUserId.'/validationKey/'.$validationKey.'/invitation/1/redirect/'.$keyOn;
-}
+
+// if(@$url){
+//     $urlRedirect=Yii::app()->getRequest()->getBaseUrl(true).$url;
+//     $keyOn=(strrpos($url, "survey") !== false) ? str_replace("/", ".", $url) : ltrim($url, '/');
+//     $urlValidation=Yii::app()->getRequest()->getBaseUrl(true)."/".$this->module->id."/person/validateinvitation/user/".$invitedUserId.'/validationKey/'.$validationKey.'/invitation/1/redirect/'.$keyOn;
+// }
+
 $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.mail.header', array("logo"=>@$logoHeader, "url"=> $urlRedirect));
  ?>
 <table class="row masthead" style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: left;background: white;width: 100%;position: relative;display: table;">
@@ -49,44 +46,23 @@ $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.m
 							<b>
 								<h5 style="color: inherit;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: center;line-height: 1.3;word-wrap: normal;margin-bottom: 10px;font-size: 20px;">
 									<!-- Aussi connecté que Facebook et aussi ouvert que Wikipédia, rejoignez le mouvement ! -->
-									<?php echo Yii::t("mail","Connected like Facebook and open like Wikipedia join the movement!") ?>
+									<?php echo Yii::t("mail","Quelqu'un veut nous rejoindre") ?>
 								</h5>
 							</b><br/>
-							<?php echo Yii::t("mail","You have been inviting on {what} by {who}",array("{what}"=>$title,"{who}"=>"<b>".$invitorName."</b>")) ?>.
-							<br/><br/>
-							<?php if(!empty($message)){
-								echo Yii::t("mail","His message for you") ?> : <br/>
-							<p style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 10px;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;"><i><?php echo nl2br(htmlentities($message)); ?></i></p>
-							<br/>
-							<?php } else { 
+							<?php
+							echo $name." veut rejoindre le portail HVA avec son organisation : ".$orga."</br> Dont voici les coordonnées : </br></br>";
 
-									if(!empty($msg))
-										echo nl2br(htmlentities($msg));
-									else
-										echo Yii::t("mail","In just a few clicks discover local activity on CO and use tools for your own organization : news feeds, agendas, classified ads, directories of initiatives towards a more sustainable world !") ?>.
-								<br/><br/>
-								<?php if(!empty($invitorName)){
-									echo Yii::t("mail","{who} started without you, but you can join him at any time by clicking here", array("{who}"=>$invitorName));
-								}
-							} ?>
-						</th>
-					</tr>
-					<tr style="padding: 0;vertical-align: top;text-align: center;">
-						<th style="color: #728289;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: center;line-height: 19px;">
-							<br/>
-							<h4 style="text-align: center;">
-								<a href="<?php echo $urlValidation ?>" style="color: #728289;font-family: Helvetica, Arial, sans-serif;font-weight: bold;padding: 0;margin: 0;text-align: center;line-height: 1.3;text-decoration: none;">
-									<?php echo Yii::t("mail","Confirm the invitation") ?>
-								</a>
-							</h4>
+							echo "Téléphone : ".$tel."</br></br>";
+							echo "Email : ".$email."</br></br>";
+							echo "Ville : ".$ville."</br></br>";
+
+							?>
+							
 						</th>
 					</tr>
 					<tr style="padding: 0;vertical-align: top;text-align: left;">
 						<th style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 19px;">
 							<br/><br/>
-							<p style="margin: 0;margin-bottom: 10px;color: #3c5665 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 12px;">
-							<?php echo Yii::t("mail","If the link doesn&apos;t work, you can copy it in your browser&apos;s address") ?>
-							<div style="word-break: break-all;font-size: 12px;"><?php echo $urlValidation ?></div></p>
 	
 	<?php $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.mail.footer', array("name"=>$title, "url"=>$urlRedirect)); ?>
 

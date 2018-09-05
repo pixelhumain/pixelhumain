@@ -4,16 +4,32 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="language" content="<?php echo Yii::app()->language; ?>" />
-  <meta name="keywords" lang="<?php echo Yii::app()->language; ?>" content="<?php echo (isset($this->module->keywords)) ? CHtml::encode($this->module->keywords) : ""; ?>">
-  <meta name="description" content="<?php echo CHtml::encode ( (@isset($this->module->description))?$this->module->description:""); ?>">
+  
+  
   <meta name="publisher" content="Pixel Humain on Github">
   <meta name="author" lang="<?php echo Yii::app()->language; ?>" content="Pixel Humain" />
   <meta name="robots" content="Index,Follow" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="<?php echo $this->module->assetsUrl?>/images/logo.png"/>  
-  <title><?php echo CHtml::encode( (isset($this->module->pageTitle))?$this->module->pageTitle:""); ?></title>
-   
+  <title>
+    <?php 
+    $title = "";
+    if(isset($this->pageTitle)) $title = $this->pageTitle;
+    else if(isset($this->module->pageTitle)) $title = $this->module->pageTitle;
+    echo CHtml::encode( $title )?>
+  </title>
+  <?php 
+    $desc = "";
+    if(isset($this->desc)) $desc = $this->description;
+    else if(isset($this->module->description)) $desc = $this->module->description; ?>
+  <meta content="<?php echo CHtml::encode($title." , ".$desc); ?>" name="description" />
+  <?php 
+    $keywords = "";
+    if(isset($this->keywords)) $keywords = $this->keywords;
+    else if(isset($this->module->keywords)) $keywords = $this->module->keywords;?>
+  <meta name="keywords" lang="<?php echo Yii::app()->language; ?>" content="<?php echo CHtml::encode($keywords); ?>"> 
+
  <?php  
  $cs = Yii::app()->getClientScript();
 $cs->registerScriptFile(Yii::app() -> createUrl(Yii::app()->params["module"]["parent"]."/default/view/page/trad/dir/..|translation/layout/empty"));
@@ -71,19 +87,18 @@ HtmlHelper::registerCssAndScriptsFiles($cssJS, Yii::app()->getModule( "co2" )->g
   $this->renderPartial($layoutPath.'initJs', 
                                  array( "me"=>$me, "parentModuleId" => $parentModuleId, "myFormContact" => @$myFormContact, "communexion" => CO2::getCommunexionCookies()));
 
-    ?>
-  
-  <?php 
-    if ( $this->module->id == "survey" && strrpos(@$_GET['id'], "cte") !== false ){
+  if (  ($this->module->id == "survey" && strrpos(@$_GET['id'], "cte") !== false ) || @Yii::app()->session["custom"]["header"] == "survey.views.custom.cte"){
       $CO2DomainName = "cte";
       $this->renderPartial( "co2.views.custom.init",array( "custom" => "forms.cte" ) );
-    } else if($this->module->id == "onepage" && @$_GET['slug'] ){
+  } else if($this->module->id == "onepage" && @$_GET['slug'] ){
       $el = Slug::getElementBySlug($_GET['slug']);
+      if(@$el["el"]["custom"]["menu"])
+        $CO2DomainName = $el["el"]["custom"]["menu"];
       if( @$el["el"]["custom"] ){
         $this->renderPartial( "co2.views.custom.init",array( "custom" => $el["type"].".".$el["id"] ) );
       }
-    }
-   ?>
+  }
+  ?>
  <script type="text/javascript">
   // **************************************
   //THEME TEMPLATE : CO2 / <?php echo $CO2DomainName ?> / EMPTY
