@@ -299,6 +299,12 @@
 		jQuery(document).ready(function() {
 			setTitle(networkJson.skin.title , "", networkJson.skin.title, networkJson.skin.title, networkJson.skin.shortDescription);
 
+			$.each(modules,function(k,v) { 
+                if(v.init){
+                    mylog.log("init.js for module : ",k);
+                    lazyLoad( v.init , null,null);
+                }
+            });
 			// Initialize tags list for network in form of element
 			urlCtrl.loadByHash(location.hash,true);
 			//$(".bg-main-menu.bgpixeltree_sig").remove();

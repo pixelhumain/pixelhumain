@@ -1,0 +1,441 @@
+#breadcrumGallery{
+	font-size: 20px;
+	/*font-variant: small-caps;*/
+}
+/*.dropdown-menu-collection{
+	position: absolute !important;
+	left:10px;
+	border: 1px solid rgba(0,0,0,.15);
+    border-radius: 2px;
+    -webkit-box-shadow: 1px 6px 10px rgba(0,0,0,.6);
+    box-shadow: 1px 6px 10px rgba(0,0,0,0.6);
+    min-width: 220px;
+    z-index: 200;
+    min-height: 200px;
+    list-style: none;
+}
+.dropdown-menu-collection:before{
+	left:13%;
+	margin-left: -11px;
+}
+.dropdown-menu-collection:before{
+	left:13%;
+}
+.dropdown-menu-collection:after{
+	left: -5%;
+    margin-left: 30px;
+}*/
+#folderTreeHtml > a .btn-success{
+	color:white !important;
+}
+#folderTreeHtml > a .btn-success:hover{
+	color: white !important;
+    background-color: #128f76 !important;
+    border-color: #11866f !important;
+}
+#folderTreeHtml > a.noHover:hover{
+	background-color: white !important;
+}
+#folderTreeHtml > a.noHover > span{
+	padding: 0px 20px;
+	font-size: 16px;
+    font-variant: small-caps;
+    font-weight: bolder;
+}
+#folderTreeHtml > a.noHover > span > i{
+	vertical-align: middle;
+}
+#folderTreeHtml > a.noHover > span > a{
+	float: initial;
+}
+#list-folder{
+	display:block;
+}
+#folderTreeHtml #list-folder a{   
+	width: 100%;
+    display: block;
+    padding: 10px 5px;
+    color:#5B5B5C;
+}
+#folderTreeHtml #list-folder a:hover{
+	color: #0095FF;
+    background-color: #edecec;
+    border-left: 3px solid #0095FF;
+    font-weight: bold;
+    text-decoration: none;
+   	
+}
+
+#folderTreeHtml #list-folder a:hover{
+
+   	/*color: rgb(0, 149, 255) !important;*/
+   	
+}
+.btn-delete-doc, .btn-move-collection{
+	display: none;
+}
+#header-gallery.affix{
+    top:112px;
+    margin-left: -15px;
+    padding-top: 5px;
+    -webkit-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 2px -1px rgba(0,0,0,0.5);
+    z-index: 1000;
+    background-color: white;
+}
+#header-gallery.affix hr:last-child{
+	display: none;
+}
+	.gallery-img img{
+		width: 200px;
+		height: 200px;
+	}
+
+	.panel-tools{
+		filter: alpha(opacity=1);
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=1)";
+		-moz-opacity: 1;
+		-khtml-opacity: 1;
+		opacity: 1;
+	}
+	#Grid .mix, #GridAlbums .mix{
+		margin: 2px !important;
+	}
+	.content_image_album{
+		float:left;
+		width:200px;
+		height:200px;
+		position: relative;
+	}
+	.content_folder_file{
+		float:left;
+		position: relative;
+		/*border-bottom: 1px solid rgba(0,0,0,0.1);*/
+    	padding: 5px 0px;
+	}
+	.vertical-folder .content-info-span{
+    	font-size: 12px;
+    	line-height: 18px;
+	}
+	.vertical-folder a{
+		text-decoration: none;
+	}
+	.vertical-folder .content-info-span .titleFolder{
+		font-size: 17px;
+    	vertical-align: text-bottom;
+	}
+	.vertical-folder:hover .content-info{
+		background: #edecec;
+   	 	border-radius: 5px;
+    	border-left: 3px solid #0095FF;
+    	color: #0095FF;
+	}
+	.vertical-folder .open-folder:hover{
+		text-decoration:none;
+	}
+	.openFolder:hover{
+		cursor:pointer;
+	}
+	.filter-albums-gallery{
+	    top: 0px;
+	    left: 0;
+	    right: 0;
+	    width: auto;
+	    text-align:center;
+	    text-align: -webkit-center;
+	    position:absolute;
+	}
+	.filter-folder-gallery{
+		bottom:0px;
+		background-color: rgba(0,0,0,0.2);
+		text-shadow: 1px 1px 1px rgb(0,0,0);
+	}
+	.filter-albums-gallery{
+		height: 200px;
+	    line-height: 200px;
+	    background-color: rgba(0,0,0,0.3);
+	}
+	.filter-folder-gallery:hover, .filter-albums-gallery:hover{
+		text-decoration: none;
+		text-shadow: 1px 1px 1px rgb(0,0,0);
+	}
+	.filter-folder-gallery:hover{
+		background-color: rgba(0,0,0,0.2);
+	}
+	.filter-albums-gallery:hover{
+		background-color: rgba(0,0,0,0);
+	}
+	.portfolio-item > .tools.tools-bottom {
+	    background-color: rgba(0,0,0,0.3);
+	    bottom: 0px;
+	    height: 40px;
+	    line-height: 40px;
+	    left: 0;
+	    right: 0;
+	    width: auto;
+	    display: none;
+	    position:absolute;
+	}
+	.portfolio-item > .tools.tools-top.active {
+		display:block !important;
+	}
+	.portfolio-item > .tools.tools-top {
+	    top: 0px;
+	    right: 0px;
+	    width: auto;
+	    position:absolute;
+	    display: none;
+	}
+	.portfolio-item:hover > .tools.tools-top {
+	    display: block;
+	 }
+	
+	.portfolio-item:hover > .tools.tools-bottom {
+	    display: block;
+	 }
+	.filter-folder-gallery .center, .filter-albums-gallery .center{
+	    margin: auto;
+	    margin-top: 70px;
+	    width: 100%;
+	    line-height: 20px;
+	 }
+	/*.filter-albums-gallery  .toolsFolder{
+		display: inline-block;
+	}*/
+	.filter-albums-gallery  .toolsFolder > .dropdown-menu {
+		position: relative !important;
+    	top: 100%;
+    	right: -10px;
+    	margin-top: 0px;
+	}
+	.vertical-folder .toolsFolder > .dropdown-menu {
+		top: 20px;
+    	right: 0px;	
+		margin-top: 0px;
+	}
+	.toolsFolder > .dropdown-menu > span.text-dark{
+		color: #2C3E50 !important;
+	}
+	.toolsFolder > .dropdown-menu > span:hover{
+		background-color: lightgray;
+	}
+	.toolsFolder > .dropdown-menu > span.text-red{
+		color: #e6344d !important;
+	}
+	.toolsFolder > .dropdown-menu > span{
+		text-shadow: none;
+    	text-align: left;
+	}
+	.filter-albums-gallery  .toolsFolder > .dropdown-menu:before, .filter-albums-gallery  .toolsFolder > .dropdown-menu:after  {
+		left:35%;
+	}
+	.vertical-folder .toolsFolder > .dropdown-menu:before, .vertical-folder .toolsFolder > .dropdown-menu:after  {
+		left:65%;
+	}
+	.toolsFolder > .dropdown-menu:before{
+		border-width: 6px;
+   		margin-left: -9px;
+	}
+	.toolsFolder > .dropdown-menu:after{
+		border-width: 5px;
+   		 margin-left: -8px;
+	}
+	.toolsFolder.dropdown:hover>.dropdown-menu,  .toolsFolder >.dropdown-menu:hover  {
+  		display: block;	
+	}
+	.filter-folder-gallery .titleAlbum,.filter-albums-gallery .titleAlbum{
+		color: white !important;
+		text-align: center;
+		font-size: 20px;
+		text-transform: uppercase;
+	} 
+	.filter-folder-gallery span, .filter-albums-gallery span{
+		color: white !important;
+		text-align: center;
+	}
+	.filter-albums-gallery span{
+		font-size: 12px;
+	}
+	.filter-folder-gallery span{
+		font-size: 16px;
+	}
+	.portfolio-item .tools.tools-bottom > a, .portfolio-item .tools.tools-top > a {
+	    position: absolute;
+	    right: 15px;
+    	padding:inherit;
+		color: white !important;
+	}
+	.portfolio-item .tools.tools-bottom > span, .portfolio-item .tools.tools-top > span {
+	    position: absolute;
+	    left: 15px;
+    	padding:inherit;
+		color: white !important;
+	}
+	.titlePhoto{
+		font-size: 19px;
+		font-variant: small-caps;
+	}
+
+.portfolio-item-album > img
+{
+    -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(1); 
+    -ms-transition: all 200ms ease-in;
+    -ms-transform: scale(1); 
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(1);
+    transition: all 200ms ease-in;
+    transform: scale(1);   
+
+}
+.portfolio-item-album{
+	overflow:hidden;
+}
+.portfolio-item-album:hover{
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.6);
+}
+.portfolio-item-album:hover > img
+{
+    /*z-index: 2;*/
+    -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(1.2);
+    -ms-transition: all 200ms ease-in;
+    -ms-transform: scale(1.2);   
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(1.2);
+    transition: all 200ms ease-in;
+    transform: scale(1.2);
+}
+/*.initLibrary{
+	filter:grayscale(75%);
+}
+.portfolio-item-album:hover > .initLibrary{
+	filter:grayscale(50%);
+}*/
+.checkbox-info{
+	font-size:20px;
+}
+/* END ZOOM HOVER*/
+.checkbox-content {
+	padding:5px;
+}
+.checkbox-content label {
+    margin-bottom: 0px;
+    vertical-align: bottom;
+   	font-size: 10px;
+}
+.checkbox-content .cr {
+    position: relative;
+    display: inline-block;
+    border: 1px solid #a9a9a9;
+    width: 1.3em;
+    height: 1.3em;
+    background-color: white;
+}
+
+
+.checkbox-content .cr .cr-icon
+{
+    position: absolute;
+    font-size: .8em;
+    line-height: 0;
+    top: 50%;
+    left: 20%;
+}
+
+.checkbox-content label input[type="checkbox"]
+ {
+    display: none;
+}
+
+.checkbox-content label input[type="checkbox"] + .cr > .cr-icon
+ {
+    transform: scale(3) rotateZ(-20deg);
+    opacity: 0;
+    transition: all .3s ease-in;
+}
+
+.checkbox-content label input[type="checkbox"]:checked + .cr > .cr-icon
+ {
+    transform: scale(1) rotateZ(0deg);
+    opacity: 1;
+}
+.checkbox-content label input[type="checkbox"]:checked + .cr{
+	background-color: #2BB0C6;
+	color:white;
+	box-shadow: 0px 0px 16px rgba(250,250,250,0.9);
+	border: 1px solid white;
+}
+.checkbox-content label input[type="checkbox"]:disabled + .cr
+ {
+    opacity: .5;
+}
+.portfolio-item-album{
+	width:100%;
+}
+.portfolio-item-album:hover .container-img{
+	width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+.portfolio-item-album .container-img .initLibrary{
+	filter: grayscale(50%);
+}
+.portfolio-item-album:hover .container-img .initLibrary{
+	filter: grayscale(0%);
+}
+.filter-folder-gallery{
+	padding: 20px 10px !important;
+    text-align: center;
+}
+.portfolio-item-album:hover .container-img > img{
+	-webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(1.2);
+    -ms-transition: all 200ms ease-in;
+    -ms-transform: scale(1.2);   
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(1.2);
+    transition: all 200ms ease-in;
+    transform: scale(1.2);
+}
+#GridAlbums .folder:hover{
+	background-color: rgba(0,0,0,0.1);
+}
+#listTags > a {
+	width: 100%;
+	padding: 5px 5px;
+	text-align: right;
+}
+.tagsElipsis{
+	max-width: 75%;
+	margin-right: 2px;
+	vertical-align: bottom;
+}
+.filterBookmarks .badge{
+    background-color: #337ab7;
+    color: white;
+    font-size: 11px;
+    padding: 3px 6px;
+}
+.filterBookmarks.active{
+	border-right: 0px solid #337ab7;
+    background-color: #337ab7;
+    color: white;
+    text-decoration: none;
+}
+.filterBookmarks:hover{
+	width:initial !important;
+	float: right !important;
+    background-color: #337ab7;
+    color:white;
+    text-decoration: none;
+}
+.filterBookmarks:hover > .tagsElipsis{
+	max-width: inherit; 
+}
+.filterBookmarks:hover > .badge, .filterBookmarks.active > .badge{
+	background-color: white;
+	color: #337ab7; 
+}

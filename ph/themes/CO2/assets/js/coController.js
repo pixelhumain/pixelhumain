@@ -232,7 +232,6 @@ var urlCtrl = {
 						//open path in a modal (#openModal)
 						if(pathT[0] == "modal"){
 							path = path.substring(5);
-							alert(baseUrl+'/'+moduleId+path);
 							smallMenu.openAjaxHTML(baseUrl+'/'+moduleId+path);
 						} else {
 							//console.log(">>>>>>>>>>>>>>>>>>> endPoint:",endPoint);
@@ -419,7 +418,7 @@ var urlCtrl = {
 }
 
 function showAjaxPanel (url,title,icon, mapEnd , urlObj) { 
-	//alert("showAjaxPanel"+url);
+	alert("showAjaxPanel"+url);
 	$(".progressTop").show().val(20);
 	var dest = ( typeof urlObj == "undefined" || typeof urlObj.useHeader != "undefined" ) ? themeObj.mainContainer : ".pageContent" ;
 	mylog.log("showAjaxPanel", url, urlObj,dest,urlCtrl.afterLoad );	

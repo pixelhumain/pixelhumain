@@ -1333,5 +1333,25 @@ return array(
 	"Invite contributors on" => "Lade Mitwirkende ein zu",
 	"Launch invitations" => "Einladungen verschicken",
 	
+	"job" => "Job",
+	"jobs" => "Jobs",
+	"Jobs" => "Jobs",
+	"Start search by tags" => "Suche nach Tags starten",
+	"News feed" => "News-Feed",
+	"Fill in your CV" => "Füllen Sie Ihren Lebenslauf aus",
+	"Section" => "Abschnitt",
+	"Subcategory" => "Unterkategorie",
+	"Price" => "Preis",
+	"Type" => "Typ",
+	"Source data" => "Quelldaten",
+	"Confirm address" => "Adresse bestätigen",
+	"Add a name" => "Einen Namen hinzufügen",
+	"Search to save" => "Suche zum Speichern",
+	"Do you want to receive a mail alert of new items" => "Möchten Sie eine E-Mail-Benachrichtigung über neue Artikel erhalten",
+	"Save this research as favorites and be alert" => "Speichern Sie diese Suche als Favoriten und bleiben Sie dran",
+	"Name of the research" => "Name der Suche",
+	"Be alerted of new items" => "Bleiben Sie über neue Artikel informiert",
+	"Alert" => "Alert",
+	
 );
 ?>

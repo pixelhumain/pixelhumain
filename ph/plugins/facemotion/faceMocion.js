@@ -45,7 +45,7 @@
 				var EstadoInicial = "empty";
 				var initTextEmocion = "<i class='fa fa-thumbs-up'></i> "+trad.ilike;
 				var colorText="text-dark";
-				if ($(this).data("value") != "") {
+				if (typeof $(this).data("value") != "undefined" && $(this).data("value") != "") {
 					EstadoInicial = $(this).data("value");
 					$.each(opciones.emociones, function(index, emo) {
 						if(EstadoInicial==emo.emocion){
@@ -85,21 +85,6 @@
 					});
 					BarraEmociones = BarraEmociones + '</div>';
 					$(document.body).append(BarraEmociones);
-					$('.faceMocion div').off().on("hover",function() {
-						var title = $(this).attr('dato-descripcion');
-						$(this).data('tipText', title).removeAttr('dato-descripcion');
-						$('<p class="MensajeTexto"></p>').text(title).appendTo('body').fadeIn('slow');
-					}, function() {
-						$(this).attr('dato-descripcion', $(this).data('tipText'));
-						$('.MensajeTexto').remove();
-					}).mousemove(function(e) {
-						var RatonX = e.pageX - 20;
-						var RatonY = e.pageY - 60;
-						$('.MensajeTexto').css({
-							top: RatonY,
-							left: RatonX
-						})
-					});
 				}
 				$(".faceMocion div").off().on("click", function() {
 					SelectorEmocion.attr("class", NombreSelector + " selectorFace  " + $(this).attr('class'));
@@ -114,6 +99,22 @@
 
 
 				});
+				$('.faceMocion div').hover(function(){
+						var title = $(this).attr('dato-descripcion');
+						$(this).data('tipText', title).removeAttr('dato-descripcion');
+						$('<p class="MensajeTexto"></p>').text(title).appendTo('body').fadeIn('slow');
+				}, function() {
+						$(this).attr('dato-descripcion', $(this).data('tipText'));
+						$('.MensajeTexto').remove();
+				}).mousemove(function(e) {
+						var RatonX = e.pageX - 20;
+						var RatonY = e.pageY - 60;
+						$('.MensajeTexto').css({
+							top: RatonY,
+							left: RatonX
+					})
+				});
+				
 				
 			});
 			$('.' + NombreSelector+ ', .text-emotion').off().on("mouseenter",function(e) {
@@ -128,7 +129,7 @@
 				});
 				$(".faceMocion").show();
 			});
-			$(document).off().on("mouseup",function(e) {
+			$(document).mouseup(function(e) {
 				$(".faceMocion").hide();
 			});
 			$(faceMocion).hide();

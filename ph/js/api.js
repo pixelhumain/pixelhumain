@@ -131,7 +131,7 @@ function getModal(what, ajaxUrl,id)
 function lazyLoad (js,css, callback, notBase) { 
     mylog.warn("lazyLoad",js, css, callback, notBase);
     var url = (notBase==true ? js : baseUrl+js);
-    mylog.warn("url",url);
+    mylog.warn("api.js url",url);
     if( !$('script[src="'+url+'"]').length )
     {
         if(css)
@@ -140,7 +140,7 @@ function lazyLoad (js,css, callback, notBase) {
                type: "text/css",
                href: css 
             }).appendTo("head");
-          //!mylog.log("lazyLoad  before getScript",js);
+          //mylog.log("lazyLoad  before getScript",js);
         $.getScript( js, function( data, textStatus, jqxhr ) {
           //mylog.log("lazyLoad getScript");
           //if (typeof dynform !== undefined) alert("script has been loaded!");

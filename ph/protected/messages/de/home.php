@@ -1,4 +1,4 @@
-<?php
+<?php 
 	return array(
 		"You're not <span class='text-dark'>communected</span>"=>"Sie sind nicht <span class='text-dark'>communectiert</span>",
 		"You are"=>"Sie sind",
@@ -160,5 +160,7 @@
 		"Online Doc" => "Online Dokumentation",
 		"Team" => "Team",
 		"They form a key part of the adventure" => "Sie sind ein wichtiger Teil des Abenteuers",
+		
+		"Graph View" => "Interessen Diagramm",
 	);
 ?>

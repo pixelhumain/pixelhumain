@@ -306,7 +306,7 @@ var typeObj = {
               //  circuit.obj = JSON.parse(localStorage.getItem("circuit"));
             //Init mentions contact
             if(myContacts != null){
-                $.each(myContacts["people"], function (key,value){
+                $.each(myContacts["citoyens"], function (key,value){
                     if(typeof(value) != "undefined" ){
                         avatar="";
                         console.log(value);

@@ -78,6 +78,9 @@ $multiscopes = (empty($me) && isset( Yii::app()->request->cookies['multiscopes']
     
     var globalTheme = "<?php echo Yii::app()->theme->name;?>";
 
+    var deviseTheme = <?php echo json_encode(@$params["devises"]) ?>;
+    var deviseDefault = <?php echo json_encode(@$params["deviseDefault"]) ?>;
+
     var search={
         value:"",
         page:0,
