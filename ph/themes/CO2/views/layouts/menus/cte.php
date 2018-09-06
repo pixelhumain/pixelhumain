@@ -149,7 +149,7 @@
                 <li role="separator" class="divider"></li>
                 <li class="text-admin">
                     <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>/survey/co/answers/id/cte" class="bg-white">
-                        <i class="fa fa-bars"></i> Réponses
+                        <i class="fa fa-bars"></i> Projets
                     </a>
                 </li>
                 <li class="text-admin">
