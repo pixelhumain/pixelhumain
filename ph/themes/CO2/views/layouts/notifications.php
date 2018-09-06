@@ -17,7 +17,7 @@ HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, Yii::app()->the
 			<div class="pageslide-title pull-left">
 				<i class="fa fa-angle-down"></i> <i class="fa fa-bell"></i> <span class="hidden-xs">Notifications</span> 
 			</div> 
-			<a href="javascript:;" onclick='removeAllNotifications()' class="btn-notification-action btn-danger pull-right" style="font-size:12px;">
+			<a href="javascript:;" onclick='removeAllNotifications("")' class="btn-notification-action btn-danger pull-right" style="font-size:12px;">
 				<?php echo Yii::t("common","All") ?> <i class="fa fa-trash"></i>
 			</a>	
 			<a href="javascript:;" onclick='markAllAsRead("");' class="btn-notification-action pull-right hidden-xs" style="font-size:12px;">
