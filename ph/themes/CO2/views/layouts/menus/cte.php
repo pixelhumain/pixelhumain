@@ -144,21 +144,22 @@
                 $class = "hidden" ;
                 if( empty($me) || empty($me["address"]) || empty($me["address"]["codeInsee"]))
                     $class = "";
-             if( Form::canAdmin("cte") ) { 
+                $form = PHDB::findOne( Form::COLLECTION , array( "id"=> ($_GET["id"]) ? $_GET["id"] : "cte", "session"=>($_GET["session"]) ? $_GET["session"] : "1" ));
+             if( Form::canAdmin( (string)$form["_id"] , $form  )) { 
                 ?>
                 <li role="separator" class="divider"></li>
                 <li class="text-admin">
-                    <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>/survey/co/answers/id/cte" class="bg-white">
+                    <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>/survey/co/answers/id/<?php echo $form["id"]."/session/".$form["session"] ?>" class="bg-white">
                         <i class="fa fa-bars"></i> Projets
                     </a>
                 </li>
                 <li class="text-admin">
-                    <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>/survey/co/members/id/cte" class="bg-white">
+                    <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>/survey/co/members/id/<?php echo $form["id"]."/session/".$form["session"] ?>" class="bg-white">
                         <i class="fa fa-users"></i> Membres
                     </a>
                 </li>
                 <li class="text-admin">
-                    <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>/survey/co/roles/id/cte" class="bg-white">
+                    <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>/survey/co/roles/id/<?php echo $form["id"]."/session/".$form["session"] ?>" class="bg-white">
                         <i class="fa fa-file-text"></i> Fiches Actions
                     </a>
                 </li>
