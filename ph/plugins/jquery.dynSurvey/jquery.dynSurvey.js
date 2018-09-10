@@ -402,6 +402,7 @@ var dySObj = {
 	            	result.parentSurvey = dySObj.surveys.parentSurvey.id;
 	            var reloadInside= true;
 	            mylog.log(params.surveyObj);
+	            uploadObj.afterLoadUploader=true;
 	            $.each( params.surveyObj,function(section,sectionObj) { 
 	            	//alert("key"+sectionObj.key);
 	            	result["answers"][sectionObj.key] = {};
@@ -412,7 +413,16 @@ var dySObj = {
 		                    mylog.log(sectionObj.key+"."+field, $("#"+section+" #"+field).val() );
 		                    if( fieldObj.inputType ){
 		                        if(fieldObj.inputType=="uploader"){
-		                     		if( $('#'+section+' #'+fieldObj.domElement).fineUploader('getUploads').length > 0 ){
+		                        	listObject=$('#'+section+' #'+fieldObj.domElement).fineUploader('getUploads');
+							    	goToUpload=false;
+							    	if(listObject.length > 0){
+							    		$.each(listObject, function(e,v){
+							    			if(v.status == "submitted")
+							    				goToUpload=true;
+							    		});
+							    	}
+									if( goToUpload ){
+		                     		//if( $('#'+section+' #'+fieldObj.domElement).fineUploader('getUploads').length > 0 ){
 		                     			reloadInside=false;
 		    							$('#'+section+' #'+fieldObj.domElement).fineUploader('uploadStoredFiles');
 		    							result["answers"][sectionObj.key][field] = "";

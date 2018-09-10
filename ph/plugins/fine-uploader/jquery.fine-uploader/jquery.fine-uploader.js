@@ -1607,7 +1607,6 @@
                     callbacks: {
                         log: qq.bind(self.log, self),
                         pasteReceived: function(blob) {
-                            alert("ouuii");
                             self._handleCheckedCallback({
                                 name: "onPasteReceived",
                                 callback: qq.bind(self._options.callbacks.onPasteReceived, self, blob),
