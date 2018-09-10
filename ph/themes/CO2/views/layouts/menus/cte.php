@@ -56,13 +56,17 @@
         color:grey !important;
     }
 </style>
+<?php 
+
+$session = (!empty($_GET["session"]) ? $_GET["session"] : "1");
+?>
 <!-- Navigation -->
 <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header pull-left">
             
-            <a href="<?php echo Yii::app()->createUrl('/survey/co/index/id/cte'); ?>" class="btn btn-link menu-btn-back-category pull-left no-padding" >
+            <a href="<?php echo Yii::app()->createUrl('/survey/co/index/id/cte/session/'.$session); ?>" class="btn btn-link menu-btn-back-category pull-left no-padding" >
                 <img src="<?php echo Yii::app()->getModule("survey")->assetsUrl; ?>/images/custom/cte/TCO-LOGO-WEB.png" class="logo-menutop pull-left" height=35 style="vertical-align: middle"/> <span style="display:block" class="padding-15 hidden-xs">TCO : 1er CONTRAT DE TRANSITION ÉCOLOGIQUE</span>
             </a>
            
@@ -129,7 +133,7 @@
         <ul class="dropdown-menu arrow_box">
             
             <li class="text-admin">
-                <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>/survey/co/index/id/cte" class="lbh bg-white">
+                <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>/survey/co/index/id/cte/session/<?php echo $session ?>" class="lbh bg-white">
                     <i class="fa fa-home"></i> Accueil
                 </a>
             </li>
@@ -144,21 +148,22 @@
                 $class = "hidden" ;
                 if( empty($me) || empty($me["address"]) || empty($me["address"]["codeInsee"]))
                     $class = "";
-             if( Form::canAdmin("cte") ) { 
+                $form = PHDB::findOne( Form::COLLECTION , array( "id"=> ($_GET["id"]) ? $_GET["id"] : "cte"));
+             if( Form::canAdmin( (string)$form["_id"] , $form  )) { 
                 ?>
                 <li role="separator" class="divider"></li>
                 <li class="text-admin">
-                    <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>/survey/co/answers/id/cte" class="bg-white">
-                        <i class="fa fa-bars"></i> Réponses
+                    <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>/survey/co/answers/id/<?php echo $form["id"]."/session/".$session ?>" class="bg-white">
+                        <i class="fa fa-bars"></i> Projets
                     </a>
                 </li>
                 <li class="text-admin">
-                    <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>/survey/co/members/id/cte" class="bg-white">
+                    <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>/survey/co/members/id/<?php echo $form["id"]."/session/".$session ?>" class="bg-white">
                         <i class="fa fa-users"></i> Membres
                     </a>
                 </li>
                 <li class="text-admin">
-                    <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>/survey/co/roles/id/cte" class="bg-white">
+                    <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>/survey/co/roles/id/<?php echo $form["id"]."/session/".$session ?>" class="bg-white">
                         <i class="fa fa-file-text"></i> Fiches Actions
                     </a>
                 </li>
