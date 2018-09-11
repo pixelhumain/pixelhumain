@@ -2636,7 +2636,7 @@
                     minSizeError: "{file} is too small, minimum file size is {minSizeLimit}.",
                     emptyError: "{file} is empty, please select files again without it.",
                     noFilesError: "No files to upload.",
-                    tooManyItemsError: "Too many items ({netItems}) would be uploaded.  Item limit is {itemLimit}.",
+                    tooManyItemsError: tradDynForm.tooManyItemsError,//"Too many items ({netItems}) would be uploaded.  Item limit is {itemLimit}.",
                     maxHeightImageError: "Image is too tall.",
                     maxWidthImageError: "Image is too wide.",
                     minHeightImageError: "Image is not tall enough.",

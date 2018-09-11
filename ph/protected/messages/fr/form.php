@@ -187,7 +187,8 @@
 		"<b>Private :</b> Project visible only by its contributors and create contents accessible only by its community<br/><b>Public :</b> Project visible in search engine and communication available for all"=>"<b>Privé :</b> Projet visible seulement pour les contributeurs et le contenu sera accessible par eux uniquement<br/><b>Public :</b> Projet visble depuis le moteur de recherche ainsi que la communication faite dessus",
 
 
-		"Add a new address" => "Ajouter une nouvelle adresse"
+		"Add a new address" => "Ajouter une nouvelle adresse",
+		"You can&#146;t upload ({netItems}) items.  Item limit is {itemLimit}."=>"Vous ne pouvez pas ajouter ({netItems}) documents. La limite d'élément est de {itemLimit}.",
 
 	)
 
