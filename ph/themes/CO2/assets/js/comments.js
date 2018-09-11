@@ -114,7 +114,7 @@ function voteCheckAction(idVote, newsObj, mediaTarget) {
 
 
 
-function bindEventTextArea(idTextArea, idComment, contextType, isAnswer, parentCommentId, commentUp){
+function bindEventTextArea(idTextArea, idComment, contextType, isAnswer, parentCommentId, commentUp, pathContext){
 
     var idUx = (parentCommentId == "") ? idComment : parentCommentId;
     
@@ -126,7 +126,7 @@ function bindEventTextArea(idTextArea, idComment, contextType, isAnswer, parentC
       if(e.which == 13 && !e.shiftKey && $(idTextArea).val() != "" && $(idTextArea).val() != " " && !isUpdatedComment) {
         if(!mentionsInit.isSearching){
           //submit form via ajax, this is not JS but server side scripting so not showing here
-          saveComment($(idTextArea).val(), parentCommentId, idTextArea);
+          saveComment($(idTextArea).val(), parentCommentId, idTextArea, pathContext);
           $(idTextArea).val("");
           $(idTextArea).css('height', "34px");
           var heightTxtArea = $(idTextArea).css("height");
