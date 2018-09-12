@@ -133,7 +133,7 @@ $session = (!empty($_GET["session"]) ? $_GET["session"] : "1");
         <ul class="dropdown-menu arrow_box">
             
             <li class="text-admin">
-                <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>/survey/co/index/id/cte/session/<?php echo $session ?>" class="lbh bg-white">
+                <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>/survey/co/index/id/<?php echo $_GET["id"] ?>" class="lbh bg-white">
                     <i class="fa fa-home"></i> Accueil
                 </a>
             </li>
@@ -148,7 +148,7 @@ $session = (!empty($_GET["session"]) ? $_GET["session"] : "1");
                 $class = "hidden" ;
                 if( empty($me) || empty($me["address"]) || empty($me["address"]["codeInsee"]))
                     $class = "";
-                $form = PHDB::findOne( Form::COLLECTION , array( "id"=> ($_GET["id"]) ? $_GET["id"] : "cte"));
+                $form = PHDB::findOne( Form::COLLECTION , array( "id"=> ($_GET["id"]) ? $_GET["id"] : "cte", "session"=>(@$_GET["session"]) ? $_GET["session"] : "1" ));
              if( Form::canAdmin( (string)$form["_id"] , $form  )) { 
                 ?>
                 <li role="separator" class="divider"></li>
