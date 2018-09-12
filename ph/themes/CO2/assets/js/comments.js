@@ -115,7 +115,6 @@ function voteCheckAction(idVote, newsObj, mediaTarget) {
 
 
 function bindEventTextArea(idTextArea, idComment, contextType, isAnswer, parentCommentId, commentUp, pathContext){
-
     var idUx = (parentCommentId == "") ? idComment : parentCommentId;
     
     $(idTextArea).css('height', "34px");

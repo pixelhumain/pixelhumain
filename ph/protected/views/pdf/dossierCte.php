@@ -21,20 +21,93 @@
 		foreach ($form["scenario"] as $k => $v) {
 			echo '<h4 class="padding-20" style="">'.$v["title"].'</h4>';
 			if(@$answers[$k]){
-				echo '<span class="text-dark">'.date("d/m/Y h:i", $answers[$k]["created"]).'</span>';
+				//echo '<span class="text-dark">'.date("d/m/Y h:i", $answers[$k]["created"]).'</span>';
 				?>
 				<div class='col-xs-12'>
 					<?php 
 						foreach ( $answers[$k]["answers"] as $key => $value) {
 							$editBtn = "";
-							if( (string)$user["_id"] == Yii::app()->session["userId"] && !Form::isFinish($form )) {
-								if(@$v["form"]["scenario"][$key]["saveElement"]) 
-									$editBtn = "<a href='javascript:'  data-form='".$k."' data-step='".$key."' data-type='".$value["type"]."' data-id='".$value["id"]."' class='editStep btn btn-default'><i class='fa fa-pencil'></i></a>";
-								else 
-									$editBtn = "<a href='javascript:'  data-form='".$k."' data-step='".$key."' class='editStep btn btn-default'><i class='fa fa-pencil'></i></a>";
+							
+							echo "<div class='col-xs-12'>";
+							echo 	"<h5> [ étape ] ".@$v["form"]["scenario"][$key]["title"]."</h5>";
+
+							if( @$v["form"]["scenario"][$key]["json"] ){
+								$formQ = @$v["form"]["scenario"][$key]["json"]["jsonSchema"]["properties"];
+								foreach ($value as $q => $a){
+									if(is_string($a)){
+										echo '<span><i>'.@$formQ[ $q ]["placeholder"]."</i></span><br/>";
+										$markdown = (strpos(@$formQ[ $q ]["class"], 'markdown') !== false) ? 'markdown' : "";
+										echo "<span style='' class='".$markdown."'>".$a."</span><br/>";
+									}else if(@$a["type"] && $a["type"]==Document::COLLECTION){
+										$document=Document::getById($a["id"]);
+										$document["docId"]=$a["id"];
+										$answers[$k]["answers"][$key]["files"]=array($document);
+										$path=Yii::app()->getRequest()->getBaseUrl(true)."/upload/communecter/".$document["folder"]."/".$document["name"];
+										echo '<span><i>'.@$formQ[ $q ]["placeholder"]."</i></span><br/>";
+										echo "<span>";
+											echo "<a href='".$path."' target='_blank'><i class='fa fa-file-pdf-o text-red'></i> ".$document["name"]."</a>";
+										echo '</span>';
+									}
+								}
+							//todo search dynamically if key exists
+							}else if(@$v["form"]["scenario"]["survey"]["json"][$key]){
+								$formQ = $v["form"]["scenario"]["survey"]["json"][$key]["jsonSchema"]["properties"];
+								foreach ($value as $q => $a) {
+									if(is_string($a)){
+										echo '<span><i>'.@$formQ[ $q ]["placeholder"]."</i></span><br/>";
+										echo "<span>".$a."</span><br/>";
+									}else if(@$a["type"] && $a["type"]==Document::COLLECTION){
+										echo '<span><i>'.@$formQ[ $q ]["placeholder"]."</i></span><br/>";
+										echo "<span>".$a["type"]."</span><br/>";
+									}
+								}
+							}else if (@$v["form"]["scenario"][$key]["saveElement"]){
+								$el = Element::getByTypeAndId( $value["type"] , $value["id"] );
+								echo '<span><i>'.Yii::t("common","Name")."</i></span><br/>";
+								echo "<span><a target='_blank' class='btn btn-default' href='".Yii::app()->createUrl("#@".$el["slug"]).".view.detail'>".$el["name"]."</a>";
+								echo "</span><br/>";
+								if(@$el["type"]){
+									echo '<span><i>'.Yii::t("common","Type")."</i></span><br/>";
+									echo "<span>".$el["type"]."</span><br/>";
+								}
+								if(@$el["description"]){
+									echo '<span><i>'.Yii::t("common", "Description")."</i></span><br/>";
+									echo "<span>".$el["description"]."</span><br/>";
+								}
+								if(@$el["tags"]){
+									echo '<span><i>'.Yii::t("common","Tags")."</i></span><br/>";
+									echo "<span>".
+										$it=0;
+										foreach($el["tags"] as $tags){
+											if($it>0)
+												echo ", ";
+											echo "<span class='text-red'>#".$tags."</span>";
+											$it++;
+										}
+										echo "</span><br/>";
+								}
+								if(@$el["shortDescription"]){
+									echo '<span><i>'.Yii::t("common","Short description")."</i></span><br/>";
+									echo "<span>".$el["shortDescription"]."</span><br/>";
+								}
+								if(@$el["email"]){
+									echo '<span><i>'.Yii::t("common","Email")."</i></span><br/>";
+									echo "<span>".$el["email"]."</span><br/>";
+								}
+								
+								if(@$el["profilImageUrl"]){
+									echo '<span><i>'.Yii::t("common","Profil image")."</i></span><br/>";
+									echo "<span><img src='".Yii::app()->createUrl($el["profilImageUrl"])."' class='img-responsive'/>";
+									echo "</span><br/>";
+								}
+								if(@$el["url"]){
+									echo '<span><i>'.Yii::t("common","Website URL")."</i></span><br/>";
+									echo "<span><a href='".$el["url"]."'>".$el["url"]."</a></span><br/>";
+								}
 							}
-							echo "<div class='col-xs-12'>".
-									"<h2> [ étape ] ".@$v["form"]["scenario"][$key]["title"]." ".$editBtn."</h2>"; 
+
+
+							echo "</div>";
 
 						} ?>
 
@@ -48,35 +121,3 @@
 
 	?>	
 </div>
-<?php
-// if(!isset($adminForm["scenarioAdmin"]))
-// 	$adminForm["scenarioAdmin"] = array("dossier"=>[]);
-// $pageParams = array(
-// 	"adminAnswers"=>$adminAnswers,
-// 	"adminForm"=>$adminForm,
-// 	"answers" => $answers,
-// 	"form" => $form,
-// 	"user" => $user,
-// 	"prioKey" => @$adminForm['key'],
-// 	"canAdmin" => $canAdmin,
-// 	"canSuperAdmin" => $canSuperAdmin,
-// 	"steps" => array_keys($adminForm["scenarioAdmin"])
-// ); 
-
-// $ct = 0;
-// $showHide = "";
-// foreach ( @$adminForm["scenarioAdmin"] as $k => $v ) {
-	
-// 	if( in_array( @$adminAnswers["step"] , array( "risk","ficheAction" ) ) ){
-// 		$pageParams["riskTypes"] = @$riskTypes;
-// 		$pageParams["riskCatalog" ] = @$riskCatalog;
-// 	}
-	
-// 	echo "<div id='".$k."' class='section".$ct." ".$showHide."'>";
-// 	echo $this->renderPartial( $k , $pageParams ); 
-// 	echo "</div>";
-
-// 	$ct++;
-// 	$showHide = "hide";
-// }
-?>
