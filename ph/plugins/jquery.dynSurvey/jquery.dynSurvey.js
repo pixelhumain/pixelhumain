@@ -394,12 +394,14 @@ var dySObj = {
 	            	"name" : userConnected.name,
 	            	"email" : userConnected.email,
 	            	"formId" : dySObj.surveys.id,
+	            	"session" : formSession,
 	            	"t" : dySObj.surveys.t,
 	            	"h" : dySObj.surveys.h,
 	            	"answers" : {}
 	            };
 	            if(dySObj.surveys.parentSurvey)
 	            	result.parentSurvey = dySObj.surveys.parentSurvey.id;
+
 	            var reloadInside= true;
 	            mylog.log(params.surveyObj);
 	            uploadObj.afterLoadUploader=true;
@@ -445,6 +447,7 @@ var dySObj = {
 		            }
 	            });
 	            mylog.log("onsave result", params, result);
+
 	            $.ajax({
 	              type: "POST",
 	              url: params.savePath,
@@ -457,12 +460,12 @@ var dySObj = {
 	            			Object.keys( dySObj.surveys.parentSurvey.scenario).indexOf(dySObj.surveys.id) < Object.keys( dySObj.surveys.parentSurvey.scenario).length-1 ){
 	            			var ix = Object.keys( dySObj.surveys.parentSurvey.scenario).indexOf(dySObj.surveys.id)+1;
 	            			if(reloadInside)
-	            				window.location = baseUrl+"/survey/co/index/id/"+Object.keys( dySObj.surveys.parentSurvey.scenario )[ix];
+	            				window.location = baseUrl+"/survey/co/index/id/"+Object.keys( dySObj.surveys.parentSurvey.scenario )[ix]+"/session/"+formSession;
 	            		} else {
 		                	toastr.success("answers saved");
 		                	if(dySObj.surveys.parentSurvey.custom.endTpl){
 		                		if(reloadInside)
-		                			window.location = baseUrl+"/survey/co/index/id/"+dySObj.surveys.parentSurvey.id;
+		                			window.location = baseUrl+"/survey/co/index/id/"+dySObj.surveys.parentSurvey.id+"/session/"+formSession;
 		                	}
 		                	else
 		                		$("#ajaxFormModal").html('<h1>Well done ! Thank you for your participation. </h1>');
