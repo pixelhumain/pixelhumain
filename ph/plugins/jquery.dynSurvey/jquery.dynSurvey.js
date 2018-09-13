@@ -400,6 +400,12 @@ var dySObj = {
 	            };
 	            if(dySObj.surveys.parentSurvey)
 	            	result.parentSurvey = dySObj.surveys.parentSurvey.id;
+	            var urlSession = "";
+	            if(typeof formSession !=  "undefined" && formSession != "" && formSession != null ){
+	            	result.session = formSession;
+	            	urlSession = "/session/"+formSession;
+	            }
+
 	            var reloadInside= true;
 	            mylog.log(params.surveyObj);
 	            uploadObj.afterLoadUploader=true;
@@ -457,12 +463,12 @@ var dySObj = {
 	            			Object.keys( dySObj.surveys.parentSurvey.scenario).indexOf(dySObj.surveys.id) < Object.keys( dySObj.surveys.parentSurvey.scenario).length-1 ){
 	            			var ix = Object.keys( dySObj.surveys.parentSurvey.scenario).indexOf(dySObj.surveys.id)+1;
 	            			if(reloadInside)
-	            				window.location = baseUrl+"/survey/co/index/id/"+Object.keys( dySObj.surveys.parentSurvey.scenario )[ix];
+	            				window.location = baseUrl+"/survey/co/index/id/"+Object.keys( dySObj.surveys.parentSurvey.scenario )[ix]+urlSession;
 	            		} else {
 		                	toastr.success("answers saved");
 		                	if(dySObj.surveys.parentSurvey.custom.endTpl){
 		                		if(reloadInside)
-		                			window.location = baseUrl+"/survey/co/index/id/"+dySObj.surveys.parentSurvey.id;
+		                			window.location = baseUrl+"/survey/co/index/id/"+dySObj.surveys.parentSurvey.id+urlSession;
 		                	}
 		                	else
 		                		$("#ajaxFormModal").html('<h1>Well done ! Thank you for your participation. </h1>');
@@ -653,7 +659,7 @@ var dySObj = {
 			counter++;
 		});
 		if(!result){
-			$(".btn-next").html('<span class="text-red"><i class="fa fa-warning"></i> Régler les erreurs</span>');
+			//$(".btn-next").html('<span class="text-red"><i class="fa fa-warning"></i> Régler les erreurs</span>');
 			$('html, body').stop().animate({scrollTop: 0}, 500, '');
 		}else{
 			$(".btn-next").html('<span class="text-dark">Suivant <i class="fa fa-arrow-circle-right"></i></span>');
