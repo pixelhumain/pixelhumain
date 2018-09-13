@@ -798,10 +798,10 @@ var dyFObj = {
 	    	if(typeof networkJson != "undefined")
 				isMapEnd = true;
 			dyFObj.closeForm();
-			if(activeModuleId == "survey")//use case for answerList forms updating
+			/*if(activeModuleId == "survey")//use case for answerList forms updating
         		window.location.reload();
         	else 
-				urlCtrl.loadByHash( uploadObj.gotoUrl );
+				urlCtrl.loadByHash( uploadObj.gotoUrl );*/
         }
 	},
 	//generate Id for upload feature of this element 
@@ -1210,7 +1210,10 @@ var dyFObj = {
         		uploadObject.afterUploadComplete = fieldObj.afterUploadComplete;
         	else if(typeof dySObj != "undefined" && Object.keys(dySObj.surveys).length != 0 && typeof fieldObj.afterUploadComplete == "string"){
         		uploadObject.afterUploadComplete = function(){
-        			window.location=baseUrl+fieldObj.afterUploadComplete;
+        			urlRedirect=baseUrl+fieldObj.afterUploadComplete;
+        			if(typeof formSession !=  "undefined" && formSession != "" && formSession != null )
+        				urlRedirect+="/session/"+formSession;
+        			window.location=urlRedirect;
         		};
         	}else if(typeof updateForm != "undefined"){
         		uploadObject.afterUploadComplete = function(){
@@ -4293,6 +4296,9 @@ var dyFInputs = {
 		removeLocation : function (ix,center){
 			mylog.log("dyFInputs.locationObj.removeLocation", ix, dyFInputs.locationObj.elementLocations);
 			dyFInputs.locationObj.elementLocation = null;
+			if(typeof dyFInputs.locationObj.elementLocations[ix].center != "undefined" && dyFInputs.locationObj.elementLocations[ix].center){
+				dyFInputs.locationObj.centerLocation = null;
+			} 
 			dyFInputs.locationObj.elementLocations.splice(ix,1);
 			$(".locationEl"+ix).parent().remove();
 			//delete dyFInputs.locationObj.elementLocations[ix];
