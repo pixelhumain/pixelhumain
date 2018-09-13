@@ -148,7 +148,7 @@ $session = (!empty($_GET["session"]) ? $_GET["session"] : "1");
                 $class = "hidden" ;
                 if( empty($me) || empty($me["address"]) || empty($me["address"]["codeInsee"]))
                     $class = "";
-                $form = PHDB::findOne( Form::COLLECTION , array( "id"=> ($_GET["id"]) ? $_GET["id"] : "cte", "session"=>(@$_GET["session"]) ? $_GET["session"] : "1" ));
+                $form = PHDB::findOne( Form::COLLECTION , array( "id"=> ($_GET["id"]) ? $_GET["id"] : "cte"));
              if( Form::canAdmin( (string)$form["_id"] , $form  )) { 
                 ?>
                 <li role="separator" class="divider"></li>
