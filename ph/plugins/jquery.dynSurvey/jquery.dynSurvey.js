@@ -383,18 +383,18 @@ var dySObj = {
 	        surveyValues : {},
 	        collection : "answers",
 	        key : "answers",
-	        savePath : baseUrl+"/survey/co/save",
+	        savePath : baseUrl+"/survey/co/save/id/"+answerId,
 	        onLoad : function(){
 	            //$(".description1, .description2, .description3, .description4, .description5, .description6").focus().autogrow({vertical: true, horizontal: false});
 	        },
 	        onSave : function(params) {
 	            mylog.log("onSave" );
 	            var result = {
-	            	"user" : userId,
-	            	"name" : userConnected.name,
-	            	"email" : userConnected.email,
+	            	// "user" : userId,
+	            	// "name" : userConnected.name,
+	            	// "email" : userConnected.email,
 	            	"formId" : dySObj.surveys.id,
-	            	"session" : formSession,
+	            	// "session" : formSession,
 	            	"t" : dySObj.surveys.t,
 	            	"h" : dySObj.surveys.h,
 	            	"answers" : {}
@@ -454,21 +454,21 @@ var dySObj = {
 	              data: result,
 	              dataType: "json"
 	            }).done( function(data){
-	            	if(data.result == true){
+	            	if(data.result.ok == true){
 	            		if( dySObj.surveys.parentSurvey && 
 	            			dySObj.surveys.parentSurvey.surveyType == "surveyList" && 
 	            			Object.keys( dySObj.surveys.parentSurvey.scenario).indexOf(dySObj.surveys.id) < Object.keys( dySObj.surveys.parentSurvey.scenario).length-1 ){
 	            			var ix = Object.keys( dySObj.surveys.parentSurvey.scenario).indexOf(dySObj.surveys.id)+1;
 	            			if(reloadInside)
-	            				window.location = baseUrl+"/survey/co/index/id/"+Object.keys( dySObj.surveys.parentSurvey.scenario )[ix]+"/session/"+formSession;
+	            				window.location = baseUrl+"/survey/co/index/id/"+Object.keys( dySObj.surveys.parentSurvey.scenario )[ix]+"/session/"+formSession+"/answer/"+answerId;
 	            		} else {
 		                	toastr.success("answers saved");
 		                	if(dySObj.surveys.parentSurvey.custom.endTpl){
 		                		if(reloadInside)
-		                			window.location = baseUrl+"/survey/co/index/id/"+dySObj.surveys.parentSurvey.id+"/session/"+formSession;
+		                			window.location = baseUrl+"/survey/co/index/id/"+dySObj.surveys.parentSurvey.id+"/session/"+formSession+"/answer/"+answerId;
 		                	}
 		                	else
-		                		$("#ajaxFormModal").html('<h1>Well done ! Thank you for your participation. </h1>');
+		                		$("#ajaxFormModal").html('<h1>Bravo ! Merci pour votre participation. </h1>');
 		                }
 	            	}
 	                else 
