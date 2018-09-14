@@ -11,6 +11,22 @@
           </table>
         </th>
         </tr></tbody></table>
+          <?php if($nameTeam== "COmmunecter"){ ?> 
+            <table style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: left;width: 100%;">
+            <tr style="padding: 0;vertical-align: top;text-align: left;">
+              <th style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 19px;font-size: 15px;">
+                <center style="width: 100%;min-width: 532px;">
+                <!--http://localhost:8888/ph/images/logoLTxt.jpg-->
+                <a href="https://www.helloasso.com/associations/open-atlas/collectes/communecter" target="_blank">
+                <img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true)."/images/banniere-campagne-acoeur.jpg" ?>" valign="bottom" alt="Logo Communecter" align="center" class="text-center" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;width: auto;max-width: 100%;clear: both;display: block;margin: 0 auto;float: none;text-align: center;">
+                </a>
+                </center>
+              </th>
+              <th class="expander" style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0 !important;margin: 0;text-align: left;line-height: 19px;font-size: 15px;visibility: hidden;width: 0;"></th>
+            </tr>
+          </table>
+        <?php } ?>
+
    <!-- End main email content -->
 
  <table class="container text-center" style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: center;background: #fefefe;width: 580px;margin: 0 auto;"><tbody><tr style="padding: 0;vertical-align: top;text-align: left;"><td style="word-wrap: break-word;-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;padding: 0;vertical-align: top;text-align: left;color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;margin: 0;line-height: 19px;font-size: 15px;border-collapse: collapse !important;"> <!-- Footer -->
