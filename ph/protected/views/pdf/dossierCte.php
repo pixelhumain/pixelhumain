@@ -43,6 +43,7 @@ h1 {
 
 
 	<div class='col-xs-12'>
+		<div
 		<h4 class="padding-20 blue" style="">Orientation stratégique</h4>
 		<span> <?php
 			if(!empty($answers["cte3"]["answers"]["objectif"]["usagers"])){
@@ -100,15 +101,6 @@ h1 {
 
 		<h4 class="padding-20 blue" style="">Calendrier</h4>
 		<span> <?php
-		// "maturity" : {
-	 //            "state" : "",
-	 //            "description" : "",
-	 //            "dateConcept" : "",
-	 //            "dateCahier" : "",
-	 //            "datePrototype" : "",
-	 //            "dateDeveloppement" : "",
-	 //            "dateTest" : "22/03/2019",
-	 //            "dateProduction" : ""
 			if(!empty($answers["cte2"]["answers"]["maturity"])){
 				$m = $answers["cte2"]["answers"]["maturity"];
 				if(!empty($m["state"]))
@@ -116,19 +108,17 @@ h1 {
 				if(!empty($m["description"]))
 					echo $Parsedown->text($m["description"]);
 				if(!empty($m["dateConcept"]))
-					echo "<span>Date : ".$m["dateConcept"]."</span><br/>";
+					echo "<span>Date de l'idée ou du concept : ".$m["dateConcept"]."</span><br/>";
 				if(!empty($m["dateCahier"]))
-					echo "<span>Date : ".$m["dateCahier"]."</span><br/>";
+					echo "<span>Date pour le cahier des charges detaillé : ".$m["dateCahier"]."</span><br/>";
 				if(!empty($m["datePrototype"]))
-					echo "<span>Date : ".$m["datePrototype"]."</span><br/>";
-				if(!empty($m["dateConcept"]))
-					echo "<span>Date : ".$m["dateConcept"]."</span><br/>";
+					echo "<span>Date de réalisation du prototype : ".$m["datePrototype"]."</span><br/>";
 				if(!empty($m["dateDeveloppement"]))
-					echo "<span>Date : ".$m["dateDeveloppement"]."</span><br/>";
+					echo "<span>Date de début de développement : ".$m["dateDeveloppement"]."</span><br/>";
 				if(!empty($m["dateTest"]))
-					echo "<span>Date : ".$m["dateTest"]."</span><br/>";
+					echo "<span>Date des tests : ".$m["dateTest"]."</span><br/>";
 				if(!empty($m["dateProduction"]))
-					echo "<span>Date : ".$m["dateProduction"]."</span><br/>";
+					echo "<span>Date de mise en production : ".$m["dateProduction"]."</span><br/>";
 			}else
 				echo "<i> Pas renseigner </i>";
 		?> </span> 
