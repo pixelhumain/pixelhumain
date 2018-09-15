@@ -78,11 +78,11 @@
 
 
 
-		"In just a few clicks discover local activity on CO and use tools for your own organization : news feeds, agendas, classified ads, directories of initiatives towards a more sustainable world !" => "En quelques clics d&eacute;couvrez votre dynamique locale et des outils pour votre communaut&eacute;  : fil d’actualit&eacute;, agenda, petites annonces, annuaires des initiatives allant vers un monde plus durable !",
+		"In just a few clicks discover local activity on CO and use tools for your own organization : news feeds, agendas, classified ads, directories of initiatives towards a more sustainable world !" => "En quelques clics, d&eacute;couvrez votre dynamique locale et des outils pour votre communaut&eacute;  : fil d’actualit&eacute;, agenda, petites annonces, annuaire des initiatives allant vers un monde plus durable !",
 
 		"Connected like Facebook and open like Wikipedia join the movement!" => "Aussi connect&eacute; que Facebook et aussi ouvert que Wikip&eacute;dia, rejoignez le mouvement !" ,
 
-		"{who} started without you, but you can join him at any time by clicking here" => "{who} a commenc&eacute; sans vous, mais vous pouvez le rejoindre à tout moment en cliquant ici" ,
+		"{who} started without you, but you can join him at any time by clicking here" => "{who} est d&eacute;j&agrave; A<span style='color:#e5324f'>CO</span>eur. Rejoignez-nous sur votre réseau citoyen" ,
 		"The Human Pixels" => "Les Pixels Humains" ,
 		"{who} is waiting for you on {what}" => "{who} vous attend sur {what}" ,
 		"{what} is waiting for you" => "{what} vous attend",

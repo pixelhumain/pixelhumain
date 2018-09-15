@@ -625,6 +625,7 @@ return array(
 	"Photos of"=>"Photos de",
 	"Photos of gallery"=>"Photos de galerie",
 	"No file in this folder"=>"Aucun fichier dans ce dossier",
+	"No bookmark"=>"Aucun bookmark",
 	"No picture in this album"=>"Aucune photo dans cet album",
 	"folder"=>"dossier",
 	"Move in a folder"=>"Déplacer dans un dossier",
@@ -641,6 +642,7 @@ return array(
 	"options"=>"options",
 	"No album selected"=>"Aucun album selectionné",
 	"No folder selected"=>"Aucun dossier selectionné",
+	"Folder {what} and all its elements deleted with success"=>"Dossier {what} et tous ces éléments supprimés avec succès",
 	/*traduire un type de donnée (au singulier)*/
 	"person" => "citoyen",
 	"organization" => "organisation",

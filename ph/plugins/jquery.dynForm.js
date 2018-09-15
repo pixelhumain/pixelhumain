@@ -228,7 +228,8 @@ var uploadObj = {
 	extra : null,
 	get : function(type,id, docT, contentK, foldKey, extraUrl){
 		docT=(notNull(docT) && docT) ? docT : "image";
-		path = baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+uploadObj.folder+"/folder/"+type+"/ownerId/"+id+"/input/qqfile/docType/"+docT;	
+		typeForUpload=(typeof typeObj[type].col != "undefined") ? typeObj[type].col : type; 
+		path = baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+uploadObj.folder+"/folder/"+typeForUpload+"/ownerId/"+id+"/input/qqfile/docType/"+docT;	
 		if(notNull(contentK) && contentK != "")
 			path += "/contentKey/"+contentK;
 		else if(docT == "image")
@@ -242,10 +243,11 @@ var uploadObj = {
 	set : function(type,id, docT, contentK, foldKey, extraUrl){
 		if(typeof type != "undefined"){
 			mylog.log("set uploadObj", id,type,uploadObj.folder,uploadObj.contentKey);
-			uploadObj.type = type;
+			typeForUpload=(typeof typeObj[type].col != "undefined") ? typeObj[type].col : type; 
+			uploadObj.type = typeForUpload;
 			uploadObj.id = id;
 			docT=(notNull(docT) && docT) ? docT : "image";
-			uploadObj.path = baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+uploadObj.folder+"/folder/"+type+"/ownerId/"+id+"/input/qqfile/docType/"+docT;
+			uploadObj.path = baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+uploadObj.folder+"/folder/"+typeForUpload+"/ownerId/"+id+"/input/qqfile/docType/"+docT;
 			
 			if(notNull(contentK) && contentK != "")
 				uploadObj.path += "/contentKey/"+contentK;
@@ -550,11 +552,11 @@ var dyFObj = {
 	editElement : function (type,id, subType){
 		mylog.warn("--------------- editElement ",type,id,subType);
 		//get ajax of the elemetn content
-		uploadObj.set(type,id);
+		uploadObj.set(type, id);
 		uploadObj.update = true;
 		$.ajax({
 	        type: "GET",
-	        url: baseUrl+"/"+moduleId+"/element/get/type/"+type+"/id/"+id,
+	        url: baseUrl+"/"+moduleId+"/element/get/type/"+type+"/id/"+id+"/update/true",
 	        dataType : "json"
 	    })
 	    .done(function (data) {
@@ -594,7 +596,7 @@ var dyFObj = {
 	    mylog.dir(data);
 	    uploadObj.contentKey="profil"; 
 	    if(notNull(data)){
-	    	if(typeof data.images != "undefined" )
+	    	if(typeof data.images != "undefined")
 	    		uploadObj.initList=data.images;
 	    	if(typeof data.files != "undefined" )
 	    		uploadObj.initList=data.files;
@@ -775,6 +777,32 @@ var dyFObj = {
 			toastr.error("Vous devez être connecté pour afficher les formulaires de création");
 			$('#modalLogin').modal("show");
 		}
+	},
+	commonAfterSave : function(){
+		listObject=$(uploadObj.domTarget).fineUploader('getUploads');
+    	goToUpload=false;
+    	if(listObject.length > 0){
+    		$.each(listObject, function(e,v){
+    			if(v.status == "submitted")
+    				goToUpload=true;
+    		});
+    	}
+		if( goToUpload ){
+    		$(uploadObj.domTarget).fineUploader('uploadStoredFiles');
+	    	//principalement pour les surveys
+	    	if(typeof callB == "function")
+    			callB();
+    	}
+	    else { 
+	    	mylog.log("here", isMapEnd);
+	    	if(typeof networkJson != "undefined")
+				isMapEnd = true;
+			dyFObj.closeForm();
+			/*if(activeModuleId == "survey")//use case for answerList forms updating
+        		window.location.reload();
+        	else 
+				urlCtrl.loadByHash( uploadObj.gotoUrl );*/
+        }
 	},
 	//generate Id for upload feature of this element 
 	setMongoId : function(type,callback) { 
@@ -1182,14 +1210,18 @@ var dyFObj = {
         		uploadObject.afterUploadComplete = fieldObj.afterUploadComplete;
         	else if(typeof dySObj != "undefined" && Object.keys(dySObj.surveys).length != 0 && typeof fieldObj.afterUploadComplete == "string"){
         		uploadObject.afterUploadComplete = function(){
-        			window.location=baseUrl+fieldObj.afterUploadComplete;
+        			urlRedirect=baseUrl+fieldObj.afterUploadComplete;
+        			if(typeof formSession !=  "undefined" && formSession != "" && formSession != null )
+        				urlRedirect+="/session/"+formSession;
+        			window.location=urlRedirect;
         		};
         	}else if(typeof updateForm != "undefined"){
         		uploadObject.afterUploadComplete = function(){
         			window.location.reload();
         		};
         	}
-        	if(typeof uploadObj.initList != "undefined" && Object.keys(uploadObj).length > 0){
+
+        	if(typeof uploadObj.initList != "undefined" && Object.keys(uploadObj.initList).length > 0){
         		uploadObject.initList=uploadObj.prepareInit(uploadObj.initList);
         	} 
         	dyFObj.init.uploader[uploaderId]=new Object;
@@ -2282,7 +2314,7 @@ var dyFObj = {
 								    });
 								}
 						    	if(uploadObj.afterLoadUploader){
-						    		toastr.info( "Fichiers bien chargés !!");
+						    		//toastr.info( "Fichiers bien chargés !!");
 						    		if(typeof v.afterUploadComplete != "undefined" && jQuery.isFunction(v.afterUploadComplete) )
 						      			v.afterUploadComplete();
 						     		uploadObj.gotoUrl = null;
@@ -4264,6 +4296,9 @@ var dyFInputs = {
 		removeLocation : function (ix,center){
 			mylog.log("dyFInputs.locationObj.removeLocation", ix, dyFInputs.locationObj.elementLocations);
 			dyFInputs.locationObj.elementLocation = null;
+			if(typeof dyFInputs.locationObj.elementLocations[ix].center != "undefined" && dyFInputs.locationObj.elementLocations[ix].center){
+				dyFInputs.locationObj.centerLocation = null;
+			} 
 			dyFInputs.locationObj.elementLocations.splice(ix,1);
 			$(".locationEl"+ix).parent().remove();
 			//delete dyFInputs.locationObj.elementLocations[ix];
@@ -5020,7 +5055,7 @@ var arrayForm = {
 				        data: data,
 						type: "POST",
 				    }).done(function (data) {
-				    	//window.location.reload(); 
+				    	window.location.reload(); 
 				    });
 				},
 				properties : (jsonHelper.notNull( "ctxDynForms."+f+"."+k+"."+q) ) ? ctxDynForms[f][k][q].properties : form[scenarioKey][f].form.scenario[k].json.jsonSchema.properties[q].properties

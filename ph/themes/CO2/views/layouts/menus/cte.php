@@ -133,7 +133,7 @@ $session = (!empty($_GET["session"]) ? $_GET["session"] : "1");
         <ul class="dropdown-menu arrow_box">
             
             <li class="text-admin">
-                <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>/survey/co/index/id/cte/session/<?php echo $session ?>" class="lbh bg-white">
+                <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>/survey/co/index/id/<?php echo $_GET["id"] ?>" class="lbh bg-white">
                     <i class="fa fa-home"></i> Accueil
                 </a>
             </li>

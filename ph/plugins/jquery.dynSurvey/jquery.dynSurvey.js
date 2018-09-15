@@ -461,6 +461,7 @@ var dySObj = {
 	            			var ix = Object.keys( dySObj.surveys.parentSurvey.scenario).indexOf(dySObj.surveys.id)+1;
 	            			if(reloadInside)
 	            				window.location = baseUrl+"/survey/co/index/id/"+Object.keys( dySObj.surveys.parentSurvey.scenario )[ix]+"/session/"+formSession+"/answer/"+answerId;
+
 	            		} else {
 		                	toastr.success("answers saved");
 		                	if(dySObj.surveys.parentSurvey.custom.endTpl){
@@ -656,7 +657,7 @@ var dySObj = {
 			counter++;
 		});
 		if(!result){
-			$(".btn-next").html('<span class="text-red"><i class="fa fa-warning"></i> Régler les erreurs</span>');
+			//$(".btn-next").html('<span class="text-red"><i class="fa fa-warning"></i> Régler les erreurs</span>');
 			$('html, body').stop().animate({scrollTop: 0}, 500, '');
 		}else{
 			$(".btn-next").html('<span class="text-dark">Suivant <i class="fa fa-arrow-circle-right"></i></span>');
