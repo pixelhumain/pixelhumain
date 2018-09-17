@@ -1217,8 +1217,7 @@ var dyFObj = {
         		};
         	}else if(typeof updateForm != "undefined"){
         		uploadObject.afterUploadComplete = function(){
-        			alert("ici");
-        			//window.location.reload();
+        			window.location.reload();
         		};
         	}
 
@@ -2317,8 +2316,7 @@ var dyFObj = {
 						    	if(uploadObj.afterLoadUploader){
 						    		//toastr.info( "Fichiers bien chargés !!");
 						    		if(typeof v.afterUploadComplete != "undefined" && jQuery.isFunction(v.afterUploadComplete) ){
-						    			alert("ouii");
-						      			v.afterUploadComplete();
+						    			v.afterUploadComplete();
 						    		}
 						     		uploadObj.gotoUrl = null;
 						     	}
