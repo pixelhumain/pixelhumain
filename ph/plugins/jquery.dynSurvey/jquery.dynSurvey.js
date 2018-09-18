@@ -466,7 +466,7 @@ var dySObj = {
 		                	toastr.success("answers saved");
 		                	if(dySObj.surveys.parentSurvey.custom.endTpl){
 		                		if(reloadInside)
-		                			window.location = baseUrl+"/survey/co/index/id/"+dySObj.surveys.parentSurvey.id+"/session/"+formSession+"/answer/"+answerId;
+		                			window.location = baseUrl+"/survey/co/index/id/"+dySObj.surveys.parentSurvey.id;
 		                	}
 		                	else
 		                		$("#ajaxFormModal").html('<h1>Bravo ! Merci pour votre participation. </h1>');

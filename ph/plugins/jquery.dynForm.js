@@ -228,7 +228,7 @@ var uploadObj = {
 	extra : null,
 	get : function(type,id, docT, contentK, foldKey, extraUrl){
 		docT=(notNull(docT) && docT) ? docT : "image";
-		typeForUpload=(typeof typeObj[type].col != "undefined") ? typeObj[type].col : type; 
+		typeForUpload = ( jsonHelper.notNull( "typeObj."+type+'.col') ) ? typeObj[type].col : type; 
 		path = baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+uploadObj.folder+"/folder/"+typeForUpload+"/ownerId/"+id+"/input/qqfile/docType/"+docT;	
 		if(notNull(contentK) && contentK != "")
 			path += "/contentKey/"+contentK;
@@ -243,7 +243,7 @@ var uploadObj = {
 	set : function(type,id, docT, contentK, foldKey, extraUrl){
 		if(typeof type != "undefined"){
 			mylog.log("set uploadObj", id,type,uploadObj.folder,uploadObj.contentKey);
-			typeForUpload=(typeof typeObj[type].col != "undefined") ? typeObj[type].col : type; 
+			typeForUpload = ( jsonHelper.notNull( "typeObj."+type+'.col') ) ? typeObj[type].col : type; 
 			uploadObj.type = typeForUpload;
 			uploadObj.id = id;
 			docT=(notNull(docT) && docT) ? docT : "image";
