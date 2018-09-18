@@ -348,7 +348,7 @@ function bindEventTextArea(idTextArea, idComment, contextType, isAnswer, parentC
     }
   }
 
-  function saveComment(textComment, parentCommentId, domElement){
+  function saveComment(textComment, parentCommentId, domElement, path){
     textComment = $.trim(textComment);
     if(!notEmpty(parentCommentId)) parentCommentId = "";
     if(textComment == "") {
@@ -364,6 +364,8 @@ function bindEventTextArea(idTextArea, idComment, contextType, isAnswer, parentC
       contextType : contextType,
       argval : argval
     };
+    if(notNull(path))
+      newComment.path=path;
     newComment=mentionsInit.beforeSave(newComment, domElement);
     $.ajax({
       url: baseUrl+'/'+moduleId+"/comment/save/",
