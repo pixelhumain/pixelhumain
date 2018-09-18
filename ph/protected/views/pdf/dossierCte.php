@@ -34,7 +34,7 @@ h1 {
 		<h1 class="blue"> CONTRAT DE TRANSITION ECOLOGIQUE </h1>
 		<span class="darkgreen">FICHE ACTION :</span><br/>
 		<span class="lightgreen"><?php 
-			if( @$answers["cte2"]["answers"]["project"]  ) { 
+			if( !empty($answers["cte2"]["answers"]["project"]) && !empty($answers["cte2"]["answers"]["project"]["name"]) ) { 
 				echo $answers["cte2"]["answers"]["project"]["name"];
 			} ?>
 		</span>
@@ -43,11 +43,10 @@ h1 {
 
 
 	<div class='col-xs-12'>
-		<div
 		<h4 class="padding-20 blue" style="">Orientation stratégique</h4>
 		<span> <?php
-			if(!empty($answers["cte3"]["answers"]["objectif"]["usagers"])){
-				echo $Parsedown->text($answers["cte3"]["answers"]["objectif"]["usagers"]);
+			if(!empty($answer["answers"]["cte3"]["answers"]["objectif"]["usagers"])){
+				echo $Parsedown->text($answer["answers"]["cte3"]["answers"]["objectif"]["usagers"]);
 			}else
 				echo "<i> Pas renseigner </i>";
 		?> </span> 
@@ -55,8 +54,8 @@ h1 {
 
 		<h4 class="padding-20 blue" style="">Objectifs</h4>
 		<span> <?php
-			if(!empty($answers["cte3"]["answers"]["objectif"]["objectif"])){
-				echo $Parsedown->text($answers["cte3"]["answers"]["objectif"]["objectif"]);
+			if(!empty($answer["answers"]["cte3"]["answers"]["objectif"]["objectif"])){
+				echo $Parsedown->text($answer["answers"]["cte3"]["answers"]["objectif"]["objectif"]);
 			}else
 				echo "<i> Pas renseigner </i>";
 		?> </span> 
@@ -65,8 +64,8 @@ h1 {
 		<h4 class="padding-20 blue" style="">Description de l'action</h4>
 		<span> <?php
 			
-			if(!empty($answers["cte3"]["answers"]["objectif"]["description"])){
-				echo $Parsedown->text($answers["cte3"]["answers"]["objectif"]["description"]);
+			if(!empty($answer["answers"]["cte3"]["answers"]["objectif"]["description"])){
+				echo $Parsedown->text($answer["answers"]["cte3"]["answers"]["objectif"]["description"]);
 			}else
 				echo "<i> Pas renseigner </i>";
 		?> </span> 
@@ -74,8 +73,8 @@ h1 {
 
 		<h4 class="padding-20 blue" style="">Maitre d'ouvrage/pilote de l'action</h4>
 		<span> <?php
-			if(!empty($answers["cte1"]["answers"]["organization"]["name"])){
-				echo $Parsedown->text($answers["cte1"]["answers"]["organization"]["name"]);
+			if(!empty($answer["answers"]["cte1"]["answers"]["organization"]["name"])){
+				echo $Parsedown->text($answer["answers"]["cte1"]["answers"]["organization"]["name"]);
 			}else
 				echo "<i> Pas renseigner </i>";
 		?> </span> 
@@ -83,8 +82,8 @@ h1 {
 
 		<h4 class="padding-20 blue" style="">Partenaires (actés et potentiels)</h4>
 		<span> <?php
-			if(!empty($answers["cte3"]["answers"]["objectif"]["cooperations"])){
-				echo $Parsedown->text($answers["cte3"]["answers"]["objectif"]["cooperations"]);
+			if(!empty($answer["answers"]["cte3"]["answers"]["objectif"]["cooperations"])){
+				echo $Parsedown->text($answer["answers"]["cte3"]["answers"]["objectif"]["cooperations"]);
 			}else
 				echo "<i> Pas renseigner </i>";
 		?> </span> 
@@ -92,8 +91,8 @@ h1 {
 
 		<h4 class="padding-20 blue" style="">Modalités de mise en oeuvre</h4>
 		<span> <?php
-			if(!empty($answers["cte3"]["answers"]["objectif"]["gouvernances"])){
-				echo $Parsedown->text($answers["cte3"]["answers"]["objectif"]["gouvernances"]);
+			if(!empty($answer["answers"]["cte3"]["answers"]["objectif"]["gouvernances"])){
+				echo $Parsedown->text($answer["answers"]["cte3"]["answers"]["objectif"]["gouvernances"]);
 			}else
 				echo "<i> Pas renseigner </i>";
 		?> </span> 
@@ -101,8 +100,8 @@ h1 {
 
 		<h4 class="padding-20 blue" style="">Calendrier</h4>
 		<span> <?php
-			if(!empty($answers["cte2"]["answers"]["maturity"])){
-				$m = $answers["cte2"]["answers"]["maturity"];
+			if(!empty($answer["answers"]["cte2"]["answers"]["maturity"])){
+				$m = $answer["answers"]["cte2"]["answers"]["maturity"];
 				if(!empty($m["state"]))
 					echo "<span>Etat actuel : ".$m["state"]."</span><br/>";
 				if(!empty($m["description"]))
@@ -126,8 +125,8 @@ h1 {
 
 		<h4 class="padding-20 blue" style="">Evaluation</h4>
 		<span> <?php
-			if(isset($answers["cte2"]["answers"]["risk"]["description"])){
-				echo $Parsedown->text($answers["cte2"]["answers"]["risk"]["description"]);
+			if(isset($answer["answers"]["cte2"]["answers"]["risk"]["description"])){
+				echo $Parsedown->text($answer["answers"]["cte2"]["answers"]["risk"]["description"]);
 			}else
 				echo "<i> Pas renseigner </i>";
 		?> </span> 
@@ -135,7 +134,7 @@ h1 {
 
 		<h4 class="padding-20 blue" style="">Plan de financement</h4>
 		<span> <?php
-			if(isset($answers["cte3"]["answers"]["previsionel"]["previsionel"])){
+			if(isset($answer["answers"]["cte3"]["answers"]["previsionel"]["previsionel"])){
 				echo "Voir Annexe";
 			}else
 				echo "<i> Pas renseigner </i>";
