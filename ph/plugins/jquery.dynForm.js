@@ -220,13 +220,16 @@ var uploadObj = {
 	isSub : false,
 	update  : false,
 	docListIds : [],
+	initList : [],
 	folder : "communecter", //on force pour pas casser toutes les vielles images
 	contentKey : "profil",
+	afterLoadUploader : false,
 	path : null,
 	extra : null,
 	get : function(type,id, docT, contentK, foldKey, extraUrl){
 		docT=(notNull(docT) && docT) ? docT : "image";
-		path = baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+uploadObj.folder+"/folder/"+type+"/ownerId/"+id+"/input/qqfile/docType/"+docT;	
+		typeForUpload=(typeof typeObj[type].col != "undefined") ? typeObj[type].col : type; 
+		path = baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+uploadObj.folder+"/folder/"+typeForUpload+"/ownerId/"+id+"/input/qqfile/docType/"+docT;	
 		if(notNull(contentK) && contentK != "")
 			path += "/contentKey/"+contentK;
 		else if(docT == "image")
@@ -240,10 +243,11 @@ var uploadObj = {
 	set : function(type,id, docT, contentK, foldKey, extraUrl){
 		if(typeof type != "undefined"){
 			mylog.log("set uploadObj", id,type,uploadObj.folder,uploadObj.contentKey);
-			uploadObj.type = type;
+			typeForUpload=(typeof typeObj[type].col != "undefined") ? typeObj[type].col : type; 
+			uploadObj.type = typeForUpload;
 			uploadObj.id = id;
 			docT=(notNull(docT) && docT) ? docT : "image";
-			uploadObj.path = baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+uploadObj.folder+"/folder/"+type+"/ownerId/"+id+"/input/qqfile/docType/"+docT;
+			uploadObj.path = baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+uploadObj.folder+"/folder/"+typeForUpload+"/ownerId/"+id+"/input/qqfile/docType/"+docT;
 			
 			if(notNull(contentK) && contentK != "")
 				uploadObj.path += "/contentKey/"+contentK;
@@ -260,7 +264,22 @@ var uploadObj = {
 			uploadObj.type = null;
 			uploadObj.id = null;
 			uploadObj.path = null;
+			uploadObj.initList = {};
 		}
+	},
+	prepareInit : function(data){
+		arrayList=[];
+		$.each(data, function(e, v){
+			item=new Object;
+			item.size=v.size,
+			item.uuid=v._id.$id,
+			item.name=v.name;
+			item.deleteFileEndpoint=baseUrl+"/"+moduleId+"/document/deletedocumentbyid/id";
+			if(typeof v.imageThumbPath != "undefined")
+				item.thumbnailUrl=v.imageThumbPath;
+			arrayList.push(item);
+		} );
+		return arrayList;
 	}
 };
 var openingHoursResult=[
@@ -533,11 +552,11 @@ var dyFObj = {
 	editElement : function (type,id, subType){
 		mylog.warn("--------------- editElement ",type,id,subType);
 		//get ajax of the elemetn content
-		uploadObj.set(type,id);
+		uploadObj.set(type, id);
 		uploadObj.update = true;
 		$.ajax({
 	        type: "GET",
-	        url: baseUrl+"/"+moduleId+"/element/get/type/"+type+"/id/"+id,
+	        url: baseUrl+"/"+moduleId+"/element/get/type/"+type+"/id/"+id+"/update/true",
 	        dataType : "json"
 	    })
 	    .done(function (data) {
@@ -576,6 +595,14 @@ var dyFObj = {
 	    mylog.warn("--------------- Open Form ",type, afterLoad,data);
 	    mylog.dir(data);
 	    uploadObj.contentKey="profil"; 
+	    if(notNull(data)){
+	    	if(typeof data.images != "undefined")
+	    		uploadObj.initList=data.images;
+	    	if(typeof data.files != "undefined" )
+	    		uploadObj.initList=data.files;
+	    }else{
+	    	uploadObj.initList={};
+	    }
 	    dyFObj.activeElem = (isSub) ? "subElementObj" : "elementObj";
 	    dyFObj.activeModal = (isSub) ? "#openModal" : "#ajax-modal";
       	
@@ -731,7 +758,7 @@ var dyFObj = {
 
 			      	if( typeof dyFObj[dyFObj.activeElem].dynForm.jsonSchema.beforeSave == "function")
 			        	dyFObj[dyFObj.activeElem].dynForm.jsonSchema.beforeSave();
-
+			        uploadObj.afterLoadUploader=true;
 			        var afterSave = ( typeof dyFObj[dyFObj.activeElem].dynForm.jsonSchema.afterSave == "function") ? dyFObj[dyFObj.activeElem].dynForm.jsonSchema.afterSave : null;
 			        mylog.log("onSave ", dyFObj.activeElem, dyFObj[dyFObj.activeElem].saveUrl, dyFObj[dyFObj.activeElem].save);
 			        if( dyFObj[dyFObj.activeElem].save )
@@ -750,6 +777,32 @@ var dyFObj = {
 			toastr.error("Vous devez être connecté pour afficher les formulaires de création");
 			$('#modalLogin').modal("show");
 		}
+	},
+	commonAfterSave : function(){
+		listObject=$(uploadObj.domTarget).fineUploader('getUploads');
+    	goToUpload=false;
+    	if(listObject.length > 0){
+    		$.each(listObject, function(e,v){
+    			if(v.status == "submitted")
+    				goToUpload=true;
+    		});
+    	}
+		if( goToUpload ){
+    		$(uploadObj.domTarget).fineUploader('uploadStoredFiles');
+	    	//principalement pour les surveys
+	    	if(typeof callB == "function")
+    			callB();
+    	}
+	    else { 
+	    	mylog.log("here", isMapEnd);
+	    	if(typeof networkJson != "undefined")
+				isMapEnd = true;
+			dyFObj.closeForm();
+			/*if(activeModuleId == "survey")//use case for answerList forms updating
+        		window.location.reload();
+        	else 
+				urlCtrl.loadByHash( uploadObj.gotoUrl );*/
+        }
 	},
 	//generate Id for upload feature of this element 
 	setMongoId : function(type,callback) { 
@@ -1157,13 +1210,20 @@ var dyFObj = {
         		uploadObject.afterUploadComplete = fieldObj.afterUploadComplete;
         	else if(typeof dySObj != "undefined" && Object.keys(dySObj.surveys).length != 0 && typeof fieldObj.afterUploadComplete == "string"){
         		uploadObject.afterUploadComplete = function(){
-        			window.location=baseUrl+fieldObj.afterUploadComplete;
+        			urlRedirect=baseUrl+fieldObj.afterUploadComplete;
+        			if(typeof formSession !=  "undefined" && formSession != "" && formSession != null )
+        				urlRedirect+="/session/"+formSession;
+        			window.location=urlRedirect;
         		};
         	}else if(typeof updateForm != "undefined"){
         		uploadObject.afterUploadComplete = function(){
         			window.location.reload();
         		};
         	}
+
+        	if(typeof uploadObj.initList != "undefined" && Object.keys(uploadObj.initList).length > 0){
+        		uploadObject.initList=uploadObj.prepareInit(uploadObj.initList);
+        	} 
         	dyFObj.init.uploader[uploaderId]=new Object;
         	dyFObj.init.uploader[uploaderId]=uploadObject;
         }
@@ -2090,6 +2150,7 @@ var dyFObj = {
 			    }
 			}*/
 			uploadObj.docListIds=[];
+			uploadObj.afterLoadUploader=false;
 			$.each(dyFObj.init.uploader, function(e,v){
 				var domElement="#"+e;
 				//var FineUploader = function(){
@@ -2099,24 +2160,30 @@ var dyFObj = {
 					var endPointUploader=(typeof v.endPoint != "undefined") ? v.endPoint : uploadObj.path;
 					$(domElement).fineUploader({
 			            template: (v.template) ? v.template : 'qq-template-manual-trigger',
-			            itemLimit: (v.itemLimit) ? v.itemLimit : 0,
 			            paste: {
 					        defaultName: 'pasted_image',
 					        promptForName:false,
 					        targetElement: $(window)
 					    },
+
 			            request: {
 			                endpoint: endPointUploader
 			            },
 			            validation: {
 			                allowedExtensions: (v.filetypes) ? v.filetypes : ['jpeg', 'jpg', 'gif', 'png'],
-			                sizeLimit: 2000000
+			                sizeLimit: 2000000,
+			                itemLimit: (v.itemLimit) ? v.itemLimit : 0
 			            },
 			            messages: {
 					        sizeError : '{file} '+tradDynForm.istooheavy+'! '+tradDynForm.limitmax+' : {sizeLimit}.',
 					        typeError : '{file} '+tradDynForm.invalidextension+'. '+tradDynForm.extensionacceptable+': {extensions}.'
 					    },
-					    
+					    session:{
+					    	endpoint:null
+					    },
+					    deleteFile: {
+					        enabled: true
+					    },
 			            callbacks: {
 			            	//when a img is selected
 						    onSubmit: function(id, fileName) {
@@ -2136,7 +2203,7 @@ var dyFObj = {
 						    	if(($("ul.qq-upload-list > li").length-1)<=0)
 						    		$('#trigger-upload').addClass("hide");
 		        			},
-		        			 onPasteReceived: function(blob) {},
+		        			onPasteReceived: function(blob) {},
 
 						    //launches request endpoint
 						    //onUpload: function(id, fileName) {
@@ -2157,7 +2224,7 @@ var dyFObj = {
 						    //when every img finish upload process whatever the status
 						    onComplete: function(id, fileName,responseJSON,xhr) {
 						    	
-						    	//mylog.log(responseJSON);
+						    	console.log(responseJSON,xhr);
 						    	if(typeof responseJSON.survey != "undefined" && responseJSON.survey){
 						    		documentEl={
 						    			formId:dySObj.surveys.id,
@@ -2190,10 +2257,13 @@ var dyFObj = {
 						    		mylog.error(trad.somethingwentwrong , responseJSON.msg)
 						    	}
 						    },
+						    onSessionRequestComplete:function(response, success, xhrOrXdr){
+						    	//alert("sessiiiiiiion");
+						    	//console.log("sesionnnn", response, success, xhrOrXdr);
+						    },
 						    //when all upload is complete whatever the result
 						    onAllComplete: function(succeeded, failed) {
 						    	mylog.log("ooooooooooooo",succeeded,failed);
-						     	toastr.info( "Fichiers bien chargés !!");
 						     	
 						      	if($("#ajaxFormModal #newsCreation").val()=="true"){
 						      		//var mentionsInput=[];
@@ -2243,9 +2313,13 @@ var dyFObj = {
 									   $("#btn-submit-form").prop('disabled', false);
 								    });
 								}
-						    	if(typeof v.afterUploadComplete != "undefined" && jQuery.isFunction(v.afterUploadComplete) )
-						      		v.afterUploadComplete();
-						     	uploadObj.gotoUrl = null;
+						    	if(uploadObj.afterLoadUploader){
+						    		//toastr.info( "Fichiers bien chargés !!");
+						    		if(typeof v.afterUploadComplete != "undefined" && jQuery.isFunction(v.afterUploadComplete) ){
+						    			v.afterUploadComplete();
+						    		}
+						     		uploadObj.gotoUrl = null;
+						     	}
 						    },
 						    onError: function(id) {
 						      toastr.info(trad.somethingwentwrong);
@@ -2259,6 +2333,8 @@ var dyFObj = {
 			            },
 			            autoUpload: false
 			        });
+					if(typeof v.initList != "undefined" )
+						$(domElement).fineUploader("addInitialFiles",v.initList);
 					/*mylog.log(params);
 					if(typeof params.formValues.images != "undefined" && params.formValues.images.length > 0){
 						var imagesArray=[];
@@ -4221,6 +4297,9 @@ var dyFInputs = {
 		removeLocation : function (ix,center){
 			mylog.log("dyFInputs.locationObj.removeLocation", ix, dyFInputs.locationObj.elementLocations);
 			dyFInputs.locationObj.elementLocation = null;
+			if(typeof dyFInputs.locationObj.elementLocations[ix].center != "undefined" && dyFInputs.locationObj.elementLocations[ix].center){
+				dyFInputs.locationObj.centerLocation = null;
+			} 
 			dyFInputs.locationObj.elementLocations.splice(ix,1);
 			$(".locationEl"+ix).parent().remove();
 			//delete dyFInputs.locationObj.elementLocations[ix];
@@ -4977,7 +5056,7 @@ var arrayForm = {
 				        data: data,
 						type: "POST",
 				    }).done(function (data) {
-				    	//window.location.reload(); 
+				    	window.location.reload(); 
 				    });
 				},
 				properties : (jsonHelper.notNull( "ctxDynForms."+f+"."+k+"."+q) ) ? ctxDynForms[f][k][q].properties : form[scenarioKey][f].form.scenario[k].json.jsonSchema.properties[q].properties
@@ -5053,7 +5132,18 @@ var arrayForm = {
 	        console.log($(this).data("step")+"."+field, $("#"+field).val() );
 	        if( fieldObj.inputType ){
 	            if(fieldObj.inputType=="uploader"){
-	         		if( $('#'+fieldObj.domElement).fineUploader('getUploads').length > 0 ){
+	            	listObject=$('#'+fieldObj.domElement).fineUploader('getUploads');
+			    	goToUpload=false;
+			    	if(listObject.length > 0){
+			    		$.each(listObject, function(e,v){
+			    			if(v.status == "submitted")
+			    				goToUpload=true;
+			    		});
+			    	}
+
+					if( goToUpload ){       		
+			    
+	         		//if( $('#'+fieldObj.domElement).fineUploader('getUploads').length > 0 ){
 						$('#'+fieldObj.domElement).fineUploader('uploadStoredFiles');
 						editAnswers[field] = "";
 	            	}
@@ -5147,15 +5237,10 @@ var processUrl = {
 
 		        if (match_url.test(getUrl.val())) 
 		        {
-		        	alert(getUrl.val());
-		        	console.log(getUrl.val().match(match_url));
 		        	extract_url=getUrl.val().match(match_url)[0];
-		        	alert(extract_url);
 		        	extract_url=extract_url.replace(/[\n]/gi," ");
-		        	alert(extract_url);
 		        	extract_url=extract_url.split(" ");
 		        	extract_url=extract_url[0];
-			        alert(extract_url);
 			        if(lastUrl != extract_url && processUrl.isLoading==false){
 			        	processUrl.isLoading=true;
 			        	var extracted_url = extract_url;

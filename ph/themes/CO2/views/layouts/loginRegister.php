@@ -225,7 +225,15 @@
                 </div>
             </div>
             <div class="col-md-4 col-md-offset-4 text-left">
-                
+                <div class="pull-left form-actions no-margin" style="width:100%; padding:10px;">
+                    <div class="errorHandler alert alert-danger no-display registerResult pull-left " style="width:100%;">
+                        <i class="fa fa-remove-sign"></i> <?php echo Yii::t("login","Please verify your entries.") ?>
+                    </div>
+                    <div class="alert alert-success no-display pendingProcess" style="width:100%;">
+                        <i class="fa fa-check"></i> <?php echo Yii::t("login","You've been invited : please resume the registration process in order to log in.") ?>
+                    </div>
+                </div>
+
                 <label class="letter-black"><i class="fa fa-address-book-o"></i> <?php echo Yii::t("login","Name and surname") ?></label>
                 <input class="form-control" id="registerName" name="name" type="text" placeholder="<?php echo Yii::t("login","name and surname") ?>"><br/>
                 
@@ -259,9 +267,6 @@
                 <div class="pull-left form-actions no-margin" style="width:100%; padding:10px;">
                     <div class="errorHandler alert alert-danger no-display registerResult pull-left " style="width:100%;">
                         <i class="fa fa-remove-sign"></i> <?php echo Yii::t("login","Please verify your entries.") ?>
-                    </div>
-                    <div class="alert alert-success no-display pendingProcess" style="width:100%;">
-                        <i class="fa fa-check"></i> <?php echo Yii::t("login","You've been invited : please resume the registration process in order to log in.") ?>
                     </div>
                 </div>
 

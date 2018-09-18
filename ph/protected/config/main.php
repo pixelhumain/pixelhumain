@@ -32,6 +32,7 @@ return array(
         'citizenToolKit' => realpath(__DIR__ . $modulesDir.'/citizenToolKit'),
         'html2pdf'     => realpath(__DIR__ . '/../../vendor/spipu/html2pdf/src'),
         'tcpdf'        => realpath(__DIR__ . '/../../vendor/tecnickcom/tcpdf'),
+        'parsedown'    => realpath(__DIR__ . '/../../vendor/erusev/parsedown'),
         'mangopay'     => realpath(__DIR__ . '/../../vendor/mangopay/php-sdk-v2/MangoPay'),
         'crypt'        => realpath(__DIR__ . '/../../vendor/phpseclib/Crypt'),
     ),

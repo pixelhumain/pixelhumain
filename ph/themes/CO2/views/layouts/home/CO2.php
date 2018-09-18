@@ -42,6 +42,13 @@
 		 style="margin-top: 80px; position:relative;">
 
 		<div class="col-md-12">
+			<div id="videoDocsImg" class="col-xs-12 no-padding">
+			    	<a target="_blank" href="https://www.helloasso.com/associations/open-atlas/collectes/communecter/don"><img class="img-responsive" src="<?php echo $this->module->assetsUrl; ?>/images/banniere-Campagne-Acoeur.jpg"/></a>
+				</div>
+			
+		</div>
+
+		<div class="col-md-12">
 			<?php if(!isset(Yii::app()->session['userId'])) { ?>
 				<div id="videoDocsImg" class="col-md-12 col-sm-12 col-xs-12 text-center">
 			    	<img class="img-responsive" style="max-height: 450px;"

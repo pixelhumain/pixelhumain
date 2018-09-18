@@ -87,7 +87,8 @@ HtmlHelper::registerCssAndScriptsFiles($cssJS, Yii::app()->getModule( "co2" )->g
   $this->renderPartial($layoutPath.'initJs', 
                                  array( "me"=>$me, "parentModuleId" => $parentModuleId, "myFormContact" => @$myFormContact, "communexion" => CO2::getCommunexionCookies()));
 
-  if (  ($this->module->id == "survey" && strrpos(@$_GET['id'], "cte") !== false ) || @Yii::app()->session["custom"]["header"] == "survey.views.custom.cte"){
+  if (  ($this->module->id == "survey" )){
+    //&& strrpos(@$_GET['id'], "cte") !== false ) || @Yii::app()->session["custom"]["header"] == "survey.views.custom.cte"){
       $CO2DomainName = "cte";
       $this->renderPartial( "co2.views.custom.init",array( "custom" => "forms.cte" ) );
   } else if($this->module->id == "onepage" && @$_GET['slug'] ){
