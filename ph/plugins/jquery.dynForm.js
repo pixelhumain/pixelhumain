@@ -2227,6 +2227,8 @@ var dyFObj = {
 						    	console.log(responseJSON,xhr);
 						    	if(typeof responseJSON.survey != "undefined" && responseJSON.survey){
 						    		documentEl={
+						    			surveyId:adminAnswers.formId,
+						    			answerId:adminAnswers._id.$id,
 						    			formId:dySObj.surveys.id,
 						    			answerSection: dySObj.activeSectionKey,
 						    			answerKey : responseJSON.survey,
