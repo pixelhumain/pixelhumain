@@ -1213,6 +1213,9 @@ var dyFObj = {
         			urlRedirect=baseUrl+fieldObj.afterUploadComplete;
         			if(typeof formSession !=  "undefined" && formSession != "" && formSession != null )
         				urlRedirect+="/session/"+formSession;
+        			if(typeof answerId != "undefined" && answerId!=""){
+        				urlRedirect+="/answer/"+answerId;
+        			}
         			window.location=urlRedirect;
         		};
         	}else if(typeof updateForm != "undefined"){
