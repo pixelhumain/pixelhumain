@@ -34,8 +34,8 @@ h1 {
 		<h1 class="blue"> CONTRAT DE TRANSITION ECOLOGIQUE </h1>
 		<span class="darkgreen">FICHE ACTION :</span><br/>
 		<span class="lightgreen"><?php 
-			if( @$answer["answers"]["cte2"]["answers"]["project"]  ) { 
-				echo $answer["answers"]["cte2"]["answers"]["project"]["name"];
+			if( !empty($answers["cte2"]["answers"]["project"]) && !empty($answers["cte2"]["answers"]["project"]["name"]) ) { 
+				echo $answers["cte2"]["answers"]["project"]["name"];
 			} ?>
 		</span>
 

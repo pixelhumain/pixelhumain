@@ -2315,8 +2315,9 @@ var dyFObj = {
 								}
 						    	if(uploadObj.afterLoadUploader){
 						    		//toastr.info( "Fichiers bien chargés !!");
-						    		if(typeof v.afterUploadComplete != "undefined" && jQuery.isFunction(v.afterUploadComplete) )
-						      			v.afterUploadComplete();
+						    		if(typeof v.afterUploadComplete != "undefined" && jQuery.isFunction(v.afterUploadComplete) ){
+						    			v.afterUploadComplete();
+						    		}
 						     		uploadObj.gotoUrl = null;
 						     	}
 						    },
@@ -5236,15 +5237,10 @@ var processUrl = {
 
 		        if (match_url.test(getUrl.val())) 
 		        {
-		        	alert(getUrl.val());
-		        	console.log(getUrl.val().match(match_url));
 		        	extract_url=getUrl.val().match(match_url)[0];
-		        	alert(extract_url);
 		        	extract_url=extract_url.replace(/[\n]/gi," ");
-		        	alert(extract_url);
 		        	extract_url=extract_url.split(" ");
 		        	extract_url=extract_url[0];
-			        alert(extract_url);
 			        if(lastUrl != extract_url && processUrl.isLoading==false){
 			        	processUrl.isLoading=true;
 			        	var extracted_url = extract_url;
