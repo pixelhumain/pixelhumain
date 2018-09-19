@@ -108,13 +108,12 @@
               ?>   
         
         <?php  if( isset(Yii::app()->session["userId"]) )
-                $this->renderPartial($modulePath.'/news/modalShare', array());
+                $this->renderPartial($modulePath.'/news/modalShare', array()); 
         ?>
- 
-        <div class="main-container col-md-12 col-sm-12 col-xs-12 no-padding">
+        <div class="main-container col-md-12 col-sm-12 col-xs-12 no-padding <?php echo @$params["appRendering"] ?>">
 
             <?php 
-                    $CO2DomainName = Yii::app()->params["CO2DomainName"];
+                  /*  $CO2DomainName = Yii::app()->params["CO2DomainName"];
                     $this->renderPartial( $layoutPath.'menus/'.$CO2DomainName, 
                                             array( "layoutPath"=>$layoutPath , 
                                                     "subdomain"=>"", //$subdomain,
@@ -122,11 +121,12 @@
                                                     "mainTitle"=>"", //$mainTitle,
                                                     "placeholderMainSearch"=>"", //$placeholderMainSearch,
                                                     "type"=>@$type,
-                                                    "me" => $me) );
-                
-
+                                                    "me" => $me,
+                                                    "themeParams"=>$params) );*/
+               
+               
             ?>
-            <header>
+            <!--<header>
                 <div class="col-md-12 text-center main-menu-app" style="">
                     <?php 
                         $CO2DomainName = Yii::app()->params["CO2DomainName"];
@@ -139,14 +139,15 @@
                         <div class="col-lg-12">
                             <div class="intro-text">  
 
-                                <?php $this->renderPartial($layoutPath.'headers/'.Yii::app()->params["CO2DomainName"]); ?>
+                                <?php $this->renderPartial($layoutPath.'headers/'.Yii::app()->params["CO2DomainName"],
+                                array("themeParams"=>$params)); ?>
 
                                     
                             </div>
                         </div>
                     </div>
                 </div>
-            </header>
+            </header>-->
             <div class="pageContent"></div>
         </div>
         
@@ -157,8 +158,8 @@
     
         
 
-        <?php if($CO2DomainName == "kgougle" || $CO2DomainName == "CO2")
-                $this->renderPartial($layoutPath."modals/".$CO2DomainName.'/radioplayermodal', array( "layoutPath"=>$layoutPath ) ); 
+        <?php // BOUBOULE NOT USE FOR MOMENT =>if($CO2DomainName == "kgougle" || $CO2DomainName == "CO2")
+            //    $this->renderPartial($layoutPath."modals/".$CO2DomainName.'/radioplayermodal', array( "layoutPath"=>$layoutPath ) ); 
         ?> 
         
         <?php 
@@ -309,7 +310,7 @@
         
         <?php $this->renderPartial('../cooperation/pod/modalCommon', array()); ?>
 
-        <?php $this->renderPartial($layoutPath.'modals.'.$CO2DomainName.'.mainMenu', array("me"=>$me) ); ?>
+        <?php // BOUBOULE NOT USE FOR MOMENT $this->renderPartial($layoutPath.'modals.'.$CO2DomainName.'.mainMenu', array("me"=>$me) ); ?>
         <?php $this->renderPartial( $layoutPath.'menuBottom.'.Yii::app()->params["CO2DomainName"]); ?>
         <?php 
             if(false && (($CO2DomainName == "CO2" &&

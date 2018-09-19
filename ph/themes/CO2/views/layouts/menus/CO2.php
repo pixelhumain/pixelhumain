@@ -55,9 +55,12 @@
     .navbar-nav .menu-button:hover{
         color:grey !important;
     }
+    #mainNav.vertical{
+        box-shadow: 0px 3px 3px -3px rgba(0,0,0,0.5);
+    }
 </style>
 <!-- Navigation -->
-<nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
+<nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom <?php echo $menuApp ?>">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header pull-left">
