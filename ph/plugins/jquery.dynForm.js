@@ -5034,6 +5034,9 @@ var arrayForm = {
 						dyFInputs.setHeader("bg-dark");
 						$('.form-group div').removeClass("text-white");
 						dataHelper.activateMarkdown(".form-control.markdown");
+						if(typeof ctxDynForms[f][k][q].onLoads.onload != "undefined"){
+							ctxDynForms[f][k][q].onLoads.onload();
+						}
 					}
 				},
 				save : function() { 
@@ -5061,7 +5064,7 @@ var arrayForm = {
 				        data: data,
 						type: "POST",
 				    }).done(function (data) {
-				    	//window.location.reload(); 
+				    	window.location.reload(); 
 				    });
 				},
 				properties : (jsonHelper.notNull( "ctxDynForms."+f+"."+k+"."+q) ) ? ctxDynForms[f][k][q].properties : form[scenarioKey][f].form.scenario[k].json.jsonSchema.properties[q].properties
@@ -5108,7 +5111,7 @@ var arrayForm = {
 			         data: data,
 					type: "POST",
 			    }).done(function (data) {
-			    	//window.location.reload(); 
+			    	window.location.reload(); 
 			    });
 	            }
 	          },
