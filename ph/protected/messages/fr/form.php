@@ -188,7 +188,7 @@
 
 
 		"Add a new address" => "Ajouter une nouvelle adresse",
-		"You can&#146;t upload ({netItems}) items.  Item limit is {itemLimit}."=>"Vous ne pouvez pas ajouter ({netItems}) documents. La limite d'élément est de {itemLimit}.",
+		"You can&#146;t upload {netItems} items.  Item limit is {itemLimit}."=>"Vous ne pouvez pas ajouter {netItems} documents. La limite d'élément est de {itemLimit}.",
 
 	)
 
