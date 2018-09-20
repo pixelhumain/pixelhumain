@@ -65,7 +65,6 @@
       $getType = (isset($_GET["type"]) && $_GET["type"] != "citoyens") ? $_GET["type"] : "citoyens";
     }else{
       $myFormContact = null;
-
     }
     $communexion = CO2::getCommunexionCookies();
             
@@ -122,32 +121,31 @@
                                                     "placeholderMainSearch"=>"", //$placeholderMainSearch,
                                                     "type"=>@$type,
                                                     "me" => $me,
-                                                    "themeParams"=>$params) );*/
-               
-               
-            ?>
-            <!--<header>
-                <div class="col-md-12 text-center main-menu-app" style="">
-                    <?php 
-                        $CO2DomainName = Yii::app()->params["CO2DomainName"];
-                        $this->renderPartial( $layoutPath.'menus.moduleMenu',array( "params" => $params , 
-                                                                                    "subdomain"  => ""));
-                    ?>
-                </div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="intro-text">  
+                                                    "themeParams"=>$params) );
+                   <header>
+                    <div class="col-md-12 text-center main-menu-app" style="">
+                        <?php 
+                            $CO2DomainName = Yii::app()->params["CO2DomainName"];
+                            $this->renderPartial( $layoutPath.'menus.moduleMenu',array( "params" => $params , 
+                                                                                        "subdomain"  => ""));
+                        ?>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="intro-text">  
 
-                                <?php $this->renderPartial($layoutPath.'headers/'.Yii::app()->params["CO2DomainName"],
-                                array("themeParams"=>$params)); ?>
+                                    <?php $this->renderPartial($layoutPath.'headers/'.Yii::app()->params["CO2DomainName"],
+                                    array("themeParams"=>$params)); ?>
 
-                                    
+                                        
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </header>-->
+                </header>*/
+               
+            ?>
             <div class="pageContent"></div>
         </div>
         
@@ -311,7 +309,7 @@
         <?php $this->renderPartial('../cooperation/pod/modalCommon', array()); ?>
 
         <?php // BOUBOULE NOT USE FOR MOMENT $this->renderPartial($layoutPath.'modals.'.$CO2DomainName.'.mainMenu', array("me"=>$me) ); ?>
-        <?php $this->renderPartial( $layoutPath.'menuBottom.'.Yii::app()->params["CO2DomainName"]); ?>
+        <?php $this->renderPartial( $layoutPath.'menuBottom.'.Yii::app()->params["CO2DomainName"], array("themeParams"=>@$themeParams)); ?>
         <?php 
             if(false && (($CO2DomainName == "CO2" &&
                 !@Yii::app()->session["userId"] && 

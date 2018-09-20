@@ -1,16 +1,19 @@
 <style type="text/css">
-    #territorial-menu.vertical{
+    .horizontal{
         position: fixed;
         top:  65px;
         left:0px;
         width: 65px;
     }
 </style>
-<div id="territorial-menu" class="">
-    <button class="btn visible-xs pull-left menu-btn-scope-filter text-red elipsis"
+<button class="btn btn-show-filters visible-xs"><?php echo Yii::t("common", "Filters") ?> <span class="topbar-badge badge animated bounceIn badge-warning bg-green"></span> <i class="fa fa-angle-down"></i></button>
+<button class="btn visible-xs pull-left menu-btn-scope-filter text-red elipsis"
         data-type="<?php echo @$type; ?>">
         <i class="fa fa-map-marker"></i> <span class="header-label-scope"><?php echo Yii::t("common","where ?") ?></span>
-    </button>
+</button>
+
+
+<div id="territorial-menu" class="hidden-xs">
     <?php
         foreach ($params["pages"] as $key => $value) {
             if(@$value["inMenu"]==true && @$value["open"]==true){ ?>

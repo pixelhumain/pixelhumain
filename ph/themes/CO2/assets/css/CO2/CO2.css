@@ -181,6 +181,9 @@ header .container ,
 	min-width: 100%;
 	padding-top: 60px !important;
 }
+.main-container.vertical{
+	padding-left: 52px !important;
+}
 .sigModuleBg{
 	z-index:-1;
 }
@@ -629,7 +632,99 @@ section {
 }
 
 
-
+ #filters-nav-list > li > a.dropdown-toggle:hover, #filters-nav-list > li > a.dropdown-toggle.active{
+        color:#2BB0C6 !important;
+        font-weight: bold;
+        text-decoration: none;
+    }
+    #filters-nav-list > li{
+        position: relative;
+        float: left;
+        margin-right: 10px;
+        display: inline-block;
+        padding: 10px 5px;
+    }
+    .btn-show-filters{
+        margin-top: 5px;
+        padding: 3px 15px;
+        border: 1px solid rgba(0,0,0,0.1);
+        background-color: white;
+    }
+    #filters-nav-list .dropdown .dropdown-menu{
+        left: -2px;
+        /*width: 90%;*/
+        top: 40px;
+        position: absolute !important;
+    }
+    #filters-nav-list .dropdown .dropdown-menu:after, #filters-nav-list .dropdown .dropdown-menu:before{
+        left: 5%;
+    }
+    #filters-nav-list .dropdown .btn-news-type-filters {
+        border:inherit;
+    }
+    #filters-nav-list .dropdown .dropdown-menu{
+        max-height: 400px;
+        max-width: 700px;
+        min-width: 300px;
+        overflow-y: overlay;
+    }
+     #filters-nav-list .dropdown-tags .btn-tags-start-search,  #filters-nav-list .dropdown-tags  .btn-tags-refresh{
+        border-radius: 3px;
+        border: 1px solid #aaa;
+        padding-bottom: 9px !important;
+    }
+    #filters-nav-list .dropdown-tags .dropdown-menu, #filters-nav-list .dropdown-price .dropdown-menu{
+        width: 600px;
+    }
+    #filters-nav-list .dropdown{
+        display:none;
+        list-style: none;
+    }
+    #vertical  #territorial-menu{
+        position: fixed;
+        bottom: 0px;
+        top: 62px;
+        left: 0px;
+        width: 52px;
+        padding: 0px !important;
+        box-shadow: 0px 1px 6px -1px rgba(0,0,0,0.5);
+    }
+    #vertical  #territorial-menu .btn-menu-to-app{
+        width: 100%;
+        font-size: 15px;
+    }
+    #vertical{
+        min-height: 0px;
+    }
+    #vertical #affix-sub-menu{
+            padding-left: 52px;
+            top: 62px;
+            box-shadow: none;
+    }
+    #vertical #filters-nav{
+        padding-left: 1% !important;
+        box-shadow: 0px 1px 3px -1px rgba(0,0,0,0.5);
+    }
+    #vertical #filters-nav{
+        padding-left: 1% !important;
+        box-shadow: 0px 1px 3px -1px rgba(0,0,0,0.5);
+    }
+    #mainNav.vertical .btn-show-map, #mainNav.vertical #dropdown-apps, #mainNav.vertical .btn-dashboard-dda{
+    	display:none;
+    }
+    /*#filters-nav-list .dropdown .dropdown-menu:after{
+        width: inherit;
+        right: inherit;
+    }*/
+    @media (max-width: 767px) {	
+	    #mainNav.vertical .btn-show-map, #mainNav.vertical #dropdown-apps{
+	    	display:block;
+	    }
+        #vertical #affix-sub-menu{
+            padding-left: 0px !important;
+            box-shadow: 0px 3px 6px -2px rgba(0,0,0,0.5);
+        }
+    }
 
 
 #right_tool_map{

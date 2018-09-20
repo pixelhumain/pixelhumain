@@ -1,6 +1,6 @@
 <div class="toolbar-bottom bottom-left font-montserrat">
     <a href="https://www.helloasso.com/associations/open-atlas/collectes/communecter/don" target="_blank" id="donation-btn" class="btn btn-default donation-btn">
-        <i class="fa fa-heart"></i> <?php //echo Yii::t("common", "Don récurant") ?>
+        <i class="fa fa-heart"></i> 
     </a>
 </div>
 
@@ -153,22 +153,6 @@
 <script type="text/javascript">
 jQuery(document).ready(function() {
 
-   /* $(".toolbar-bottom-apps").hide().removeClass("hidden");
-    $('#show-bottom-app').off().click(function(){
-        $(".toolbar-bottom-apps").toggle(100);
-        $(".toolbar-bottom-adds").hide(200);
-        $('.toolbar-bottom-apps .btn').click(function(){
-            console.log(".toolbar-bottom-apps btn click");
-            $(".toolbar-bottom-apps").hide(200);
-        });
-    });
-    $('.toolbar-bottom-apps').unbind("mouseleave").mouseleave(function(){
-        console.log(".toolbar-bottom-apps mouseleave");
-        $(".toolbar-bottom-apps").hide(200);
-    });*/
-
-
-
     $(".toolbar-bottom-adds").hide().removeClass("hidden");
     $('#show-bottom-add').off().click(function(){
         if(!$(this).hasClass("opened")){
@@ -190,19 +174,6 @@ jQuery(document).ready(function() {
         $(".toolbar-bottom-adds").hide(200);
 
     });
-/*
-    $(".toolbar-bottom-quickaccess").hide().removeClass("hidden");
-    $('#show-bottom-quickaxe').off().click(function(){
-        $(".toolbar-bottom-apps,.toolbar-bottom-adds").hide(200);
-        $(".toolbar-bottom-quickaccess").toggle(100);
-        $('.toolbar-bottom-quickaccess .btn').click(function(){
-            $(".toolbar-bottom-adds").hide(200);
-        });
-    });
-    $('.toolbar-bottom-quickaccess').unbind("mouseleave").mouseleave(function(){
-        console.log(".toolbar-bottom-quickaccess mouseleave");
-        $(".toolbar-bottom-quickaccess").hide(200);
-    }); */
 })
 
 function addBtnSwitch(){ 
