@@ -29,7 +29,7 @@ $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.m
 										echo "<span style='padding : 15px'>" ;
 										foreach ($value["results"] as $keyR => $valueR) {
 											echo "<span style='color: #2bb0c6; font-weight:bold;'><a href='".$baseUrl."#page.type.classifieds.id.".$keyR."' style='color: #2bb0c6; font-weight:bold;' target='_blank' >".$valueR["name"]."</a></span> : ";
-											echo "<span style='font-style: italic;'>".$valueR["description"]."</span></br></br>";
+											echo "<span style='font-style: italic;'>".@$valueR["description"]."</span></br></br>";
 											$i++;
 											if($i >= 1)
 												break;
