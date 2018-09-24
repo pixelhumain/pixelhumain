@@ -103,6 +103,11 @@
         if( typeof custom != "undefined" && custom.logo ){
             custom.initMenu("mainSearch");
         }
+        $(".btn-menu-vertical").mouseenter(function(){
+            $(this).find(".tooltips-menu-btn").show();
+        }).mouseleave(function(){
+            $(this).find(".tooltips-menu-btn").hide();
+        });
         $("#filters-nav a.dropdown-toggle").click(function(){
             filterContain=$(this).data("label-xs");
             $(".dropdown-xs-view .dropdown").removeClass("open");
@@ -111,17 +116,19 @@
         $("#tagsFilterInput").select2({tags:[]});
         $(".tooltips").tooltip();
         $(".btn-show-filters").click(function(){
-            if(!$("#filters-nav").is(":visible"))
+            if(!$("#filters-nav").is(":visible")){
+                $("#vertical .btn-show-filters.hidden-xs").hide(200);
                 $("#filters-nav").show(200);
-            else
+            }else{
                 $("#filters-nav").hide(200);
+                $("#vertical .btn-show-filters.hidden-xs").show(200);
+            }
             headerHeightPos(true);
         });
         $(".menu-btn-scope-filter").click(function(){
             if($(".menu-btn-scope-filter").hasClass("visible")){
                 showWhere(false);
             }else{
-
                 showWhere(true);
             }
         });
@@ -136,7 +143,7 @@
             $(".menu-btn-scope-filter").removeClass("visible");
             //$("#text-search-menu").hide();
             $("#filter-scopes-menu").hide(400);
-            //headerHeightPos(true);
+            headerHeightPos(true);
         }else{
             $(".menu-btn-scope-filter").addClass("visible");
             $("#text-search-menu").hide();

@@ -70,7 +70,7 @@
             
     $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
      $this->renderPartial($layoutPath.'initJs', 
-                                 array( "me"=>$me, "parentModuleId" => $parentModuleId, "myFormContact" => @$myFormContact, "communexion" => $communexion));
+                                 array( "me"=>$me, "parentModuleId" => $parentModuleId, "myFormContact" => @$myFormContact, "communexion" => $communexion, "themeParams"=>$params));
     if($this->module->id == "custom"){
         $this->renderPartial( 'co2.views.custom.init' ); 
     }else 
@@ -309,7 +309,7 @@
         <?php $this->renderPartial('../cooperation/pod/modalCommon', array()); ?>
 
         <?php // BOUBOULE NOT USE FOR MOMENT $this->renderPartial($layoutPath.'modals.'.$CO2DomainName.'.mainMenu', array("me"=>$me) ); ?>
-        <?php $this->renderPartial( $layoutPath.'menuBottom.'.Yii::app()->params["CO2DomainName"], array("themeParams"=>@$themeParams)); ?>
+        <?php $this->renderPartial( $layoutPath.'menuBottom.'.Yii::app()->params["CO2DomainName"], array("themeParams"=>@$params)); ?>
         <?php 
             if(false && (($CO2DomainName == "CO2" &&
                 !@Yii::app()->session["userId"] && 

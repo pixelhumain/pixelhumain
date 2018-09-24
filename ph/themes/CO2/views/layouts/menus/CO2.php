@@ -56,7 +56,8 @@
         color:grey !important;
     }
     #mainNav.vertical{
-        box-shadow: 0px 3px 3px -3px rgba(0,0,0,0.5);
+        box-shadow: 0px 2px 3px -3px rgba(0,0,0,0.5);
+        border-bottom: 1px solid #dadada;
     }
 </style>
 <!-- Navigation -->
