@@ -157,16 +157,19 @@ $session = (!empty($_GET["session"]) ? $_GET["session"] : "1");
                         <i class="fa fa-bars"></i> Projets
                     </a>
                 </li>
+                <?php if( Form::canAdminRoles( (string)$form["_id"], "TCO" , $form  )) { ?>
                 <li class="text-admin">
                     <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true)."/survey/co/members/id/cte/session/".$session ?>" class="bg-white">
                         <i class="fa fa-users"></i> Membres
                     </a>
                 </li>
+
                 <li class="text-admin">
                     <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true)."/survey/co/roles/id/cte/session/".$session ?>" class="bg-white">
                         <i class="fa fa-file-text"></i> Fiches Actions
                     </a>
                 </li>
+                <?php } ?>
             <?php } ?>
 
 
