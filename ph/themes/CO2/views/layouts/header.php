@@ -80,7 +80,7 @@
                 <?php } ?>
                 <?php 
                     
-                    $this->renderPartial($layoutPath.'menus/'.$menuApp, array("params"=>$themeParams, "subdomainName"=>$subdomainName )); 
+                    $this->renderPartial($layoutPath.'menus/'.$menuApp, array("params"=>$themeParams, "subdomainName"=>$subdomainName, "useFilter"=>@$useFilter )); 
                     if(@$useFilter != false)
                         $this->renderPartial($layoutPath.'menus/filtersApp', array("params"=>$themeParams)); 
                 ?>

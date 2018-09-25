@@ -29,6 +29,7 @@
         text-decoration: underline;
     }
 </style>
+<?php if(@$useFilter && $useFilter!=false){ ?>
 <button class="btn btn-show-filters visible-xs"><?php echo Yii::t("common", "Filters") ?> <span class="topbar-badge badge animated bounceIn badge-warning bg-green"></span> <i class="fa fa-angle-down"></i></button>
 <button class="btn visible-xs pull-left menu-btn-scope-filter text-red elipsis"
         data-type="<?php echo @$type; ?>">
@@ -37,6 +38,7 @@
 
 
 <button class="btn btn-show-filters hidden-xs"><i class="fa fa-angle-down"></i> <?php echo Yii::t("common", "Filters") ?> <span class="topbar-badge badge animated bounceIn badge-warning bg-azure"></span></button>
+<?php } ?>
 <div id="territorial-menu" class="hidden-xs">
     <?php
         foreach ($params["pages"] as $key => $value) {

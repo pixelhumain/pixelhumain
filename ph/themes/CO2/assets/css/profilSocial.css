@@ -455,6 +455,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     -moz-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.5);
     box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.5);
 }
+.main-container.vertical .sub-menu-social.affix {
+    right: 0px !important;
+    left: 53px !important;
+    width: initial !important;
+}
 @media (max-width: 767px) {
     .central-section{
         margin-top: 10px;
