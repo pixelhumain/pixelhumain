@@ -228,7 +228,7 @@ var uploadObj = {
 	extra : null,
 	get : function(type,id, docT, contentK, foldKey, extraUrl){
 		docT=(notNull(docT) && docT) ? docT : "image";
-		typeForUpload=(typeof typeObj[type].col != "undefined") ? typeObj[type].col : type; 
+		typeForUpload = ( jsonHelper.notNull( "typeObj."+type+'.col') ) ? typeObj[type].col : type; 
 		path = baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+uploadObj.folder+"/folder/"+typeForUpload+"/ownerId/"+id+"/input/qqfile/docType/"+docT;	
 		if(notNull(contentK) && contentK != "")
 			path += "/contentKey/"+contentK;
@@ -243,7 +243,7 @@ var uploadObj = {
 	set : function(type,id, docT, contentK, foldKey, extraUrl){
 		if(typeof type != "undefined"){
 			mylog.log("set uploadObj", id,type,uploadObj.folder,uploadObj.contentKey);
-			typeForUpload=(typeof typeObj[type].col != "undefined") ? typeObj[type].col : type; 
+			typeForUpload = ( jsonHelper.notNull( "typeObj."+type+'.col') ) ? typeObj[type].col : type; 
 			uploadObj.type = typeForUpload;
 			uploadObj.id = id;
 			docT=(notNull(docT) && docT) ? docT : "image";
@@ -1213,6 +1213,9 @@ var dyFObj = {
         			urlRedirect=baseUrl+fieldObj.afterUploadComplete;
         			if(typeof formSession !=  "undefined" && formSession != "" && formSession != null )
         				urlRedirect+="/session/"+formSession;
+        			if(typeof answerId != "undefined" && answerId!=""){
+        				urlRedirect+="/answer/"+answerId;
+        			}
         			window.location=urlRedirect;
         		};
         	}else if(typeof updateForm != "undefined"){
@@ -2227,6 +2230,8 @@ var dyFObj = {
 						    	console.log(responseJSON,xhr);
 						    	if(typeof responseJSON.survey != "undefined" && responseJSON.survey){
 						    		documentEl={
+						    			surveyId:uploadObj.formId,
+						    			answerId:uploadObj.answerId,
 						    			formId:dySObj.surveys.id,
 						    			answerSection: dySObj.activeSectionKey,
 						    			answerKey : responseJSON.survey,
@@ -5029,6 +5034,9 @@ var arrayForm = {
 						dyFInputs.setHeader("bg-dark");
 						$('.form-group div').removeClass("text-white");
 						dataHelper.activateMarkdown(".form-control.markdown");
+						if(typeof ctxDynForms[f][k][q].onLoads.onload != "undefined"){
+							ctxDynForms[f][k][q].onLoads.onload();
+						}
 					}
 				},
 				save : function() { 
