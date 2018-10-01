@@ -87,7 +87,7 @@ onSave: (optional) overloads the generic saveProcess
 			***************************************** */
 			fieldHTML = '<input type="hidden" name="key" id="key" value="'+settings.formObj.key+'"/>';
 	        fieldHTML += '<input type="hidden" name="collection" id="collection" value="'+settings.formObj.collection+'"/>';
-	        fieldHTML += '<input type="hidden" name="id" id="id" value="'+((settings.formValues.id) ? settings.formValues.id : "")+'"/>';
+	        fieldHTML += '<input type="hidden" name="id" id="id" value="'+((settings.formValues && settings.formValues.id) ? settings.formValues.id : "")+'"/>';
 	       
         	fieldHTML += '<div class="form-actions">'+
         				'<hr class="col-md-12">';
@@ -585,6 +585,25 @@ var dyFObj = {
 	           toastr.error("something went wrong!! please try again.");
 	    });
 	},
+	openAjaxForm : function (url){
+		mylog.warn("--------------- openAjaxForm ",url);
+		//get ajax of the elemetn content
+		
+		uploadObj.update = true;
+		$.ajax({
+	        type: "GET",
+	        url: baseUrl+url,
+	        dataType : "json"
+	    })
+	    .done(function (data) {
+	        if ( data && data.json ) {
+				mylog.log("openAjaxForm data.json", data.json);
+				dyFObj.openForm( data.json );
+				dyFInputs.setSub("bg-purple");
+	        } else 
+	           toastr.error("something went wrong!! please try again.");
+	    });
+	},
 	
 	//entry point function for opening dynForms
 	openForm : function  (type, afterLoad,data, isSub) { 
@@ -623,11 +642,11 @@ var dyFObj = {
 			$('#modalLogin').modal("show");
 		}
 	},
-	//get the specification of a given dynform
+	//get the specification of a given dynform  
 	//can be of 3 types 
-	//(string) :: will get the definition if exist in typeObj[key].dybnForm
-	//if doesn't exist tries to lazyload it from assets/js/dynForm
-	//(object) :: is dynformp definition
+	//(string) :: will get the definition if exist in typeObj[key].dybnForm 
+	//if doesn't exist tries to lazyload it from assets/js/dynForm 
+	//(object) :: is dynformp definition 
 	getDynFormObj : function(type, callback,afterLoad, data){
 		//alert(type+'.js');
 		mylog.warn("------------ getDynFormObj",type, callback,afterLoad, data );
@@ -839,9 +858,69 @@ var dyFObj = {
 		return res;
 	},
 	/* **************************************
+	*	building an array of answer based on table template
+	***************************************** */
+	drawAnswers : function (el,type,before,after) {
+		//alert("drawAnswers");
+	    var data = dyFObj.elementData;
+	    var prop = dyFObj[dyFObj.activeElem].dynForm.jsonSchema.properties;
+	    str = '<table class="table table-striped table-bordered table-hover">'+
+	        '<thead><tr>';
+	    if(before){
+	    	$.each(  before,function(ai,av) { 
+		        str += '<th>'+ai+'</th>';
+		    });
+	    }
+	    str += '<th>Date</th>';
+	    var keys = Object.keys( data );
+	    $.each(  data [ keys[0] ].answer,function(ai,av) { 
+	        str += '<th>'+((prop[ai] && prop[ai].placeholder) ? prop[ai].placeholder : ai)+'</th>';
+	    });
+	    if(after){
+	    	$.each( after,function(ai,av) { 
+		        str += '<th>'+ai+'</th>';
+		    });
+	    }
+	        
+	    str += '</tr></thead><tbody>';
+	    $.each( data ,function(i,v) { 
+	        //LES REPONSE
+	        str += '<tr>';
+	        if(before){
+		    	$.each(  before,function(ai,av) { 
+			        str += '<td>'+av+'</td>';
+			    });
+		    }
+
+	        str += '<td>'+new Date(v.created*1000)+'</td>';
+	        $.each(v.answer,function(ai,av) { 
+	            ansV = av;
+	            if(prop[ai] && prop[ai].inputType == "select")
+	                ansV = prop[ai].options[av];
+	            str += "<td>"+ansV+"</td>";
+	        });
+
+	        if(after)
+	        {
+		    	$.each(  after,function(ai,av) 
+		    	{ 
+		    		if( typeof av == "object" ){
+		    			if(av.btn)
+		    				str += '<td data-id="'+i+'" data-type="'+type+'">'+av.btn+'</td>';
+		    		}
+		    		else
+			        	str += '<td>'+av+'</td>';
+			    });
+		     }
+
+	        str += "</tr>";
+	    });
+	    str += "</tbody></table></div>";
+	    $(el).append(str);
+	},
+	/* **************************************
 	*	each input field type has a corresponding HTMl to build
 	***************************************** */
-	
 	buildInputField : function (id, field, fieldObj,formValues, tooltip){
 		mylog.warn("------------------ buildInputField",id, field, formValues)
 		var fieldHTML = '<div class="form-group '+field+fieldObj.inputType+'">';
