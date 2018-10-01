@@ -79,7 +79,7 @@ function getAjax(id,ajaxUrl,callback,datatype,blockUI)
   });
 }
 /*
-what can be a simple string which will go into the title bar 
+what : can be a simple string which will go into the title bar 
 or an aboject with properties like title, icon, desc
 getModal({title:"toto"},"/communecter/project/projectsv")
  */
@@ -93,7 +93,7 @@ function getModal(what, ajaxUrl,id)
 	mylog.log("getModal",what,"ajaxUrl",ajaxUrl,"event",id);
 	//var params = $(form).serialize();
 	//$("#ajax-modal-modal-body").html("<i class='fa fa-cog fa-spin fa-2x icon-big'></i> Loading");
-	$('body').modalmanager('loading'); 
+	
   $.unblockUI();
   $("#ajax-modal-modal-title").html("<i class='fa fa-refresh fa-spin'></i> Chargement en cours. Merci de patienter.");
   $("#ajax-modal-modal-body").html(""); 
@@ -872,3 +872,17 @@ function buildRadioOptions(list,value, nameOption) {
     return html;
 }
 
+function formatDate(date) {
+  var monthNames = [
+    "Jan", "Fev", "Mars",
+    "Avril", "Mai", "Juin", "Juil",
+    "Aout", "Sept", "Oct",
+    "Nov", "Dec"
+  ];
+
+  var day = date.getDate();
+  var monthIndex = date.getMonth();
+  var year = date.getFullYear();
+
+  return day + ' ' + monthNames[monthIndex] + ' ' + year;
+}

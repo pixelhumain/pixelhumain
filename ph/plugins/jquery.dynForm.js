@@ -878,7 +878,10 @@ var dyFObj = {
 	    });
 	    if(after){
 	    	$.each( after,function(ai,av) { 
-		        str += '<th>'+ai+'</th>';
+	    		lbl = ai;
+	    		if( typeof av == "object" && av.lbl)
+	    			lbl = av.lbl;
+		        str += '<th>'+lbl+'</th>';
 		    });
 	    }
 	        
@@ -892,7 +895,7 @@ var dyFObj = {
 			    });
 		    }
 
-	        str += '<td>'+new Date(v.created*1000)+'</td>';
+	        str += '<td>'+formatDate(new Date(v.created*1000))+'</td>';
 	        $.each(v.answer,function(ai,av) { 
 	            ansV = av;
 	            if(prop[ai] && prop[ai].inputType == "select")
@@ -905,11 +908,31 @@ var dyFObj = {
 		    	$.each(  after,function(ai,av) 
 		    	{ 
 		    		if( typeof av == "object" ){
-		    			if(av.btn)
-		    				str += '<td data-id="'+i+'" data-type="'+type+'">'+av.btn+'</td>';
+		    			pre = "";
+		    			if(av.pre){
+		    				if(av.pre.value) {
+			    				if( v[av.pre.value] )
+			    					pre = "<span class='"+( (av.pre.class) ? av.pre.class : "" )+"'>"+v[av.pre.value]+"</span> ";
+			    			}
+		    			}
+
+		    			if(av.btn){
+		    				lbl = av.btn;
+		    				if(av.test && v[av.test]){
+		    					lbl = "";
+		    					if(av.else)
+		    						lbl = av.else;
+		    				}
+		    				str += '<td class="text-center" data-id="'+i+'" data-type="'+type+'">'+pre+lbl+'</td>';
+		    			} else if(av.value){
+		    				lbl = "";
+		    				if( v[av.value] )
+		    					lbl = "<span class='"+( (av.class) ? av.class : "" )+"'>"+v[av.value]+"</span>";
+		    				str += '<td class="text-center">'+pre+lbl+'</td>';
+		    			}
 		    		}
 		    		else
-			        	str += '<td>'+av+'</td>';
+			        	str += '<td class="text-center">'+av+'</td>';
 			    });
 		     }
 
