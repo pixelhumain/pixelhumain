@@ -109,7 +109,7 @@
         <?php  if( isset(Yii::app()->session["userId"]) )
                 $this->renderPartial($modulePath.'/news/modalShare', array()); 
         ?>
-        <div class="main-container col-md-12 col-sm-12 col-xs-12 no-padding <?php echo @$params["appRendering"] ?>">
+        <div class="main-container col-md-12 col-sm-12 col-xs-12 <?php echo @$params["appRendering"] ?>">
 
             <?php 
                   /*  $CO2DomainName = Yii::app()->params["CO2DomainName"];
