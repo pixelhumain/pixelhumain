@@ -100,14 +100,18 @@ HtmlHelper::registerCssAndScriptsFiles($cssJS, Yii::app()->getModule( "co2" )->g
     //   $this->renderPartial( "co2.views.custom.init",array( "custom" => "forms.cte" ) );
     // } else if( in_array($_GET['id'], $slist ) )
     //   $this->renderPartial( "co2.views.custom.init",array( "custom" => "forms.".$_GET['id'] ) );
-    if(strrpos(@$_GET['id'], "cte") !== false ){
+    $id = @$_GET['id'];
+    if(preg_match('/^[a-f\d]{24}$/i', $_GET['id']) ){
+      $answer = PHDB::findOne( Form::ANSWER_COLLECTION, array("_id"=>new MongoId(@$_GET['id'])));
+      $id = $answer["formId"];
+    }
+    if( strrpos( @$id, "cte" ) !== false ){
       $CO2DomainName = "cte";
       $this->renderPartial( "co2.views.custom.init",array( "custom" => "forms.cte" ) );
-    } else if( strrpos(@$_GET['id'], "poulet") !== false ){
-
+    } else if( strrpos(@$id, "poulet") !== false ){
       $this->renderPartial( "co2.views.custom.init",array( "custom" => "forms.poulet" ) );
     }
-    else if( in_array($_GET['id'], array( "poulet", "wishlist" ) ) ){
+    else if( in_array(@$id, array( "poulet", "wishlist" ) ) ){
       //echo "<script>alert('".$_GET['id']."')</script>";
       $this->renderPartial( "co2.views.custom.init",array( "custom" => "forms.".$_GET['id'] ) );
     }

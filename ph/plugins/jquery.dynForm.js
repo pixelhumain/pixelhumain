@@ -864,6 +864,8 @@ var dyFObj = {
 		//alert("drawAnswers");
 	    var data = dyFObj.elementData;
 	    var prop = dyFObj[dyFObj.activeElem].dynForm.jsonSchema.properties;
+	    console.log("drawAnswers data",data);
+	    console.log("drawAnswers prop",prop);
 	    str = '<table class="table table-striped table-bordered table-hover">'+
 	        '<thead><tr>';
 	    if(before){
@@ -886,57 +888,70 @@ var dyFObj = {
 	    }
 	        
 	    str += '</tr></thead><tbody>';
+	    //alert(Object.keys(data).length)
 	    $.each( data ,function(i,v) { 
 	        //LES REPONSE
-	        str += '<tr>';
-	        if(before){
-		    	$.each(  before,function(ai,av) { 
-			        str += '<td>'+av+'</td>';
-			    });
-		    }
+	        if(v.answer){
+		        console.log("v",v);
+		        str += '<tr>';
+		        if(before){
+			    	$.each(  before,function(ai,av) { 
+				        str += '<td>'+av+'</td>';
+				    });
+			    }
 
-	        str += '<td>'+formatDate(new Date(v.created*1000))+'</td>';
-	        $.each(v.answer,function(ai,av) { 
-	            ansV = av;
-	            if(prop[ai] && prop[ai].inputType == "select")
-	                ansV = prop[ai].options[av];
-	            str += "<td>"+ansV+"</td>";
-	        });
+		        str += '<td>'+formatDate(new Date(v.created*1000))+'</td>';
+		        
+			        $.each(v.answer,function(ai,av) { 
+			        	console.log(prop[ai].options);
+			        	//alert(ai+av);
+			            ansV = av;
+			            console.log( ai, prop[ai] );
 
-	        if(after)
-	        {
-		    	$.each(  after,function(ai,av) 
-		    	{ 
-		    		if( typeof av == "object" ){
-		    			pre = "";
-		    			if(av.pre){
-		    				if(av.pre.value) {
-			    				if( v[av.pre.value] )
-			    					pre = "<span class='"+( (av.pre.class) ? av.pre.class : "" )+"'>"+v[av.pre.value]+"</span> ";
+		            	if( prop[ai] && 
+			            	prop[ai].inputType == "select" && 
+			            	prop[ai].options[av] )
+			                ansV = prop[ai].options[av];
+
+			            str += "<td>"+ansV+"</td>";
+			        });
+			    
+			        
+		        if(after)
+		        {
+			    	$.each(  after,function(ai,av) 
+			    	{ 
+			    		if( typeof av == "object" ){
+			    			pre = "";
+			    			if(av.pre){
+			    				if(av.pre.value) {
+				    				if( v[av.pre.value] )
+				    					pre = "<span class='"+( (av.pre.class) ? av.pre.class : "" )+"'>"+v[av.pre.value]+"</span> ";
+				    			}
 			    			}
-		    			}
 
-		    			if(av.btn){
-		    				lbl = av.btn;
-		    				if(av.test && v[av.test]){
-		    					lbl = "";
-		    					if(av.else)
-		    						lbl = av.else;
-		    				}
-		    				str += '<td class="text-center" data-id="'+i+'" data-type="'+type+'">'+pre+lbl+'</td>';
-		    			} else if(av.value){
-		    				lbl = "";
-		    				if( v[av.value] )
-		    					lbl = "<span class='"+( (av.class) ? av.class : "" )+"'>"+v[av.value]+"</span>";
-		    				str += '<td class="text-center">'+pre+lbl+'</td>';
-		    			}
-		    		}
-		    		else
-			        	str += '<td class="text-center">'+av+'</td>';
-			    });
-		     }
+			    			if(av.btn){
+			    				lbl = av.btn;
+			    				if(av.test && v[av.test]){
+			    					lbl = "";
+			    					if(av.else)
+			    						lbl = av.else;
+			    				}
+			    				str += '<td class="text-center" data-id="'+i+'" data-type="'+type+'">'+pre+lbl+'</td>';
+			    			} else if(av.value){
+			    				lbl = "";
+			    				if( v[av.value] )
+			    					lbl = "<span class='"+( (av.class) ? av.class : "" )+"'>"+v[av.value]+"</span>";
+			    				str += '<td class="text-center">'+pre+lbl+'</td>';
+			    			}
+			    		}
+			    		else
+				        	str += '<td class="text-center">'+av+'</td>';
+				    });
+			     }
 
-	        str += "</tr>";
+		        str += "</tr>";
+		    }
 	    });
 	    str += "</tbody></table></div>";
 	    $(el).append(str);
@@ -2301,7 +2316,6 @@ var dyFObj = {
 							        	urlCtrl.loadByHash(location.hash);
 					        			$('#ajax-modal').modal("hide");
 							        });
-
 						        }
 						    },
 						    onCancel: function(id) {
@@ -5136,22 +5150,22 @@ var arrayForm = {
 						dyFInputs.setHeader("bg-dark");
 						$('.form-group div').removeClass("text-white");
 						dataHelper.activateMarkdown(".form-control.markdown");
-						if(typeof ctxDynForms[f][k][q].onLoads.onload != "undefined"){
+						if( jsonHelper.notNull('ctxDynForms.'+f+'.'+k+'.'+q+'.onLoads.onload') ){
 							ctxDynForms[f][k][q].onLoads.onload();
 						}
 					}
 				},
 				save : function() { 
-					data = {
+					var data = {
 		    			formId : f,
-		    			answerSection : f+".answers."+k+"."+q ,
+		    			answerSection : (typeof answerSection != "undefined") ? answerSection : f+".answers."+k+"."+q ,
 		    			arrayForm : true,
 		    			answers : arrayForm.getAnswers(arrayForm.form , true)
 		    		};
 		    		
 		    		//for saving edits
 		    		if(typeof pos != "undefined"){
-		    			data.answerSection = f+".answers."+k+"."+q+"."+pos;
+		    			data.answerSection = (typeof answerSection != "undefined") ? answerSection+"."+pos : f+".answers."+k+"."+q+"."+pos;
 		    			data.edit = true;
 		    		}
 
@@ -5160,12 +5174,14 @@ var arrayForm = {
 	    			urlPath = baseUrl+"/survey/co/update2";
 		    		
 		    		console.log("save",data);
+		    		//alert("save arrayForm");
 
 		    		$.ajax({ type: "POST",
 				        url: urlPath,
 				        data: data,
 						type: "POST",
 				    }).done(function (data) {
+				    	//toastr.success('Enregistré avec succés!');
 				    	window.location.reload(); 
 				    });
 				},
@@ -5196,9 +5212,9 @@ var arrayForm = {
 	            	
 				data = {
 					formId : f,
-					answerSection : f+".answers."+k+"."+q+"."+pos ,
+					answerSection : (typeof answerSection != "undefined") ? answerSection+"."+pos : f+".answers."+k+"."+q+"."+pos ,
 					answers : null,
-					pull : f+".answers."+k+"."+q
+					pull : (typeof answerSection != "undefined") ? answerSection : f+".answers."+k+"."+q
 					
 				};
 				
