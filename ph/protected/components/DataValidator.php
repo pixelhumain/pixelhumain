@@ -78,7 +78,7 @@ class DataValidator {
 	public static function checkSlug($toValidate, $object=null, $objectId=null) {
 		// Is There a user with the same username ?
 	    $res = "";
-	    if (strlen($toValidate) < 3 || strlen($toValidate) > 50) {
+	    if (strlen($toValidate) < 3 || strlen($toValidate) > 100) {
 		  	$res = "The slug length should be between 3 and 50 characters";
 		}
 		if(! preg_match('/^[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*$/ ', $toValidate)) {
