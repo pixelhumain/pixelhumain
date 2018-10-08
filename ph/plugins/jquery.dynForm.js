@@ -224,6 +224,7 @@ var uploadObj = {
 	folder : "communecter", //on force pour pas casser toutes les vielles images
 	contentKey : "profil",
 	afterLoadUploader : false,
+	currentlyOperating : false,
 	path : null,
 	extra : null,
 	get : function(type,id, docT, contentK, foldKey, extraUrl){
@@ -2229,6 +2230,7 @@ var dyFObj = {
 						    	
 						    	console.log(responseJSON,xhr);
 						    	if(typeof responseJSON.survey != "undefined" && responseJSON.survey){
+						    		uploadObj.currentlyOperating=true;
 						    		documentEl={
 						    			surveyId:uploadObj.formId,
 						    			answerId:uploadObj.answerId,
@@ -2238,6 +2240,7 @@ var dyFObj = {
 						    			documentId :responseJSON.id.$id
 						    		};
 						    		if(typeof updateForm !="undefined" && notNull(updateForm)){
+						    			
 						    			documentEl.formId = updateForm.form;
 	    								documentEl.answerSection = updateForm.step; 
 	    							}
@@ -2248,8 +2251,13 @@ var dyFObj = {
 								        data: documentEl,
 										type: "POST",
 								    })
-								    .done(function (data){}).fail(function(){
-									  // toastr.error("Something went wrong, contact your admin"); 
+								    .done(function (data){
+								    	uploadObj.currentlyOperating=false;
+								    	if(typeof v.afterUploadComplete != "undefined" && jQuery.isFunction(v.afterUploadComplete) ){
+						    				v.afterUploadComplete();
+						    			}
+								    }).fail(function(){
+									  // toastr.error("Something went wrong, contact your admin");
 									   $("#btn-submit-form i").removeClass("fa-circle-o-notch fa-spin").addClass("fa-arrow-circle-right");
 									   $("#btn-submit-form").prop('disabled', false);
 								    });
@@ -2320,7 +2328,7 @@ var dyFObj = {
 								}
 						    	if(uploadObj.afterLoadUploader){
 						    		//toastr.info( "Fichiers bien chargés !!");
-						    		if(typeof v.afterUploadComplete != "undefined" && jQuery.isFunction(v.afterUploadComplete) ){
+						    		if(typeof v.afterUploadComplete != "undefined" && jQuery.isFunction(v.afterUploadComplete && uploadObj.currentlyOperating != false) ){
 						    			v.afterUploadComplete();
 						    		}
 						     		uploadObj.gotoUrl = null;
