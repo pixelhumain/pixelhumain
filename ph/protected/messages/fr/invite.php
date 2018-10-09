@@ -4,7 +4,7 @@
 		"Search or invite your contacts" => "Rechercher ou inviter vos contacts",
 		"Search or invite members" => "Rechercher ou inviter des membres",
 		"Import a file" => "Importer un fichier",
-		"List of persons invited" => "Liste des personnes a invités",
+		"List of persons invited" => "Liste des personnes à inviter",
 		"Add to the list" => "Ajouter à la liste",
 		"Files (CSV)" => "Fichier (CSV)",
 		"Custom message" => "Message personnalisé", 
