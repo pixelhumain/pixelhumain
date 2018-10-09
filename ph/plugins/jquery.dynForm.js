@@ -5194,7 +5194,7 @@ var arrayForm = {
 	add : function (f, k, q,pos,data) { 
 		console.log("add AF",f, k, q,pos,data);
 		arrayForm.buildFormSchema(f,k,q,pos);
-		if( typeof pos != "undefinde" )
+		if( typeof pos != "undefined" )
 			dyFObj.openForm( arrayForm.form, null, answers[f].answers[k][q][pos] );
 		else 
 			dyFObj.openForm( arrayForm.form );

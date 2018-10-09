@@ -141,6 +141,7 @@ HtmlHelper::registerCssAndScriptsFiles($cssJS, Yii::app()->getModule( "co2" )->g
   <div class="main-container col-md-12 col-sm-12 col-xs-12 no-padding">
 
 <?php
+  //if(!@$_GET["step"]) 
     $this->renderPartial( $layoutPath.'menus/'.$CO2DomainName, 
                             array( "layoutPath"=>$layoutPath , 
                                     "subdomain"=>"", //$subdomain,
