@@ -56,7 +56,7 @@ onSave: (optional) overloads the generic saveProcess
 				rules : {}
 			};
 			var fieldHTML = '';
-
+			dyFObj.initFieldOnload={};
 			/* **************************************
 			* Error Section
 			***************************************** */
@@ -87,7 +87,7 @@ onSave: (optional) overloads the generic saveProcess
 			***************************************** */
 			fieldHTML = '<input type="hidden" name="key" id="key" value="'+settings.formObj.key+'"/>';
 	        fieldHTML += '<input type="hidden" name="collection" id="collection" value="'+settings.formObj.collection+'"/>';
-	        fieldHTML += '<input type="hidden" name="id" id="id" value="'+((settings.formValues.id) ? settings.formValues.id : "")+'"/>';
+	        fieldHTML += '<input type="hidden" name="id" id="id" value="'+((settings.formValues && settings.formValues.id) ? settings.formValues.id : "")+'"/>';
 	       
         	fieldHTML += '<div class="form-actions">'+
         				'<hr class="col-md-12">';
@@ -220,30 +220,67 @@ var uploadObj = {
 	isSub : false,
 	update  : false,
 	docListIds : [],
+	initList : [],
 	folder : "communecter", //on force pour pas casser toutes les vielles images
 	contentKey : "profil",
+	afterLoadUploader : false,
+	currentlyOperating : false,
 	path : null,
 	extra : null,
-	set : function(type,id, file){
-		if(notNull(file) && file){
+	get : function(type,id, docT, contentK, foldKey, extraUrl){
+		docT=(notNull(docT) && docT) ? docT : "image";
+		typeForUpload = ( jsonHelper.notNull( "typeObj."+type+'.col') ) ? typeObj[type].col : type; 
+		path = baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+uploadObj.folder+"/folder/"+typeForUpload+"/ownerId/"+id+"/input/qqfile/docType/"+docT;	
+		if(notNull(contentK) && contentK != "")
+			path += "/contentKey/"+contentK;
+		else if(docT == "image")
+			path += "/contentKey/profil";
+		if(notNull(foldKey) && foldKey != "")
+			path += "/folderId/"+foldKey;
+		if(notNull(extraUrl) && extraUrl != "")
+			path += extraUrl;
+		return path;
+	},
+	set : function(type,id, docT, contentK, foldKey, extraUrl){
+		if(typeof type != "undefined"){
 			mylog.log("set uploadObj", id,type,uploadObj.folder,uploadObj.contentKey);
-			uploadObj.type = type;
+			typeForUpload = ( jsonHelper.notNull( "typeObj."+type+'.col') ) ? typeObj[type].col : type; 
+			uploadObj.type = typeForUpload;
 			uploadObj.id = id;
-			uploadObj.path = baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+uploadObj.folder+"/folder/"+type+"/ownerId/"+id+"/input/qqfile/docType/file";
-		}
-		else if(typeof type != "undefined"){
-			mylog.log("set uploadObj", id,type,uploadObj.folder,uploadObj.contentKey);
-			uploadObj.type = type;
-			uploadObj.id = id;
-			uploadObj.path = baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+uploadObj.folder+"/folder/"+type+"/ownerId/"+id+"/input/qqfile/contentKey/"+uploadObj.contentKey;
-			if(typeof uploadObj.domTarget !="undefined"){
+			docT=(notNull(docT) && docT) ? docT : "image";
+			uploadObj.path = baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+uploadObj.folder+"/folder/"+typeForUpload+"/ownerId/"+id+"/input/qqfile/docType/"+docT;
+			
+			if(notNull(contentK) && contentK != "")
+				uploadObj.path += "/contentKey/"+contentK;
+			else if(docT == "image")
+				uploadObj.path += "/contentKey/profil";
+			if(notNull(foldKey) && foldKey != "")
+				uploadObj.path += "/folderId/"+foldKey;
+			if(notNull(extraUrl) && extraUrl != "")
+				uploadObj.path += extraUrl;
+				
+			if(typeof uploadObj.domTarget !="undefined")
 				$(uploadObj.domTarget).fineUploader('setEndpoint', uploadObj.path);
-			}
-		} else {
+		}else {
 			uploadObj.type = null;
 			uploadObj.id = null;
 			uploadObj.path = null;
+			uploadObj.initList = {};
 		}
+	},
+	prepareInit : function(data){
+		arrayList=[];
+		$.each(data, function(e, v){
+			item=new Object;
+			item.size=v.size,
+			item.uuid=v._id.$id,
+			item.name=v.name;
+			item.deleteFileEndpoint=baseUrl+"/"+moduleId+"/document/deletedocumentbyid/id";
+			if(typeof v.imageThumbPath != "undefined")
+				item.thumbnailUrl=v.imageThumbPath;
+			arrayList.push(item);
+		} );
+		return arrayList;
 	}
 };
 var openingHoursResult=[
@@ -279,6 +316,7 @@ var dyFObj = {
 		//tmp
 		$('#btn-submit-form').show();
     },
+    initFieldOnload : {},
 	formatData : function (formData, collection,ctrl) { 
 		mylog.warn("----------- formatData",formData, collection,ctrl);
 		formData.collection = collection;
@@ -513,13 +551,13 @@ var dyFObj = {
 		dyFObj.openForm( form ,afterLoad , data);
 	},
 	editElement : function (type,id, subType){
-		mylog.warn("--------------- editElement ",type,id);
+		mylog.warn("--------------- editElement ",type,id,subType);
 		//get ajax of the elemetn content
-		uploadObj.set(type,id);
+		uploadObj.set(type, id);
 		uploadObj.update = true;
 		$.ajax({
 	        type: "GET",
-	        url: baseUrl+"/"+moduleId+"/element/get/type/"+type+"/id/"+id,
+	        url: baseUrl+"/"+moduleId+"/element/get/type/"+type+"/id/"+id+"/update/true",
 	        dataType : "json"
 	    })
 	    .done(function (data) {
@@ -528,19 +566,43 @@ var dyFObj = {
 				//onLoad fill inputs
 				//will be sued in the dynform  as update 
 				data.map.id = data.map["_id"]["$id"];
-				if(typeof typeObj[type].formatData == "function")
+				if(typeObj[type] && typeof typeObj[type].formatData == "function")
 					data = typeObj[type].formatData();
 				if(data.map["_id"])
 					delete data.map["_id"];
-				mylog.dir(data);
-				mylog.log("editElement", data);
+				mylog.log("editElement data", data);
 				dyFObj.elementData = data;
 				typeModules=(notNull(subType)) ? subType : type; 
-				typeForm = (jsonHelper.notNull( "modules."+typeModules+".form") ) ? typeModules : dyFInputs.get(typeModules).ctrl;
+				if(typeof subType == "object")
+					typeForm = subType;
+				else if(jsonHelper.notNull( "modules."+typeModules+".form") ) 
+					typeForm = typeModules;
+				else
+					typeForm = dyFInputs.get(typeModules).ctrl;
+
+				mylog.log("editElement typeForm", typeForm);
 				dyFObj.openForm( typeForm ,null, data.map);
-	        } else {
+	        } else 
 	           toastr.error("something went wrong!! please try again.");
-	        }
+	    });
+	},
+	openAjaxForm : function (url){
+		mylog.warn("--------------- openAjaxForm ",url);
+		//get ajax of the elemetn content
+		
+		uploadObj.update = true;
+		$.ajax({
+	        type: "GET",
+	        url: baseUrl+url,
+	        dataType : "json"
+	    })
+	    .done(function (data) {
+	        if ( data && data.json ) {
+				mylog.log("openAjaxForm data.json", data.json);
+				dyFObj.openForm( data.json );
+				dyFInputs.setSub("bg-purple");
+	        } else 
+	           toastr.error("something went wrong!! please try again.");
 	    });
 	},
 	
@@ -553,6 +615,14 @@ var dyFObj = {
 	    mylog.warn("--------------- Open Form ",type, afterLoad,data);
 	    mylog.dir(data);
 	    uploadObj.contentKey="profil"; 
+	    if(notNull(data)){
+	    	if(typeof data.images != "undefined")
+	    		uploadObj.initList=data.images;
+	    	if(typeof data.files != "undefined" )
+	    		uploadObj.initList=data.files;
+	    }else{
+	    	uploadObj.initList={};
+	    }
 	    dyFObj.activeElem = (isSub) ? "subElementObj" : "elementObj";
 	    dyFObj.activeModal = (isSub) ? "#openModal" : "#ajax-modal";
       	
@@ -573,11 +643,11 @@ var dyFObj = {
 			$('#modalLogin').modal("show");
 		}
 	},
-	//get the specification of a given dynform
+	//get the specification of a given dynform  
 	//can be of 3 types 
-	//(string) :: will get the definition if exist in typeObj[key].dybnForm
-	//if doesn't exist tries to lazyload it from assets/js/dynForm
-	//(object) :: is dynformp definition
+	//(string) :: will get the definition if exist in typeObj[key].dybnForm 
+	//if doesn't exist tries to lazyload it from assets/js/dynForm 
+	//(object) :: is dynformp definition 
 	getDynFormObj : function(type, callback,afterLoad, data){
 		//alert(type+'.js');
 		mylog.warn("------------ getDynFormObj",type, callback,afterLoad, data );
@@ -606,7 +676,7 @@ var dyFObj = {
 			//a dynform can be called from a module , but comes from parent Co2 module
 			if ( moduleId != activeModuleId ){
 				dfPath = parentModuleUrl+'/js/dynForm/'+type+'.js';
-				mylog.log("properties from MODULE","modules/"+type+"/assets/js/dynform.js");
+				mylog.log("properties from MODULE CO2","modules/"+type+"/assets/js/dynform.js");
 			}
 			
 			//path is defined in the initJS modules obj
@@ -693,6 +763,11 @@ var dyFObj = {
 			        if( jsonHelper.notNull( "dyFObj."+dyFObj.activeElem+".dynForm.jsonSchema.onLoads."+afterLoad, "function") )
 			        	dyFObj[dyFObj.activeElem].dynForm.jsonSchema.onLoads[afterLoad](data);
 				    
+				    if(Object.keys(dyFObj.initFieldOnload).length > 0){
+				    	$.each(dyFObj.initFieldOnload, function(k, v){
+				    		v();
+				    	});
+				    }
 				    if( typeof bindLBHLinks != "undefined")
 			        	bindLBHLinks();
 			    },
@@ -703,7 +778,7 @@ var dyFObj = {
 
 			      	if( typeof dyFObj[dyFObj.activeElem].dynForm.jsonSchema.beforeSave == "function")
 			        	dyFObj[dyFObj.activeElem].dynForm.jsonSchema.beforeSave();
-
+			        uploadObj.afterLoadUploader=true;
 			        var afterSave = ( typeof dyFObj[dyFObj.activeElem].dynForm.jsonSchema.afterSave == "function") ? dyFObj[dyFObj.activeElem].dynForm.jsonSchema.afterSave : null;
 			        mylog.log("onSave ", dyFObj.activeElem, dyFObj[dyFObj.activeElem].saveUrl, dyFObj[dyFObj.activeElem].save);
 			        if( dyFObj[dyFObj.activeElem].save )
@@ -722,6 +797,32 @@ var dyFObj = {
 			toastr.error("Vous devez être connecté pour afficher les formulaires de création");
 			$('#modalLogin').modal("show");
 		}
+	},
+	commonAfterSave : function(){
+		listObject=$(uploadObj.domTarget).fineUploader('getUploads');
+    	goToUpload=false;
+    	if(listObject.length > 0){
+    		$.each(listObject, function(e,v){
+    			if(v.status == "submitted")
+    				goToUpload=true;
+    		});
+    	}
+		if( goToUpload ){
+    		$(uploadObj.domTarget).fineUploader('uploadStoredFiles');
+	    	//principalement pour les surveys
+	    	if(typeof callB == "function")
+    			callB();
+    	}
+	    else { 
+	    	mylog.log("here", isMapEnd);
+	    	if(typeof networkJson != "undefined")
+				isMapEnd = true;
+			dyFObj.closeForm();
+			/*if(activeModuleId == "survey")//use case for answerList forms updating
+        		window.location.reload();
+        	else 
+				urlCtrl.loadByHash( uploadObj.gotoUrl );*/
+        }
 	},
 	//generate Id for upload feature of this element 
 	setMongoId : function(type,callback) { 
@@ -758,10 +859,109 @@ var dyFObj = {
 		return res;
 	},
 	/* **************************************
+	*	building an array of answer based on table template
+	***************************************** */
+	drawAnswers : function (el,type,before,after) {
+		//alert("drawAnswers");
+	    var data = dyFObj.elementData;
+	    var prop = dyFObj[dyFObj.activeElem].dynForm.jsonSchema.properties;
+	    console.log("drawAnswers data",data);
+	    console.log("drawAnswers prop",prop);
+	    str = '<table class="table table-striped table-bordered table-hover">'+
+	        '<thead><tr>';
+	    if(before){
+	    	$.each(  before,function(ai,av) { 
+		        str += '<th>'+ai+'</th>';
+		    });
+	    }
+	    str += '<th>Date</th>';
+	    var keys = Object.keys( data );
+	    $.each(  data [ keys[0] ].answer,function(ai,av) { 
+	        str += '<th>'+((prop[ai] && prop[ai].placeholder) ? prop[ai].placeholder : ai)+'</th>';
+	    });
+	    if(after){
+	    	$.each( after,function(ai,av) { 
+	    		lbl = ai;
+	    		if( typeof av == "object" && av.lbl)
+	    			lbl = av.lbl;
+		        str += '<th>'+lbl+'</th>';
+		    });
+	    }
+	        
+	    str += '</tr></thead><tbody>';
+	    //alert(Object.keys(data).length)
+	    $.each( data ,function(i,v) { 
+	        //LES REPONSE
+	        if(v.answer){
+		        console.log("v",v);
+		        str += '<tr>';
+		        if(before){
+			    	$.each(  before,function(ai,av) { 
+				        str += '<td>'+av+'</td>';
+				    });
+			    }
+
+		        str += '<td>'+formatDate(new Date(v.created*1000))+'</td>';
+		        
+			        $.each(v.answer,function(ai,av) { 
+			        	console.log(prop[ai].options);
+			        	//alert(ai+av);
+			            ansV = av;
+			            console.log( ai, prop[ai] );
+
+		            	if( prop[ai] && 
+			            	prop[ai].inputType == "select" && 
+			            	prop[ai].options[av] )
+			                ansV = prop[ai].options[av];
+
+			            str += "<td>"+ansV+"</td>";
+			        });
+			    
+			        
+		        if(after)
+		        {
+			    	$.each(  after,function(ai,av) 
+			    	{ 
+			    		if( typeof av == "object" ){
+			    			pre = "";
+			    			if(av.pre){
+			    				if(av.pre.value) {
+				    				if( v[av.pre.value] )
+				    					pre = "<span class='"+( (av.pre.class) ? av.pre.class : "" )+"'>"+v[av.pre.value]+"</span> ";
+				    			}
+			    			}
+
+			    			if(av.btn){
+			    				lbl = av.btn;
+			    				if(av.test && v[av.test]){
+			    					lbl = "";
+			    					if(av.else)
+			    						lbl = av.else;
+			    				}
+			    				str += '<td class="text-center" data-id="'+i+'" data-type="'+type+'">'+pre+lbl+'</td>';
+			    			} else if(av.value){
+			    				lbl = "";
+			    				if( v[av.value] )
+			    					lbl = "<span class='"+( (av.class) ? av.class : "" )+"'>"+v[av.value]+"</span>";
+			    				str += '<td class="text-center">'+pre+lbl+'</td>';
+			    			}
+			    		}
+			    		else
+				        	str += '<td class="text-center">'+av+'</td>';
+				    });
+			     }
+
+		        str += "</tr>";
+		    }
+	    });
+	    str += "</tbody></table></div>";
+	    $(el).append(str);
+	},
+	/* **************************************
 	*	each input field type has a corresponding HTMl to build
 	***************************************** */
-	
 	buildInputField : function (id, field, fieldObj,formValues, tooltip){
+		mylog.warn("------------------ buildInputField",id, field, formValues)
 		var fieldHTML = '<div class="form-group '+field+fieldObj.inputType+'">';
 		var required = "";
 		if(fieldObj.rules && fieldObj.rules.required)
@@ -788,7 +988,7 @@ var dyFObj = {
         	value = formValues[field];
         }
 
-        mylog.log("value network", value);
+        //mylog.log("value network", value);
         if(value!="")
         	mylog.warn("--------------- dynform form Values",field,value);
 
@@ -818,6 +1018,7 @@ var dyFObj = {
         				dyFObj.init.initValues[field] = {};
         			dyFObj.init.initValues[field]["tags"] = fieldObj.values;
         		}
+
         		if(fieldObj.maximumSelectionLength)
         			dyFObj.init.initValues[field]["maximumSelectionLength"] =  fieldObj.maximumSelectionLength;
         		mylog.log("select2TagsInput fieldObj.minimumInputLength", fieldObj.minimumInputLength);
@@ -827,9 +1028,6 @@ var dyFObj = {
         			dyFObj.init.initValues[field]["minimumInputLength"] = fieldObj.minimumInputLength;
         			mylog.log("select2TagsInput fieldObj dyFObj.init.initValues[field]", dyFObj.init.initValues[field]);
         		}
-
-
-        		mylog.log("fieldObj.data", fieldObj.data, fieldObj);
         		if(typeof fieldObj.data != "undefined"){
         			value = fieldObj.data;
 	        		//dyFObj.init.initSelectNetwork[field]=fieldObj.data;
@@ -857,7 +1055,7 @@ var dyFObj = {
 		else if( fieldObj.inputType == "hidden" || fieldObj.inputType == "timestamp" ) {
 			if ( fieldObj.inputType == "timestamp" )
 				value = Date.now();
-			mylog.log("build field "+field+">>>>>> hidden, timestamp");
+			mylog.log("build field "+field+">>>>>> hidden, timestamp", value);
 			fieldHTML += '<input type="hidden" name="'+field+'" id="'+field+'" value="'+value+'"/>';
 		}
 		/* **************************************
@@ -1019,6 +1217,7 @@ var dyFObj = {
 							'<div class="qq-total-progress-bar-container-selector qq-total-progress-bar-container">'+
 							'<div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-total-progress-bar-selector qq-progress-bar qq-total-progress-bar"></div>'+
 							'</div>'+
+							//'<div class="qq-paste-element-triger"><input type="text" value="" placeholder="paste a link"/></div>'+
 							'<div class="qq-upload-drop-area-selector qq-upload-drop-area" qq-hide-dropzone>'+
 							'<span class="qq-upload-drop-area-text-selector"></span>'+
 							'</div>'+
@@ -1123,27 +1322,53 @@ var dyFObj = {
         		uploadObject.template = fieldObj.template;
 			if( fieldObj.itemLimit )
         		uploadObject.itemLimit = fieldObj.itemLimit;
-			if(fieldObj.endPoint){
-				uploadObject.endPoint = fieldObj.endPoint;
-				if(uploadObject.endPoint.indexOf("ownerId") < 0){
-					uploadObject.endPoint=uploadObject.endPoint+"/folder/citoyens/ownerId/"+userId;
-				}
-			}
+			if(fieldObj.endPoint)
+				uploadObject.endPoint=uploadObj.get("citoyens", userId, fieldObj.docType, null, null, fieldObj.endPoint);
 			if(typeof dySObj == "undefined" && $.isFunction( fieldObj.afterUploadComplete ))
         		uploadObject.afterUploadComplete = fieldObj.afterUploadComplete;
         	else if(typeof dySObj != "undefined" && Object.keys(dySObj.surveys).length != 0 && typeof fieldObj.afterUploadComplete == "string"){
         		uploadObject.afterUploadComplete = function(){
-        			window.location=baseUrl+fieldObj.afterUploadComplete;
+        			urlRedirect=baseUrl+fieldObj.afterUploadComplete;
+        			if(typeof formSession !=  "undefined" && formSession != "" && formSession != null )
+        				urlRedirect+="/session/"+formSession;
+        			if(typeof answerId != "undefined" && answerId!=""){
+        				urlRedirect+="/answer/"+answerId;
+        			}
+        			window.location=urlRedirect;
         		};
         	}else if(typeof updateForm != "undefined"){
         		uploadObject.afterUploadComplete = function(){
         			window.location.reload();
         		};
         	}
+
+        	if(typeof uploadObj.initList != "undefined" && Object.keys(uploadObj.initList).length > 0){
+        		uploadObject.initList=uploadObj.prepareInit(uploadObj.initList);
+        	} 
         	dyFObj.init.uploader[uploaderId]=new Object;
         	dyFObj.init.uploader[uploaderId]=uploadObject;
         }
-
+         /* **************************************
+		* Folder INPUT
+		***************************************** */
+        else if ( fieldObj.inputType == "folder" ) {
+        	dataField="data-type='"+fieldObj.contextType+"' data-id='"+fieldObj.contextId+"' data-doctype='"+fieldObj.docType+"' data-contentkey='"+fieldObj.contentKey+"'";
+        	fieldHTML += iconOpen+'<button class="form-control col-xs-6 selectFolder btn-success" '+dataField+'>'+trad.choose+'</button><span class="nameFolder-form">'+fieldObj.emptyMsg+'</span>';
+        	dyFObj.initFieldOnload.folder = function(){
+        		init={docType:fieldObj.docType};
+				if(typeof folderId != "undefined" && folderId != "" && navInFolders[folderId].docType == fieldObj.docType){
+					dyFObj.init.folderUploadEvent(fieldObj.contextType, fieldObj.contextId, fieldObj.docType, fieldObj.contentKey, folderId);
+					init.folderId=folderId;
+				}
+                $(".selectFolder").click(function(e){
+                	var $this=$(this);
+                	e.preventDefault();
+                	folder.showPanel("get", null, null, function(e){
+		    			dyFObj.init.folderUploadEvent($this.data("type"), $this.data("id"), $this.data("doctype"), $this.data("contentkey"), e);
+	    			}, init);
+	    		});
+            }
+        }
         /* **************************************
 		* DATE INPUT , we use bootstrap-datepicker
 		***************************************** */
@@ -1290,7 +1515,12 @@ var dyFObj = {
 				};
 			}       
         } 
-
+        /* **************************************
+		* ARRAYFOMR , is a subdynForm, that builds a list of strutured answered using a
+		***************************************** */
+        else if ( fieldObj.inputType == "arrayForm" ) {
+        	mylog.log("build field "+field+">>>>>> array Form");
+       	}
         /* **************************************
 		* ARRAY , is a list of sequential values
 		***************************************** */
@@ -1307,7 +1537,7 @@ var dyFObj = {
         	fieldHTML +=   '<div class="inputs array">'+
 								'<div class="col-sm-10 no-padding">'+
 									'<img class="loading_indicator" src="'+parentModuleUrl+'/images/news/ajax-loader.gif" style="position: absolute;right: 5px;top: 10px;display:none;">'+
-									'<input type="text" name="'+field+'[]" class="addmultifield addmultifield0 form-control input-md value="" placeholder="'+placeholder+'"/>'+
+									'<input type="text" name="'+field+'[]" class="addmultifield addmultifield0 form-control input-md" value="" placeholder="'+placeholder+'"/>'+
 								'</div>'+
 								'<div class="col-sm-2 sectionRemovePropLineBtn">'+
 									'<a href="javascript:" data-id="'+field+fieldObj.inputType+'" class="removePropLineBtn col-md-12 btn btn-link letter-red" alt="Remove this line"><i class=" fa fa-minus-circle" ></i></a>'+
@@ -1889,7 +2119,7 @@ var dyFObj = {
 						{
 						  "tags": dyFObj.init.initValues[ $(this).attr("id") ].tags ,
 						  "tokenSeparators": [','],
-						  "minimumInputLength" : 3,
+						  //"minimumInputLength" : 3,
 						  "placeholder" : ( $(this).attr("placeholder") ) ? $(this).attr("placeholder") : "",
 						};
 						if(dyFObj.init.initValues[ $(this).attr("id") ].maximumSelectionLength)
@@ -2041,49 +2271,60 @@ var dyFObj = {
 			    }
 			}*/
 			uploadObj.docListIds=[];
+			uploadObj.afterLoadUploader=false;
 			$.each(dyFObj.init.uploader, function(e,v){
 				var domElement="#"+e;
 				//var FineUploader = function(){
 					if(typeof v.endPoint == "undefined")
 						uploadObj.domTarget=domElement;
 					mylog.log("init fineUploader");
-					var endPointUploader=(typeof v.endPoint != "undefined") ? baseUrl+"/"+moduleId+v.endPoint : uploadObj.path;
+					var endPointUploader=(typeof v.endPoint != "undefined") ? v.endPoint : uploadObj.path;
 					$(domElement).fineUploader({
 			            template: (v.template) ? v.template : 'qq-template-manual-trigger',
-			            itemLimit: (v.itemLimit) ? v.itemLimit : 0,
+			            paste: {
+					        defaultName: 'pasted_image',
+					        promptForName:false,
+					        targetElement: $(window)
+					    },
+
 			            request: {
 			                endpoint: endPointUploader
 			            },
 			            validation: {
 			                allowedExtensions: (v.filetypes) ? v.filetypes : ['jpeg', 'jpg', 'gif', 'png'],
-			                sizeLimit: 2000000
+			                sizeLimit: 2000000,
+			                itemLimit: (v.itemLimit) ? v.itemLimit : 0
 			            },
 			            messages: {
 					        sizeError : '{file} '+tradDynForm.istooheavy+'! '+tradDynForm.limitmax+' : {sizeLimit}.',
 					        typeError : '{file} '+tradDynForm.invalidextension+'. '+tradDynForm.extensionacceptable+': {extensions}.'
 					    },
-					    
+					    session:{
+					    	endpoint:null
+					    },
+					    deleteFile: {
+					        enabled: true
+					    },
 			            callbacks: {
 			            	//when a img is selected
 						    onSubmit: function(id, fileName) {
 						    		
-						    	if(typeof v.endPoint == "undefined")
-						    		$(domElement).fineUploader('setEndpoint',uploadObj.path);
-						    	//	$(domElement).fineUploader('uploadStoredFiles');
+						    	//if(typeof v.endPoint == "undefined")
+						    	//	$(domElement).fineUploader('setEndpoint',uploadObj.path);
 	    					    if( v.showUploadBtn  ){
 							      	$('#trigger-upload').removeClass("hide").click(function(e) {
 					        			$(domElement).fineUploader('uploadStoredFiles');
 							        	urlCtrl.loadByHash(location.hash);
 					        			$('#ajax-modal').modal("hide");
 							        });
-
 						        }
 						    },
 						    onCancel: function(id) {
 						    	if(($("ul.qq-upload-list > li").length-1)<=0)
 						    		$('#trigger-upload').addClass("hide");
 		        			},
-		        			
+		        			onPasteReceived: function(blob) {},
+
 						    //launches request endpoint
 						    //onUpload: function(id, fileName) {
 						      //alert(" > upload : "+id+fileName+contextData.type+contextData.id);
@@ -2103,15 +2344,19 @@ var dyFObj = {
 						    //when every img finish upload process whatever the status
 						    onComplete: function(id, fileName,responseJSON,xhr) {
 						    	
-						    	//mylog.log(responseJSON);
+						    	console.log(responseJSON,xhr);
 						    	if(typeof responseJSON.survey != "undefined" && responseJSON.survey){
+						    		uploadObj.currentlyOperating=true;
 						    		documentEl={
+						    			surveyId:uploadObj.formId,
+						    			answerId:uploadObj.answerId,
 						    			formId:dySObj.surveys.id,
 						    			answerSection: dySObj.activeSectionKey,
 						    			answerKey : responseJSON.survey,
 						    			documentId :responseJSON.id.$id
 						    		};
 						    		if(typeof updateForm !="undefined" && notNull(updateForm)){
+						    			
 						    			documentEl.formId = updateForm.form;
 	    								documentEl.answerSection = updateForm.step; 
 	    							}
@@ -2122,8 +2367,13 @@ var dyFObj = {
 								        data: documentEl,
 										type: "POST",
 								    })
-								    .done(function (data){}).fail(function(){
-									  // toastr.error("Something went wrong, contact your admin"); 
+								    .done(function (data){
+								    	uploadObj.currentlyOperating=false;
+								    	if(typeof v.afterUploadComplete != "undefined" && jQuery.isFunction(v.afterUploadComplete) ){
+						    				v.afterUploadComplete();
+						    			}
+								    }).fail(function(){
+									  // toastr.error("Something went wrong, contact your admin");
 									   $("#btn-submit-form i").removeClass("fa-circle-o-notch fa-spin").addClass("fa-arrow-circle-right");
 									   $("#btn-submit-form").prop('disabled', false);
 								    });
@@ -2136,10 +2386,13 @@ var dyFObj = {
 						    		mylog.error(trad.somethingwentwrong , responseJSON.msg)
 						    	}
 						    },
+						    onSessionRequestComplete:function(response, success, xhrOrXdr){
+						    	//alert("sessiiiiiiion");
+						    	//console.log("sesionnnn", response, success, xhrOrXdr);
+						    },
 						    //when all upload is complete whatever the result
 						    onAllComplete: function(succeeded, failed) {
 						    	mylog.log("ooooooooooooo",succeeded,failed);
-						     	toastr.info( "Fichiers bien chargés !!");
 						     	
 						      	if($("#ajaxFormModal #newsCreation").val()=="true"){
 						      		//var mentionsInput=[];
@@ -2189,9 +2442,13 @@ var dyFObj = {
 									   $("#btn-submit-form").prop('disabled', false);
 								    });
 								}
-						    	if(typeof v.afterUploadComplete != "undefined" && jQuery.isFunction(v.afterUploadComplete) )
-						      		v.afterUploadComplete();
-						     	uploadObj.gotoUrl = null;
+						    	if(uploadObj.afterLoadUploader){
+						    		//toastr.info( "Fichiers bien chargés !!");
+						    		if(typeof v.afterUploadComplete != "undefined" && jQuery.isFunction(v.afterUploadComplete && uploadObj.currentlyOperating != false) ){
+						    			v.afterUploadComplete();
+						    		}
+						     		uploadObj.gotoUrl = null;
+						     	}
 						    },
 						    onError: function(id) {
 						      toastr.info(trad.somethingwentwrong);
@@ -2205,6 +2462,8 @@ var dyFObj = {
 			            },
 			            autoUpload: false
 			        });
+					if(typeof v.initList != "undefined" )
+						$(domElement).fineUploader("addInitialFiles",v.initList);
 					/*mylog.log(params);
 					if(typeof params.formValues.images != "undefined" && params.formValues.images.length > 0){
 						var imagesArray=[];
@@ -2624,7 +2883,20 @@ var dyFObj = {
 		        });
 			  });
 		},
-
+		folderUploadEvent : function( type, id, docT, contentK, foldk){
+			if(foldk=="")
+				name=(docT=="image") ? trad.noalbumselected : trad.nofolderselected;
+			else
+				name=navInFolders[foldk].name;
+			$(".nameFolder-form").text(name);
+		    endPoint=uploadObj.get(type, id, docT, contentK, foldk);
+		    $("#imageElement").fineUploader('setEndpoint',endPoint);
+			uploadObj.gotoUrl="#page.type."+type+".id."+id+".view.gallery.dir."+docT;
+			if(contentK != "")
+				uploadObj.gotoUrl+=".key."+contentK;
+			if(foldk != "")
+				uploadObj.gotoUrl+=".folder."+foldk;
+		},
 		addHoursRange : function (addToDay){
 			mylog.log("dyFObj.init.addHoursRange", addToDay);
 			var countRange=$("#hoursRange"+addToDay+" .hoursRange").length;
@@ -3657,14 +3929,15 @@ var dyFInputs = {
         inputType : "custom",
         html:"<div id='similarLink'><div id='listSameName' style='overflow-y: scroll; height:150px;border: 1px solid black; display:none'></div></div>",
     },
-    inputSelect :function(label, placeholder, list, rules) {
+    inputSelect :function(label, placeholder, list, rules, init) {
     	mylog.log("inputSelect", label, placeholder, list, rules);
 		var inputObj = {
 			inputType : "select",
 			label : ( notEmpty(label) ? label : "" ),
 			placeholder : ( notEmpty(placeholder) ? placeholder : trad.choose ),
 			options : ( notEmpty(list) ? list : [] ),
-			rules : ( notEmpty(rules) ? rules : {} )
+			rules : ( notEmpty(rules) ? rules : {} ),
+			init : ( notEmpty(init) ? init : null )
 		};
 		return inputObj;
 	},
@@ -3712,7 +3985,7 @@ var dyFInputs = {
 			placeholder : placeholder != null ? placeholder : tradDynForm.tags,
 			values : (list) ? list : tagsList,
 			label : (label != null) ? label : tradDynForm.addtags,
-			minimumInputLength : (minimumInputLength != null) ? minimumInputLength : 0
+			minimumInputLength : (minimumInputLength != null) ? minimumInputLength : 3
 		}
 	},
 	radio : function(label,keyValues) { 
@@ -3775,18 +4048,17 @@ var dyFInputs = {
 	    	showUploadBtn : false,
 	    	docType : "file",
 	    	template:'qq-template-manual-trigger',
-	    	filetypes:["pdf","xls","xlsx","doc","docx","ppt","pptx","odt","ods","odp"],
+	    	filetypes:["pdf","xls","xlsx","doc","docx","ppt","pptx","odt","ods","odp", "csv"],
 	    	afterUploadComplete : function(){
 	    		//alert("afterUploadComplete :: "+uploadObj.gotoUrl);
 		    	dyFObj.closeForm();
 				//alert( "image upload then goto : "+uploadObj.gotoUrl );
-				if(location.hash.indexOf("view.library")>0){
-					navCollections=[];
-					buildNewBreadcrum("files");
-					getViewGallery(1,"","files");
-				}		
-				else
-	            	urlCtrl.loadByHash( (uploadObj.gotoUrl) ? uploadObj.gotoUrl : location.hash );
+				//if(location.hash.indexOf("view.gallery")>0){
+				//	buildNewBreadcrum("files");
+				//	getViewGallery(1,"","files");
+				//}		
+				//else
+	            urlCtrl.loadByHash( (uploadObj.gotoUrl) ? uploadObj.gotoUrl : location.hash );
 		    }
     	}
     },
@@ -4154,6 +4426,9 @@ var dyFInputs = {
 		removeLocation : function (ix,center){
 			mylog.log("dyFInputs.locationObj.removeLocation", ix, dyFInputs.locationObj.elementLocations);
 			dyFInputs.locationObj.elementLocation = null;
+			if(typeof dyFInputs.locationObj.elementLocations[ix].center != "undefined" && dyFInputs.locationObj.elementLocations[ix].center){
+				dyFInputs.locationObj.centerLocation = null;
+			} 
 			dyFInputs.locationObj.elementLocations.splice(ix,1);
 			$(".locationEl"+ix).parent().remove();
 			//delete dyFInputs.locationObj.elementLocations[ix];
@@ -4730,6 +5005,15 @@ var dyFInputs = {
 	    }
     	return inputObj;
     },
+    dateInput : function(typeDate, label, placeholder, rules){
+    	var inputObj = {
+	        inputType : ( notEmpty(typeDate) ? typeDate : "datetime" ),
+	        placeholder: ( notEmpty(placeholder) ? placeholder : "Saisir une date" ),
+	        label : ( notEmpty(label) ? label : "Saisir une date" ),
+	        rules : ( notEmpty(rules) ? rules : {} ) 
+	    }
+    	return inputObj;
+    },
     birthDate : {
         inputType : "date",
         label : tradDynForm.birthdate,
@@ -4787,9 +5071,11 @@ var dyFInputs = {
         }
     },
     inputHidden :function(value, rules) { 
+    	console.log("inputHidden", value, rules);
 		var inputObj = { inputType : "hidden"};
 		if( notNull(value) ) inputObj.value = value ;
 		if( notNull(rules) ) inputObj.rules = rules ;
+		console.log("inputHidden and ", inputObj);
     	return inputObj;
     },
     get:function(type){
@@ -4853,6 +5139,159 @@ var dyFInputs = {
 		
     }
 };
+
+/* ***********************************
+ARRAY FORM help create array filled by dynForm entries and defined by dynform properties
+considers existing varaible ssuch as 
+form
+scenarioKey
+********************************** */
+var arrayForm = {
+	form : null,
+	buildFormSchema : function(f, k, q, pos) { 
+		arrayForm.form = {
+			jsonSchema : {
+				title : (jsonHelper.notNull( "ctxDynForms."+f+"."+k+"."+q)) ? ctxDynForms[f][k][q].title : form[scenarioKey][f].form.scenario[k].json.jsonSchema.title,
+				icon : (jsonHelper.notNull( "ctxDynForms."+f+"."+k+"."+q)) ? ctxDynForms[f][k][q].icon : form[scenarioKey][f].form.scenario[k].json.jsonSchema.icon,
+				onLoads : {
+					onload : function(){
+						dyFInputs.setHeader("bg-dark");
+						$('.form-group div').removeClass("text-white");
+						dataHelper.activateMarkdown(".form-control.markdown");
+						if( jsonHelper.notNull('ctxDynForms.'+f+'.'+k+'.'+q+'.onLoads.onload') ){
+							ctxDynForms[f][k][q].onLoads.onload();
+						}
+					}
+				},
+				save : function() { 
+					var data = {
+		    			formId : f,
+		    			answerSection : (typeof answerSection != "undefined") ? answerSection : f+".answers."+k+"."+q ,
+		    			arrayForm : true,
+		    			answers : arrayForm.getAnswers(arrayForm.form , true)
+		    		};
+		    		
+		    		//for saving edits
+		    		if(typeof pos != "undefined"){
+		    			data.answerSection = (typeof answerSection != "undefined") ? answerSection+"."+pos : f+".answers."+k+"."+q+"."+pos;
+		    			data.edit = true;
+		    		}
+
+		    		data.collection = answerCollection;
+	    			data.id = answerId;
+	    			urlPath = baseUrl+"/survey/co/update2";
+		    		
+		    		console.log("save",data);
+		    		//alert("save arrayForm");
+
+		    		$.ajax({ type: "POST",
+				        url: urlPath,
+				        data: data,
+						type: "POST",
+				    }).done(function (data) {
+				    	//toastr.success('Enregistré avec succés!');
+				    	window.location.reload(); 
+				    });
+				},
+				properties : (jsonHelper.notNull( "ctxDynForms."+f+"."+k+"."+q) ) ? ctxDynForms[f][k][q].properties : form[scenarioKey][f].form.scenario[k].json.jsonSchema.properties[q].properties
+			}
+		};
+		console.log("buildFormSchema AF form",arrayForm.form);
+		
+	},
+	add : function (f, k, q,pos,data) { 
+		console.log("add AF",f, k, q,pos,data);
+		arrayForm.buildFormSchema(f,k,q,pos);
+		if( typeof pos != "undefined" )
+			dyFObj.openForm( arrayForm.form, null, answers[f].answers[k][q][pos] );
+		else 
+			dyFObj.openForm( arrayForm.form );
+	},
+	del : function  (f,k,q,pos) { 
+		console.log("del AF",f,k,q,pos);
+		var modal = bootbox.dialog({
+	        message: "Vous bien sur ?",
+	        title: "Confirmez",
+	        buttons: [
+	          {
+	            label: "Ok",
+	            className: "btn btn-primary pull-left",
+	            callback: function() {
+	            	
+				data = {
+					formId : f,
+					answerSection : (typeof answerSection != "undefined") ? answerSection+"."+pos : f+".answers."+k+"."+q+"."+pos ,
+					answers : null,
+					pull : (typeof answerSection != "undefined") ? answerSection : f+".answers."+k+"."+q
+					
+				};
+				
+				data.collection = answerCollection;
+				data.id = answerId;
+				urlPath = baseUrl+"/survey/co/update2";
+				
+				console.log("save",data);
+
+				$.ajax({ type: "POST",
+			        url: urlPath,
+			         data: data,
+					type: "POST",
+			    }).done(function (data) {
+			    	window.location.reload(); 
+			    });
+	            }
+	          },
+	          {
+	            label: "Annuler",
+	            className: "btn btn-default pull-left",
+	            callback: function() {}
+	          }
+	        ],
+	        show: false,
+	        onEscape: function() {
+	          modal.modal("hide");
+	        }
+	    });
+	    modal.modal("show");
+		
+	},
+	edit : function  (f,k, q,pos) { 
+		console.log("edit AF",f,k,q,pos);
+		arrayForm.add(f, k, q, pos);
+	},
+	getAnswers : function(dynJson)
+	{
+		var editAnswers = {};
+		$.each( dynJson.jsonSchema.properties , function(field,fieldObj) { 
+	        console.log($(this).data("step")+"."+field, $("#"+field).val() );
+	        if( fieldObj.inputType ){
+	            if(fieldObj.inputType=="uploader"){
+	            	listObject=$('#'+fieldObj.domElement).fineUploader('getUploads');
+			    	goToUpload=false;
+			    	if(listObject.length > 0){
+			    		$.each(listObject, function(e,v){
+			    			if(v.status == "submitted")
+			    				goToUpload=true;
+			    		});
+			    	}
+
+					if( goToUpload ){       		
+			    
+	         		//if( $('#'+fieldObj.domElement).fineUploader('getUploads').length > 0 ){
+						$('#'+fieldObj.domElement).fineUploader('uploadStoredFiles');
+						editAnswers[field] = "";
+	            	}
+	            } else {
+	            	console.log(field,$("#"+field).val());
+	            	editAnswers[field] = $("#"+field).val();
+	            }
+	        }
+	    });
+	    
+		console.log("editAnswers",editAnswers);
+	    return editAnswers;
+	}
+}
 
 /* ***********************************
 			EXTRACTPROCCESS
@@ -4928,7 +5367,7 @@ var processUrl = {
 		       // var match_url = /\b(https?|ftp):\/\/([\-A-Z0-9. \-]+?|www\\.)(\/[\-A-Z0-9+&@#\/%=~_|!:,.;\-]*)?(\?[A-Z0-9+&@#\/%=~_|!:,.;\-]*)?/i;
 		       // var match_url=new RegExp("(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?");
 		        //var match_url=/[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
-		        var match_url=/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g;
+		        var match_url=/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ@:%_\+.~#?&//=]*)/g;
 
 		        if (match_url.test(getUrl.val())) 
 		        {
@@ -5053,16 +5492,15 @@ var processUrl = {
 		$("#refResult").addClass("hidden");
 		$("#send-ref").addClass("hidden");
 
-		urlValidated = "";
+		//urlValidated = "";
 
-	    $.ajax({ 
-	    	url: "//cors-anywhere.herokuapp.com/" + url, // 'http://google.fr', 
+	    //$.ajax({ 
+	    //	url: "//cors-anywhere.herokuapp.com/" + url, // 'http://google.fr', 
 	    	//crossOrigin: true,
-	    	timeout:10000,
-	        success:
-				function(data) {
-					
-				    var jq = $.parseHTML(data);
+	    //	timeout:10000,
+	      //  success:
+	    processUrl.extractUrl("", url,function(data) {
+				  /*  var jq = $.parseHTML(data);
 				    
 				    var tempDom = $('<output>').append($.parseHTML(data));
 				    var title = $('title', tempDom).html();
@@ -5091,16 +5529,16 @@ var processUrl = {
 	                if(typeof favicon != "undefined"){
 	                    var faviconSrc = hostname+favicon;
 	                    if(favicon.indexOf("http")>=0) faviconSrc = favicon;
-	                }
+	                }*/
 
-					var description = $(tempDom).find('meta[name=description]').attr("content");
+					//var description = $(tempDom).find('meta[name=description]').attr("content");
 
-					var keywords = $(tempDom).find('meta[name=keywords]').attr("content");
+					//var keywords = $(tempDom).find('meta[name=keywords]').attr("content");
 					//mylog.log("keywords", keywords);
 
 					var arrayKeywords = new Array();
-					if(typeof keywords != "undefined")
-						arrayKeywords = keywords.split(",");
+					if(typeof data.keywords != "undefined")
+						arrayKeywords = data.keywords;
 
 					//mylog.log("arrayKeywords", arrayKeywords);
 
@@ -5109,25 +5547,25 @@ var processUrl = {
 					//if(typeof arrayKeywords[2] != "undefined") $("#form-keywords3").val(arrayKeywords[2]); else $("#form-keywords3").val("");
 					//if(typeof arrayKeywords[3] != "undefined") $("#form-keywords4").val(arrayKeywords[3]); else $("#form-keywords4").val("");
 
-					if(description=="" || description=="undefined")
-				   		if(stitle=="" || stitle=="undefined")
-				   			description = stitle;
-				   	params = new Object;
+					//if(description=="" || description=="undefined")
+				   	//	if(stitle=="" || stitle=="undefined")
+				   	//		description = stitle;
+				   /*	params = new Object;
 				   	params.title=title,
 				   	params.favicon=faviconSrc,
 				   	params.hostname=hostname,
 				   	params.description=description,
 				   	params.tags=arrayKeywords;
-					mylog.log(params);
+					mylog.log(params);*/
 					/*$("#form-title").val(title);
 	                $("#form-favicon").val(faviconSrc);
 	                $("#form-description").val(description);*/
 					
 
 					//color
-					$("#ajaxFormModal #name").val(title);   	
+					$("#ajaxFormModal #name").val(data.name);   	
 				   	//color	
-					$("#ajaxFormModal #description").val(description); 
+					$("#ajaxFormModal #description").val(data.description); 
 				   	//color
 				   	if(notEmpty(arrayKeywords))		
 						$("#ajaxFormModal #tags").select2("val",arrayKeywords);
@@ -5160,8 +5598,8 @@ var processUrl = {
 				    tempDom = "";
 
 				    checkAllInfo();*/	
-				    return params;		   
-				},
+				    //return params;		   
+				/*},
 			error:function(xhr, status, error){
 				$("#lbl-url").removeClass("letter-green").addClass("letter-red");
 				$("#status-ref").html("<span class='letter-red'><i class='fa fa-ban'></i> URL INNACCESSIBLE</span>");
@@ -5171,7 +5609,7 @@ var processUrl = {
 					$("#lbl-url").removeClass("letter-green").addClass("letter-red");
 					$("#status-ref").html("<span class='letter-red'><i class='fa fa-ban'></i> 404 : URL INTROUVABLE OU INACCESSIBLE</span>");
 				}
-			}
+			}*/
 		});
 	},
 	isValidURL:function(url) {

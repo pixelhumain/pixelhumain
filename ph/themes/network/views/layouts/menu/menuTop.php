@@ -218,7 +218,7 @@ if(  	@$params['enSavoirPlus'] &&
 	</div>
 	<?php } ?>
 
-	<button class="btn-menu btn-menu-top bg-white text-azure tooltips pull-right" id="btn-toogle-map"
+	<button class="btn-menu btn-menu-top bg-white text-azure tooltips pull-right hidden-xs" id="btn-toogle-map"
 	data-toggle="tooltip" data-placement="bottom" title="<?php echo Yii::t("common","Map"); ?>" alt="<?php echo Yii::t("common","Map"); ?>">
 		<i class="fa fa-map-marker"></i>
 	</button>

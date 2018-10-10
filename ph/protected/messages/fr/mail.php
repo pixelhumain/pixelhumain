@@ -78,11 +78,11 @@
 
 
 
-		"In just a few clicks discover local activity on CO and use tools for your own organization : news feeds, agendas, classified ads, directories of initiatives towards a more sustainable world !" => "En quelques clics d&eacute;couvrez votre dynamique locale et des outils pour votre communaut&eacute;  : fil d’actualit&eacute;, agenda, petites annonces, annuaires des initiatives allant vers un monde plus durable !",
+		"In just a few clicks discover local activity on CO and use tools for your own organization : news feeds, agendas, classified ads, directories of initiatives towards a more sustainable world !" => "En quelques clics, d&eacute;couvrez votre dynamique locale et des outils pour votre communaut&eacute;  : fil d’actualit&eacute;, agenda, petites annonces, annuaire des initiatives allant vers un monde plus durable !",
 
 		"Connected like Facebook and open like Wikipedia join the movement!" => "Aussi connect&eacute; que Facebook et aussi ouvert que Wikip&eacute;dia, rejoignez le mouvement !" ,
 
-		"{who} started without you, but you can join him at any time by clicking here" => "{who} a commenc&eacute; sans vous, mais vous pouvez le rejoindre à tout moment en cliquant ici" ,
+		"{who} started without you, but you can join him at any time by clicking here" => "{who} est d&eacute;j&agrave; A<span style='color:#e5324f'>CO</span>eur. Rejoignez-nous sur votre réseau citoyen" ,
 		"The Human Pixels" => "Les Pixels Humains" ,
 		"{who} is waiting for you on {what}" => "{who} vous attend sur {what}" ,
 		"{what} is waiting for you" => "{what} vous attend",
@@ -95,7 +95,7 @@
 		"{who} indicated your email as contact on {what}"=>"{who} a indiqué votre email comme contact sur {what}",
 		"If you don't know Communecter, it is this territorial search engine and social network respectful of your data. In this open source website, every body can contribute and enrich common knowledge"=>"Si vous ne connaissez pas Communecter, c'est ce <b>réseau social citoyen et local</b> respectueux de vos données personnelles. Sur ce site web libre, chacun peut contribuer et enrichir la connaissance commune de nos territoires",
 		"If you do not have an account yet, come to discover this tools made for you and your community"=>"Si vous n'avez pas encore de compte, venez vite le découvrir. Cet outil est fait pour vous et votre communauté",
-		"You will enjoy to communicate about the projects, the events of {what} in your territory. You will have the chance to express your needs and search actors around you. You will also be able to discuss and organize your community..."=>"Vous pourrez dès créer des évènements et profiter des outils de communication pour faire connaître {what}. Vous aurez la possibilité d'exprimer vos besoins, et rechercher des acteurs autour de vous. Vous pourrez même discuter avec votre communauté et prendre des décisions ensemble.",
+		"You will enjoy to communicate about the projects, the events of {what} in your territory. You will have the chance to express your needs and search actors around you. You will also be able to discuss and organize your community..."=>"Vous pourrez créer des événements et profiter des outils de communication pour faire connaître {what}. Vous aurez la possibilité d'exprimer vos besoins, et rechercher des acteurs autour de vous. Vous pourrez même discuter avec votre communauté et prendre des décisions ensemble.",
 		"And all of this into an <b>ethical</b> and <b>responsible</b> environment"=>"Et tout cela dans un environnement <b>éthique</b> et <b>responsable</b>.",
 		"Don't wait anymore and join us !!"=>"Ce réseau n'attends plus que vous !",
 		//SUBJECT

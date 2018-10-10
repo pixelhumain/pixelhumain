@@ -383,25 +383,28 @@ var dySObj = {
 	        surveyValues : {},
 	        collection : "answers",
 	        key : "answers",
-	        savePath : baseUrl+"/survey/co/save",
+	        savePath : baseUrl+"/survey/co/save/id/"+answerId,
 	        onLoad : function(){
 	            //$(".description1, .description2, .description3, .description4, .description5, .description6").focus().autogrow({vertical: true, horizontal: false});
 	        },
 	        onSave : function(params) {
 	            mylog.log("onSave" );
 	            var result = {
-	            	"user" : userId,
-	            	"name" : userConnected.name,
-	            	"email" : userConnected.email,
+	            	// "user" : userId,
+	            	// "name" : userConnected.name,
+	            	// "email" : userConnected.email,
 	            	"formId" : dySObj.surveys.id,
+	            	// "session" : formSession,
 	            	"t" : dySObj.surveys.t,
 	            	"h" : dySObj.surveys.h,
 	            	"answers" : {}
 	            };
 	            if(dySObj.surveys.parentSurvey)
 	            	result.parentSurvey = dySObj.surveys.parentSurvey.id;
+
 	            var reloadInside= true;
 	            mylog.log(params.surveyObj);
+	            uploadObj.afterLoadUploader=true;
 	            $.each( params.surveyObj,function(section,sectionObj) { 
 	            	//alert("key"+sectionObj.key);
 	            	result["answers"][sectionObj.key] = {};
@@ -412,7 +415,16 @@ var dySObj = {
 		                    mylog.log(sectionObj.key+"."+field, $("#"+section+" #"+field).val() );
 		                    if( fieldObj.inputType ){
 		                        if(fieldObj.inputType=="uploader"){
-		                     		if( $('#'+section+' #'+fieldObj.domElement).fineUploader('getUploads').length > 0 ){
+		                        	listObject=$('#'+section+' #'+fieldObj.domElement).fineUploader('getUploads');
+							    	goToUpload=false;
+							    	if(listObject.length > 0){
+							    		$.each(listObject, function(e,v){
+							    			if(v.status == "submitted")
+							    				goToUpload=true;
+							    		});
+							    	}
+									if( goToUpload ){
+		                     		//if( $('#'+section+' #'+fieldObj.domElement).fineUploader('getUploads').length > 0 ){
 		                     			reloadInside=false;
 		    							$('#'+section+' #'+fieldObj.domElement).fineUploader('uploadStoredFiles');
 		    							result["answers"][sectionObj.key][field] = "";
@@ -435,27 +447,29 @@ var dySObj = {
 		            }
 	            });
 	            mylog.log("onsave result", params, result);
+
 	            $.ajax({
 	              type: "POST",
 	              url: params.savePath,
 	              data: result,
 	              dataType: "json"
 	            }).done( function(data){
-	            	if(data.result == true){
+	            	if(data.result.ok == true){
 	            		if( dySObj.surveys.parentSurvey && 
 	            			dySObj.surveys.parentSurvey.surveyType == "surveyList" && 
 	            			Object.keys( dySObj.surveys.parentSurvey.scenario).indexOf(dySObj.surveys.id) < Object.keys( dySObj.surveys.parentSurvey.scenario).length-1 ){
 	            			var ix = Object.keys( dySObj.surveys.parentSurvey.scenario).indexOf(dySObj.surveys.id)+1;
 	            			if(reloadInside)
-	            				window.location = baseUrl+"/survey/co/index/id/"+Object.keys( dySObj.surveys.parentSurvey.scenario )[ix];
+	            				window.location = baseUrl+"/survey/co/index/id/"+Object.keys( dySObj.surveys.parentSurvey.scenario )[ix]+"/session/"+formSession+"/answer/"+answerId;
+
 	            		} else {
 		                	toastr.success("answers saved");
 		                	if(dySObj.surveys.parentSurvey.custom.endTpl){
 		                		if(reloadInside)
-		                			window.location = baseUrl+"/survey/co/index/id/"+dySObj.surveys.parentSurvey.id;
+		                			window.location = baseUrl+"/survey/co/index/id/"+dySObj.surveys.parentSurvey.id+"/answer/"+answerId;
 		                	}
 		                	else
-		                		$("#ajaxFormModal").html('<h1>Well done ! Thank you for your participation. </h1>');
+		                		$("#ajaxFormModal").html('<h1>Bravo ! Merci pour votre participation. </h1>');
 		                }
 	            	}
 	                else 
@@ -643,7 +657,7 @@ var dySObj = {
 			counter++;
 		});
 		if(!result){
-			$(".btn-next").html('<span class="text-red"><i class="fa fa-warning"></i> Régler les erreurs</span>');
+			//$(".btn-next").html('<span class="text-red"><i class="fa fa-warning"></i> Régler les erreurs</span>');
 			$('html, body').stop().animate({scrollTop: 0}, 500, '');
 		}else{
 			$(".btn-next").html('<span class="text-dark">Suivant <i class="fa fa-arrow-circle-right"></i></span>');

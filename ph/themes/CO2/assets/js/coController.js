@@ -232,7 +232,6 @@ var urlCtrl = {
 						//open path in a modal (#openModal)
 						if(pathT[0] == "modal"){
 							path = path.substring(5);
-							alert(baseUrl+'/'+moduleId+path);
 							smallMenu.openAjaxHTML(baseUrl+'/'+moduleId+path);
 						} else {
 							//console.log(">>>>>>>>>>>>>>>>>>> endPoint:",endPoint);
@@ -271,7 +270,6 @@ var urlCtrl = {
 	//back sert juste a differencier un load avec le back btn
 	//ne sert plus, juste a savoir d'ou vient drait l'appel
 	loadByHash : function ( hash , back ) {
-		alert("loadByHash"+hash);
 		// mylog.log("IS DIRECTORY ? ", 
 		// 			hash.indexOf("#default.directory"), 
 		// 			location.hash.indexOf("#default.directory"), CoAllReadyLoad);
@@ -499,7 +497,115 @@ function showAjaxPanel (url,title,icon, mapEnd , urlObj) {
 	}, 100);
 }
 
-
+var mentionsInput=[];
+var mentionsInit = {
+	stopMention : false,
+	isSearching : false,
+	get : function(domElement){
+		mentionsInput=[];
+		$(domElement).mentionsInput({
+			allowRepeat:true,
+		 	onDataRequest:function (mode, query, callback) {
+			  	if(!mentionsInit.stopMention){
+				  	var data = mentionsContact;
+				  	data = _.filter(data, function(item) { return item.name.toLowerCase().indexOf(query.toLowerCase()) > -1 });
+					callback.call(this, data);
+					mentionsInit.isSearching=true;
+			   		var search = {"searchType" : ["citoyens","organizations","projects"], "name": query};
+			  		$.ajax({
+						type: "POST",
+				        url: baseUrl+"/"+moduleId+"/search/globalautocomplete",
+				        data: search,
+				        dataType: "json",
+				        success: function(retdata){
+				        	if(!retdata){
+				        		toastr.error(retdata.content);
+				        	}else{
+					        	mylog.log(retdata);
+					        	data = [];
+					        	//for(var key in retdata){
+						        //	for (var id in retdata[key]){
+						        $.each(retdata.results, function (e, value){
+							        	avatar="";
+							        	//console.log(retdata[key]);
+							        	//aert(retdata[key][id].type);
+							        	if(typeof value.profilThumbImageUrl != "undefined" && value.profilThumbImageUrl!="")
+							        		avatar = baseUrl+value.profilThumbImageUrl;
+							        	object = new Object;
+							        	object.id = e;
+							        	object.name = value.name;
+							        	object.slug = value.slug;
+							        	object.avatar = avatar;
+							        	object.type = value.type;
+							        	var findInLocal = _.findWhere(mentionsContact, {
+											name: value.name, 
+											type: value.type
+										}); 
+										if(typeof(findInLocal) == "undefined"){
+											mentionsContact.push(object);
+										}
+							 	//		}
+					        	//}
+					        	});
+					        	data=mentionsContact;
+					    		data = _.filter(data, function(item) { return item.name.toLowerCase().indexOf(query.toLowerCase()) > -1 });
+								callback.call(this, data);
+								mylog.log("callback",callback);
+				  			}
+						}	
+					});
+			  	}
+			 }
+	  	});
+	},
+	beforeSave : function(object, domElement){
+		$(domElement).mentionsInput('getMentions', function(data) {
+			mentionsInput=data;
+		});
+		if (typeof mentionsInput != "undefined" && mentionsInput.length != 0){
+			var textMention="";
+			$(domElement).mentionsInput('val', function(text) {
+				textMention=text;
+				console.log(textMention);
+				$.each(mentionsInput, function(e,v){
+					strRep=v.name;
+					while (textMention.indexOf("@["+v.name+"]("+v.type+":"+v.id+")") > -1){
+						if(typeof v.slug != "undefined")
+							strRep="@"+v.slug;
+						textMention = textMention.replace("@["+v.name+"]("+v.type+":"+v.id+")", strRep);
+					}
+				});
+			});			
+			object.mentions=mentionsInput;
+			object.text=textMention;
+		}
+		return object;		      		
+	},
+	addMentionInText: function(text,mentions){
+		$.each(mentions, function( index, value ){
+			if(typeof value.slug != "undefined"){
+				while (text.indexOf("@"+value.slug) > -1){
+					str="<span class='lbh' onclick='urlCtrl.loadByHash(\"#page.type."+value.type+".id."+value.id+"\")' onmouseover='$(this).addClass(\"text-blue\");this.style.cursor=\"pointer\";' onmouseout='$(this).removeClass(\"text-blue\");' style='color: #719FAB;'>"+
+			   						value.name+
+			   					"</span>";
+					text = text.replace("@"+value.slug, str);
+				}
+			}else{
+				//Working on old news
+		   		array = text.split(value.value);
+		   		text=array[0]+
+		   					"<span class='lbh' onclick='urlCtrl.loadByHash(\"#page.type."+value.type+".id."+value.id+"\")' onmouseover='$(this).addClass(\"text-blue\");this.style.cursor=\"pointer\";' onmouseout='$(this).removeClass(\"text-blue\");' style='color: #719FAB;'>"+
+		   						value.name+
+		   					"</span>"+
+		   				array[1];
+		   	}   					
+		});
+		return text;
+	},
+	reset: function(domElement){
+		$(domElement).mentionsInput('reset');
+	}
+}
 var smallMenu = {
 	destination : ".menuSmallBlockUI",
 	inBlockUI : true,

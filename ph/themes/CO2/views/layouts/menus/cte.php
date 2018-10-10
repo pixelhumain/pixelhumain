@@ -56,13 +56,17 @@
         color:grey !important;
     }
 </style>
+<?php 
+
+$session = (!empty($_GET["session"]) ? $_GET["session"] : "1");
+?>
 <!-- Navigation -->
 <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header pull-left">
             
-            <a href="<?php echo Yii::app()->createUrl('/survey/co/index/id/cte'); ?>" class="btn btn-link menu-btn-back-category pull-left no-padding" >
+            <a href="<?php echo Yii::app()->createUrl('/survey/co/index/id/cte/session/'.$session); ?>" class="btn btn-link menu-btn-back-category pull-left no-padding" >
                 <img src="<?php echo Yii::app()->getModule("survey")->assetsUrl; ?>/images/custom/cte/TCO-LOGO-WEB.png" class="logo-menutop pull-left" height=35 style="vertical-align: middle"/> <span style="display:block" class="padding-15 hidden-xs">TCO : 1er CONTRAT DE TRANSITION ÉCOLOGIQUE</span>
             </a>
            
@@ -88,7 +92,7 @@
                 ?> 
                     <a  href="<?php echo Yii::app()->createUrl('/#page.type.'.Person::COLLECTION.'.id.'.Yii::app()->session['userId']); ?>"
                         class="menu-name-profil text-dark pull-right shadow2"
-                        target="_blanck" 
+                        target="_blanck"
                         data-toggle="dropdown">
                             <small class="hidden-xs hidden-sm margin-left-10" id="menu-name-profil">
                                 <?php echo @$me["name"] ? $me["name"] : @$me["username"]; ?>
@@ -127,20 +131,45 @@
  <div class="dropdown pull-right" id="dropdown-user">
     <div class="dropdown-main-menu">
         <ul class="dropdown-menu arrow_box">
+            
+            <li class="text-admin">
+                <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>/survey/co/index/id/cte" class="lbh bg-white">
+                    <i class="fa fa-home"></i> Accueil
+                </a>
+            </li>
+
+            <li class="text-admin">
+                <a href="https://www.communecter.org/#@cteTco" class=" bg-white">
+                    <i class="fa fa-university"></i> Organisation CTE TCO 
+                </a>
+            </li>
 
               <?php 
                 $class = "hidden" ;
                 if( empty($me) || empty($me["address"]) || empty($me["address"]["codeInsee"]))
                     $class = "";
-             if( Form::canAdmin("cte") ) { 
-                $label = Yii::t("common", "Admin") ;  
+                $form = PHDB::findOne( Form::COLLECTION , array( "id"=> "cte"));
+             if( Form::canAdmin( (string)$form["_id"] , $form  )) { 
                 ?>
                 <li role="separator" class="divider"></li>
                 <li class="text-admin">
-                    <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>/survey/co/admin/id/cte" class="lbh bg-white">
-                        <i class="fa fa-user-secret"></i> <?php echo $label ; ?>
+                    <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true)."/survey/co/answers/id/cte/session/".$session ?>" class="bg-white">
+                        <i class="fa fa-bars"></i> Projets
                     </a>
                 </li>
+                <?php if( Form::canAdminRoles( (string)$form["_id"], "TCO" , $form  )) { ?>
+                <li class="text-admin">
+                    <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true)."/survey/co/members/id/cte/session/".$session ?>" class="bg-white">
+                        <i class="fa fa-users"></i> Membres
+                    </a>
+                </li>
+
+                <li class="text-admin">
+                    <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true)."/survey/co/roles/id/cte/session/".$session ?>" class="bg-white">
+                        <i class="fa fa-file-text"></i> Fiches Actions
+                    </a>
+                </li>
+                <?php } ?>
             <?php } ?>
 
 
@@ -163,7 +192,34 @@
         </ul>
     </div>
 </div>
-<?php } 
+<?php /* ?>
+<div id="affix-sub-menu" class="hidden-xs affix">
+    <div id="territorial-menu" class="col-md-10 col-sm-10 col-xs-12 margin-bottom-10">
+                            
+<a href="<?php echo Yii::app()->createUrl('/survey/co/index/id/cte'); ?>" class="#home btn btn-link pull-left btn-menu-to-app hidden-top link-submenu-header lbh-menu-app">
+<i class="fa fa-home"></i>
+<span class="searchModSpan">Accueil</span>
+<span class=" topbar-badge badge animated bounceIn badge-warning"></span>
+</a>  
+
+<a href="<?php echo Yii::app()->createUrl('/survey/co/admin/id/cte'); ?>" class="#liveModBtn btn btn-link pull-left btn-menu-to-app hidden-top link-submenu-header lbh-menu-app">
+<i class="fa fa-cogs"></i>
+<span class="liveModSpan">Admin</span>
+<span class=" topbar-badge badge animated bounceIn badge-warning"></span>
+</a>  
+
+<a href="<?php echo Yii::app()->createUrl('/survey/co/roles/id/cte'); ?>" class="#agendaModBtn btn btn-link pull-left btn-menu-to-app hidden-top link-submenu-header lbh-menu-app">
+<i class="fa fa-file-text"></i>
+<span class="agendaModSpan">Fiches Actions</span>
+<span class=" topbar-badge badge animated bounceIn badge-warning"></span>
+</a>  
+ 
+                </div>
+</div>
+
+<?php */
+    
+} 
 
 $this->renderPartial($layoutPath.'loginRegister', array("subdomain" => $subdomain)); 
 
