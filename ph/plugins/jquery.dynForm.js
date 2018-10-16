@@ -519,7 +519,10 @@ var dyFObj = {
 		            	// mylog.log("data.id", data.id, data.url);
 		            	/*if(data.map && $.inArray(collection, ["events","organizations","projects","citoyens"] ) !== -1)
 				        	addLocationToFormloopEntity(data.id, collection, data.map);*/
-				       if (typeof afterSave == "function"){
+
+				        if (typeof networkJson != "undefined"){
+				        	window.location.reload();
+				        }else if (typeof afterSave == "function"){
 		            		afterSave(data);
 		            		//urlCtrl.loadByHash( '#'+ctrl+'.detail.id.'+data.id );
 		            	} else {
