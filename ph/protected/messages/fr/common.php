@@ -102,7 +102,7 @@ return array(
 	"Something went really bad : Invalid Content" => "Une erreur s'est produite : Contenu Invalide",
 	"Something went really bad : " => "Une erreur s'est produite : ", 
 	"Uncorrect request" => "Cette requête n&#146;a pas pu aboutir",
-	"Can not manage the type " => "Vous ne pouvez pas gérer le type",
+	"Can not manage the type " => "Vous ne pouvez pas gérer le type ",
 	"The form has been validated." => "Le formulaire a été validé avec succès.",
 	"Please specify your first name" => "Veuillez spécifier votre nom",
 	"Please select a type" => "Veuillez selectionner un type",

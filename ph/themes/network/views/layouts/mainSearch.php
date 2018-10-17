@@ -178,7 +178,6 @@
 			'/plugins/jQuery-contextMenu/dist/jquery.ui.position.min.js' , 
 			'/plugins/select2/select2.min.js' , 
 			'/plugins/select2/select2.css',
-			'/plugins/moment/min/moment.min.js' ,
 			'/plugins/jquery-validation/dist/jquery.validate.min.js',
 			'/plugins/jquery-validation/localization/messages_fr.js',
 			'/plugins/lightbox2/css/lightbox.css',

@@ -1129,9 +1129,9 @@ div.tagsinput input {
 
 .fc-event, #event-categories .event-category {
   padding: 2px 5px;
-  background: #edeef0 !important;
-  border: 1px solid #e8e9ec !important;
-  color: #8b91a0 !important; }
+  background: #edeef0 ;
+  border: 1px solid #e8e9ec;
+  color: #8b91a0 ; }
 
 #event-categories .event-category {
   cursor: move; }
