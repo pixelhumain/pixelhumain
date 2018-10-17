@@ -3764,10 +3764,8 @@ var dyFInputs = {
 						}
 					}
 				}
-				
 			});
 		}
-		
 	},
 	formLocality :function(label, placeholder) {
 		mylog.log("inputText ", inputObj);
