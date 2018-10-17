@@ -79,13 +79,17 @@ HtmlHelper::registerCssAndScriptsFiles($cssJS, Yii::app()->getModule( "co2" )->g
   ?>
   
   <?php 
-    $layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
-    $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
-    $CO2DomainName = Yii::app()->params["CO2DomainName"];
-      $parentModuleId = ( @Yii::app()->params["module"]["parent"] ) ?  Yii::app()->params["module"]["parent"] : $this->module->id;
 
-  $this->renderPartial($layoutPath.'initJs', 
-                                 array( "me"=>$me, "parentModuleId" => $parentModuleId, "myFormContact" => @$myFormContact, "communexion" => CO2::getCommunexionCookies()));
+$layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
+$me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
+$CO2DomainName = Yii::app()->params["CO2DomainName"];
+$parentModuleId = ( @Yii::app()->params["module"]["parent"] ) ?  Yii::app()->params["module"]["parent"] : $this->module->id;
+
+$this->renderPartial($layoutPath.'initJs', 
+                    array( "me"=>$me, 
+                           "parentModuleId" => $parentModuleId, 
+                           "myFormContact" => @$myFormContact, 
+                           "communexion" => CO2::getCommunexionCookies()));
 
   if (  ($this->module->id == "survey" )){
     //&& strrpos(@$_GET['id'], "cte") !== false ) || @Yii::app()->session["custom"]["header"] == "survey.views.custom.cte"){
@@ -116,13 +120,26 @@ HtmlHelper::registerCssAndScriptsFiles($cssJS, Yii::app()->getModule( "co2" )->g
       $this->renderPartial( "co2.views.custom.init",array( "custom" => "forms.".$_GET['id'] ) );
     }
     
-  } else if($this->module->id == "onepage" && @$_GET['slug'] ){
-    $el = Slug::getElementBySlug($_GET['slug']);
-    if(@$el["el"]["custom"]["menu"])
-      $CO2DomainName = $el["el"]["custom"]["menu"];
+  } else if($this->module->id == "onepage" ){
+    if(@$_GET['slug']){
+      $el = Slug::getElementBySlug($_GET['slug']);
+      if(@$el["el"]["custom"]["menu"])
+        $CO2DomainName = $el["el"]["custom"]["menu"];
 
-    if( @$el["el"]["custom"] )
-      $this->renderPartial( "co2.views.custom.init",array( "custom" => $el["type"].".".$el["id"] ) );
+      if( @$el["el"]["custom"] )
+        $this->renderPartial( "co2.views.custom.init",array( "custom" => $el["type"].".".$el["id"] ) );
+    } else if(Yii::app()->controller->action->id == "tags" && @$_GET['l']  ){
+      $tag = explode(".",@$_GET['l'])[0];
+      $costum = PHDB::findOne( "costum", array( "tag"=> $tag ));
+      if(@$costum["menu"])
+        $CO2DomainName = $costum["menu"];
+
+      if( @$costum ){
+        $costum ["url"] = "/onepage/co/tags/l/".$tag;
+        $costum ["logo"]=Yii::app()->getModule("onepage")->getAssetsUrl(true).$costum["logo"];
+        $this->renderPartial( "co2.views.custom.init",array( "custom" => "costum.".$tag, "el"=>$costum ) );
+      }
+    }
   }
   ?>
  <script type="text/javascript">
@@ -152,14 +169,12 @@ HtmlHelper::registerCssAndScriptsFiles($cssJS, Yii::app()->getModule( "co2" )->g
                                     "me" => $me ) );
 
     echo $content; ?> 
-</div>
-
-<?php 
-?>
+  </div>
 
 <script type="text/javascript">
 //var custom = {};            
   jQuery(document).ready(function() { 
+      bindLBHLinks();
       $(".btn-show-mainmenu").click(function(){
           $("#dropdown-user").addClass("open");
       });

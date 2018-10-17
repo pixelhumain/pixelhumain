@@ -152,7 +152,6 @@
 
 <script type="text/javascript">
 jQuery(document).ready(function() {
-
    /* $(".toolbar-bottom-apps").hide().removeClass("hidden");
     $('#show-bottom-app').off().click(function(){
         $(".toolbar-bottom-apps").toggle(100);
