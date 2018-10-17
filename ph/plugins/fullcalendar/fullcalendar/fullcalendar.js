@@ -6320,7 +6320,7 @@ DayGrid.mixin({
 		}
 
 		titleHtml =
-			'<span class="fc-title">' +
+			'<span class="fc-title">m' +
 				(htmlEscape(event.title || '') || '&nbsp;') + // we always want one line of height
 			'</span>';
 		
@@ -6813,7 +6813,7 @@ DayGrid.mixin({
 				'<span class="fc-close ' +
 					(isTheme ? 'ui-icon ui-icon-closethick' : 'fc-icon fc-icon-x') +
 				'"></span>' +
-				'<span class="fc-title">' +
+				'<span class="fc-title">!' +
 					htmlEscape(title) +
 				'</span>' +
 				'<div class="fc-clear"/>' +
@@ -7725,7 +7725,7 @@ TimeGrid.mixin({
 						''
 						) +
 					(event.title ?
-						'<div class="fc-title">' +
+						'<div class="fc-title">?' +
 							htmlEscape(event.title) +
 						'</div>' :
 						''

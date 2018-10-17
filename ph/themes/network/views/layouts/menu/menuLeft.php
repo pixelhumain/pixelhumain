@@ -75,14 +75,14 @@
 						</a><br>
 
 						<span class="btn btn-default text-azure margin-bottom-5 hidden keycat-dateevent" data-parent="dateevent">
-							<i class="fa fa-angle-right"></i> <?php echo Yii::t("common","To") ?>
+							<i class="fa fa-angle-right"></i> <?php echo Yii::t("common","From") ?>
 							<input type="text" name="dateStartFiltre" id="dateStartFiltre" class="dateTimeInput">
 						</span>
 
 						<br class="hidden">
 
 						<span class="btn btn-default text-azure margin-bottom-5 hidden keycat-dateevent" data-parent="dateevent">
-							<i class="fa fa-angle-right"></i> <?php echo Yii::t("common","From") ?>
+							<i class="fa fa-angle-right"></i> <?php echo Yii::t("common","To") ?>
 							<input type="text" name="dateEndFiltre" id="dateEndFiltre" class="dateTimeInput">
 						</span><br class="hidden">
 						
