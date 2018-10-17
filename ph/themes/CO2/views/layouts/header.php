@@ -35,6 +35,11 @@
 <header id="<?php echo $menuApp; ?>">
             <div id="affix-sub-menu" class="affix">
                 <div id="text-search-menu" class="col-md-12 col-sm-12 col-xs-12 no-padding">
+                <span class="dropdown" id="dropdown-apps">
+                    <button class="dropdown-toggle" type="button" id="dropdownApps" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-placement="bottom" title="Applications" alt="Applications">
+                          <i class="fa fa-th"></i>
+                        </button>
+                    </span>
                     <input type="text" class="form-control main-search-bar pull-left" id="main-search-xs-bar" placeholder="<?php echo Yii::t("common", "What are you looking for")." ?"; ?>">
                     <span class="text-white input-group-addon input-group-addon-xs pull-left main-search-bar-addon" id="main-search-xs-bar-addon" style="border-radius:0px !important;">
                         <i class="fa fa-arrow-circle-right"></i>

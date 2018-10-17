@@ -606,7 +606,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 }
 
 .el-nowList:hover{
-    width: 300px;
+    /*width: 300px;*/
     float: right;
 }
 .el-nowList .address{
@@ -618,7 +618,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 
 .el-nowList:hover .elemt_name, 
 .el-nowList:hover .elemt_date {
-    width: 80%;
+    /*width: 80%;*/
 }
 
 .previewLocalActivity{
