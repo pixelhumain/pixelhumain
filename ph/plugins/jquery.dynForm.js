@@ -87,7 +87,7 @@ onSave: (optional) overloads the generic saveProcess
 			***************************************** */
 			fieldHTML = '<input type="hidden" name="key" id="key" value="'+settings.formObj.key+'"/>';
 	        fieldHTML += '<input type="hidden" name="collection" id="collection" value="'+settings.formObj.collection+'"/>';
-	        fieldHTML += '<input type="hidden" name="id" id="id" value="'+((settings.formValues.id) ? settings.formValues.id : "")+'"/>';
+	        fieldHTML += '<input type="hidden" name="id" id="id" value="'+((settings.formValues && settings.formValues.id) ? settings.formValues.id : "")+'"/>';
 	       
         	fieldHTML += '<div class="form-actions">'+
         				'<hr class="col-md-12">';
@@ -518,7 +518,10 @@ var dyFObj = {
 		            	// mylog.log("data.id", data.id, data.url);
 		            	/*if(data.map && $.inArray(collection, ["events","organizations","projects","citoyens"] ) !== -1)
 				        	addLocationToFormloopEntity(data.id, collection, data.map);*/
-				       if (typeof afterSave == "function"){
+
+				        if (typeof networkJson != "undefined"){
+				        	window.location.reload();
+				        }else if (typeof afterSave == "function"){
 		            		afterSave(data);
 		            		//urlCtrl.loadByHash( '#'+ctrl+'.detail.id.'+data.id );
 		            	} else {
@@ -585,6 +588,25 @@ var dyFObj = {
 	           toastr.error("something went wrong!! please try again.");
 	    });
 	},
+	openAjaxForm : function (url){
+		mylog.warn("--------------- openAjaxForm ",url);
+		//get ajax of the elemetn content
+		
+		uploadObj.update = true;
+		$.ajax({
+	        type: "GET",
+	        url: baseUrl+url,
+	        dataType : "json"
+	    })
+	    .done(function (data) {
+	        if ( data && data.json ) {
+				mylog.log("openAjaxForm data.json", data.json);
+				dyFObj.openForm( data.json );
+				dyFInputs.setSub("bg-purple");
+	        } else 
+	           toastr.error("something went wrong!! please try again.");
+	    });
+	},
 	
 	//entry point function for opening dynForms
 	openForm : function  (type, afterLoad,data, isSub) { 
@@ -623,11 +645,11 @@ var dyFObj = {
 			$('#modalLogin').modal("show");
 		}
 	},
-	//get the specification of a given dynform
+	//get the specification of a given dynform  
 	//can be of 3 types 
-	//(string) :: will get the definition if exist in typeObj[key].dybnForm
-	//if doesn't exist tries to lazyload it from assets/js/dynForm
-	//(object) :: is dynformp definition
+	//(string) :: will get the definition if exist in typeObj[key].dybnForm 
+	//if doesn't exist tries to lazyload it from assets/js/dynForm 
+	//(object) :: is dynformp definition 
 	getDynFormObj : function(type, callback,afterLoad, data){
 		//alert(type+'.js');
 		mylog.warn("------------ getDynFormObj",type, callback,afterLoad, data );
@@ -839,9 +861,107 @@ var dyFObj = {
 		return res;
 	},
 	/* **************************************
+	*	building an array of answer based on table template
+	***************************************** */
+	drawAnswers : function (el,type,before,after) {
+		//alert("drawAnswers");
+	    var data = dyFObj.elementData;
+	    var prop = dyFObj[dyFObj.activeElem].dynForm.jsonSchema.properties;
+	    console.log("drawAnswers data",data);
+	    console.log("drawAnswers prop",prop);
+	    str = '<table class="table table-striped table-bordered table-hover">'+
+	        '<thead><tr>';
+	    if(before){
+	    	$.each(  before,function(ai,av) { 
+		        str += '<th>'+ai+'</th>';
+		    });
+	    }
+	    str += '<th>Date</th>';
+	    var keys = Object.keys( data );
+	    $.each(  data [ keys[0] ].answer,function(ai,av) { 
+	        str += '<th>'+((prop[ai] && prop[ai].placeholder) ? prop[ai].placeholder : ai)+'</th>';
+	    });
+	    if(after){
+	    	$.each( after,function(ai,av) { 
+	    		lbl = ai;
+	    		if( typeof av == "object" && av.lbl)
+	    			lbl = av.lbl;
+		        str += '<th>'+lbl+'</th>';
+		    });
+	    }
+	        
+	    str += '</tr></thead><tbody>';
+	    //alert(Object.keys(data).length)
+	    $.each( data ,function(i,v) { 
+	        //LES REPONSE
+	        if(v.answer){
+		        console.log("v",v);
+		        str += '<tr>';
+		        if(before){
+			    	$.each(  before,function(ai,av) { 
+				        str += '<td>'+av+'</td>';
+				    });
+			    }
+
+		        str += '<td>'+formatDate(new Date(v.created*1000))+'</td>';
+		        
+			        $.each(v.answer,function(ai,av) { 
+			        	console.log(prop[ai].options);
+			        	//alert(ai+av);
+			            ansV = av;
+			            console.log( ai, prop[ai] );
+
+		            	if( prop[ai] && 
+			            	prop[ai].inputType == "select" && 
+			            	prop[ai].options[av] )
+			                ansV = prop[ai].options[av];
+
+			            str += "<td>"+ansV+"</td>";
+			        });
+			    
+			        
+		        if(after)
+		        {
+			    	$.each(  after,function(ai,av) 
+			    	{ 
+			    		if( typeof av == "object" ){
+			    			pre = "";
+			    			if(av.pre){
+			    				if(av.pre.value) {
+				    				if( v[av.pre.value] )
+				    					pre = "<span class='"+( (av.pre.class) ? av.pre.class : "" )+"'>"+v[av.pre.value]+"</span> ";
+				    			}
+			    			}
+
+			    			if(av.btn){
+			    				lbl = av.btn;
+			    				if(av.test && v[av.test]){
+			    					lbl = "";
+			    					if(av.else)
+			    						lbl = av.else;
+			    				}
+			    				str += '<td class="text-center" data-id="'+i+'" data-type="'+type+'">'+pre+lbl+'</td>';
+			    			} else if(av.value){
+			    				lbl = "";
+			    				if( v[av.value] )
+			    					lbl = "<span class='"+( (av.class) ? av.class : "" )+"'>"+v[av.value]+"</span>";
+			    				str += '<td class="text-center">'+pre+lbl+'</td>';
+			    			}
+			    		}
+			    		else
+				        	str += '<td class="text-center">'+av+'</td>';
+				    });
+			     }
+
+		        str += "</tr>";
+		    }
+	    });
+	    str += "</tbody></table></div>";
+	    $(el).append(str);
+	},
+	/* **************************************
 	*	each input field type has a corresponding HTMl to build
 	***************************************** */
-	
 	buildInputField : function (id, field, fieldObj,formValues, tooltip){
 		mylog.warn("------------------ buildInputField",id, field, formValues)
 		var fieldHTML = '<div class="form-group '+field+fieldObj.inputType+'">';
@@ -2199,7 +2319,6 @@ var dyFObj = {
 							        	urlCtrl.loadByHash(location.hash);
 					        			$('#ajax-modal').modal("hide");
 							        });
-
 						        }
 						    },
 						    onCancel: function(id) {
@@ -2229,6 +2348,7 @@ var dyFObj = {
 						    	
 						    	console.log(responseJSON,xhr);
 						    	if(typeof responseJSON.survey != "undefined" && responseJSON.survey){
+						    		uploadObj.afterLoadUploader=false;
 						    		documentEl={
 						    			surveyId:uploadObj.formId,
 						    			answerId:uploadObj.answerId,
@@ -2238,6 +2358,7 @@ var dyFObj = {
 						    			documentId :responseJSON.id.$id
 						    		};
 						    		if(typeof updateForm !="undefined" && notNull(updateForm)){
+						    			
 						    			documentEl.formId = updateForm.form;
 	    								documentEl.answerSection = updateForm.step; 
 	    							}
@@ -2248,8 +2369,13 @@ var dyFObj = {
 								        data: documentEl,
 										type: "POST",
 								    })
-								    .done(function (data){}).fail(function(){
-									  // toastr.error("Something went wrong, contact your admin"); 
+								    .done(function (data){
+								    	uploadObj.afterLoadUploader=true;
+								    	if(typeof v.afterUploadComplete != "undefined" && jQuery.isFunction(v.afterUploadComplete) ){
+						    				v.afterUploadComplete();
+						    			}
+								    }).fail(function(){
+									  // toastr.error("Something went wrong, contact your admin");
 									   $("#btn-submit-form i").removeClass("fa-circle-o-notch fa-spin").addClass("fa-arrow-circle-right");
 									   $("#btn-submit-form").prop('disabled', false);
 								    });
@@ -3640,10 +3766,8 @@ var dyFInputs = {
 						}
 					}
 				}
-				
 			});
 		}
-		
 	},
 	formLocality :function(label, placeholder) {
 		mylog.log("inputText ", inputObj);
@@ -5034,22 +5158,22 @@ var arrayForm = {
 						dyFInputs.setHeader("bg-dark");
 						$('.form-group div').removeClass("text-white");
 						dataHelper.activateMarkdown(".form-control.markdown");
-						if(typeof ctxDynForms[f][k][q].onLoads.onload != "undefined"){
+						if( jsonHelper.notNull('ctxDynForms.'+f+'.'+k+'.'+q+'.onLoads.onload') ){
 							ctxDynForms[f][k][q].onLoads.onload();
 						}
 					}
 				},
 				save : function() { 
-					data = {
+					var data = {
 		    			formId : f,
-		    			answerSection : f+".answers."+k+"."+q ,
+		    			answerSection : (typeof answerSection != "undefined") ? answerSection : f+".answers."+k+"."+q ,
 		    			arrayForm : true,
 		    			answers : arrayForm.getAnswers(arrayForm.form , true)
 		    		};
 		    		
 		    		//for saving edits
 		    		if(typeof pos != "undefined"){
-		    			data.answerSection = f+".answers."+k+"."+q+"."+pos;
+		    			data.answerSection = (typeof answerSection != "undefined") ? answerSection+"."+pos : f+".answers."+k+"."+q+"."+pos;
 		    			data.edit = true;
 		    		}
 
@@ -5058,12 +5182,14 @@ var arrayForm = {
 	    			urlPath = baseUrl+"/survey/co/update2";
 		    		
 		    		console.log("save",data);
+		    		//alert("save arrayForm");
 
 		    		$.ajax({ type: "POST",
 				        url: urlPath,
 				        data: data,
 						type: "POST",
 				    }).done(function (data) {
+				    	//toastr.success('Enregistré avec succés!');
 				    	window.location.reload(); 
 				    });
 				},
@@ -5076,7 +5202,7 @@ var arrayForm = {
 	add : function (f, k, q,pos,data) { 
 		console.log("add AF",f, k, q,pos,data);
 		arrayForm.buildFormSchema(f,k,q,pos);
-		if( typeof pos != "undefinde" )
+		if( typeof pos != "undefined" )
 			dyFObj.openForm( arrayForm.form, null, answers[f].answers[k][q][pos] );
 		else 
 			dyFObj.openForm( arrayForm.form );
@@ -5094,9 +5220,9 @@ var arrayForm = {
 	            	
 				data = {
 					formId : f,
-					answerSection : f+".answers."+k+"."+q+"."+pos ,
+					answerSection : (typeof answerSection != "undefined") ? answerSection+"."+pos : f+".answers."+k+"."+q+"."+pos ,
 					answers : null,
-					pull : f+".answers."+k+"."+q
+					pull : (typeof answerSection != "undefined") ? answerSection : f+".answers."+k+"."+q
 					
 				};
 				

@@ -89,15 +89,40 @@ HtmlHelper::registerCssAndScriptsFiles($cssJS, Yii::app()->getModule( "co2" )->g
 
   if (  ($this->module->id == "survey" )){
     //&& strrpos(@$_GET['id'], "cte") !== false ) || @Yii::app()->session["custom"]["header"] == "survey.views.custom.cte"){
+
+    //TODO find a way to genericse this 
+    // $slist = array();
+    // foreach ( PHDB::find ( Form::COLLECTION, array("parentSurvey"=>array('$exists'=>0)) ) as $key => $value) {
+    //   $slist[] = $value["id"];
+    // }
+    // if(strrpos(@$_GET['id'], "cte") !== false ){
+    //   $CO2DomainName = "cte";
+    //   $this->renderPartial( "co2.views.custom.init",array( "custom" => "forms.cte" ) );
+    // } else if( in_array($_GET['id'], $slist ) )
+    //   $this->renderPartial( "co2.views.custom.init",array( "custom" => "forms.".$_GET['id'] ) );
+    $id = @$_GET['id'];
+    if(preg_match('/^[a-f\d]{24}$/i', $_GET['id']) ){
+      $answer = PHDB::findOne( Form::ANSWER_COLLECTION, array("_id"=>new MongoId(@$_GET['id'])));
+      $id = $answer["formId"];
+    }
+    if( strrpos( @$id, "cte" ) !== false ){
       $CO2DomainName = "cte";
       $this->renderPartial( "co2.views.custom.init",array( "custom" => "forms.cte" ) );
+    } else if( strrpos(@$id, "poulet") !== false ){
+      $this->renderPartial( "co2.views.custom.init",array( "custom" => "forms.poulet" ) );
+    }
+    else if( in_array(@$id, array( "poulet", "wishlist" ) ) ){
+      //echo "<script>alert('".$_GET['id']."')</script>";
+      $this->renderPartial( "co2.views.custom.init",array( "custom" => "forms.".$_GET['id'] ) );
+    }
+    
   } else if($this->module->id == "onepage" && @$_GET['slug'] ){
-      $el = Slug::getElementBySlug($_GET['slug']);
-      if(@$el["el"]["custom"]["menu"])
-        $CO2DomainName = $el["el"]["custom"]["menu"];
-      if( @$el["el"]["custom"] ){
-        $this->renderPartial( "co2.views.custom.init",array( "custom" => $el["type"].".".$el["id"] ) );
-      }
+    $el = Slug::getElementBySlug($_GET['slug']);
+    if(@$el["el"]["custom"]["menu"])
+      $CO2DomainName = $el["el"]["custom"]["menu"];
+
+    if( @$el["el"]["custom"] )
+      $this->renderPartial( "co2.views.custom.init",array( "custom" => $el["type"].".".$el["id"] ) );
   }
   ?>
  <script type="text/javascript">
@@ -116,6 +141,7 @@ HtmlHelper::registerCssAndScriptsFiles($cssJS, Yii::app()->getModule( "co2" )->g
   <div class="main-container col-md-12 col-sm-12 col-xs-12 no-padding">
 
 <?php
+  //if(!@$_GET["step"]) 
     $this->renderPartial( $layoutPath.'menus/'.$CO2DomainName, 
                             array( "layoutPath"=>$layoutPath , 
                                     "subdomain"=>"", //$subdomain,
