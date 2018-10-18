@@ -105,6 +105,11 @@
 		"Retreive your password on {website}"=>'Réinitialisation du mot de passe sur {website}',
 		"New user on {website}"=>"Nouvel-le utilisateur-trice sur {website}",
 		"New professional account on {website}"=>"Nouveau compte professionel crée sur {website}",
+		
+
+
+
+
 		// post
 		"{who} writes a post" => "{who} a écrit un post",
 		"{who} writes posts"=>"{who} a écrit plusieurs posts",
@@ -113,5 +118,17 @@
 		"{who} added a new event : {what}" => "{who} a ajouté un événement : {what}",
 		"{who} added a new project : {what}" => "{who} a ajouté un projet : {what}",
 		"{who} added a new point of interest : {what}" => "{who} a ajouté un point d'intéret : {what}",
+
+		//FOLLOW
+		"{who} is following {where}" => "{who} suit {where}",
+		"{who} are following {where}" => "{who} suivent {where}",
+		"{who} is following you" => "{who} vous suit",
+		"{who} are following you" => "{who} vous suivent",
+
+		//ASK
+		"{who} wants to join {where}"=> "{who} veut rejoindre {where}",
+		"{who} want to join {where}"=> "{who} veulent rejoindre {where}",
+		"{who} wants to administrate {where}"=> "{who} veut administrer {where}",
+		"{who} want to administrate {where}"=> "{who} veulent administrer {where}",
 );
 ?> 

@@ -23,14 +23,25 @@ $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.m
 								foreach ($elt as $key => $value) {
 
 									//if(!empty($value["post"])){
-									echo "Dans ".$value["name"]." : <br/><br/>";
+
+									$name = $value["name"];
+
+									if( !empty($value["url"]) ){
+										$color = Element::getColorIcon($type);
+										$name = "<a href='".$value["url"]."' target='_blank' style='color:".$color.";font-weight:800;font-variant:small-caps;'>".$value["name"]."</a>";
+									}
+
+									echo "Dans ".$name." : <br/><br/>";
 									foreach ($value["data"] as $keyD => $valD) {
 										// if(!empty($value["post"])){
-										echo '<a href="'.$value["url"].'" target="_blanck" style="color: #728289;font-family: Helvetica, Arial, sans-serif;font-weight: bold;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;">';
-										echo "<p>".Mail::translateLabel($valD)." </p><br/>";
+										echo "<div style='padding-left:10px;'><p>".Mail::translateLabel($valD)." </p>";
 										if(!empty($valD["value"]))
-											echo "<p>".$valD["value"]." </p></a><br/>";
+											echo "<p style='padding:10px 20px;margin:1%;border:1px solid lightgray; font-style:italic; border-radius:10px; width:90%;white-space: pre-line;'>".$valD["value"]." </p></br>";
+
+										echo "</div>";
 										//}
+
+										// <p>Raphael RIVIERE a envoyé un message sur votre projet communecterdddddddddddddddddddddddddddddddddddddddddddddddddd :</p><br/><br/>xsqxsqxqxq</p><br/><br/><div style='text-align:center'><a href='http://127.0.0.1/ph/survey/co/index/id/cte' target='_blank' style='padding:7px 10px; border-radius:5px; background-color:#00b795;color:white;font-weight:800;font-variant:small-caps;'>Répondre</a></div>
 									}
 
 									// if(!empty($value["add"])){
