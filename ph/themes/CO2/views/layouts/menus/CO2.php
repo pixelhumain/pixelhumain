@@ -229,6 +229,11 @@
                       <i class="fa fa-comments"></i>
                       <span class="chatNotifs topbar-badge badge animated bounceIn badge-warning"></span>
                     </button>
+                    <a href="#myhome" class="lbh menu-button btn-menu btn-menu-chat text-dark pull-right " 
+                           data-toggle="tooltip" data-placement="bottom" 
+                          title="<?php echo Yii::t("common","Home") ?>" alt="<?php echo Yii::t("common","Home") ?>" style="width: inherit !important;text-transform: capitalize;">
+                      <i class="fa fa-home"></i> <span class="hidden-xs" style="font-size: 16px;"><?php echo Yii::t("common","Home") ?></span>
+                    </a>
 
 
                     

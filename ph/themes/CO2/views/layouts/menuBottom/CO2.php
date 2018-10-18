@@ -8,7 +8,7 @@
         left: 1px;
     }
     .footer-menu-vertical .toolbar-bottom{
-        z-index: 20000;
+        z-index: 10000;
     }
     .footer-menu-vertical .toolbar-bottom.bottom-left #donation-btn{
         background-color: white !important;

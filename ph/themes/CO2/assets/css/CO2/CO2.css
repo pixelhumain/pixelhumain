@@ -179,10 +179,10 @@ header .container ,
 	background-color: white;
 	min-height:1000px;
 	min-width: 100%;
-	padding-top: 60px !important;
+	padding: 60px 0px 0px 0px;
 }
 .main-container.vertical{
-	padding-left: 52px !important;
+	padding-left: 52px;
 }
 .sigModuleBg{
 	z-index:-1;
@@ -761,11 +761,12 @@ section {
 	    	display:block;
 	    }
         #vertical #affix-sub-menu{
+        	top: 54px;
             padding-left: 0px !important;
             box-shadow: 0px 3px 6px -2px rgba(0,0,0,0.5);
         }
         .main-container.vertical{
-        	padding-left: 0px !important: 
+        	padding-left: 0px !important; 
         }
     }
     @media (min-width: 768px) {
@@ -898,6 +899,34 @@ a, a:hover, a:focus, a:active, a.active{
 	height:35px;
     border:none;
 	font-weight: 200;*/
+}
+@media (max-width: 767px){
+	#main-search-xs-bar{
+		width: 80%;
+	}
+	#text-search-menu #dropdown-apps{
+		width: 10%;
+	    border: 1px solid #dadada !important;
+	    background-color: #ea4335!important;
+	    color: white !important;
+	    font-size: 21px;
+	    padding: 4px 2px;
+	    width: 10%;
+	    /* border-radius: 0px 20px 20px 0px !important; */
+	    border-left: 0px !important;
+	    float: left;
+	}
+	#text-search-menu #dropdown-apps #dropdownApps{
+		background: none;
+	    color: white;
+	    border: none;
+	}
+	.dropdownApps-menuTop .dropdown-menu{
+		top: 107px;
+	    right: 3px !important;
+	    left: 3px;
+	    width: inherit;
+	}
 }
 #main-input-group{
 	margin-top:0px;
@@ -1205,7 +1234,7 @@ a, a:hover, a:focus, a:active, a.active{
 }
 /****************µEND BOUBOULE ********************/
 .blockUI{
-	z-index:1035!important;	
+	z-index:15000!important;	
 	border-radius:0px 0px 4px 4px!important;
 	/*background-color: rgba(255, 255, 255, 0.9);*/
 }
@@ -1967,7 +1996,7 @@ margin-right: 5px;
 	left:40%;
 	right:0px;
 	background-color: white;
-	z-index: 10000;
+	z-index: 15000;
 }
 #modalDeleteAm, #modalAssignMe{
 	z-index: 10002;
@@ -1986,7 +2015,7 @@ margin-right: 5px;
 	display: none;
 	right:0px;
 	background-color: white;
-	z-index: 10000;
+	z-index: 15000;
 }
 
 .xdsoft_datetimepicker{
