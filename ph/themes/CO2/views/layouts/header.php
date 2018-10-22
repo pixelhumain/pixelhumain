@@ -122,10 +122,10 @@
         $(".tooltips").tooltip();
         $(".btn-show-filters").click(function(){
             if(!$("#filters-nav").is(":visible")){
-                $("#vertical .btn-show-filters.hidden-xs").hide(200);
+                $("#vertical .btn-show-filters.hidden-xs").hide(350);
                 $("#filters-nav").show(200);
             }else{
-                $("#filters-nav").hide(200);
+                $("#filters-nav").hide(350);
                 $("#vertical .btn-show-filters.hidden-xs").show(200);
             }
             headerHeightPos(true);
@@ -146,12 +146,10 @@
         mylog.log("showWhere", show);
         if(show == false){
             $(".menu-btn-scope-filter").removeClass("visible");
-            //$("#text-search-menu").hide();
-            $("#filter-scopes-menu").hide(400);
+            $("#filter-scopes-menu").hide(300);
             headerHeightPos(true);
         }else{
             $(".menu-btn-scope-filter").addClass("visible");
-            $("#text-search-menu").hide();
             $("#filter-scopes-menu").show(400);
             headerHeightPos(true);
         }
@@ -163,7 +161,7 @@
             headerScaling=bool; 
             $("header").height($("#affix-sub-menu").height());
             setTimeout(function(){headerScaling=false;},300);
-        }, 400);
+        }, 350);
     }
     function initScopeMenu(type){   
         bindSearchCity();

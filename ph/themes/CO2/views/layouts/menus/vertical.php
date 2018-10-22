@@ -36,8 +36,7 @@
         <i class="fa fa-map-marker"></i> <span class="header-label-scope"><?php echo Yii::t("common","where ?") ?></span>
 </button>
 
-
-<button class="btn btn-show-filters hidden-xs"><i class="fa fa-angle-down"></i> <?php echo Yii::t("common", "Filters") ?> <span class="topbar-badge badge animated bounceIn badge-warning bg-azure"></span></button>
+<!--<button class="btn btn-show-filters hidden-xs"><i class="fa fa-angle-down"></i> <?php echo Yii::t("common", "Filters") ?> <span class="topbar-badge badge animated bounceIn badge-warning bg-azure"></span></button>-->
 <?php } ?>
 <div id="territorial-menu" class="hidden-xs">
     <?php

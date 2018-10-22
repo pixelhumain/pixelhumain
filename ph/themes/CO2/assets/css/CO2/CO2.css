@@ -132,8 +132,9 @@ header, .header {
   /*margin-top: 55px;*/
   text-align: center;
   /*background: rgba(0, 0, 0, 0.03);*/
-  background: url("../../img/background-header/contact-map.jpg") center top;
+  /*background: url("../../img/background-header/contact-map.jpg") center top;*/
   color: #365766;
+  background-color: white;
 }
 header{
 	position: relative;
@@ -703,7 +704,8 @@ section {
     }
     #vertical #filters-nav{
         padding-left: 1% !important;
-        box-shadow: 0px 2px 3px -2px rgba(0,0,0,0.5);
+       	border-bottom: 1px solid rgba(100,100,100,0.1);
+        /*box-shadow: 0px 2px 3px -3px rgba(0,0,0,0.5);*/
     }
     #mainNav.vertical .btn-show-map, #mainNav.vertical #dropdown-apps, #mainNav.vertical .btn-dashboard-dda{
     	display:none;
@@ -1344,11 +1346,12 @@ h3.title_panel_map{
 	border-radius: 50%;
 	width: 40px;	
 }
-.menu-btn-scope-filter{
+.menu-btn-scope-filter, .btn-show-filters{
 	border-radius: 20px;
 	max-width: 20%;
 }
-.menu-btn-start-search, .menu-btn-scope-filter{
+
+.menu-btn-start-search, .menu-btn-scope-filter, .btn-show-filters{
     /* border: 2px solid green !important; */
     background-color: transparent !important;
     height: 40px;
@@ -1356,22 +1359,31 @@ h3.title_panel_map{
     margin-right: 4px;
     /* background: #F3F3F3; */
     margin-top: 5px;
-    margin-left: 10px;
-
     /* padding-left: 15px; */
     /* border: 1px solid #dadada !important; */
     -webkit-box-shadow: 0px 0px 2px -1px rgba(0,0,0,0.5);
     -moz-box-shadow: 0px 0px 2px -1px rgba(0,0,0,0.5);
     box-shadow: 0px 0px 2px -1px rgba(0, 0, 0, 0.5);
 }
-.menu-btn-scope-filter:hover{
+.btn-show-filters, .btn-show-filters:active{
+	color: #666F78;
+}
+.btn-show-filters .badge{
+	background-color: #666F78;
+}
+
+.btn-show-filters:hover{
+	border:	1px solid #666F78;
+	color: #666F78;
+}
+.menu-btn-scope-filter:hover, .menu-btn-scope-filter.active{
 	border:1px solid #ea4335 !important;
 	color: #ea4335 !important;
 }
-.menu-btn-scope-filter.active{
+/*.menu-btn-scope-filter.active{
 	background-color: #ea4335 !important;
 	color: white !important;
-}
+}*/
 .menu-btn-start-search:hover{
 	border:1px solid #93C020 !important;
 	color: #93C020 !important;
@@ -1392,7 +1404,7 @@ h3.title_panel_map{
  }
 #filter-scopes-menu:after, #filter-scopes-menu:before {
     bottom: 100%;
-    left: 40%;
+    left: 35%;
     border: solid transparent;
     content: " ";
     height: 0;
