@@ -117,7 +117,11 @@
 		"{who} write posts" => "{who} ont écrit plusieurs posts",
 		"{who} added a new event : {what}" => "{who} a ajouté un événement : {what}",
 		"{who} added a new project : {what}" => "{who} a ajouté un projet : {what}",
+		"{who} added a new classified : {what}" => "{who} a ajouté une nouvelle annonces : {what}",
 		"{who} added a new point of interest : {what}" => "{who} a ajouté un point d'intéret : {what}",
+		"{who} added a new proposal : {what}" => "{who} a ajouté une proposition : {what}",
+		"{who} added a new action : {what}" => "{who} a ajouté une action : {what}",
+		"{who} added a new room : {what}" => "{who} a ajouté une espace de décision : {what}",
 
 		//FOLLOW
 		"{who} is following {where}" => "{who} suit {where}",
@@ -130,5 +134,8 @@
 		"{who} want to join {where}"=> "{who} veulent rejoindre {where}",
 		"{who} wants to administrate {where}"=> "{who} veut administrer {where}",
 		"{who} want to administrate {where}"=> "{who} veulent administrer {where}",
+
+
+
 );
 ?> 
