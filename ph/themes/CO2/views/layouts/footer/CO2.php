@@ -7,7 +7,27 @@
     .btn-outline{
         background-color: rgba(255,255,255,0.5);
     }
+    .btn-outline.join-us{
+        background-color: #2C3E50;
+        border: 2px solid #2C3E50;
+        color: #f5e414;
+        font-size: 35px;
+        margin-top: -7px;
+    }
+    .btn-outline.join-us:hover{
+        color: #2C3E50;
+        background-color: #f5e414;
+    }
+    .font-blackoutT{
+        color: #2C3E50;
+    }
+    .col-footer-ph{
+        line-height: 70px;
+    }
 
+    .col-footer-ph .font-blackoutT, .col-footer-ph .join-us {
+        vertical-align: middle;
+    }
 @media screen and (max-width: 1024px) {
     
     .col-footer a.lbh{
@@ -48,7 +68,17 @@
 <?php //if(@$subdomain == "web" || @$subdomain == "social"){ ?>
 <!-- Footer -->
 <footer class="text-center col-xs-12 pull-left no-padding">
-    <div class="footer-below">
+     <div class="col-xs-12 col-footer-ph text-right">
+                    <span class="font-blackoutT" style="font-size:20px;">Power by</span> 
+                    <a href="https://www.communecter.org/#@pixelhumain" target="_blank">
+                        <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/LOGO_PIXEL_HUMAIN.png" style="margin-top: -20px;" height=70>
+                    </a>
+                    <span class="font-blackoutT" style="font-size:20px;margin-left: -11px;">Join us</span>
+                    <a href="https://github.com/pixelhumain/co2" target="_blank" class="btn-social btn-outline join-us">
+                        <i class="fa fa-fw fa-github"></i>
+                    </a>
+        </div>
+    <!--<div class="footer-below">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 text-left col-footer">
@@ -60,9 +90,7 @@
                     <a href="<?php echo Yii::app()->request->baseUrl; ?>/doc/Conditions Générales d'Utilisation.pdf" target="_blank" class="text-white">
                         <i class="fa fa-angle-right"></i> <?php echo Yii::t("home","Terms and conditions of use") ?>
                     </a><br><br>
-                    <!-- <a href="#info.p.communecter" target="_blank" class="margin-right-10 hidden-xs">
-                        <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/Logo_Licence_Ouverte_noir_avec_texte.gif" height=30>
-                    </a> -->
+
                     
                     <a href="https://fr.wikipedia.org/wiki/Open_source" target="_blank" class=" hidden-xs">
                         <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/opensource.gif" height=40 
@@ -89,7 +117,6 @@
                     </a>
 
 
-                    <!-- <h5 class="homestead letter-red">COMMUNECTER</h5> -->
                     
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 text-right col-footer hidden-xs">
@@ -119,16 +146,11 @@
                                 <i class="fa fa-fw fa-google-plus"></i>
                             </a>
                         </li>
-                        <!-- <li>
-                            <a href="#" class="btn-social btn-outline text-dark">
-                                <i class="fa fa-fw fa-facebook"></i>
-                            </a>
-                        </li> -->
                     </ul>
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
 </footer>
 <?php //} ?>
     
