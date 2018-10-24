@@ -2370,7 +2370,7 @@ margin-right: 5px;
 	    width: inherit;
 	    position: fixed !important;
 	}
-	.dropdownApps-menuTop .dropdown-menu:before, .dropdownApps-menuTop .dropdown-menu:before {
+	.dropdownApps-menuTop .dropdown-menu:before, .dropdownApps-menuTop .dropdown-menu:after {
 		left:5% !important;
 	}
 }
