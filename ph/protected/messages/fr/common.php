@@ -1258,7 +1258,15 @@ merci de renseigner votre code postal dans l'adresse de votre profil.",
 	"Research a name or e-mail address..." => "Recherchez un nom ou une adresse e-mail...",
 
 	"Invitation  accept" => "Invitation acceptée",
-	
+	"Invite your friend" => "Invitez vos ami-e-s",
+	"Add an organization" => "Référencez une organisation",
+	"Create your network" => "Créez votre réseau",
+	"Reference a project" => "Ajoutez un projet",
+	"Useful links" => "Liens utiles",
+	"User guide" => "Guide utilisateur",
+	"You are" => "Vous êtes",
+	"Next to"=>"Prochain à",
+
 	"Not interested by the invitation" => "Vous n'êtes pas intéressé par cette invitation",
 
 	'Admin' => "Admin",

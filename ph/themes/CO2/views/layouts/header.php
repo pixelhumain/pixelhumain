@@ -131,7 +131,7 @@
             headerHeightPos(true);
         });
         $(".menu-btn-scope-filter").click(function(){
-            if($(".menu-btn-scope-filter").hasClass("visible")){
+            if($("#filter-scopes-menu").is(":visible")){
                 showWhere(false);
             }else{
                 showWhere(true);
