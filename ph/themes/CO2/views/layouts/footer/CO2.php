@@ -48,8 +48,6 @@
 
 <?php
     $iconBtnRightBottom = "chevron-up";
-    if(Yii::app()->params["CO2DomainName"] == "kgougle" && false)//{ 
-        $iconBtnRightBottom = "search";
 ?>
     <!-- <div class="radio-tool tooltips" data-toggle="tooltip" data-placement="right" title="Écouter la radio">
         <a class="btn btn-primary" href="#page-top" data-target="#modalRadioTool" data-toggle="modal">
