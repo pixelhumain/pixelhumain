@@ -6,7 +6,7 @@
           <div class="dropdown-menu arrow_box hidden-xs" aria-labelledby="dropdownTags">
               <div class="col-xs-12 no-padding margin-bottom-5">
                   <div class="form-group filterstags col-md-8 col-sm-8 col-xs-10 no-margin no-padding">
-                      <input id="tagsFilterInput" type="" data-type="select2" name="tags" placeholder="#Tags" value="" style="width:100%;">       
+                      <input id="tagsFilterInput" class="tagsFilterInput" type="" data-type="select2" name="tags" placeholder="#Tags" value="" style="width:100%;">       
                   </div>
                   <button class="btn btn-default letter-green col-md-2 col-sm-2 col-xs-1 btn-tags-start-search no-margin padding-10"><i class="fa fa-arrow-circle-right"></i> <span class="hidden-xs"><?php echo Yii::t("common", "Validate") ?></span></button>
                   <button class="btn btn-default letter-blue col-md-2 col-sm-2 btn-tags-refresh no-margin padding-10"><i class="fa fa-refresh"></i> <span class="hidden-xs"><?php echo Yii::t("common", "Refresh") ?></span></button>
@@ -100,16 +100,16 @@
       <div class="dropdown dropdown-tags">
           <div class="dropdown-menu arrow_box" aria-labelledby="dropdownTags">
               <div class="col-xs-12 no-padding margin-bottom-5">
-                  <div class="form-group filterstags col-md-8 col-sm-8 col-xs-10 no-margin no-padding">
-                      <input id="tagsFilterInput" type="" data-type="select2" name="tags" placeholder="#Tags" value="" style="width:100%;">       
+                  <div class="form-group filterstags col-md-8 col-sm-8 col-xs-12 no-margin no-padding">
+                      <input id="tagsFilterInput" class="tagsFilterInput" type="" data-type="select2" name="tags" placeholder="#Tags" value="" style="width:100%;">       
                   </div>
-                  <button class="btn btn-default letter-green col-md-2 col-sm-2 col-xs-1 btn-tags-start-search no-margin padding-10"><i class="fa fa-arrow-circle-right"></i> <span class="hidden-xs"><?php echo Yii::t("common", "Validate") ?></span></button>
-                  <button class="btn btn-default letter-blue col-md-2 col-sm-2 btn-tags-refresh no-margin padding-10"><i class="fa fa-refresh"></i> <span class="hidden-xs"><?php echo Yii::t("common", "Refresh") ?></span></button>
+                  <button class="btn btn-default letter-green col-xs-6 btn-tags-start-search no-margin padding-10"><i class="fa fa-arrow-circle-right"></i> <?php echo Yii::t("common", "Validate") ?></button>
+                  <button class="btn btn-default letter-blue col-xs-6 btn-tags-refresh no-margin padding-10"><i class="fa fa-refresh"></i> <?php echo Yii::t("common", "Refresh") ?></button>
               </div>
                <?php $filliaireCategories = CO2::getContextList("filliaireCategories"); 
               foreach ($filliaireCategories as $key => $cat) { 
                   if(is_array($cat)) { ?>
-                    <div class="col-md-2 col-sm-2 col-xs-3 no-padding">
+                    <div class="col-xs-4 no-padding">
                       <button class="btn btn-default col-md-12 col-sm-12 col-xs-12 padding-10 bold text-dark elipsis margin-bottom-5 btn-select-filliaire" 
                               data-fkey="<?php echo $key; ?>"
                               style="border-radius:0px; border-color: transparent; text-transform: uppercase;" 
