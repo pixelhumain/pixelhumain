@@ -308,3 +308,18 @@ h5.srcMedia{
   #reasonComment{
     margin-top:15px;
   }
+
+  @media (max-width: 767px){
+    .timeline > li{
+      width: 100%;
+    }
+    .timeline > li > .timeline-badge{
+      display: none;
+    }
+    .timeline > li > .timeline-panel{
+      width: 100%;
+    }
+    .timeline > li > .timeline-panel:before, .timeline > li > .timeline-panel:after{
+      border:0px; 
+    }
+  }

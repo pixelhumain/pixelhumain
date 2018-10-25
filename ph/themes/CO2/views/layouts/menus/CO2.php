@@ -15,7 +15,7 @@
         text-decoration: none;
     }
 
-    .dropdown-menu.arrow_box{
+/*    .dropdown-menu.arrow_box{
         position: absolute !important;
         top: 51px;
         right: -65px;
@@ -24,7 +24,7 @@
         border: 1px solid transparent;
         -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
         box-shadow: 0 6px 12px rgba(0,0,0,.175);
-    }
+    }*/
 
     .btn-language{
         height: 35px;
@@ -194,7 +194,7 @@
 
 
                     
-                    <span class="dropdown" id="dropdown-apps">
+                    <span class="dropdown dropdownApps" id="dropdown-apps">
                         <button class="dropdown-toggle menu-button btn-menu btn-menu-apps text-dark pull-right"  type="button" id="dropdownApps" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" data-placement="bottom" 
                               title="<?php echo Yii::t("common","Applications") ?>" alt="<?php echo Yii::t("common","Applications") ?>">
                           <i class="fa <?php echo Application::ICON ?> letter-red"></i>

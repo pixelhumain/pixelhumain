@@ -35,7 +35,7 @@
 <header id="<?php echo $menuApp; ?>">
             <div id="affix-sub-menu" class="affix">
                 <div id="text-search-menu" class="col-md-12 col-sm-12 col-xs-12 no-padding">
-                <span class="dropdown" id="dropdown-apps">
+                <span class="dropdown dropdownApps" id="dropdown-apps">
                     <button class="dropdown-toggle" type="button" id="dropdownApps" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-placement="bottom" title="Applications" alt="Applications">
                           <i class="fa fa-th"></i>
                         </button>
@@ -118,7 +118,7 @@
             $(".dropdown-xs-view .dropdown").removeClass("open");
             $(".dropdown-xs-view .dropdown-"+filterContain).addClass("open");
         });
-        $("#tagsFilterInput").select2({tags:[]});
+        $(".tagsFilterInput").select2({tags:[]});
         $(".tooltips").tooltip();
         $(".btn-show-filters").click(function(){
             if(!$("#filters-nav").is(":visible")){
