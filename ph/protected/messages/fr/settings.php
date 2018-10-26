@@ -51,8 +51,7 @@
 
 
 
-
-
+		"My Account"=>"Mon compte",
 
 
 

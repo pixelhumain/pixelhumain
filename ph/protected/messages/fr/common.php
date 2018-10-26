@@ -1507,5 +1507,6 @@ merci de renseigner votre code postal dans l'adresse de votre profil.",
 	"Please enter a value greater than or equal to {0}." => "Veuillez entrer une valeur supérieure ou égale à {0}.",
 
 
+	"Notifications & Mails"=>"Notifications & E-mail",
 );
 ?>
