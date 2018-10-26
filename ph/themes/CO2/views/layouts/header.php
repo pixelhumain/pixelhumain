@@ -113,6 +113,11 @@
         }).mouseleave(function(){
             $(this).find(".tooltips-menu-btn").hide();
         });
+        $(".btn-menu-tooltips").mouseenter(function(){
+            $(this).find(".tooltips-top-menu-btn").show();
+        }).mouseleave(function(){
+            $(this).find(".tooltips-top-menu-btn").hide();
+        });
         $("#filters-nav a.dropdown-toggle").click(function(){
             filterContain=$(this).data("label-xs");
             $(".dropdown-xs-view .dropdown").removeClass("open");
