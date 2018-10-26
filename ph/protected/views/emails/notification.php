@@ -19,30 +19,27 @@ $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.m
 							</b>
 							<br/>
 							<?php 
-							foreach ($data as $type => $elt) {
-								foreach ($elt as $key => $value) {
+							foreach ($data["data"] as $key => $value) {
+								//var_dump($value["value"] ); exit ;
+								//foreach ($elt as $key => $value) {
 
 									//if(!empty($value["post"])){
 
-									$name = $value["name"];
+									// $name = $value["name"];
 
-									if( !empty($value["url"]) ){
-										$color = Element::getColorIcon($type);
-										$name = "<a href='".$value["url"]."' target='_blank' style='color:".$color.";font-weight:800;font-variant:small-caps;'>".$value["name"]."</a>";
-									}
+									// if( !empty($value["url"]) ){
+									// 	$color = Element::getColorIcon($value[""]);
+									// 	$name = "<a href='".$value["url"]."' target='_blank' style='color:".$color.";font-weight:800;font-variant:small-caps;'>".$value["name"]."</a>";
+									// }
 
-									echo "Dans ".$name." : <br/><br/>";
-									foreach ($value["data"] as $keyD => $valD) {
+									// echo "Dans ".$name." : <br/><br/>";
+									//foreach ($value["data"] as $keyD => $valD) {
 										// if(!empty($value["post"])){
-										echo "<div style='padding-left:10px;'><p>".Mail::translateLabel($valD)." </p>";
-										if(!empty($valD["value"]))
-											echo "<p style='padding:10px 20px;margin:1%;border:1px solid lightgray; font-style:italic; border-radius:10px; width:90%;white-space: pre-line;'>".$valD["value"]." </p></br>";
+									echo "<div style='padding-left:10px;'><p>".Mail::translateLabel($value)." </p>";
+									if(!empty($value["value"]))
+										echo "<p style='padding:10px 20px;margin:1%;border:1px solid lightgray; font-style:italic; border-radius:10px; width:90%;white-space: pre-line;'>".$value["value"]." </p></br>";
 
-										echo "</div>";
-										//}
-
-										// <p>Raphael RIVIERE a envoyé un message sur votre projet communecterdddddddddddddddddddddddddddddddddddddddddddddddddd :</p><br/><br/>xsqxsqxqxq</p><br/><br/><div style='text-align:center'><a href='http://127.0.0.1/ph/survey/co/index/id/cte' target='_blank' style='padding:7px 10px; border-radius:5px; background-color:#00b795;color:white;font-weight:800;font-variant:small-caps;'>Répondre</a></div>
-									}
+									echo "</div>";
 
 									// if(!empty($value["add"])){
 
@@ -53,10 +50,11 @@ $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.m
 										
 									// }
 
-								}
+								//}
 							}
-
-
+							$nbN = $data["countData"] - count($data["data"]) ;
+							if( $nbN > 0 ) 
+								echo "<div style='padding-left:10px;'><p>"."Il vous reste ".$nbN." a découvrire sur Communecter "." </p></div>";
 							?>
 						</th>
 					</tr>
