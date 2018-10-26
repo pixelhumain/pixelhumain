@@ -130,10 +130,11 @@
                     </li>
                 </ul>
             </div> 
-        <?php } if( isset( Yii::app()->session['userId']) ){ ?>
-            <button class="btn-show-mainmenu btn btn-link" 
+        <?php } if( @Yii::app()->session['userId'] ){ ?>
+            <button class="btn-show-mainmenu btn btn-link btn-menu-tooltips" 
                     data-toggle="tooltip" data-placement="top" title="<?php echo Yii::t("common","Menu") ?>">
                 <i class="fa fa-bars tooltips" ></i>
+                <span class="tooltips-top-menu-btn"><?php echo Yii::t("common", "Menu"); ?></span>
             </button>
 
 
@@ -149,20 +150,22 @@
                 ?> 
                      <!-- #page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?> -->
                     <a  href="#page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>"
-                        class="menu-name-profil lbh text-dark pull-right shadow2" 
+                        class="menu-name-profil lbh text-dark pull-right shadow2 btn-menu-tooltips" 
                         data-toggle="dropdown">
                             <small class="hidden-xs hidden-sm margin-left-10" id="menu-name-profil">
                                 <?php echo @$me["name"] ? $me["name"] : @$me["username"]; ?>
                             </small> 
                             <img class="img-circle" id="menu-thumb-profil" 
                                  width="40" height="40" src="<?php echo $profilThumbImageUrl; ?>" alt="image" >
+                        <span class="tooltips-top-menu-btn"><?php echo Yii::t("common", "My page"); ?></span>
                     </a>
-                   <button class="menu-button btn-menu btn-link btn-open-floopdrawer text-dark pull-right hidden-xs" 
+                   <button class="menu-button btn-menu btn-link btn-open-floopdrawer text-dark pull-right hidden-xs btn-menu-tooltips" 
                           data-toggle="tooltip" data-placement="bottom" title="<?php echo Yii::t("common","My network") ?>" 
                           alt="<?php echo Yii::t("common","My network") ?>">
                       <i class="fa fa-users"></i>
+                      <span class="tooltips-top-menu-btn"><?php echo Yii::t("common", "My network"); ?></span>
                     </button>
-                    <button class="menu-button btn-menu btn-menu-notif text-dark pull-right" 
+                    <button class="menu-button btn-menu btn-menu-notif text-dark pull-right btn-menu-tooltips" 
                           data-toggle="tooltip" data-placement="bottom" title="<?php echo Yii::t("common","Notifications") ?>" alt="<?php echo Yii::t("common","Notifications") ?>">
                       <i class="fa fa-bell"></i>
                       <span class="notifications-count topbar-badge badge animated bounceIn 
@@ -170,6 +173,7 @@
                               echo 'badge-transparent hide'; else echo 'badge-success'; ?>">
                             <?php echo @$countNotifElement ?>
                         </span>
+                        <span class="tooltips-top-menu-btn"><?php echo Yii::t("common", "My notifications"); ?></span>
                     </button>
                     <?php if(@$me && @$me["links"] && (@$me["links"]["memberOf"] || @$me["links"]["contributors"])){ ?>
                     <button class="menu-button btn-menu btn-dashboard-dda text-dark pull-right hidden-xs" 
@@ -180,16 +184,18 @@
                     </button>
                     <?php } ?>                    
 
-                    <button class="menu-button btn-menu btn-menu-chat text-dark pull-right hidden-xs" 
+                    <button class="menu-button btn-menu btn-menu-chat text-dark pull-right hidden-xs btn-menu-tooltips" 
                           onClick='rcObj.loadChat("","citoyens", true, true)' data-toggle="tooltip" data-placement="bottom" 
                           title="<?php echo Yii::t("common","Messaging") ?>" alt="<?php echo Yii::t("common","Messaging") ?>">
                       <i class="fa fa-comments"></i>
                       <span class="chatNotifs topbar-badge badge animated bounceIn badge-warning"></span>
+                      <span class="tooltips-top-menu-btn"><?php echo Yii::t("common", "My chat"); ?></span>
                     </button>
-                    <a href="#myhome" class="lbh menu-button btn-menu btn-menu-chat text-dark pull-right " 
+                    <a href="#myhome" class="lbh menu-button btn-menu btn-menu-chat text-dark pull-right btn-menu-tooltips" 
                            data-toggle="tooltip" data-placement="bottom" 
                           title="<?php echo Yii::t("common","Home") ?>" alt="<?php echo Yii::t("common","Home") ?>" style="width: inherit !important;text-transform: capitalize;">
                       <i class="fa fa-home"></i> <span class="hidden-xs hidden-sm" style="font-size: 16px;"><?php echo Yii::t("common","Home") ?></span>
+                      <span class="tooltips-top-menu-btn"><?php echo Yii::t("common", "My home"); ?></span>
                     </a>
 
 

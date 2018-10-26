@@ -495,6 +495,7 @@ section {
 	float:right;
 	margin-top:10px;
 	margin-left:-5px;
+	position: relative;
 	/*background-color: #fbbc05;*/
 	/*background-color: #354c57;*/
 	/*color: white;
@@ -710,14 +711,12 @@ section {
     #mainNav.vertical .btn-show-map, #mainNav.vertical #dropdown-apps, #mainNav.vertical .btn-dashboard-dda{
     	display:none;
     }
-    .tooltips-menu-btn{
+    .tooltips-menu-btn, .tooltips-top-menu-btn{
         display: none;
         position: absolute;
-        left: 60px;
         background-color: #2C3E48;
         color: white;
         padding: 5px 10px;
-        top: 7px;
         border-radius: 6px;
         font-size: 14px;
         font-variant-caps: initial;
@@ -725,12 +724,29 @@ section {
         font-weight: 500;
         line-height: 22px;
     }
+   	.tooltips-menu-btn {
+    	left: 60px;
+        top: 7px;
+    }
+    .tooltips-top-menu-btn{
+    	left: 0px;
+        top: 50px;	
+        text-align: center;
+   		width: 130px;
+    }
+    .menu-name-profil .tooltips-top-menu-btn{
+    	top: 55px;
+    	right: 0px;
+    	left: inherit;
+    }
+    .btn-show-mainmenu .tooltips-top-menu-btn{
+		right: 0px;
+    	left: inherit;
+    }
     .btn-menu-vertical.opened .tooltips-menu-btn{
         display:none !important;
     }
-    .tooltips-menu-btn:before, .tooltips-menu-btn:after{
-        bottom: 5px;
-        left: -11px;
+    .tooltips-menu-btn:before, .tooltips-menu-btn:after, .tooltips-top-menu-btn:before, .tooltips-top-menu-btn:after{
         border: solid transparent;
         content: " ";
         height: 0;
@@ -738,17 +754,42 @@ section {
         position: absolute;
         pointer-events: none;
     }
-     .tooltips-menu-btn:after{
-        border-color: rgba(255, 255, 255, 0);
-        border-right-color: #2C3E50;
-        border-width: 10px;
-        margin-left: -6px;
+    .tooltips-menu-btn:before, .tooltips-menu-btn:after{
+    	bottom: 5px;
+        left: -11px;
     }
-    .tooltips-menu-btn:before{
+    .tooltips-top-menu-btn:before, .tooltips-top-menu-btn:after{
+        top: -11px;
+    	left: 10%;
+    }
+    .tooltips-menu-btn:after, .tooltips-top-menu-btn:after{
+        border-color: rgba(255, 255, 255, 0);
+       
+        border-width: 10px;
+    }
+    .btn-show-mainmenu .tooltips-top-menu-btn:before, .btn-show-mainmenu .tooltips-top-menu-btn:after,
+    .menu-name-profil .tooltips-top-menu-btn:before, .menu-name-profil .tooltips-top-menu-btn:after{
+    	right: 5%;
+    	left: inherit;
+    }
+    .tooltips-menu-btn:after{
+    	margin-left: -6px;
+    	border-right-color: #2C3E50;
+    }
+    .tooltips-top-menu-btn:after{
+    	margin-top: -6px;
+    	border-bottom-color: #2C3E50;
+    }
+    .tooltips-menu-btn:before, .tooltips-top-menu-btn:before{
         border-color: rgba(179, 179, 179, 0);
         border-bottom-color: #transparent;
         border-width: 12px;
-        margin-left: -12px;
+    }
+    .tooltips-menu-btn:before{
+    	margin-left: -12px;
+    }
+    .tooltips-top-menu-btn:before{
+    	margin-top: -12px;
     }
     #vertical #filter-scopes-menu{
     	border-top: 0px;
@@ -942,10 +983,10 @@ a, a:hover, a:focus, a:active, a.active{
 #second-search-bar{
 	padding:10px;
 	font-size:14px;
-	height:44px;
+	height:40px;
 	font-weight: 200;
-	border-radius: 4px 0px 0px 4px;
-	margin-top:3px;
+	border-radius: 4px 4px 4px 4px;
+	margin-top:5px;
 	-webkit-box-shadow: 0px 0px 2px -1px rgba(0,0,0,0.5) ;
     -moz-box-shadow: 0px 0px 2px -1px rgba(0,0,0,0.5) ;
     box-shadow: 0px 0px 2px -1px rgba(0,0,0,0.5) ;
@@ -1446,6 +1487,7 @@ h3.title_panel_map{
     letter-spacing: 0px;
     margin-top:5px!important;
     margin-right:0px;
+    position: relative;
     background-color:rgba(246,246,246,0.6)!important;
 	border-radius: 50px !important;
 	padding:8px 0 0 0px;

@@ -158,9 +158,6 @@ header .intro-text .skills {
   color: white;
   border-color: #18BC9C;
 }
-.navbar-custom.affix {
-    padding: 10px 0;
-  }
 @media (min-width: 768px) {
   .navbar-custom {
     padding: 25px 0;
