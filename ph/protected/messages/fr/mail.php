@@ -111,8 +111,9 @@
 
 
 		// post
-		"{who} writes a post" => "{who} a écrit un post",
-		"{who} writes posts"=>"{who} a écrit plusieurs posts",
+		"{who} writes a post on the wall of {where}" => "{who} a écrit un post sur le mur de {where}",
+		"{who} write posts on the wall of {where}" => "{who} ont écrit plusieurs posts sur le mur de {where}",
+		"{who} writes posts on the wall of {where}" => "{who} a écrit plusieurs posts sur le mur de {where}",
 		// add
 		"{who} write posts" => "{who} ont écrit plusieurs posts",
 		"{who} added a new event : {what}" => "{who} a ajouté un événement : {what}",
@@ -136,6 +137,50 @@
 		"{who} want to administrate {where}"=> "{who} veulent administrer {where}",
 
 
+		//REACT
+		"{who} reacts on a news {what} from {where}" => "{who} a réagi sur la publication {what} de {where}",
+		"{who} react on a news {what} from {where}" => "{who} ont réagi sur la publication {what} de {where}",
+		"{who} reacts on your news {what}"=>"{who} a réagi sur votre publication {what}",
+		"{who} react on your news {what}"=>"{who} ont réagi sur votre publication {what}",
 
+		//DELETE
+		"{who} asks the suppression of {where}"=>"{who} demande la suppression de {where}",
+		"{who} stopped the pending suppression of {where}"=>"{who} a stoppé la suppresion de {where}",
+		"{who} deleted {where}"=>"{who} a supprimé {where}",
+
+
+		//JOIN
+		"{who} participates to {where}" => "{who} participe à {where}",
+		"{who} participate to {where}" => "{who} participent à {where}",
+		"{who} joins {where}" => "{who} a rejoint {where}",
+		"{who} join {where}" => "{who} ont rejoint {where}",
+		"{who} contributes {where}" => "{who} contribue à {where}",
+		"{who} contribute {where}" => "{who} contribuent à {where}",
+
+
+
+		//COMMENT
+		"{who} commented on your news {what}" => "{who} a commenté votre post {what}",
+		"{who} added comments on your news {what}" => "{who} ont commenté votre post {what}",
+		"{who} commented a news {what} posted on {where}" => "{who} a commenté le post {what} publié sur {where}",
+		"{who} added comments on a news {what} posted on {where}" => "{who} ont commenté le post {what} publié sur {where}",
+		"{who} added few comments on your news {what}" => "{who} a ajouté plusieurs commentaires sur votre post {what}",
+		"{who} added few comments on a news {what} posted on {where}" => "{who} a ajouté plusieurs commentaires sur le post {what} publié sur {where}",
+		"{who} answered to your comment posted on {where}" => "{who} a répondu à votre commentaire posté sur {where}" ,
+		"{who} added comments on your comments posted on {where}" => "{who} ont répondu à vos commentaires postés sur {where}",
+		"{who} added few comments on your comments posted on {where}" => "{who} a répondu plusieurs fois à votre commentaire posté sur {where}",
+		"{who} commented on proposal {what} in {where}" => "{who} a commenté la proposition {what} dans {where}",
+		"{who} added comments on proposal {what} in {where}" => "{who} ont commenté la proposition {what} dans {where}",
+		"{who} commented on action {what} in {where}" => "{who} a commenté l'action {what} dans {where}",
+		"{who} added comments on action {what} in {where}" => "{who} ont commenté l'action {what} dans {where}",
+		"{who} commented on discussion {what} in {where}" => "{who} a participé à la discussion {what} dans {where}",
+		"{who} added comments on discussion {what} in {where}" => "{who} ont participé à la discussion {what} dans {where}",
+		"{who} added few comments on proposal {what} in {where}"=>"{who} a commenté plusieurs fois la proposition {what} sur {where}",
+		"{who} added few comments on action {what} in {where}"=>"{who} a commenté plusieurs fois l'action {what} sur {where}",
+		"{who} commented on resolution {what} in {where}"=> "{who} a commenté la résolution {what} dans {where}",
+		"{who} added comments on resolution {what} in {where}"=>"{who} ont commenté la résolution {what} dans {where}",
+		"{who} added few comments on resolution {what} in {where}"=>"{who} a commenté plusieurs fois la résolution {what} dans {where}",
+		"of creation"=> "de création",
+		"shared"=>"partagé",
 );
 ?> 
