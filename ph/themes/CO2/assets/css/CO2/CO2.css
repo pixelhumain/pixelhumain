@@ -1044,7 +1044,10 @@ a, a:hover, a:focus, a:active, a.active{
 	background-color: transparent;
 	z-index: 100000;
 }
-
+.main-container.vertical .dropdown-main-menu{
+	top: 66px;
+	right: 5px;
+}
 .dropdown-main-menu .dropdown-menu{
 	margin:0px;
 	border:none;
@@ -1090,6 +1093,10 @@ a, a:hover, a:focus, a:active, a.active{
 .dropdown-main-menu .arrow_box:after, .dropdown-main-menu .arrow_box:before {
 	right: 25px;
 	left: unset;
+}
+
+.main-container.vertical .dropdown-main-menu .arrow_box:after, .main-container.vertical .dropdown-main-menu .arrow_box:before {
+	right: 23px;
 }
 #list-dashboard-dda:before, #list-dashboard-dda:after{
 	left: 103px !important;
@@ -2178,14 +2185,6 @@ margin-right: 5px;
 		font-size: 0.4em;
 	}*/
 
-
-
-    .dropdown-menu.arrow_box {
-	    position: absolute !important;
-	    top: 32px;
-	    right: -17px !important;
-    }
-
 	header .logo-menutop{
 		margin-bottom: 0px;
 		height:50px!important;
@@ -2339,10 +2338,17 @@ margin-right: 5px;
 		padding: 5px 8px;
 	}
 
-	.dropdown-menu.arrow_box{
-		top:30px;
-	}
-
+	.dropdown-menu.arrow_box {
+	    position: absolute !important;
+	    top: 30px;
+	    right: -17px !important;
+    }
+    .main-container.vertical #dropdown-user .arrow_box{
+	    position: absolute !important;
+		top: -7px;
+	    right: 50px !important;
+	    left: unset;
+    }
 	.navbar-map .menu-name-profil{
 		padding: 0px !important;
 	}

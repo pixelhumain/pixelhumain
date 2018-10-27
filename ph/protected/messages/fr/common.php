@@ -603,6 +603,7 @@ return array(
 	"Edit slug"=>"Modifier votre adresse URL",
 	"Search among your contacts"=>"Rechercher parmi vos contacts",
 	"Set your notifications"=>"Paramétrer vos notifications",
+	"Graph View"=> "Vue en graphes",
 	/* ---- */
 	//TITLE DIRECTORY ELEMENT
 	"Keep data open and usable by all"=>"Maintenir les données ouvertes et universellement utilisables",

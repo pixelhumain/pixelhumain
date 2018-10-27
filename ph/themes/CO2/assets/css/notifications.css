@@ -190,7 +190,10 @@
 #notificationPanelSearch.arrow_box::after{
 	left: 25%;
 }
-
+.main-container.vertical #notificationPanelSearch.arrow_box:before,
+.main-container.vertical #notificationPanelSearch.arrow_box:after{
+	left:40%;
+}
 #notificationPanelSearch{
 	bottom: 30% !important;
 	right: 27px !important;
@@ -200,6 +203,11 @@
  	#notificationPanelSearch.arrow_box::before,
 	#notificationPanelSearch.arrow_box::after{
 		left:216px;
+	}
+
+	.main-container.vertical #notificationPanelSearch.arrow_box:before,
+	.main-container.vertical #notificationPanelSearch.arrow_box:after{
+		left:65%;
 	}
  }
 
@@ -220,6 +228,11 @@
 		right:207px;
 	}
 
+	.main-container.vertical #notificationPanelSearch.arrow_box:before,
+	.main-container.vertical #notificationPanelSearch.arrow_box:after{
+		left: unset !important;
+    	right: 153px;
+	}
 	.notifications .pageslide-list a .label{
 		height: 26px;
 		width: 26px;
