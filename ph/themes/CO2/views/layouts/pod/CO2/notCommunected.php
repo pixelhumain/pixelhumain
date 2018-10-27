@@ -24,9 +24,9 @@
 <h5 class="no-margin" style="font-size:13px">
 	<small class="text-red"><i class="fa fa-angle-right"></i> <?php echo Yii::t("common","You will be able to use also the communexion during your research on the others apps") ?> :
 	<span class="col-md-12 margin-top-10">
-		<a class="col-md-6 padding-5 text-center" href=""><i class="fa fa-search"></i><br><?php echo Yii::t("common","search") ?></a>
-		<a class="col-md-6 padding-5 text-center" href=""><i class="fa fa-bullhorn"></i><br><?php echo Yii::t("common","classified") ?></a>
-		<a class="col-md-6 padding-5 text-center" href=""><i class="fa fa-calendar"></i><br><?php echo Yii::t("common","agenda") ?></a>
-		<a class="col-md-6 padding-5 text-center" href=""><i class="fa fa-newspaper-o"></i><br><?php echo Yii::t("common","live") ?></a></small>
+		<a class="col-md-6 padding-5 text-center lbh" href="#search"><i class="fa fa-search"></i><br><?php echo Yii::t("common","search") ?></a>
+		<a class="col-md-6 padding-5 text-center lbh" href="#annonces"><i class="fa fa-bullhorn"></i><br><?php echo Yii::t("common","classified") ?></a>
+		<a class="col-md-6 padding-5 text-center lbh" href="#agenda"><i class="fa fa-calendar"></i><br><?php echo Yii::t("common","agenda") ?></a>
+		<a class="col-md-6 padding-5 text-center lbh" href="#live"><i class="fa fa-newspaper-o"></i><br><?php echo Yii::t("common","live") ?></a></small>
 	</span>
 </h5>
