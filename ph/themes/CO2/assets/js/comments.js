@@ -56,7 +56,7 @@ function initCommentsTools(listObjects, type, canComment, parentId){
           if(typeof media.scope.type != "undefined" && media.scope.type != "private")
             actionOn =  actionOn+
                              "<button class='text-dark btn btn-link no-padding margin-right-5 btn-share bold'"+
-                                " style='margin-top:-3px;'" +
+                                " style='margin-top:-1px;'" +
                                 " data-id='"+idMediaShare+"' data-type='"+typeMediaShare+"'>"+
                                 "<i class='fa fa-retweet'></i> "+trad.share+
                              "</button>";
