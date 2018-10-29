@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>FaceMocion.js</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+      <link rel="stylesheet" href="css/prism.css">
+    
+    <script src="js/jquery.min.js"></script> 
+      <script src="js/prism.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <link href="faceMocion.css" rel="stylesheet" type="text/css" />
+  <script src="faceMocion.js"></script> 
+  </head>
+  <body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 text-center">
+            <div  class="well" >
+                <a href="http://develoteca.com">
+                    <img src="http://develoteca.com/wp-content/themes/site/img/develoteca.png"/>
+               <br/>by develoteca.com
+                </a>
+                
+            </div>
+          <a href="https://github.com/oscaruhp/FaceMocion/archive/gh-pages.zip" class="btn3d btn btn-success btn-lg">Download v1.0</a>
+              <br/>
+                <br/>
+              <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- lateral -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:300px;height:250px"
+     data-ad-client="ca-pub-4331617637495482"
+     data-ad-slot="7438564459"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script><br/><br/>
+              <div class="col-md-12 well">
+                  <h3>Thank you for comments</h3>
+                  <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/es_MX/sdk.js#xfbml=1&version=v2.5&appId=132799306837455";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+           <div class="fb-comments" data-href="http://oscaruhp.github.io/FaceMocion/" data-width="300" data-numposts="5"></div>
+
+              <div class="fb-comments" data-href="" data-width="300" data-numposts="5"></div>
+              </div>  
+          </div>
+            
+    <div class="col-md-8 ">
+        <br/>
+        <h1 class="text-center">FaceMocion jQuery - Facebook Emoticons</h1>
+        <div class="panel panel-default text-center">
+          <div class="panel-heading">
+          <h3>Example FaceMocion</h3></div>
+            <div class="panel-body ">
+            <img src="img/Demo.png" class = "img-thumbnail" width="302"/>
+            <hr/>    <h2>Select option: </h2>
+     <div class="text-center">   
+   
+     <input type="hidden" value="gusta" class="input"/>
+ 
+   
+      </div>
+  <script>$(".input").faceMocion({emociones:[
+    {"emocion":"amo","TextoEmocion":"I love"},
+    {"emocion":"molesto","TextoEmocion":"It bothers me"},
+    {"emocion":"asusta","TextoEmocion":"it scares"},
+    {"emocion":"divierte","TextoEmocion":"I enjoy"},
+    {"emocion":"gusta","TextoEmocion":"I like"},
+    {"emocion":"triste","TextoEmocion":"It saddens"},
+    {"emocion":"asombro","TextoEmocion":"It amazes me"},
+    {"emocion":"alegre","TextoEmocion":"I am glad"}
+    ]});</script>
+     
+      
+  </div></div>
+        <h2>install FaceMocion</h2>
+              <h3>Quick start</h3>
+            1.- Include the files
+            <pre><code class="language-markup">
+    &lt;!-- Bootstrap and JQuery -->
+    &lt;link rel="stylesheet" href="bootstrap.min.css"> &lt;!-- Optional --&gt;
+    &lt;script src="jquery.min.js"> &lt;/script>
+        
+    &lt;!-- Plugin --> 
+    &lt;link href=&quot;faceMocion.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+    &lt;script src=&quot;faceMocion.js&quot;&gt;&lt;/script&gt; </code></pre>
+              
+            2.- Create HTML Element (inputs type:hidden)
+            <pre><code class="language-markup">
+	&lt;input type=&quot;hidden&quot; value=&quot;amo&quot; class=&quot;facemocion&quot;/&gt;
+    &lt;input type=&quot;hidden&quot; value=&quot;asombro&quot; class=&quot;facemocion&quot;/&gt;<br />             </code></pre>
+            
+            
+            3.- Call the the plugin on a container as your wish
+            <pre><code class="language-javascript">
+$(&quot;.facemocion&quot;).faceMocion();
+               </code></pre>
+            
+            
+             4.- All done!
+            
+  <h2>Options</h2>
+            you can custom by passing options when call the plugin, all available options are listed below.
+call the the plugin on a container wish you wish
+            
+            
+  <pre><code class="language-javascript">
+        $('#example4').faceMocion({
+                    option: value
+       });
+                 
+               </code></pre>
+            Demo (Options)
+           
+           <pre><code class="language-javascript">
+         {emociones:[
+         {&quot;emocion&quot;:&quot;amo&quot;,&quot;TextoEmocion&quot;:&quot;I love&quot;},
+         {&quot;emocion&quot;:&quot;molesto&quot;,&quot;TextoEmocion&quot;:&quot;It bothers me&quot;},
+         {&quot;emocion&quot;:&quot;asusta&quot;,&quot;TextoEmocion&quot;:&quot;it scares&quot;},
+         {&quot;emocion&quot;:&quot;divierte&quot;,&quot;TextoEmocion&quot;:&quot;I enjoy&quot;},
+         {&quot;emocion&quot;:&quot;gusta&quot;,&quot;TextoEmocion&quot;:&quot;I like&quot;},
+         {&quot;emocion&quot;:&quot;triste&quot;,&quot;TextoEmocion&quot;:&quot;It saddens&quot;},
+         {&quot;emocion&quot;:&quot;asombro&quot;,&quot;TextoEmocion&quot;:&quot;It amazes me&quot;},
+         {&quot;emocion&quot;:&quot;alegre&quot;,&quot;TextoEmocion&quot;:&quot;I am glad&quot;}
+         ]}
+           </code></pre>
+           <div class="text-center">
+            <img src="img/options.png"/>
+            </div>
+            <br/>
+                        <br/>
+                        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-74824848-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+         
+  </body>
+</html>

@@ -77,6 +77,11 @@ return array(
 	"with the link"=>"avec le lien",
 	"with the documents shared"=>"avec les documents partagés",
 	"with the album's images"=>"avec les images d'album",
+	//REACT
+	"{who} reacts on a news {what} from {where}" => "{who} a réagi sur la publication {what} de {where}",
+	"{who} react on a news {what} from {where}" => "{who} ont réagi sur la publication {what} de {where}",
+	"{who} reacts on your news {what}"=>"{who} a réagi sur votre publication {what}",
+	"{who} react on your news {what}"=>"{who} ont réagi sur votre publication {what}",
 	//POST
 	"{where} publishes a new post"=>"{where} a publié un post",
 	"{where} publishes new posts"=>"{where} a publié plusieurs posts",

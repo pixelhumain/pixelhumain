@@ -8,7 +8,7 @@ body:after {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 9999;
+  z-index: 99999;
   background-color: black;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
   opacity: 0.8;

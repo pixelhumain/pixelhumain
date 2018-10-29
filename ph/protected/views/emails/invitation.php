@@ -52,7 +52,12 @@ $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.m
 									<?php echo Yii::t("mail","Connected like Facebook and open like Wikipedia join the movement!") ?>
 								</h5>
 							</b><br/>
-							<?php echo Yii::t("mail","You have been inviting on {what} by {who}",array("{what}"=>$title,"{who}"=>"<b>".$invitorName."</b>")) ?>.
+							<?php echo Yii::t("mail","You have been inviting on {what} by {who}",array("{what}"=>$title,"{who}"=>"<b>".$invitorName."</b>"));
+
+								if( !empty($target) && !empty($target["type"]) && $target["type"] != Person::COLLECTION )
+									echo " a rejoindre ".$target["name"] ;
+
+							 ?>.
 							<br/><br/>
 							<?php if(!empty($message)){
 								echo Yii::t("mail","His message for you") ?> : <br/>

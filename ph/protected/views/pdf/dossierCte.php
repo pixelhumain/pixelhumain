@@ -26,6 +26,22 @@ h1 {
 	font-family: Arial,Helvetica Neue,Helvetica,sans-serif; 
 }
 
+table.first {
+        color: #003300;
+        font-family: helvetica;
+        border: 3px solid black;
+    }
+
+table.first td {
+        border: 1px solid black;
+        font-size: 8pt;
+    }
+
+table.first td .entete {
+         font-size: 10pt;
+         font-weight: bold;
+    }
+
 </style>
 
 <div class="body">
@@ -134,10 +150,45 @@ h1 {
 
 		<h4 class="padding-20 blue" style="">Plan de financement</h4>
 		<span> <?php
-			if(isset($answer["answers"]["cte3"]["answers"]["previsionel"]["previsionel"])){
-				echo "Voir Annexe";
-			}else
+			if(!isset($answer["answers"]["cte3"]["answers"]["previsionel"]["previsionel"]) && !isset($answer["answers"]["cte3"]["answers"]["planFinancement"]["planFinancement"])){
 				echo "<i> Pas renseigner </i>";
+			}
+
+			if(isset($answer["answers"]["cte3"]["answers"]["planFinancement"]["planFinancement"])){
+				echo '<br/><br/> <table  class="first"  cellspacing="0" >';
+
+				if(!empty($forms["cte3"]["scenario"]["planFinancement"]["json"]["jsonSchema"]["properties"]["planFinancement"]["properties"])){
+					$l = $forms["cte3"]["scenario"]["planFinancement"]["json"]["jsonSchema"]["properties"]["planFinancement"]["properties"];
+
+					echo "<tr><td class='entete'>".@$l["type"]["label"]."</td>";
+					echo "<td>".@$l["title"]["label"]."</td>";
+					echo "<td>".@$l["porteur"]["label"]."</td>";
+					echo "<td>".@$l["state"]["label"]."</td>";
+					echo "<td>".@$l["position"]["label"]."</td>";
+					echo "<td>".@$l["followup"]["label"]."</td>";
+					echo "<td>".@$l["financer"]["label"]."</td>";
+					echo "<td>".@$l["amountTotal"]["label"]."</td></tr>"; 
+
+
+				}
+
+				foreach ($answer["answers"]["cte3"]["answers"]["planFinancement"]["planFinancement"] as $key => $value) {
+					echo "<tr><td>".$value["type"]."</td>";
+					echo "<td>".$value["title"]."</td>";
+					echo "<td>".$value["porteur"]."</td>";
+					echo "<td>".$value["state"]."</td>";
+					echo "<td>".$value["position"]."</td>";
+					echo "<td>".$value["followup"]."</td>";
+					echo "<td>".$value["financer"]."</td>";
+					echo "<td>".$value["amountTotal"]."</td></tr>";
+				}
+				echo "</table>";
+			}
+
+			if( isset($answer["answers"]["cte3"]["answers"]["previsionnel"]["previsionel"]["id"])) {
+				echo "<br/><br/> <i>Voir Annexe</i>";
+			}
+
 		?> </span> 
 		<br/>		
 	</div>

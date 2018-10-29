@@ -15,7 +15,7 @@
         text-decoration: none;
     }
 
-    .dropdown-menu.arrow_box{
+/*    .dropdown-menu.arrow_box{
         position: absolute !important;
         top: 51px;
         right: -65px;
@@ -24,7 +24,7 @@
         border: 1px solid transparent;
         -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
         box-shadow: 0 6px 12px rgba(0,0,0,.175);
-    }
+    }*/
 
     .btn-language{
         height: 35px;
@@ -55,9 +55,13 @@
     .navbar-nav .menu-button:hover{
         color:grey !important;
     }
+    #mainNav.vertical{
+        box-shadow: 0px 2px 3px -3px rgba(0,0,0,0.5);
+        border-bottom: 1px solid #dadada;
+    }
 </style>
 <!-- Navigation -->
-<nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
+<nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom <?php echo $menuApp ?>">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header pull-left">
@@ -69,22 +73,7 @@
                 ?>
                 <img src="<?php echo $logo;?>" class="logo-menutop pull-left" height=25>
             </a>
-           <!-- <span class="hidden-xs skills font-montserrat"><?php echo Yii::t("common",$mainTitle); ?></span>-->
-            <?php 
-                //$params = CO2::getThemeParams();  
-                /*$icon = "";
-                // echo "params : "; var_dump($params);// exit; 
-                foreach ($params["pages"] as $key => $value) {
-                    if($subdomain==@$value["subdomain"]) {
-                        $icon = @$value["icon"];
-                    } 
-                }
-            <!--<i class="fa fa-<?php echo $icon; ?> hidden-top margin-top-15 margin-right-5 margin-left-10 pull-left text-red" 
-                style="font-size:20px;"></i>-->
-                */
-            ?>
         </div>
-
         <?php if( $subdomain == "search" ||
                 $subdomain == "ressource" ||
                 $subdomain == "web" ||
@@ -97,31 +86,17 @@
                   //$subdomain == "admin"
                   //$subdomain == "page"
                  ){ ?>
-            <!-- <button class="btn btn-default hidden-xs pull-left menu-btn-start-search" style="display:none;" 
-                    data-type="<?php echo @$type; ?>">
-                    <i class="fa fa-search"></i>
-            </button> -->
-            <div class="hidden-xs col-sm-4 col-md-4 col-lg-4 margin-top-5" style="">
+            <div class="hidden-xs col-sm-4 col-md-4 col-lg-4 margin-top-5" style="padding: 0px 10px;">
                 <input type="text" class="form-control pull-left main-search-bar" id="main-search-bar" placeholder="<?php echo Yii::t("common", "What are you looking for")." ?"; ?>">
                 <span class="text-white input-group-addon pull-left main-search-bar-addon" id="main-search-bar-addon">
                     <i class="fa fa-arrow-circle-right"></i>
                 </span>
             </div>
-            <button class="btn hidden-xs pull-left menu-btn-scope-filter text-red elipsis"
+            <button class="btn hidden-xs pull-left menu-btn-scope-filter text-red elipsis margin-right-10"
                     data-type="<?php echo @$type; ?>">
                     <i class="fa fa-map-marker"></i> <span class="header-label-scope"><?php echo Yii::t("common","where ?") ?></span>
             </button>
-            <div id="filters-container-menu" class="no-padding hidden-xs">
-                <ul class="filters-menu">
-                    <li class="scope-header-filter tooltips" data-placement="bottom" data-original-title="<?php echo Yii::t("common", "Up for filters") ?>">
-                     <i class="fa fa-angle-double-up"></i> 
-                    </li>
-                    <!--<li class="theme-header-filter tooltips" data-placement="bottom" data-original-title="<?php echo Yii::t("common", "Theme filter") ?>">
-                     <i class="fa fa-tags"></i> 
-                    </li>-->
-                    
-                </ul> 
-            </div>
+             <button class="btn btn-show-filters hidden-xs"> <i class="fa fa-filter visible-sm pull-left" style="font-size:18px;"></i><span class="hidden-sm"><?php echo Yii::t("common", "Filters") ?></span> <span class="topbar-badge badge animated bounceIn badge-warning"></span> <i class="fa fa-angle-down"></i></button>
         <?php } ?>
 
         <?php if( $subdomain == "welcome" || $subdomain=="page" ){ ?>
@@ -131,44 +106,37 @@
                         placeholder="<?php echo Yii::t("common", $placeholderMainSearch); ?>">
                     <div class="dropdown-result-global-search hidden-xs col-sm-6 col-md-5 col-lg-5 no-padding"></div>
             </div>
-            <!--<button class="btn btn-default hidden-xs pull-left menu-btn-start-search btn-directory-type" 
-                    data-type="<?php echo @$type; ?>">
-                    <i class="fa fa-search"></i>
-            </button>-->
-
         <?php } ?>
+        <!--Button to whow the map on horizontal map -->
         <button class="btn-show-map" style=""
                 title="<?php echo Yii::t("common", "Show the map"); ?>"
                 alt="<?php echo Yii::t("common", "Show the map"); ?>"
                 >
             <i class="fa fa-map-marker"></i>
         </button>
+        <!-- button of languages selection if not connected -->
         <?php if( !@Yii::app()->session['userId'] ){ ?>
             <div id="navbar" class="navbar-collapse pull-right navbar-right" style="margin-top: 8px;   margin-bottom: 5px;">
-            <ul class="nav navbar-nav">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle btn btn-default btn-language padding-5" data-toggle="dropdown" role="button">
-                    <img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/<?php echo Yii::app()->language ?>.png" width="22"/> <span class="caret"></span></a>
-                    <ul class="dropdown-menu arrow_box" role="menu" style="">
-                        <li><a href="javascript:;" onclick="setLanguage('en')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/en.png" width="25"/> <?php echo Yii::t("common","English") ?></a></li>
-                        <li><a href="javascript:;" onclick="setLanguage('fr')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/fr.png" width="25"/> <?php echo Yii::t("common","French") ?></a></li>
-                        <li><a href="javascript:;" onclick="setLanguage('de')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/de.png" width="25"/> <?php echo Yii::t("common","German") ?></a></li>
-                        <li><a href="javascript:;" onclick="setLanguage('it')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/it.png" width="25"/> <?php echo Yii::t("common","Italian") ?></a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div> 
-        <?php } ?>
-        
-        <!-- <button class="btn-show-mainmenu" title="Menu principal" data-target="#modalMainMenu" data-toggle="modal">
-            <i class="fa fa-th tooltips" data-toggle="tooltip" data-placement="bottom" title="Menu principal"></i>
-        </button> -->
-
-        <?php if( isset( Yii::app()->session['userId']) ){ ?>
-            <button class="btn-show-mainmenu btn btn-link" 
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle btn btn-default btn-language padding-5" data-toggle="dropdown" role="button">
+                        <img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/<?php echo Yii::app()->language ?>.png" width="22"/> <span class="caret"></span></a>
+                        <ul class="dropdown-menu arrow_box" role="menu" style="">
+                            <li><a href="javascript:;" onclick="setLanguage('en')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/en.png" width="25"/> <?php echo Yii::t("common","English") ?></a></li>
+                            <li><a href="javascript:;" onclick="setLanguage('fr')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/fr.png" width="25"/> <?php echo Yii::t("common","French") ?></a></li>
+                            <li><a href="javascript:;" onclick="setLanguage('de')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/de.png" width="25"/> <?php echo Yii::t("common","German") ?></a></li>
+                            <li><a href="javascript:;" onclick="setLanguage('it')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/it.png" width="25"/> <?php echo Yii::t("common","Italian") ?></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div> 
+        <?php } if( @Yii::app()->session['userId'] ){ ?>
+            <button class="btn-show-mainmenu btn btn-link btn-menu-tooltips" 
                     data-toggle="tooltip" data-placement="top" title="<?php echo Yii::t("common","Menu") ?>">
                 <i class="fa fa-bars tooltips" ></i>
+                <span class="tooltips-top-menu-btn"><?php echo Yii::t("common", "Menu"); ?></span>
             </button>
+
 
         <?php } ?>
 
@@ -182,25 +150,22 @@
                 ?> 
                      <!-- #page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?> -->
                     <a  href="#page.type.citoyens.id.<?php echo Yii::app()->session['userId']; ?>"
-                        class="menu-name-profil lbh text-dark pull-right shadow2" 
+                        class="menu-name-profil lbh text-dark pull-right shadow2 btn-menu-tooltips" 
                         data-toggle="dropdown">
                             <small class="hidden-xs hidden-sm margin-left-10" id="menu-name-profil">
                                 <?php echo @$me["name"] ? $me["name"] : @$me["username"]; ?>
                             </small> 
                             <img class="img-circle" id="menu-thumb-profil" 
                                  width="40" height="40" src="<?php echo $profilThumbImageUrl; ?>" alt="image" >
+                        <span class="tooltips-top-menu-btn"><?php echo Yii::t("common", "My page"); ?></span>
                     </a>
-                    <!--<a href="https://www.helloasso.com/associations/open-atlas/collectes/communecter/don" target="_blank" class="menu-button btn-menu btn-link pull-right hidden-xs" style="color : #E5344D;"
-                          data-toggle="tooltip" data-placement="bottom" title="<?php echo Yii::t("common","Recurring donation") ?>" 
-                          alt="<?php echo Yii::t("common","Recurring donation") ?>">
-                      <i class="fa fa-heart "></i>
-                    </a>-->
-                   <button class="menu-button btn-menu btn-link btn-open-floopdrawer text-dark pull-right hidden-xs" 
+                   <button class="menu-button btn-menu btn-link btn-open-floopdrawer text-dark pull-right hidden-xs btn-menu-tooltips" 
                           data-toggle="tooltip" data-placement="bottom" title="<?php echo Yii::t("common","My network") ?>" 
                           alt="<?php echo Yii::t("common","My network") ?>">
                       <i class="fa fa-users"></i>
+                      <span class="tooltips-top-menu-btn"><?php echo Yii::t("common", "My network"); ?></span>
                     </button>
-                    <button class="menu-button btn-menu btn-menu-notif text-dark pull-right" 
+                    <button class="menu-button btn-menu btn-menu-notif text-dark pull-right btn-menu-tooltips" 
                           data-toggle="tooltip" data-placement="bottom" title="<?php echo Yii::t("common","Notifications") ?>" alt="<?php echo Yii::t("common","Notifications") ?>">
                       <i class="fa fa-bell"></i>
                       <span class="notifications-count topbar-badge badge animated bounceIn 
@@ -208,6 +173,7 @@
                               echo 'badge-transparent hide'; else echo 'badge-success'; ?>">
                             <?php echo @$countNotifElement ?>
                         </span>
+                        <span class="tooltips-top-menu-btn"><?php echo Yii::t("common", "My notifications"); ?></span>
                     </button>
                     <?php if(@$me && @$me["links"] && (@$me["links"]["memberOf"] || @$me["links"]["contributors"])){ ?>
                     <button class="menu-button btn-menu btn-dashboard-dda text-dark pull-right hidden-xs" 
@@ -218,16 +184,23 @@
                     </button>
                     <?php } ?>                    
 
-                    <button class="menu-button btn-menu btn-menu-chat text-dark pull-right hidden-xs" 
+                    <button class="menu-button btn-menu btn-menu-chat text-dark pull-right hidden-xs btn-menu-tooltips" 
                           onClick='rcObj.loadChat("","citoyens", true, true)' data-toggle="tooltip" data-placement="bottom" 
                           title="<?php echo Yii::t("common","Messaging") ?>" alt="<?php echo Yii::t("common","Messaging") ?>">
                       <i class="fa fa-comments"></i>
                       <span class="chatNotifs topbar-badge badge animated bounceIn badge-warning"></span>
+                      <span class="tooltips-top-menu-btn"><?php echo Yii::t("common", "My chat"); ?></span>
                     </button>
+                    <a href="#myhome" class="lbh menu-button btn-menu btn-menu-chat text-dark pull-right btn-menu-tooltips" 
+                           data-toggle="tooltip" data-placement="bottom" 
+                          title="<?php echo Yii::t("common","Home") ?>" alt="<?php echo Yii::t("common","Home") ?>" style="width: inherit !important;text-transform: capitalize;">
+                      <i class="fa fa-home"></i> <span class="hidden-xs hidden-sm" style="font-size: 16px;"><?php echo Yii::t("common","Home") ?></span>
+                      <span class="tooltips-top-menu-btn"><?php echo Yii::t("common", "My home"); ?></span>
+                    </a>
 
 
                     
-                    <span class="dropdown" id="dropdown-apps">
+                    <span class="dropdown dropdownApps" id="dropdown-apps">
                         <button class="dropdown-toggle menu-button btn-menu btn-menu-apps text-dark pull-right"  type="button" id="dropdownApps" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" data-placement="bottom" 
                               title="<?php echo Yii::t("common","Applications") ?>" alt="<?php echo Yii::t("common","Applications") ?>">
                           <i class="fa <?php echo Application::ICON ?> letter-red"></i>
@@ -236,59 +209,15 @@
 
 
                 <?php } else { ?>
-
-                 <!-- <span class="dropdown pull-left" id="dropdown-apps">
-                        <button class="dropdown-toggle menu-button btn-menu btn-menu-apps text-dark pull-right hidden-xs"  type="button" id="dropdownApps" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" data-placement="bottom" 
-                              title="<?php echo Yii::t("common","Applications") ?>" alt="<?php echo Yii::t("common","Applications") ?>" style="margin-top: 8px;">
-                          <i class="fa <?php echo Application::ICON ?> letter-red"></i>
-                        </button>
-                        <div class="dropdown-menu arrow_box" aria-labelledby="dropdownApps" style="top: 55px;right: -101px;">
-                            <a class="dropdown-item padding-5 text-center col-xs-6 lbh" href="#search" data-toggle="tooltip" data-placement="bottom" ><i class="fa <?php echo Search::ICON ?> fa-2x"></i><br/><?php echo Yii::t("common","Search") ?></a>
-                            <a class="dropdown-item padding-5 text-center col-xs-6 lbh" href="#live" data-toggle="tooltip" data-placement="bottom" ><i class="fa <?php echo News::ICON2 ?> fa-2x"></i><br/><?php echo Yii::t("common","In live") ?></a>
-                            <a class="dropdown-item padding-5 text-center col-xs-6 lbh" href="#agenda" data-toggle="tooltip" data-placement="bottom"><i class="fa <?php echo Event::ICON ?> fa-2x"></i><br/><?php echo Yii::t("common","Agenda") ?></a>
-                            <a class="dropdown-item padding-5 text-center col-xs-6 lbh" href="#annonces" data-toggle="tooltip" data-placement="bottom"><i class="fa <?php echo Classified::ICON ?> fa-2x"></i><br/><?php echo Yii::t("common","Market place") ?></a>
-                            <a class="dropdown-item padding-5 text-center col-xs-6 lbh" href="#ressources" data-toggle="tooltip" data-placement="bottom"><i class="fa <?php echo Ressource::ICON ?> fa-2x"></i><br/><?php echo Yii::t("common","Sharing") ?></a>
-                        </div>
-                    </span> -->
-
                     <li class="pull-right">
-                        <?php //if($subdomain != "welcome"){ ?>
                             <button class="letter-green font-montserrat btn-menu-connect margin-left-10 margin-right-10" 
                                     data-toggle="modal" data-target="#modalLogin" style="font-size: 17px; margin-top:12px;">
                                     <i class="fa fa-sign-in"></i> 
                                     <span class="hidden-xs"><small style="width:70%;"><?php echo Yii::t("login", "LOG IN") ?></small></span>
                             </button>
-                        <?php //} else { ?>
-                            <!-- <div class="hidden-xs hidden-sm append-md-login"> -->
-                            <?php   //$layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
-                                    //$this->renderPartial($layoutPath.'forms.'.Yii::app()->params["CO2DomainName"].'.login'); 
-                            ?>
-                            <!-- </div> -->
-                        <?php //} ?>
                     </li>
-
-
-                   <!--  <button class="btn btn-default btn-sm letter-red tooltips pull-right font-montserrat" 
-                        id="btn-radio" style=" margin-top:10px;"  
-                        data-target="#modalRadioTool" data-toggle="modal"
-                        data-placement="bottom" title="Radio Pixel-Humain">
-                        <img src="<?php echo Yii::app()->theme->baseUrl; ?>/assets/img/radios/radio-ico.png" height="25">
-                    </button> -->
-                    
-                    <!--<li class="pull-right">
-                        <a href="#info.p.stats" class="lbh padding-5" style="margin-top:8px;">
-                            <i class="fa fa-bar-chart"></i> stat
-                        </a>
-                    </li>--> 
                 <?php } ?>
             </ul>
-            <?php if (!@Yii::app()->session["userId"] && $subdomain == "welcome"){ ?>
-                <!--<button class="visible-xs visible-sm letter-green font-montserrat btn-menu-connect margin-top-10" 
-                        data-toggle="modal" id="open-login-xs" style="font-size:20px;">
-                    <span><i class="fa fa-sign-in"></i></span>
-                </button>
-                <div class="visible-xs visible-sm append-small-login hidden"></div>-->
-            <?php } ?>
         </div>
 
         <?php if($subdomain == "web"){ ?>
@@ -296,16 +225,8 @@
                     data-placement="bottom" title="Gérer vos favoris"
                     data-target="#modalFavorites" data-toggle="modal"><i class="fa fa-star"></i>
             </button>   
-        <?php }//else{ ?>
-
-
-
-        <?php //if( $subdomain == "welcome" || $subdomain=="page" ){ ?>
-        <!-- <a href="#search" class="lbh text-red bg-white padding-5 pull-right" id="btn-territorial-modules">
-         <i class="fa fa-search"></i> <?php echo Yii::t("common", "Co.<span class='text-dark'>search</span> Engine") ?>
-         </a> -->
-        <?php //} ?>
-        <?php if (!@Yii::app()->session["userId"]){ ?>
+        <?php }
+        if (!@Yii::app()->session["userId"]){ ?>
             <button class="btn-show-mainmenu btn btn-link visible-xs pull-right" 
                     data-toggle="tooltip" data-placement="left" title="Menu" style="padding: 4px 10px;">
                 <i class="fa fa-bars tooltips" ></i>
@@ -339,43 +260,15 @@
                                 <i class="fa fa-life-ring"></i> <?php echo Yii::t("common", "Help") ?>
                             </a>
                         </li>
-                        <!--<li role="separator" class="divider"></li>
-                        <li class="text-admin dropdown-submenu dropdown-menu-left">
-                            <a href="javascript:;" class="bg-white">
-                                <i class="fa fa-language"></i> <?php echo Yii::t("common", "Languages") ; ?>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li><a href="javascript:;" onclick="setLanguage('en')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/en.png"/><?php echo Yii::t("common","English") ?></a></li>
-                              <li><a href="javascript:;" onclick="setLanguage('fr')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/fr.png"/><?php echo Yii::t("common","French") ?></a></li>
-                            </ul>
-                        </li>-->
                     </ul>
                 </div>
             </div>
         <?php } ?>
-        <!-- /.navbar-collapse -->
-        
-        <?php 
-           /* if($subdomainName != "web") foreach (array_reverse($params["pages"]) as $key => $value) {
-                if(@$value["inMenu"]==true && @$value["open"]==true){ ?>
-                <a href="<?php echo $key; ?>" 
-                    class="<?php echo $key; ?>ModBtn lbh btn btn-link letter-red pull-right btn-menu-to-app hidden-top hidden-xs
-                            <?php if($subdomainName==$value["subdomainName"]) echo 'active'; ?> tooltips"
-                    data-placement="bottom" data-original-title="<?php echo Yii::t("common",$value["subdomainName"]); ?>">
-                    <i class="fa fa-<?php echo $value["icon"]; ?>"></i>
-
-                    <!-- <span class=""><?php echo $value["subdomainName"]; ?></span> -->
-                    <?php if(@$value["notif"]){ ?>
-                    <span class="<?php echo $value["notif"]; ?> topbar-badge badge animated bounceIn badge-warning"></span>
-                    <?php } ?>
-                </a>  
-        <?php   }
-            } */ ?>
-            
+        <!-- /.navbar-collapse -->            
     </div>
     <!-- /.container-fluid -->
-
 </nav>
+<!-- DROPDOWNS OF MENUTOP -->
 <div class="dropdown dropdownApps-menuTop" aria-labelledby="dropdownApps">
     <div class="dropdown-main-menu">
         <div class="dropdown-menu arrow_box">
@@ -383,7 +276,6 @@
             <a class="dropdown-item padding-5 text-center col-xs-6 lbh-menu-app" href="javascript:;" data-hash="#live" data-toggle="tooltip" data-placement="bottom" ><i class="fa <?php echo News::ICON2 ?> fa-2x"></i><br/><span class="liveModSpan"><?php echo Yii::t("common","News feed") ?></span></a>
             <a class="dropdown-item padding-5 text-center col-xs-6 lbh-menu-app" href="javascript:;" data-hash="#agenda" data-toggle="tooltip" data-placement="bottom"><i class="fa <?php echo Event::ICON ?> fa-2x"></i><br/><span class="agendaModSpan"><?php echo Yii::t("common","Events") ?></span></a>
             <a class="dropdown-item padding-5 text-center col-xs-6 lbh-menu-app" href="javascript:;" data-hash="#annonces" data-toggle="tooltip" data-placement="bottom"><i class="fa <?php echo Classified::ICON ?> fa-2x"></i><br/><span class="annoncesModSpan"><?php echo Yii::t("common","Classifieds") ?></span></a>
-            <!--<a class="dropdown-item padding-5 text-center col-xs-6 lbh-menu-app" href="javascript:;" data-hash="#ressources" data-toggle="tooltip" data-placement="bottom"><i class="fa <?php echo Ressource::ICON ?> fa-2x"></i><br/><?php echo Yii::t("common","Sharing") ?></a>-->
         </div>
     </div>
 </div>
