@@ -584,6 +584,7 @@ return array(
 	"<span class='text-red'>CO</span>mmon live"=>"Le fil d'actualité <span class='text-red'>CO</span>mmun",
 	"Create a page"=>"Créer une page",
 	"Create a classified ad"=>"Publier une annonce",
+	"Create a job offer"=>"Publier une offre d'emploi",
 	"Create an event"=>"Créer un événement",
 	"Create something"=>"Créer quelque chose",
 	"Launch search"=> "Lancer la recherche",
