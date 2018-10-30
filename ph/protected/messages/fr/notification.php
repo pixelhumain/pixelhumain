@@ -127,9 +127,11 @@ return array(
 	//VOTE
 	"{who} voted on {what} in {where}" => "{who} a voté sur {what} dans {where}",
 	"{who} have voted on {what} in {where}" => "{who} ont voté sur {what} dans {where}",
-	//VOTE
+	"{who} voted few times on {what} in {where}"=> "{who} a voté pluiseurs fois sur {what} dans {where}",
+	//AMEND
 	"{who} amended the proposal {what} in {where}" => "{who} a amendé la proposition {what} dans {where}",
 	"{who} have amended the proposal {what} in {where}" => "{who} ont amendé la proposition {what} dans {where}",
+	"{who} amended few times the proposal {what} in {where}"=>"{who} a amendé plusieurs fois la proposition {what} in {where}",
 	
 	//FRONT NOTIFICATION
 	"asks to become admin of" => "veut devenir administrateur de",
