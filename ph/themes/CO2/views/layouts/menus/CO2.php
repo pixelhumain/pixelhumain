@@ -121,12 +121,12 @@
         </button>
         <!-- button of languages selection if not connected -->
         <?php if( !@Yii::app()->session['userId'] ){ ?>
-            <div id="navbar" class="navbar-collapse pull-right navbar-right" style="margin-top: 8px;   margin-bottom: 5px;">
+            <div id="navbar" class="navbar-collapse pull-right navbar-right" style="margin-top: 5px;   margin-bottom: 5px;">
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle btn btn-default btn-language padding-5" data-toggle="dropdown" role="button">
+                        <a href="#" class="dropdown-toggle btn btn-default btn-language padding-5" style="padding-top: 7px !important" data-toggle="dropdown" role="button">
                         <img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/<?php echo Yii::app()->language ?>.png" width="22"/> <span class="caret"></span></a>
-                        <ul class="dropdown-menu arrow_box" role="menu" style="">
+                        <ul class="dropdown-menu arrow_box dropdown-languages-nouser" role="menu" style="">
                             <li><a href="javascript:;" onclick="setLanguage('en')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/en.png" width="25"/> <?php echo Yii::t("common","English") ?></a></li>
                             <li><a href="javascript:;" onclick="setLanguage('fr')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/fr.png" width="25"/> <?php echo Yii::t("common","French") ?></a></li>
                             <li><a href="javascript:;" onclick="setLanguage('de')"><img src="<?php echo Yii::app()->getRequest()->getBaseUrl(true); ?>/images/flags/de.png" width="25"/> <?php echo Yii::t("common","German") ?></a></li>

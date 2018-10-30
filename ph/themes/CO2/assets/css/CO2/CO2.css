@@ -1095,7 +1095,15 @@ a, a:hover, a:focus, a:active, a.active{
 	right: 25px;
 	left: unset;
 }
+.dropdown-languages-nouser{
+	position: absolute;
+	top: 50px;
+}
 
+.dropdown-languages-nouser:before, .dropdown-languages-nouser:after{
+	right: 15px;
+	left: inherit;
+}
 .main-container.vertical .dropdown-main-menu .arrow_box:after, .main-container.vertical .dropdown-main-menu .arrow_box:before {
 	right: 23px;
 }
