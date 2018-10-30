@@ -99,11 +99,16 @@
              <button class="btn btn-show-filters hidden-xs"> <i class="fa fa-filter visible-sm pull-left" style="font-size:18px;"></i><span class="hidden-sm"><?php echo Yii::t("common", "Filters") ?></span> <span class="topbar-badge badge animated bounceIn badge-warning"></span> <i class="fa fa-angle-down"></i></button>
         <?php } ?>
 
-        <?php if( $subdomain == "welcome" || $subdomain=="page" ){ ?>
+        <?php if( $subdomain == "welcome" || 
+                    $subdomain=="page" ||
+                    $subdomain=="home" ){ ?>
         
-            <div id="input-sec-search" class="hidden-xs col-sm-3 col-md-3 col-lg-4">
+            <div id="input-sec-search" class="hidden-xs col-sm-4 col-md-4 col-lg-4 margin-top-5">
                 <input type="text" class="form-control" id="second-search-bar" 
                         placeholder="<?php echo Yii::t("common", $placeholderMainSearch); ?>">
+                <span class="text-white input-group-addon pull-left second-search-bar-addon" id="second-search-bar-addon">
+                    <i class="fa fa-arrow-circle-right"></i>
+                </span>
                     <div class="dropdown-result-global-search hidden-xs col-sm-6 col-md-5 col-lg-5 no-padding"></div>
             </div>
         <?php } ?>
