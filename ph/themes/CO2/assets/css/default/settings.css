@@ -110,7 +110,7 @@ td{padding:5px;}
 	#community-settings{
 		margin-top: 133px !important;
 	}
-	.btn-scroll-type, #btnSettingsInfos{
+	.settingsHeader .btn-scroll-type, .settingsHeader #btnSettingsInfos{
 		font-size: 18px;
     	font-variant: small-caps;
     	padding: 10px 20px;
