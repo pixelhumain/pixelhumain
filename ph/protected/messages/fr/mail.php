@@ -111,6 +111,7 @@
 
 
 		// post
+		"{who} writes a post on your wall"=>"{who} a écrit un post sur votre mur",
 		"{who} publishes a new post"=>"{where} a publié un post",
 		"{who} publishes new posts"=>"{where} a publié plusieurs posts",
 		"{who} writes a post on the wall of {where}" => "{who} a écrit un post sur le mur de {where}",
@@ -144,9 +145,14 @@
 		"{who} added new rooms in the co-space on {where}"=>"{who} a ajouté plusieurs salles dans l'espace co sur {where}",
 		"{who} have added new rooms in the co-space on {where}"=>"{who} ont ajouté plusieurs salles dans l'espace co sur {where}",
 
-
+		//VOTE
 		"{who} voted on {what} in {where}" => "{who} a voté sur {what} dans {where}",
 		"{who} have voted on {what} in {where}" => "{who} ont voté sur {what} dans {where}",
+		"{who} voted few times on {what} in {where}"=> "{who} a voté pluiseurs fois sur {what} dans {where}",
+		//AMEND
+		"{who} amended the proposal {what} in {where}" => "{who} a amendé la proposition {what} dans {where}",
+		"{who} have amended the proposal {what} in {where}" => "{who} ont amendé la proposition {what} dans {where}",
+		"{who} amended few times the proposal {what} in {where}"=>"{who} a amendé plusieurs fois la proposition {what} in {where}",
 
 		//FOLLOW
 		"{who} is following {where}" => "{who} suit {where}",
