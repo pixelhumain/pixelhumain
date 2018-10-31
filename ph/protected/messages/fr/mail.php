@@ -124,6 +124,23 @@
 		"{who} added a new action : {what}" => "{who} a ajouté une action : {what}",
 		"{who} added a new room : {what}" => "{who} a ajouté une espace de décision : {what}",
 
+		"{who} have added new events on {where}"=>"{who} ont ajouté plusieurs événements sur {where}",
+		"{who} have added new classifieds on {where}"=>"{who} ont ajouté plusieurs annonces sur {where}",
+		"{who} have added points of interest on {where}"=>"{who} ont ajouté des points d'intérêt sur {where}",
+		"{who} added points of interest on {where}"=>"{who} a ajouté plusieurs points d'intérêt sur {where}",
+		"{who} have added new projects on {where}"=>"{who} ont ajouté plusieurs projets sur {where}",
+		"{who} added new projects on {where}"=>"{who} a ajouté plusieurs projets sur {where}",
+		"{who} have added new events on {where}"=>"{who} ont ajouté plusieurs événements sur {where}",
+		"{who} added new events on {where}" => "{who} a ajouté plusieurs événements sur {where}",
+		"{who} have added new classifieds on {where}"=>"{who} ont ajouté plusieurs annonces sur {where}",
+		"{who} added new classifieds on {where}"=>"{who} a ajouté plusieurs annonces sur {where}",
+		"{who} added few proposals in {where}"=>"{who} a ajouté plusieurs proposition {where}",
+		"{who} added few actions in {where}"=> "{who} a ajouté plusieurs actions {where}",
+		"{who} have added few proposals in {where}"=>"{who} ont ajouté plusieurs proposition {where}",
+		"{who} have few actions in {where}"=> "{who} ont ajouté plusieurs actions {where}",
+		"{who} added new rooms in the co-space on {where}"=>"{who} a ajouté plusieurs salles dans l'espace co sur {where}",
+		"{who} have added new rooms in the co-space on {where}"=>"{who} ont ajouté plusieurs salles dans l'espace co sur {where}",
+
 		//FOLLOW
 		"{who} is following {where}" => "{who} suit {where}",
 		"{who} are following {where}" => "{who} suivent {where}",
