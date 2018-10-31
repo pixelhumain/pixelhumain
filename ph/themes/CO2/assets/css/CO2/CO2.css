@@ -971,7 +971,7 @@ a, a:hover, a:focus, a:active, a.active{
     -moz-box-shadow: 0px 0px 4px -1px rgba(0,0,0,0.5) ;
     box-shadow: 0px 0px 4px -1px rgba(0,0,0,0.5) ;
 }
-#main-search-bar-addon, #main-search-xs-bar-addon{
+#main-search-bar-addon, #second-search-bar-addon, #main-search-xs-bar-addon{
 	border: 1px solid #dadada !important;
     background-color: #dadada !important;
     font-size: 14px;
@@ -985,8 +985,9 @@ a, a:hover, a:focus, a:active, a.active{
 	font-size:14px;
 	height:40px;
 	font-weight: 200;
-	border-radius: 4px 4px 4px 4px;
-	margin-top:5px;
+	border-radius: 20px 0px 0px 20px !important;
+	width: 90%;
+	float: left;
 	-webkit-box-shadow: 0px 0px 2px -1px rgba(0,0,0,0.5) ;
     -moz-box-shadow: 0px 0px 2px -1px rgba(0,0,0,0.5) ;
     box-shadow: 0px 0px 2px -1px rgba(0,0,0,0.5) ;
@@ -1094,7 +1095,15 @@ a, a:hover, a:focus, a:active, a.active{
 	right: 25px;
 	left: unset;
 }
+.dropdown-languages-nouser{
+	position: absolute;
+	top: 50px;
+}
 
+.dropdown-languages-nouser:before, .dropdown-languages-nouser:after{
+	right: 15px;
+	left: inherit;
+}
 .main-container.vertical .dropdown-main-menu .arrow_box:after, .main-container.vertical .dropdown-main-menu .arrow_box:before {
 	right: 23px;
 }
@@ -1723,6 +1732,11 @@ h3.title_panel_map{
     overflow-x: hidden;
     display: none;
     border-top: 1px solid #c6c6c6;
+  }
+  #mainNav.vertical .dropdown-result-global-search{
+    top: 61px;
+    left: 54px;
+    box-shadow: 2px 5px 6px 1px rgba(66, 66, 66, 0.27) !important;
   }
   .dropdown-result-global-search .entityCenter .fa{
   	color:white!important;

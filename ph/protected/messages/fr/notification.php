@@ -108,13 +108,30 @@ return array(
 	"{author} added {who} in the community of {where}" => "{author} a ajouté {who} dans la communauté de {where}",
 	"{author} have added {who} in the community of {where}" => "{author} ont ajouté {who} dans la communauté de {where}",
 	"{who} added a chat on {where}"=>"{who} a ajouté une conversation sur {where}",
+	"{who} have added points of interest on {where}"=>"{who} ont ajouté des points d'intérêt sur {where}",
+	"{who} added points of interest on {where}"=>"{who} a ajouté plusieurs points d'intérêt sur {where}",
+	"{who} have added new projects on {where}"=>"{who} ont ajouté plusieurs projets sur {where}",
+	"{who} added new projects on {where}"=>"{who} a ajouté plusieurs projets sur {where}",
+	"{who} have added new events on {where}"=>"{who} ont ajouté plusieurs événements sur {where}",
+	"{who} added new events on {where}" => "{who} a ajouté plusieurs événements sur {where}",
+	"{who} have added new classifieds on {where}"=>"{who} ont ajouté plusieurs annonces sur {where}",
+	"{who} added new classifieds on {where}"=>"{who} a ajouté plusieurs annonces sur {where}",
+	"{who} added few proposals in {where}"=>"{who} a ajouté plusieurs proposition {where}",
+	"{who} added few actions in {where}"=> "{who} a ajouté plusieurs actions {where}",
+	"{who} have added few proposals in {where}"=>"{who} ont ajouté plusieurs proposition {where}",
+	"{who} have few actions in {where}"=> "{who} ont ajouté plusieurs actions {where}",
+	"{who} added new rooms in the co-space on {where}"=>"{who} a ajouté plusieurs salles dans l'espace co sur {where}",
+	"{who} have added new rooms in the co-space on {where}"=>"{who} ont ajouté plusieurs salles dans l'espace co sur {where}",
+
 	//"{who} voted on {what} in {where}" => "{who} a voté sur {what} dans {where}",
 	//VOTE
 	"{who} voted on {what} in {where}" => "{who} a voté sur {what} dans {where}",
 	"{who} have voted on {what} in {where}" => "{who} ont voté sur {what} dans {where}",
-	//VOTE
+	"{who} voted few times on {what} in {where}"=> "{who} a voté pluiseurs fois sur {what} dans {where}",
+	//AMEND
 	"{who} amended the proposal {what} in {where}" => "{who} a amendé la proposition {what} dans {where}",
 	"{who} have amended the proposal {what} in {where}" => "{who} ont amendé la proposition {what} dans {where}",
+	"{who} amended few times the proposal {what} in {where}"=>"{who} a amendé plusieurs fois la proposition {what} in {where}",
 	
 	//FRONT NOTIFICATION
 	"asks to become admin of" => "veut devenir administrateur de",
