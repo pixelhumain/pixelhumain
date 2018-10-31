@@ -82,6 +82,8 @@ return array(
 	"{who} react on a news {what} from {where}" => "{who} ont réagi sur la publication {what} de {where}",
 	"{who} reacts on your news {what}"=>"{who} a réagi sur votre publication {what}",
 	"{who} react on your news {what}"=>"{who} ont réagi sur votre publication {what}",
+	"{who} reacts on your comment on {where}"=>"{who} a réagi sur votre commentaire sur {where}",
+	"{who} react on your comment on {where}" => "{who} ont réagi à votre commentaire sur {where}",		
 	//POST
 	"{where} publishes a new post"=>"{where} a publié un post",
 	"{where} publishes new posts"=>"{where} a publié plusieurs posts",
