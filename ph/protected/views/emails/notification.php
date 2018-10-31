@@ -14,7 +14,7 @@ $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.m
 						<th style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 19px;font-size: 15px;">
 							<b>
 								<h5 style="color: inherit;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: center;line-height: 1.3;word-wrap: normal;margin-bottom: 10px;font-size: 20px;">
-									<?php echo Yii::t("mail","Reviens sur COmmunecter, il y a du nouveau") ?>
+									<?php echo Yii::t("mail","Il y a du nouveau dans votre réseau") ?>
 								</h5>
 							</b>
 							<br/>
@@ -23,13 +23,12 @@ $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.m
 								echo "<div style='padding-left:10px;'><p>".Mail::translateLabel($value)." </p>";
 								if(!empty($value["value"]))
 									echo "<p style='padding:10px 20px;margin:1%;border:1px solid lightgray; font-style:italic; border-radius:10px; width:90%;white-space: pre-line;'>".$value["value"]." </p></br>";
-
 								echo "</div>";
 							}
 
 							$nbN = $data["countData"] - count($data["data"]) ;
 							if( $nbN > 0 ) 
-								echo "<div style='padding-left:10px;'><p>"."Il vous reste ".$nbN." a découvrire sur Communecter "." </p></div>";
+								echo "<div style='padding-left:10px;'><p>"."Plus ".$nbN." notification(s) à découvrir"." </p></div>";
 							?>
 						</th>
 					</tr>					

@@ -111,6 +111,9 @@
 
 
 		// post
+		"{who} publishes a new post"=>"{where} a publié un post",
+		"{who} publishes new posts"=>"{where} a publié plusieurs posts",
+		"{who} writes a post on the wall of {where}" => "{who} a écrit un post sur le mur de {where}",
 		"{who} writes a post on the wall of {where}" => "{who} a écrit un post sur le mur de {where}",
 		"{who} write posts on the wall of {where}" => "{who} ont écrit plusieurs posts sur le mur de {where}",
 		"{who} writes posts on the wall of {where}" => "{who} a écrit plusieurs posts sur le mur de {where}",
@@ -140,6 +143,10 @@
 		"{who} have few actions in {where}"=> "{who} ont ajouté plusieurs actions {where}",
 		"{who} added new rooms in the co-space on {where}"=>"{who} a ajouté plusieurs salles dans l'espace co sur {where}",
 		"{who} have added new rooms in the co-space on {where}"=>"{who} ont ajouté plusieurs salles dans l'espace co sur {where}",
+
+
+		"{who} voted on {what} in {where}" => "{who} a voté sur {what} dans {where}",
+		"{who} have voted on {what} in {where}" => "{who} ont voté sur {what} dans {where}",
 
 		//FOLLOW
 		"{who} is following {where}" => "{who} suit {where}",
