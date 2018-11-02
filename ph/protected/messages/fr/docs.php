@@ -96,6 +96,9 @@
 		"THINKERS"=>"PENSEURS",
 		"CROWDFUNDERS"=>"CROWDFUNDERS",
 		"INTEROPERATORS"=>"INTEROPÉR'ACTEURS",
+		"Win points <span class='letter-red'>using {website}</span>.<br/><span class='letter-red'>Each link</span> you did with people, organizations, projects, events <span class='letter-red'>improve your score</span>.<br/> Later will be added <span class='letter-red'>exchanges of ressources</span>, <span class='letter-red'>the number of posts</span> and <span class='letter-red'>your activity on public policy</span>"=>"Gagnez des points <span class='letter-red'>en utilisant {website}</span>.<br/><span class='letter-red'>Chaque lien que vous faites</span> avec des personnes, organisations, événements ou projets <span class='letter-red'>augmente</span> votre score.<br/> Plus tard viendront s'ajouter, entre autre, <span class='letter-red'>l'échange de ressources</span>, le <span class='letter-red'>nombre de publications</span> et votre <span class='letter-red'>participation aux sondages</span>.",
+		"You have today <span class='letter-red'>{points} point</span>"=> "Vous avez aujourd'hui <span class='letter-red'>{points} point</span>",
+		"You have today <span class='letter-red'>{points} points</span>"=> "Vous avez aujourd'hui <span class='letter-red'>{points} points</span>",
 
 
 	);

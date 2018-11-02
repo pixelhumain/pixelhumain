@@ -1,0 +1,33 @@
+diff a/index.html b/index.html	(rejected hunks)
+@@ -26,12 +26,27 @@
+                 
+             </div>
+           <a href="" class="btn3d btn btn-success btn-lg">Download v1.0</a>
+-              
+-             
++              <br/>
++              <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
++<!-- lateral -->
++<ins class="adsbygoogle"
++     style="display:inline-block;width:300px;height:250px"
++     data-ad-client="ca-pub-4331617637495482"
++     data-ad-slot="7438564459"></ins>
++<script>
++(adsbygoogle = window.adsbygoogle || []).push({});
++</script><br/><br/>
+               <div class="col-md-12 well">
+                   <h3>Thank you for comments</h3>
+-           <div id="fb-root"></div>
+-<div id="fb-root"></div>
++                  <div id="fb-root"></div>
++<script>(function(d, s, id) {
++  var js, fjs = d.getElementsByTagName(s)[0];
++  if (d.getElementById(id)) return;
++  js = d.createElement(s); js.id = id;
++  js.src = "//connect.facebook.net/es_MX/sdk.js#xfbml=1&version=v2.5&appId=132799306837455";
++  fjs.parentNode.insertBefore(js, fjs);
++}(document, 'script', 'facebook-jssdk'));</script>
++           <div class="fb-comments" data-href="http://oscaruhp.github.io/FaceMocion/" data-width="300" data-numposts="5"></div>
+ 
+               <div class="fb-comments" data-href="" data-width="300" data-numposts="5"></div>
+               </div>  

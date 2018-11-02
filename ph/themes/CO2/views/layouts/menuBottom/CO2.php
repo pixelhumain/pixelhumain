@@ -1,6 +1,72 @@
+<style type="text/css">
+    .footer-menu-vertical{
+        z-index:200000;
+    }
+
+    .footer-menu-vertical .toolbar-bottom.bottom-left{
+        bottom:10px;
+        left: 1px;
+    }
+    .footer-menu-vertical .toolbar-bottom{
+        z-index: 10000;
+    }
+    .footer-menu-vertical .toolbar-bottom.bottom-left #donation-btn{
+        background-color: white !important;
+        color:#E5344D !important;
+    }
+    .footer-menu-vertical .toolbar-bottom.bottom-right{
+        bottom:60px;
+        left: 1px;
+        right: inherit;
+    }
+
+    .footer-menu-vertical .toolbar-bottom.bottom-right #show-bottom-add{
+        background-color: white !important;
+        color:#34a853 !important;
+    }
+    .footer-menu-vertical .toolbar-bottom.bottom-right #show-bottom-add:hover, .footer-menu-vertical .toolbar-bottom.bottom-left #donation-btn:hover{
+        box-shadow: none;
+    }
+    .footer-menu-vertical .toolbar-bottom.bottom-right #show-bottom-add i{
+        font-size: 28px;
+    }
+    .footer-menu-vertical .toolbar-bottom.bottom-right #show-bottom-add:hover i{
+        font-size: 30px;
+    }
+    .footer-menu-vertical .toolbar-bottom.bottom-left #donation-btn:hover i{
+        font-size: 25px;
+    }
+    .footer-menu-vertical .toolbar-bottom-adds{
+        bottom: 68px;
+        left: 53px;
+    }
+    .footer-menu-vertical .toolbar-bottom-adds a.addBtnFoot{
+        margin-bottom: 0px !important;
+        border-radius: 0px;
+    }
+
+    .footer-menu-vertical .toolbar-bottom-adds a.addBtnFoot{
+        margin-bottom: 0px !important;
+        border-radius: 0px;
+    }
+    .footer-menu-vertical .toolbar-bottom-adds a:first-child{
+        border-radius: 0px 10px 0px 0px;
+    }
+
+    .footer-menu-vertical .toolbar-bottom-adds a:last-child{
+        border-radius: 0px 0px 10px 0px;
+    }
+    .footer-menu-vertical .toolbar-bottom-adds a:hover{
+        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
+        font-size: 16px;
+    }
+</style>
+<?php $menuApp=(@$themeParams["appRendering"]) ? $themeParams["appRendering"] : "horizontal"; ?>
+<div class="footer-menu-<?php echo $menuApp ?>">
 <div class="toolbar-bottom bottom-left font-montserrat">
-    <a href="https://www.helloasso.com/associations/open-atlas/collectes/communecter/don" target="_blank" id="donation-btn" class="btn btn-default donation-btn">
-        <i class="fa fa-heart"></i> <?php //echo Yii::t("common", "Don récurant") ?>
+    <a href="https://www.helloasso.com/associations/open-atlas/collectes/communecter/don" target="_blank" id="donation-btn" class="btn btn-default donation-btn btn-menu-vertical">
+        <i class="fa fa-heart"></i> 
+        <span class="tooltips-menu-btn"><?php echo Yii::t("common","Be aCOeur") ?></span>
     </a>
 </div>
 
@@ -24,8 +90,9 @@
     
 
     <?php if(@Yii::app()->session["userId"]) { ?>
-    <button class="btn btn-default bg-green-k text-white no-padding" id="show-bottom-add">
-        <i class="fa fa-plus-circle"></i> 
+    <button class="btn btn-default bg-green-k text-white no-padding btn-menu-vertical" id="show-bottom-add">
+        <i class="fa fa-plus-circle"></i>
+        <span class="tooltips-menu-btn"><?php echo Yii::t("common","Add something") ?></span> 
         <!-- <span class="hidden-xs"><?php echo Yii::t("common", "add") ?> </span>-->
     </button>
     <?php } ?>
@@ -110,31 +177,31 @@
     <a href="#element.invite" class="addBtnFoot btn-open-form btn btn-default bg-yellow lbhp margin-bottom-10"> 
         <i class="fa fa-user"></i> 
         <span><?php echo Yii::t("common","Invite someone") ?></span>
-    </a><br/>
+    </a>
     <a href="javascript:;" data-form-type="organization" class="addBtnFoot btn-open-form btn btn-default bg-green inline-block margin-bottom-10"> 
         <i class="fa <?php echo Organization::ICON; ?>"></i> 
         <span><?php echo Yii::t("common","Organizations") ?></span>
-    </a><br/>
+    </a>
     <a href="javascript:;" data-form-type="project" class="addBtnFoot addBtnFoot_orga addBtnFoot_project btn-open-form btn btn-default bg-purple inline-block margin-bottom-10"> 
         <i class="fa <?php echo  Project::ICON;?>"></i> 
         <span><?php echo Yii::t("common","Project") ?></span>
-    </a><br/>
+    </a>
     <a href="javascript:;" data-form-type="event" class="addBtnFoot addBtnAll btn-open-form btn btn-default bg-orange margin-bottom-10"> 
         <i class="fa fa-calendar"></i> 
         <span><?php echo Yii::t("common","Event") ?></span>
-    </a><br/>
+    </a>
     <a href="javascript:;" data-form-type="classifieds" class="addBtnFoot  addBtnFoot_orga addBtnFoot_project btn-open-form btn btn-default bg-azure margin-bottom-10"> 
         <i class="fa fa-bullhorn"></i> 
         <span><?php echo Yii::t("common","Classified") ?></span>
-    </a><br/>
+    </a>
     <a href="javascript:;" data-form-type="ressources" class="addBtnFoot addBtnAll btn-open-form btn btn-default bg-vine margin-bottom-10"> 
         <i class="fa fa-cubes"></i> 
         <span><?php echo Yii::t("common","Ressource") ?></span>
-    </a><br/>
+    </a>
     <a href="javascript:;" data-form-type="jobs" class="addBtnFoot hideBtnFoot_person addBtnFoot_orga addBtnFoot_project btn-open-form btn btn-default bg-yellow-k margin-bottom-10"> 
         <i class="fa fa-briefcase"></i> 
         <span><?php echo Yii::t("common","Jobs") ?></span>
-    </a><br/>
+    </a>
     <a href="javascript:;" data-form-type="poi" class="addBtnFoot addBtnAll btn-open-form btn btn-default bg-green-k margin-bottom-10"> 
         <i class="fa fa-map-marker"></i> 
         <span><?php echo Yii::t("common","Point of interest") ?></span>
@@ -149,7 +216,7 @@
     </a>
     <?php } ?>
 </div>
-
+</div>
 <script type="text/javascript">
 jQuery(document).ready(function() {
    /* $(".toolbar-bottom-apps").hide().removeClass("hidden");
@@ -189,19 +256,6 @@ jQuery(document).ready(function() {
         $(".toolbar-bottom-adds").hide(200);
 
     });
-/*
-    $(".toolbar-bottom-quickaccess").hide().removeClass("hidden");
-    $('#show-bottom-quickaxe').off().click(function(){
-        $(".toolbar-bottom-apps,.toolbar-bottom-adds").hide(200);
-        $(".toolbar-bottom-quickaccess").toggle(100);
-        $('.toolbar-bottom-quickaccess .btn').click(function(){
-            $(".toolbar-bottom-adds").hide(200);
-        });
-    });
-    $('.toolbar-bottom-quickaccess').unbind("mouseleave").mouseleave(function(){
-        console.log(".toolbar-bottom-quickaccess mouseleave");
-        $(".toolbar-bottom-quickaccess").hide(200);
-    }); */
 })
 
 function addBtnSwitch(){ 
