@@ -61,7 +61,7 @@
     }
 </style>
 <!-- Navigation -->
-<nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom <?php echo $menuApp ?>">
+<nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom <?php echo @$menuApp ?>">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header pull-left">
