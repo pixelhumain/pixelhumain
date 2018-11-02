@@ -65,9 +65,7 @@
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header pull-left">
-           
             <a href="#welcome" class="btn btn-link menu-btn-back-category pull-left no-padding lbh" >
-    
                 <?php 
                 $logo = (@Yii::app()->session['custom']["logo"]) ? Yii::app()->session['custom']["logo"] : Yii::app()->theme->baseUrl."/assets/img/LOGOS/CO2/logo-min.png";
                 ?>
