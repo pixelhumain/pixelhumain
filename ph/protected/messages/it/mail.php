@@ -92,6 +92,6 @@
 		"Don't wait anymore and join us !!" => "Non aspetti più e unisciti a noi!!",
 		
 		"If the link doesn&apos;t work, you can copy it in your browser&apos;s address" => "Se il link non funziona, potete copiarlo nel vostro browser",
-		
+		"The team of {what}" => "La squadra di {what}",
 );
 ?> 

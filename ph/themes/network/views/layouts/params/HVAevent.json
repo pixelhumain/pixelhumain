@@ -1,10 +1,10 @@
 {
-    "name" : "Evènement d'Haute Vallée de l'Aude",
+    "name" : "Evènement de l'Haute Vallée de l'Aude",
     "mode" : "server",
     "skin" : {
         "logo" : false,
-        "title" : "Evènement d'Haute Vallée de l'Aude",
-        "shortDescription" : "Toutes les évènement d'Haute Vallée de l'Aude",
+        "title" : "Evènement de l'Haute Vallée de l'Aude",
+        "shortDescription" : "Toutes les évènement de l'Haute Vallée de l'Aude",
         "displayScope" : false,
         "docs":true,
         "displayCommunexion" : true,
@@ -42,6 +42,9 @@
     "add" : {
         "event" : true
     },
+    "filter" : {
+        "types" : false
+    },
     "result" : {
         "displayImage" : true,
         "displayType" : false,
@@ -57,8 +60,10 @@
         "searchType" : [
             "events"
         ],
-        "searchLocalityDEPARTEMENT": [
-            "AUDE"
-        ]
+        "parent" : {
+            "type" : "organizations",
+            "id" : "5b713de540bb4eb87a808363",
+            "name" : "Portail des Initiatives de la Haute Vallée de l'Aude"
+        }
     }
 }

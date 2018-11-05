@@ -104,6 +104,7 @@
 		"You will enjoy to communicate about the projects, the events of {what} in your territory. You will have the chance to express your needs and search actors around you. You will also be able to discuss and organize your community..." => "Sie werden es schätzen, sich über Projekte und Veranstaltungen von {what} in Ihrer Region auszutauschen. Sie haben die Möglichkeit, Ihre Bedürfnisse zu formulieren und Akteure um sich herum zu suchen. Sie können auch in Ihrer Community diskutieren und diese organisieren...",
 		"And all of this into an <b>ethical</b> and <b>responsible</b> environment" => "Und das alles in einem <b>ethisch</b> orientierten und <b>verantwortungsewußten</b> Umfeld",
 		"Don't wait anymore and join us !!" => "Warten Sie nicht mehr und schließen Sie sich uns an!",
+		"The team of {what}" => "Das Team von {what}",
 		
 );
 ?>

@@ -1043,7 +1043,7 @@
     padding: 2px 20px;
     /* border-radius: 10px; */
 }
-.btn-news-type-filters.dropDesign{
+.btn-news-type-filters.dropDesign, .btn-directory-type.dropDesign{
   background-color: white !important;
   color: #2C3E50;
   border-radius: 0px !important;
@@ -1052,9 +1052,9 @@
   border:transparent;
 }
 
-.btn-news-type-filters.dropDesign:hover,
-.btn-news-type-filters.dropDesign:focus,
-.btn-news-type-filters.dropDesign.active:focus{
+.btn-news-type-filters.dropDesign:hover, .btn-directory-type.dropDesign:hover,
+.btn-news-type-filters.dropDesign:focus, .btn-directory-type.dropDesign:focus,
+.btn-news-type-filters.dropDesign.active:focus,.btn-directory-type.dropDesign.active:focus{
   /*color:#2BB0C6 !important;
   border: 2px dashed #2BB0C6!important;*/
   background-color: #eee !important;
@@ -1062,9 +1062,9 @@
   font-weight: bold;
   color:#2C3E50 !important;  
 }
-.btn-news-type-filters.dropDesign:active,
-.btn-news-type-filters.dropDesign:active:hover,
-.btn-news-type-filters.dropDesign.active{
+.btn-news-type-filters.dropDesign:active, .btn-directory-type.dropDesign:active,
+.btn-news-type-filters.dropDesign:active:hover, .btn-directory-type.dropDesign:active:hover,
+.btn-news-type-filters.dropDesign.active, .btn-directory-type.dropDesign.active{
   color:#2BB0C6 !important;
   border: 0px !important;
   box-shadow: none;
@@ -1084,6 +1084,32 @@
   min-height: 30px;
   margin-top:50px;
 }  
+
+.main-container.vertical .headerSearchContainer{
+  margin-top:10px;
+}  
+@media (min-width: 768px) {
+  .main-container.vertical .headerSearchContainer.affix{
+    z-index: 9999;
+    left: 53px;
+    right: 0px !important;
+    width: initial !important;
+    margin-top: 2px;
+    background-color: rgb(252, 252, 252) !important;
+    box-shadow: 0px 2px 3px -2px rgba(0,0,0,0.5);
+  }
+  .main-container.vertical .headerSearchContainer.affix > div{
+    margin-bottom: 0px !important;
+  }
+  .main-container.vertical .headerSearchContainer.affix .headerSearchTools{
+    padding: 4px 0px !important;
+  }
+}
+@media (max-width: 767px) {
+  .main-container.vertical .headerSearchContainer.affix{
+    position: initial !important;
+  }
+}
 .checkbox-info{
   font-size:20px;
 }

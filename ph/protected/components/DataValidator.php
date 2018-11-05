@@ -9,7 +9,7 @@
 
 class DataValidator {
 
-	public static function required($toValidate, $objectId=null) {
+	public static function required($toValidate, $object=null, $objectId=null) {
 		$res = "";
 		if (empty($toValidate)) {
 			$res = "The Field is required";
@@ -17,7 +17,7 @@ class DataValidator {
 		return $res;
 	}
 
-	public static function notexist($toValidate, $objectId=null) {
+	public static function notexist($toValidate, $object=null, $objectId=null) {
 		$res = "";
 		$query = array("url"=>@$toValidate);
         $siteurl = PHDB::findOne("url", $query);
@@ -28,7 +28,7 @@ class DataValidator {
 		return $res;
 	}
 
-	public static function email($toValidate, $objectId=null) {
+	public static function email($toValidate, $object=null, $objectId=null) {
 		$res = "";
 		if (! preg_match('#^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,6}$#',$toValidate) && !empty($toValidate)) { 
 			$res = Yii::t("common", "The email is not well formated");
@@ -46,25 +46,24 @@ class DataValidator {
 		return $res;
 	}
 	
-	public static function organizationSameName($toValidate, $objectId=null) {
+	public static function organizationSameName($toValidate, $object=null, $objectId=null) {
 		// Is There a association with the same name && it is not the current organization ?
 		$res = "";
 
-	    if(!empty($objectId["address"]))
+	    if(!empty($object["address"]))
 	    	$organizationSameName = PHDB::findOne(Organization::COLLECTION,
 	    										array( 	"name" => $toValidate, 
-	    												"address.postalCode" => $objectId["address"]["postalCode"],
-	    												"address.addressLocality" => $objectId["address"]["addressLocality"]));      
+	    												"address.postalCode" => $object["address"]["postalCode"],
+	    												"address.addressLocality" => $object["address"]["addressLocality"]));      
 	    else
 	    	$organizationSameName = null ;
-
-	    if ($organizationSameName && isset($objectId) && $objectId !=  (String) $organizationSameName["_id"]){ 
+	    if ($organizationSameName && !empty($objectId) && $objectId !=  (String) $organizationSameName["_id"]){ 
 	    	$res = "An organization with the same name allready exists";
 	    }
 	    return $res;
 	}
 
-	public static function checkUsername($toValidate, $objectId=null) {
+	public static function checkUsername($toValidate, $object=null, $objectId=null) {
 		// Is There a user with the same username ?
 	    $res = "";
 	    if (strlen($toValidate) < 4 || strlen($toValidate) > 32) {
@@ -76,7 +75,7 @@ class DataValidator {
 	    }
 	    return $res;
 	}
-	public static function checkSlug($toValidate, $objectId=null) {
+	public static function checkSlug($toValidate, $object=null, $objectId=null) {
 		// Is There a user with the same username ?
 	    $res = "";
 	    if (strlen($toValidate) < 3 || strlen($toValidate) > 50) {
@@ -100,7 +99,7 @@ class DataValidator {
 	 * 		Else if it's an array it is already the object (creation process)
 	 * @return String : if empty : no problemo else the error message
 	 */
-	public static function eventStartDate($toValidate, $object) {
+	public static function eventStartDate($toValidate, $object, $objectId) {
 		if (is_string($object)) { 
 			$event = Event::getById($object);
 		} else if (is_array($object)){
@@ -109,7 +108,7 @@ class DataValidator {
 		return self::startDate($toValidate, $event);
 	}
 
-	public static function eventEndDate($toValidate, $object) {
+	public static function eventEndDate($toValidate, $object, $objectId) {
 		if (is_string($object)) { 
 			$event = Event::getById($object);
 		} else if (is_array($object)){
@@ -118,17 +117,17 @@ class DataValidator {
 		return self::endDate($toValidate, $event);
 	}
 
-	public static function projectStartDate($toValidate, $objectId) {
+	/*public static function projectStartDate($toValidate, $object, $objectId) {
 		$project = Project::getById($objectId);
 		return self::startDate($toValidate, $project);
 	}
 
-	public static function projectEndDate($toValidate, $objectId) {
+	public static function projectEndDate($toValidate, $object, $objectId) {
 		$project = Project::getById($objectId);
 		return self::endDate($toValidate, $project);
-	}
+	}*/
 
-	public static function getCollectionFieldNameAndValidate($dataBinding, $fieldName, $fieldValue, $object = null, $import=null) {
+	public static function getCollectionFieldNameAndValidate($dataBinding, $fieldName, $fieldValue, $object = null, $import=null, $id=null) {
 		// var_dump($fieldName);
 		// var_dump($dataBinding);
 		if (isset($dataBinding[$fieldName])) {
@@ -141,7 +140,7 @@ class DataValidator {
 				
 				foreach ($rules as $rule) {
 					if( empty($import) || !in_array($rule, $functionImport) ){
-						$isDataValidated = DataValidator::$rule($fieldValue, $object);
+						$isDataValidated = DataValidator::$rule($fieldValue, $object, $id);
 						if ($isDataValidated != "") {
 							throw new CTKException($isDataValidated);
 						}
@@ -157,7 +156,7 @@ class DataValidator {
 	/*
 	validates each field existance, type is respected and if any rules 
 	*/
-	public static function validate( $type, $values, $import = null ) 
+	public static function validate( $type, $values, $import = null, $id=null ) 
 	{
 		
 		$dataBinding = $type::$dataBinding;
@@ -170,7 +169,7 @@ class DataValidator {
 			try{
 				
 				if ( isset( $dataBinding[$key]) ) {
-					self::getCollectionFieldNameAndValidate( $dataBinding, $key, $value, $values, $import);
+					self::getCollectionFieldNameAndValidate( $dataBinding, $key, $value, $values, $import, $id);
 				} else {
 					error_log("error : ".$key);
 					$res["result"] = false;
@@ -192,7 +191,7 @@ class DataValidator {
 	 * @param array $object containing the endDate value to compare with the start date
 	 * @return empty or an error message
 	 */
-	private static function startDate($toValidate, $object) {
+	private static function startDate($toValidate, $object=null, $objectId=null) {
 		// Is the start Date before endDate
 	    error_log("Validate start Date : ".$toValidate." compare to endDate ".$object["endDate"] );
 	    $res = "";
@@ -206,7 +205,7 @@ class DataValidator {
 	    return $res;
 	}
 
-	private static function endDate($toValidate, $object) {
+	private static function endDate($toValidate, $object=null, $objectId=null) {
 		// Is the end Date after start Date
 	    $res = "";
 	    $startDate = self::getDateTimeFromString(@$object["startDate"], "start date");
@@ -264,7 +263,7 @@ class DataValidator {
 		return $res;
 	}
 
-	public static function source($toValidate, $objectId=null) {
+	public static function source($toValidate, $object=null, $objectId=null) {
 		$res = "";
 		$strings = array("key", "url");
 		$allKeysSource = array('id', "key", "keys", "url", "update", "insertOrign");
@@ -410,7 +409,7 @@ class DataValidator {
 	}
 
 
-	public static function postalCodesValid($toValidate, $objectId=null) {
+	public static function postalCodesValid($toValidate, $object=null, $objectId=null) {
 		$res = "";
 		$strings = array("key", "url", "id");
 		$allKeysSource = array('id', "key", "keys", "url", "update", "insertOrign");

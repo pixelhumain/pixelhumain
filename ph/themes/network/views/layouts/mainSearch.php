@@ -20,6 +20,9 @@
     $metaImg = Yii::app()->getRequest()->getBaseUrl(true)."/themes/CO2".@$params["metaImg"];
     $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
 
+    if(@$_GET["el"])
+        $this->renderPartial( 'co2.views.custom.init' ); 
+    
 ?>	
 <html lang="en" class="no-js">
 	
@@ -85,10 +88,9 @@
 	      $myContacts = Person::getPersonLinksByPersonId(Yii::app()->session['userId']);
 	      $myFormContact = $myContacts; 
 	      $getType = (isset($_GET["type"]) && $_GET["type"] != "citoyens") ? $_GET["type"] : "citoyens";
-	    }else{
+	    }else
 	      $myFormContact = null;
-
-	    }
+	    
 
 	   // error_log("load IndexDefault");
 	?>
@@ -97,7 +99,14 @@
 	******************************************* -->
 	<?php $this->renderPartial($layoutPath.'menu.menuTop', array("params" => $networkJson, "me" => $me)); ?>
 	<?php $this->renderPartial($layoutPath."menu.menuLeft", array("params" => $networkJson, "me" => $me)); ?>
-		<div class="col-md-12 col-sm-12 col-xs-12 my-main-container no-padding" style="top: 50px; display: none;">
+		
+		<?php /*if(@Yii::app()->session['custom']){ ?>
+		<div class="col-xs-12">
+			<img src="<?php echo Yii::app()->session['custom']['logo'] ?>">
+		</div>
+		<?php } */?>
+
+		<div class="col-xs-12 my-main-container no-padding" style="top: 50px; display: none;">
 
 			<?php $classMaincontener = ( empty($networkJson['filter']) ? "col-xs-12" : "col-md-10 col-md-offset-2 col-sm-9 col-sm-offset-3 col-xs-12" ); ?>
 			<div class="<?php echo $classMaincontener ;?> main-col-search no-padding" style="min-height: 490px; opacity: 1;">
@@ -169,7 +178,6 @@
 			'/plugins/jQuery-contextMenu/dist/jquery.ui.position.min.js' , 
 			'/plugins/select2/select2.min.js' , 
 			'/plugins/select2/select2.css',
-			'/plugins/moment/min/moment.min.js' ,
 			'/plugins/jquery-validation/dist/jquery.validate.min.js',
 			'/plugins/jquery-validation/localization/messages_fr.js',
 			'/plugins/lightbox2/css/lightbox.css',
@@ -178,7 +186,11 @@
 			'/plugins/font-awesome/css/font-awesome.min.css',
 			'/plugins/font-awesome-custom/css/font-awesome.css',
 			'/plugins/jquery.dynForm.js',
-			'/js/api.js'
+			'/js/api.js',
+
+			'/plugins/fine-uploader/jquery.fine-uploader/fine-uploader-gallery.css',
+		    '/plugins/fine-uploader/jquery.fine-uploader/jquery.fine-uploader.js',
+		    '/plugins/fine-uploader/jquery.fine-uploader/fine-uploader-new.min.css'
 		);
 		if(Yii::app()->language!="en")
                 array_push($cssAnsScriptFilesModule,"/plugins/jquery-validation/localization/messages_".Yii::app()->language.".js");
@@ -234,58 +246,62 @@
 		
 		// GET LIST OF NETWORK'S TAGS
 		// if(networkJson != null && typeof networkJson.filter != "undefined" && typeof networkJson.filter.linksTag != "undefined" && typeof networkJson.request.searchTag != "undefined"){
-		if(networkJson != null){
-			var networkTags = [];
-			//var networkTags2 = {};
-			var networkTagsCategory = {};
-			//var optgroupArray = {};
-			tagsList = [];
-			if(typeof networkJson.request != "undefined"){
-				if(typeof networkJson.request.mainTag != "undefined")
-					networkTags.push({id:networkJson.request.mainTag[0],text:networkJson.request.mainTag[0]});
+		// if(networkJson != null){
+		// 	var networkTags = [];
+		// 	var networkTagsCategory = {};
+		// 	tagsList = [];
+		// 	if(typeof networkJson.request != "undefined"){
+		// 		if(typeof networkJson.request.mainTag != "undefined")
+		// 			networkTags.push({id:networkJson.request.mainTag[0],text:networkJson.request.mainTag[0]});
 
-				if(typeof networkJson.request.searchTag != "undefined"){
-					console.log("NETWORK searchTag", networkTags);
-					networkTags = $.merge(networkTags, networkJson.request.searchTag);
-					console.log("NETWORK searchTag", networkTags);
-				}
-			}
+		// 		if(typeof networkJson.request.searchTag != "undefined"){
+		// 			console.log("NETWORK searchTag", networkTags);
+		// 			networkTags = $.merge(networkTags, networkJson.request.searchTag);
+		// 			console.log("NETWORK searchTag", networkTags);
+		// 		}
+		// 	}
 			
 
-			if(typeof networkJson.filter != "undefined" && typeof networkJson.filter.linksTag != "undefined"){
-				$.each(networkJson.filter.linksTag, function(category, properties) {
-					optgroupObject=new Object;
-					optgroupObject.text=category;
-					optgroupObject.children=[];
-					networkTagsCategory[category]=[];
-					$.each(properties.tags, function(i, tag) {
-						if($.isArray(tag)){
-							$.each(tag, function(keyTag, textTag) {
-								val={id:textTag,text:textTag};
-								if(jQuery.inArray( textTag, tagsList ) == -1 ){
-									optgroupObject.children.push(val);
-									tagsList.push(textTag);
-								}
-							});
-						}else{
-							val={id:tag,text:tag};
-							if(jQuery.inArray( tag, tagsList ) == -1 ){
-								optgroupObject.children.push(val);
-								tagsList.push(tag);
-							}
-						}
-					});
-					networkTags.push(optgroupObject);
-					networkTagsCategory[category].push(optgroupObject);
-				});
-			}
-		}
+		// 	if(typeof networkJson.filter != "undefined" && typeof networkJson.filter.linksTag != "undefined"){
+		// 		$.each(networkJson.filter.linksTag, function(category, properties) {
+		// 			optgroupObject=new Object;
+		// 			optgroupObject.text=category;
+		// 			optgroupObject.children=[];
+		// 			networkTagsCategory[category]=[];
+		// 			$.each(properties.tags, function(i, tag) {
+		// 				if($.isArray(tag)){
+		// 					$.each(tag, function(keyTag, textTag) {
+		// 						val={id:textTag,text:textTag};
+		// 						if(jQuery.inArray( textTag, tagsList ) == -1 ){
+		// 							optgroupObject.children.push(val);
+		// 							tagsList.push(textTag);
+		// 						}
+		// 					});
+		// 				}else{
+		// 					val={id:tag,text:tag};
+		// 					if(jQuery.inArray( tag, tagsList ) == -1 ){
+		// 						optgroupObject.children.push(val);
+		// 						tagsList.push(tag);
+		// 					}
+		// 				}
+		// 			});
+		// 			networkTags.push(optgroupObject);
+		// 			networkTagsCategory[category].push(optgroupObject);
+		// 		});
+		// 	}
+		// }
 
 
 		//console.warn("isMapEnd 1",isMapEnd);
 		jQuery(document).ready(function() {
 			setTitle(networkJson.skin.title , "", networkJson.skin.title, networkJson.skin.title, networkJson.skin.shortDescription);
 
+			$.each(modules,function(k,v) { 
+                if(v.init){
+                    mylog.log("init.js for module : ",k);
+                    lazyLoad( v.init , null,null);
+                }
+            });
 			// Initialize tags list for network in form of element
 			urlCtrl.loadByHash(location.hash,true);
 			//$(".bg-main-menu.bgpixeltree_sig").remove();

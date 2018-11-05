@@ -12,6 +12,8 @@
 
     $CO2DomainName = isset(Yii::app()->params["CO2DomainName"]) ? Yii::app()->params["CO2DomainName"] : "CO2";
 
+    //Network::getNetworkJson(Yii::app()->params['networkParams']);
+
     $params = CO2::getThemeParams();
     $metaTitle = @$params["metaTitle"];
     $metaDesc = @$params["metaDesc"]; 
@@ -33,8 +35,15 @@
         <meta property="og:image" content="<?php echo $metaImg; ?>"/>
         <meta property="og:description" content="<?php echo $metaDesc; ?>"/>
         <meta property="og:title" content="<?php echo $metaTitle; ?>"/>
+        <?php 
+        $keywords = "";
+        if(isset($this->keywords)) $keywords = $this->keywords;
+        else if(isset($this->module->keywords)) $keywords = $this->module->keywords;?>
+        <meta name="keywords" lang="<?php echo Yii::app()->language; ?>" content="<?php echo CHtml::encode($keywords); ?>" > 
 
         <title><?php echo ( @Yii::app()->params["module"]["name"] ) ? Yii::app()->params["module"]["name"] :  $CO2DomainName; ?></title>
+
+        
 
         <link rel='shortcut icon' type='image/x-icon' href="<?php echo (isset( $this->module->assetsUrl ) ) ? $this->module->assetsUrl : ""?>/images/favicon.ico" /> 
 
@@ -48,6 +57,27 @@
     <script src='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js'></script>
     <link href='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css' rel='stylesheet' />
 <?php } ?>
+
+    <?php 
+    if(isset(Yii::app()->session['userId'])){
+      $myContacts = Person::getPersonLinksByPersonId(Yii::app()->session['userId']);
+      $myFormContact = $myContacts; 
+      $getType = (isset($_GET["type"]) && $_GET["type"] != "citoyens") ? $_GET["type"] : "citoyens";
+    }else{
+      $myFormContact = null;
+    }
+    $communexion = CO2::getCommunexionCookies();
+            
+    $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
+     $this->renderPartial($layoutPath.'initJs', 
+                                 array( "me"=>$me, "parentModuleId" => $parentModuleId, "myFormContact" => @$myFormContact, "communexion" => $communexion, "themeParams"=>$params));
+    if($this->module->id == "custom"){
+        $this->renderPartial( 'co2.views.custom.init' ); 
+    }else 
+        Yii::app()->session["custom"]=null;
+        ?>
+
+
 
         <?php 
             $cs->registerScriptFile(Yii::app() -> createUrl($parentModuleId."/default/view/page/trad/dir/..|translation/layout/empty"));
@@ -72,31 +102,17 @@
             $this->renderPartial( $layoutPath.'mainMap.'.Yii::app()->params["CO2DomainName"], array("modulePath"=>$modulePath )); ?>
         </div>
 
-        <?php //get all my link to put in floopDrawer
-            if(isset(Yii::app()->session['userId'])){
-              $myContacts = Person::getPersonLinksByPersonId(Yii::app()->session['userId']);
-              $myFormContact = $myContacts; 
-              $getType = (isset($_GET["type"]) && $_GET["type"] != "citoyens") ? $_GET["type"] : "citoyens";
-            }else{
-              $myFormContact = null;
-
-            }
-            $communexion = CO2::getCommunexionCookies();
-           // error_log("load IndexDefault");
-        ?>
-        
-        <?php $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
+        <?php 
               $this->renderPartial($layoutPath.'menusMap/'.$CO2DomainName, array( "layoutPath"=>$layoutPath, "me" => $me ) ); 
               ?>   
         
         <?php  if( isset(Yii::app()->session["userId"]) )
-                $this->renderPartial($modulePath.'/news/modalShare', array());
+                $this->renderPartial($modulePath.'/news/modalShare', array()); 
         ?>
- 
-        <div class="main-container col-md-12 col-sm-12 col-xs-12 no-padding">
+        <div class="main-container col-md-12 col-sm-12 col-xs-12 <?php echo @$params["appRendering"] ?>">
 
             <?php 
-                    $CO2DomainName = Yii::app()->params["CO2DomainName"];
+                  /*  $CO2DomainName = Yii::app()->params["CO2DomainName"];
                     $this->renderPartial( $layoutPath.'menus/'.$CO2DomainName, 
                                             array( "layoutPath"=>$layoutPath , 
                                                     "subdomain"=>"", //$subdomain,
@@ -104,42 +120,74 @@
                                                     "mainTitle"=>"", //$mainTitle,
                                                     "placeholderMainSearch"=>"", //$placeholderMainSearch,
                                                     "type"=>@$type,
-                                                    "me" => $me) );
-                
+                                                    "me" => $me,
+                                                    "themeParams"=>$params) );
+                   <header>
+                    <div class="col-md-12 text-center main-menu-app" style="">
+                        <?php 
+                            $CO2DomainName = Yii::app()->params["CO2DomainName"];
+                            $this->renderPartial( $layoutPath.'menus.moduleMenu',array( "params" => $params , 
+                                                                                        "subdomain"  => ""));
+                        ?>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="intro-text">  
 
-            ?>
-            <header>
-                <div class="col-md-12 text-center main-menu-app" style="">
-                    <?php 
-                        $CO2DomainName = Yii::app()->params["CO2DomainName"];
-                        $this->renderPartial( $layoutPath.'menus.moduleMenu',array( "params" => $params , 
-                                                                                    "subdomain"  => ""));
-                    ?>
-                </div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="intro-text">  
+                                    <?php $this->renderPartial($layoutPath.'headers/'.Yii::app()->params["CO2DomainName"],
+                                    array("themeParams"=>$params)); ?>
 
-                                <?php $this->renderPartial($layoutPath.'headers/'.Yii::app()->params["CO2DomainName"]); ?>
-
-                                    
+                                        
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </header>
+                </header>*/
+               
+            ?>
             <div class="pageContent"></div>
         </div>
         
 
         <div id="modal-preview-coop" class="shadow2 hidden"></div>
+        <div id="modal-settings" class="shadow2"></div>
         <div id="floopDrawerDirectory" class="floopDrawer"></div>
-    
+        <div class="portfolio-modal modal fade" id="openModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="modal-header text-dark">
+                                <h3 class="modal-title text-center" id="ajax-modal-modal-title">
+                                    <i class="fa fa-angle-down"></i> <i class="fa " id="ajax-modal-icon"></i> 
+                                </h3>
+                            </div>
+                            
+                            <div id="ajax-modal-modal-body" class="modal-body">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 text-center" style="margin-top:50px;margin-bottom:50px;">
+                    <hr>
+                    <a href="javascript:" style="font-size: 13px;" type="button" class="" data-dismiss="modal">
+                    <i class="fa fa-times"></i> <?php echo Yii::t("common","Back") ?>
+                    </a>
+                </div>
+            </div>
+        </div>
         
 
-        <?php if($CO2DomainName == "kgougle" || $CO2DomainName == "CO2")
-                $this->renderPartial($layoutPath."modals/".$CO2DomainName.'/radioplayermodal', array( "layoutPath"=>$layoutPath ) ); 
+        <?php // BOUBOULE NOT USE FOR MOMENT =>if($CO2DomainName == "kgougle" || $CO2DomainName == "CO2")
+            //    $this->renderPartial($layoutPath."modals/".$CO2DomainName.'/radioplayermodal', array( "layoutPath"=>$layoutPath ) ); 
         ?> 
         
         <?php 
@@ -203,7 +251,11 @@
                 '/plugins/font-awesome/css/font-awesome.min.css',
                 //'/plugins/font-awesome-custom/css/font-awesome.css',
 
-                '/plugins/cryptoJS-v3.1.2/rollups/aes.js'
+                '/plugins/cryptoJS-v3.1.2/rollups/aes.js',
+                //FineUplaoder (called in jquery.dynform.js)
+                '/plugins/fine-uploader/jquery.fine-uploader/fine-uploader-gallery.css',
+                '/plugins/fine-uploader/jquery.fine-uploader/jquery.fine-uploader.js',
+                '/plugins/fine-uploader/jquery.fine-uploader/fine-uploader-new.min.css'
             );
             if(Yii::app()->language!="en")
                 array_push($cssAnsScriptFilesModule,"/plugins/jquery-validation/localization/messages_".Yii::app()->language.".js");
@@ -258,15 +310,14 @@
             /* ***********************
             END theme stuff
             ************************ */
-             $this->renderPartial($layoutPath.'initJs', 
-                                 array( "me"=>$me, "parentModuleId" => $parentModuleId, "myFormContact" => @$myFormContact, "communexion" => $communexion));
+            
 
             //inclue le css & js du theme si != de CO2 (surcharge du code commun du theme si besoin) ex : kgougle
             //if($CO2DomainName != "CO2"){
 
                 $cssAnsScriptFilesModule = array(
                     '/assets/css/themes/'.$CO2DomainName.'/'.$CO2DomainName.'.css',
-                    '/assets/js/comments.js'
+                    '/assets/js/comments.js',
                     //'/assets/css/themes/'.$CO2DomainName.'/'.$CO2DomainName.'-color.css',
                     //'/assets/js/themes/'.$CO2DomainName.'.js',
                 );
@@ -287,8 +338,8 @@
         
         <?php $this->renderPartial('../cooperation/pod/modalCommon', array()); ?>
 
-        <?php $this->renderPartial($layoutPath.'modals.'.$CO2DomainName.'.mainMenu', array("me"=>$me) ); ?>
-        <?php $this->renderPartial( $layoutPath.'menuBottom.'.Yii::app()->params["CO2DomainName"]); ?>
+        <?php // BOUBOULE NOT USE FOR MOMENT $this->renderPartial($layoutPath.'modals.'.$CO2DomainName.'.mainMenu', array("me"=>$me) ); ?>
+        <?php $this->renderPartial( $layoutPath.'menuBottom.'.Yii::app()->params["CO2DomainName"], array("themeParams"=>@$params)); ?>
         <?php 
             if(false && (($CO2DomainName == "CO2" &&
                 !@Yii::app()->session["userId"] && 
@@ -301,18 +352,16 @@
 
         ?>
         
-        <script>    
-            //alert("theme : <?php echo Yii::app()->theme->name?>");      
+        <script>        
             var CO2DomainName = "<?php echo $CO2DomainName; ?>";
             var CO2params = <?php echo json_encode($params); ?>;
-            var custom = {};
-                
+            
+            
             jQuery(document).ready(function() { 
-                    
-                <?php $this->renderPartial( 'co2.views.custom.init' ); ?>
-
-                $.blockUI({ message : themeObj.blockUi.processingMsg});
-                
+                $.blockUI({ message : themeObj.blockUi.processingMsg});                
+                if( typeof custom != "undefined" && custom.logo ){
+                    custom.init("mainSearch");
+                }
                 var pageUrls = <?php echo json_encode($params["pages"]); ?>;
                 $.each( pageUrls ,function(k , v){ 
                     if(typeof urlCtrl.loadableUrls[k] == "undefined")
@@ -332,6 +381,7 @@
                         lazyLoad( v.init , null,null);
                     }
                 });
+                
                 if(themeObj.firstLoad){
                     themeObj.firstLoad=false;
                     urlCtrl.loadByHash(location.hash,true);
@@ -358,19 +408,8 @@
                     toastr.success("Ce bandeau ne s'affichera plus sur ce navigateur !");
                 });
             });
-            console.warn("url","<?php echo $_SERVER["REQUEST_URI"] ;?>");
         </script>
 
-
-        <?php //$this->renderPartial($layoutPath.'.rocketchat', array() ); ?>
-
-        <?php 
-            /*if( @Yii::app()->params["rocketchatEnabled"] )
-                $this->widget( 'ext.widgets.chat.Chat' ,
-                    array(
-                        "host"=>"kiki"
-                    ) );  */
-        ?>
     </body>
 
 </html>

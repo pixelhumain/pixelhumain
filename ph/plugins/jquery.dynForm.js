@@ -56,7 +56,7 @@ onSave: (optional) overloads the generic saveProcess
 				rules : {}
 			};
 			var fieldHTML = '';
-
+			dyFObj.initFieldOnload={};
 			/* **************************************
 			* Error Section
 			***************************************** */
@@ -87,7 +87,7 @@ onSave: (optional) overloads the generic saveProcess
 			***************************************** */
 			fieldHTML = '<input type="hidden" name="key" id="key" value="'+settings.formObj.key+'"/>';
 	        fieldHTML += '<input type="hidden" name="collection" id="collection" value="'+settings.formObj.collection+'"/>';
-	        fieldHTML += '<input type="hidden" name="id" id="id" value="'+((settings.formValues.id) ? settings.formValues.id : "")+'"/>';
+	        fieldHTML += '<input type="hidden" name="id" id="id" value="'+((settings.formValues && settings.formValues.id) ? settings.formValues.id : "")+'"/>';
 	       
         	fieldHTML += '<div class="form-actions">'+
         				'<hr class="col-md-12">';
@@ -219,28 +219,67 @@ var uploadObj = {
 	gotoUrl : null,
 	isSub : false,
 	update  : false,
+	docListIds : [],
+	initList : [],
 	folder : "communecter", //on force pour pas casser toutes les vielles images
 	contentKey : "profil",
+	afterLoadUploader : false,
 	path : null,
 	extra : null,
-	set : function(type,id, file){
-		//alert("uploadObj set"+type);
-		if(notNull(file) && file){
+	get : function(type,id, docT, contentK, foldKey, extraUrl){
+		docT=(notNull(docT) && docT) ? docT : "image";
+		typeForUpload = ( jsonHelper.notNull( "typeObj."+type+'.col') ) ? typeObj[type].col : type; 
+		path = baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+uploadObj.folder+"/folder/"+typeForUpload+"/ownerId/"+id+"/input/qqfile/docType/"+docT;	
+		if(notNull(contentK) && contentK != "")
+			path += "/contentKey/"+contentK;
+		else if(docT == "image")
+			path += "/contentKey/profil";
+		if(notNull(foldKey) && foldKey != "")
+			path += "/folderId/"+foldKey;
+		if(notNull(extraUrl) && extraUrl != "")
+			path += extraUrl;
+		return path;
+	},
+	set : function(type,id, docT, contentK, foldKey, extraUrl){
+		if(typeof type != "undefined"){
 			mylog.log("set uploadObj", id,type,uploadObj.folder,uploadObj.contentKey);
-			uploadObj.type = type;
+			typeForUpload = ( jsonHelper.notNull( "typeObj."+type+'.col') ) ? typeObj[type].col : type; 
+			uploadObj.type = typeForUpload;
 			uploadObj.id = id;
-			uploadObj.path = baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+uploadObj.folder+"/folder/"+type+"/ownerId/"+id+"/input/qqfile/docType/file";
-		}
-		else if(typeof type != "undefined"){
-			mylog.log("set uploadObj", id,type,uploadObj.folder,uploadObj.contentKey);
-			uploadObj.type = type;
-			uploadObj.id = id;
-			uploadObj.path = baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+uploadObj.folder+"/folder/"+type+"/ownerId/"+id+"/input/qqfile/contentKey/"+uploadObj.contentKey;
-		} else {
+			docT=(notNull(docT) && docT) ? docT : "image";
+			uploadObj.path = baseUrl+"/"+moduleId+"/document/uploadSave/dir/"+uploadObj.folder+"/folder/"+typeForUpload+"/ownerId/"+id+"/input/qqfile/docType/"+docT;
+			
+			if(notNull(contentK) && contentK != "")
+				uploadObj.path += "/contentKey/"+contentK;
+			else if(docT == "image")
+				uploadObj.path += "/contentKey/profil";
+			if(notNull(foldKey) && foldKey != "")
+				uploadObj.path += "/folderId/"+foldKey;
+			if(notNull(extraUrl) && extraUrl != "")
+				uploadObj.path += extraUrl;
+				
+			if(typeof uploadObj.domTarget !="undefined")
+				$(uploadObj.domTarget).fineUploader('setEndpoint', uploadObj.path);
+		}else {
 			uploadObj.type = null;
 			uploadObj.id = null;
 			uploadObj.path = null;
+			uploadObj.initList = {};
 		}
+	},
+	prepareInit : function(data){
+		arrayList=[];
+		$.each(data, function(e, v){
+			item=new Object;
+			item.size=v.size,
+			item.uuid=v._id.$id,
+			item.name=v.name;
+			item.deleteFileEndpoint=baseUrl+"/"+moduleId+"/document/deletedocumentbyid/id";
+			if(typeof v.imageThumbPath != "undefined")
+				item.thumbnailUrl=v.imageThumbPath;
+			arrayList.push(item);
+		} );
+		return arrayList;
 	}
 };
 var openingHoursResult=[
@@ -265,7 +304,7 @@ var dyFObj = {
 	//ex : dyFObj.elementObj.dynForm.jsonSchema.canSubmitIf
 	canSubmitIf : function () { 
     	var valid = true;
-    	console.log("canSubmitIf");
+    	mylog.log("canSubmitIf");
     	//on peut ajouter des regles dans la map definition 
     	if(	jsonHelper.notNull("dyFObj.elementObj.dynForm.jsonSchema.canSubmitIf", "function") )
     		valid = dyFObj.elementObj.dynForm.jsonSchema.canSubmitIf();
@@ -276,6 +315,7 @@ var dyFObj = {
 		//tmp
 		$('#btn-submit-form').show();
     },
+    initFieldOnload : {},
 	formatData : function (formData, collection,ctrl) { 
 		mylog.warn("----------- formatData",formData, collection,ctrl);
 		formData.collection = collection;
@@ -403,7 +443,6 @@ var dyFObj = {
 		if( jsonHelper.notNull( "dyFObj.elementObj.dynForm.jsonSchema.formatData","function") )
 			formData = dyFObj.elementObj.dynForm.jsonSchema.formatData(formData);
 
-
 		formData = dyFObj.formatData(formData,collection,ctrl);
 		mylog.log("saveElement", formData);
 
@@ -479,7 +518,10 @@ var dyFObj = {
 		            	// mylog.log("data.id", data.id, data.url);
 		            	/*if(data.map && $.inArray(collection, ["events","organizations","projects","citoyens"] ) !== -1)
 				        	addLocationToFormloopEntity(data.id, collection, data.map);*/
-				       if (typeof afterSave == "function"){
+
+				        if (typeof networkJson != "undefined"){
+				        	window.location.reload();
+				        }else if (typeof afterSave == "function"){
 		            		afterSave(data);
 		            		//urlCtrl.loadByHash( '#'+ctrl+'.detail.id.'+data.id );
 		            	} else {
@@ -494,7 +536,7 @@ var dyFObj = {
 			                }
 						}
 		            }
-		            uploadObj.set()
+		            //uploadObj.set()
 		    	}
 		    });
 		}
@@ -506,14 +548,18 @@ var dyFObj = {
 	   	uploadObj.set();
 	    uploadObj.update = false;
 	},
+	editStep : function ( form,data,afterLoad ){
+		mylog.log("step",form, data);
+		dyFObj.openForm( form ,afterLoad , data);
+	},
 	editElement : function (type,id, subType){
-		mylog.warn("--------------- editElement ",type,id);
+		mylog.warn("--------------- editElement ",type,id,subType);
 		//get ajax of the elemetn content
-		uploadObj.set(type,id);
+		uploadObj.set(type, id);
 		uploadObj.update = true;
 		$.ajax({
 	        type: "GET",
-	        url: baseUrl+"/"+moduleId+"/element/get/type/"+type+"/id/"+id,
+	        url: baseUrl+"/"+moduleId+"/element/get/type/"+type+"/id/"+id+"/update/true",
 	        dataType : "json"
 	    })
 	    .done(function (data) {
@@ -522,19 +568,43 @@ var dyFObj = {
 				//onLoad fill inputs
 				//will be sued in the dynform  as update 
 				data.map.id = data.map["_id"]["$id"];
-				if(typeof typeObj[type].formatData == "function")
+				if(typeObj[type] && typeof typeObj[type].formatData == "function")
 					data = typeObj[type].formatData();
 				if(data.map["_id"])
 					delete data.map["_id"];
-				mylog.dir(data);
-				console.log("editElement", data);
+				mylog.log("editElement data", data);
 				dyFObj.elementData = data;
 				typeModules=(notNull(subType)) ? subType : type; 
-				typeForm = (jsonHelper.notNull( "modules."+typeModules+".form") ) ? typeModules : dyFInputs.get(typeModules).ctrl;
+				if(typeof subType == "object")
+					typeForm = subType;
+				else if(jsonHelper.notNull( "modules."+typeModules+".form") ) 
+					typeForm = typeModules;
+				else
+					typeForm = dyFInputs.get(typeModules).ctrl;
+
+				mylog.log("editElement typeForm", typeForm);
 				dyFObj.openForm( typeForm ,null, data.map);
-	        } else {
+	        } else 
 	           toastr.error("something went wrong!! please try again.");
-	        }
+	    });
+	},
+	openAjaxForm : function (url){
+		mylog.warn("--------------- openAjaxForm ",url);
+		//get ajax of the elemetn content
+		
+		uploadObj.update = true;
+		$.ajax({
+	        type: "GET",
+	        url: baseUrl+url,
+	        dataType : "json"
+	    })
+	    .done(function (data) {
+	        if ( data && data.json ) {
+				mylog.log("openAjaxForm data.json", data.json);
+				dyFObj.openForm( data.json );
+				dyFInputs.setSub("bg-purple");
+	        } else 
+	           toastr.error("something went wrong!! please try again.");
 	    });
 	},
 	
@@ -547,6 +617,14 @@ var dyFObj = {
 	    mylog.warn("--------------- Open Form ",type, afterLoad,data);
 	    mylog.dir(data);
 	    uploadObj.contentKey="profil"; 
+	    if(notNull(data)){
+	    	if(typeof data.images != "undefined")
+	    		uploadObj.initList=data.images;
+	    	if(typeof data.files != "undefined" )
+	    		uploadObj.initList=data.files;
+	    }else{
+	    	uploadObj.initList={};
+	    }
 	    dyFObj.activeElem = (isSub) ? "subElementObj" : "elementObj";
 	    dyFObj.activeModal = (isSub) ? "#openModal" : "#ajax-modal";
       	
@@ -563,15 +641,15 @@ var dyFObj = {
 				afterLoad : afterLoad,
 				data : data
 			};
-			toastr.error(tradDynForm["mustbeconnectforcreateform"]);
+			toastr.error(tradDynForm.mustbeconnectforcreateform);
 			$('#modalLogin').modal("show");
 		}
 	},
-	//get the specification of a given dynform
+	//get the specification of a given dynform  
 	//can be of 3 types 
-	//(string) :: will get the definition if exist in typeObj[key].dybnForm
-	//if doesn't exist tries to lazyload it from assets/js/dynForm
-	//(object) :: is dynformp definition
+	//(string) :: will get the definition if exist in typeObj[key].dybnForm 
+	//if doesn't exist tries to lazyload it from assets/js/dynForm 
+	//(object) :: is dynformp definition 
 	getDynFormObj : function(type, callback,afterLoad, data){
 		//alert(type+'.js');
 		mylog.warn("------------ getDynFormObj",type, callback,afterLoad, data );
@@ -600,7 +678,7 @@ var dyFObj = {
 			//a dynform can be called from a module , but comes from parent Co2 module
 			if ( moduleId != activeModuleId ){
 				dfPath = parentModuleUrl+'/js/dynForm/'+type+'.js';
-				mylog.log("properties from MODULE","modules/"+type+"/assets/js/dynform.js");
+				mylog.log("properties from MODULE CO2","modules/"+type+"/assets/js/dynform.js");
 			}
 			
 			//path is defined in the initJS modules obj
@@ -613,6 +691,7 @@ var dyFObj = {
 			if ( type.indexOf(".js")>-1)  
 				dfPath = type;
 
+			mylog.log("getDynFormObj",type,dfPath);
 			lazyLoad( dfPath, 
 				null,
 				function() { 
@@ -623,7 +702,7 @@ var dyFObj = {
 					
 				  	dyFInputs.get(type).dynForm = dynForm;
 					dyFObj[dyFObj.activeElem] = dyFInputs.get(type);
-					if( notNull(dyFInputs.get(type).col) ) 
+					if( notNull( dyFInputs.get(type).col) ) 
 						uploadObj.type = dyFInputs.get(type).col;
     				callback( afterLoad, data );
 				});
@@ -651,7 +730,7 @@ var dyFObj = {
 	  	dyFInputs.init();
 	  	afterLoad = ( notNull(afterLoad) ) ? afterLoad : null;
 	  	data = ( notNull(data) ) ? data : {}; 
-	  	dyFObj.buildDynForm(afterLoad, data,dyFObj[dyFObj.activeElem],dyFObj.activeModal+" #ajaxFormModal");
+	  	dyFObj.buildDynForm( afterLoad, data,dyFObj[dyFObj.activeElem],dyFObj.activeModal+" #ajaxFormModal");
 	},
 	buildDynForm : function (afterLoad,data,obj,formId) { 
 		mylog.warn("--------------- buildDynForm", dyFObj[dyFObj.activeElem], afterLoad,data);
@@ -686,6 +765,11 @@ var dyFObj = {
 			        if( jsonHelper.notNull( "dyFObj."+dyFObj.activeElem+".dynForm.jsonSchema.onLoads."+afterLoad, "function") )
 			        	dyFObj[dyFObj.activeElem].dynForm.jsonSchema.onLoads[afterLoad](data);
 				    
+				    if(Object.keys(dyFObj.initFieldOnload).length > 0){
+				    	$.each(dyFObj.initFieldOnload, function(k, v){
+				    		v();
+				    	});
+				    }
 				    if( typeof bindLBHLinks != "undefined")
 			        	bindLBHLinks();
 			    },
@@ -696,7 +780,7 @@ var dyFObj = {
 
 			      	if( typeof dyFObj[dyFObj.activeElem].dynForm.jsonSchema.beforeSave == "function")
 			        	dyFObj[dyFObj.activeElem].dynForm.jsonSchema.beforeSave();
-
+			        uploadObj.afterLoadUploader=true;
 			        var afterSave = ( typeof dyFObj[dyFObj.activeElem].dynForm.jsonSchema.afterSave == "function") ? dyFObj[dyFObj.activeElem].dynForm.jsonSchema.afterSave : null;
 			        mylog.log("onSave ", dyFObj.activeElem, dyFObj[dyFObj.activeElem].saveUrl, dyFObj[dyFObj.activeElem].save);
 			        if( dyFObj[dyFObj.activeElem].save )
@@ -715,6 +799,32 @@ var dyFObj = {
 			toastr.error("Vous devez être connecté pour afficher les formulaires de création");
 			$('#modalLogin').modal("show");
 		}
+	},
+	commonAfterSave : function(){
+		listObject=$(uploadObj.domTarget).fineUploader('getUploads');
+    	goToUpload=false;
+    	if(listObject.length > 0){
+    		$.each(listObject, function(e,v){
+    			if(v.status == "submitted")
+    				goToUpload=true;
+    		});
+    	}
+		if( goToUpload ){
+    		$(uploadObj.domTarget).fineUploader('uploadStoredFiles');
+	    	//principalement pour les surveys
+	    	if(typeof callB == "function")
+    			callB();
+    	}
+	    else { 
+	    	mylog.log("here", isMapEnd);
+	    	if(typeof networkJson != "undefined")
+				isMapEnd = true;
+			dyFObj.closeForm();
+			/*if(activeModuleId == "survey")//use case for answerList forms updating
+        		window.location.reload();
+        	else 
+				urlCtrl.loadByHash( uploadObj.gotoUrl );*/
+        }
 	},
 	//generate Id for upload feature of this element 
 	setMongoId : function(type,callback) { 
@@ -751,10 +861,109 @@ var dyFObj = {
 		return res;
 	},
 	/* **************************************
+	*	building an array of answer based on table template
+	***************************************** */
+	drawAnswers : function (el,type,before,after) {
+		//alert("drawAnswers");
+	    var data = dyFObj.elementData;
+	    var prop = dyFObj[dyFObj.activeElem].dynForm.jsonSchema.properties;
+	    console.log("drawAnswers data",data);
+	    console.log("drawAnswers prop",prop);
+	    str = '<table class="table table-striped table-bordered table-hover">'+
+	        '<thead><tr>';
+	    if(before){
+	    	$.each(  before,function(ai,av) { 
+		        str += '<th>'+ai+'</th>';
+		    });
+	    }
+	    str += '<th>Date</th>';
+	    var keys = Object.keys( data );
+	    $.each(  data [ keys[0] ].answer,function(ai,av) { 
+	        str += '<th>'+((prop[ai] && prop[ai].placeholder) ? prop[ai].placeholder : ai)+'</th>';
+	    });
+	    if(after){
+	    	$.each( after,function(ai,av) { 
+	    		lbl = ai;
+	    		if( typeof av == "object" && av.lbl)
+	    			lbl = av.lbl;
+		        str += '<th>'+lbl+'</th>';
+		    });
+	    }
+	        
+	    str += '</tr></thead><tbody>';
+	    //alert(Object.keys(data).length)
+	    $.each( data ,function(i,v) { 
+	        //LES REPONSE
+	        if(v.answer){
+		        console.log("v",v);
+		        str += '<tr>';
+		        if(before){
+			    	$.each(  before,function(ai,av) { 
+				        str += '<td>'+av+'</td>';
+				    });
+			    }
+
+		        str += '<td>'+formatDate(new Date(v.created*1000))+'</td>';
+		        
+			        $.each(v.answer,function(ai,av) { 
+			        	console.log(prop[ai].options);
+			        	//alert(ai+av);
+			            ansV = av;
+			            console.log( ai, prop[ai] );
+
+		            	if( prop[ai] && 
+			            	prop[ai].inputType == "select" && 
+			            	prop[ai].options[av] )
+			                ansV = prop[ai].options[av];
+
+			            str += "<td>"+ansV+"</td>";
+			        });
+			    
+			        
+		        if(after)
+		        {
+			    	$.each(  after,function(ai,av) 
+			    	{ 
+			    		if( typeof av == "object" ){
+			    			pre = "";
+			    			if(av.pre){
+			    				if(av.pre.value) {
+				    				if( v[av.pre.value] )
+				    					pre = "<span class='"+( (av.pre.class) ? av.pre.class : "" )+"'>"+v[av.pre.value]+"</span> ";
+				    			}
+			    			}
+
+			    			if(av.btn){
+			    				lbl = av.btn;
+			    				if(av.test && v[av.test]){
+			    					lbl = "";
+			    					if(av.else)
+			    						lbl = av.else;
+			    				}
+			    				str += '<td class="text-center" data-id="'+i+'" data-type="'+type+'">'+pre+lbl+'</td>';
+			    			} else if(av.value){
+			    				lbl = "";
+			    				if( v[av.value] )
+			    					lbl = "<span class='"+( (av.class) ? av.class : "" )+"'>"+v[av.value]+"</span>";
+			    				str += '<td class="text-center">'+pre+lbl+'</td>';
+			    			}
+			    		}
+			    		else
+				        	str += '<td class="text-center">'+av+'</td>';
+				    });
+			     }
+
+		        str += "</tr>";
+		    }
+	    });
+	    str += "</tbody></table></div>";
+	    $(el).append(str);
+	},
+	/* **************************************
 	*	each input field type has a corresponding HTMl to build
 	***************************************** */
-	
 	buildInputField : function (id, field, fieldObj,formValues, tooltip){
+		mylog.warn("------------------ buildInputField",id, field, formValues)
 		var fieldHTML = '<div class="form-group '+field+fieldObj.inputType+'">';
 		var required = "";
 		if(fieldObj.rules && fieldObj.rules.required)
@@ -762,7 +971,7 @@ var dyFObj = {
 
 		tooltip = (tooltip) ? '<i class=" fa fa-question-circle pull-right tooltips text-red" data-toggle="tooltip" data-placement="top" title="'+tooltip+'"></i>' : '';
 		if(fieldObj.label)
-			fieldHTML += '<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="'+field+'">'+
+			fieldHTML += '<label class="col-xs-12 text-left control-label no-padding" for="'+field+'">'+
 			              '<i class="fa fa-chevron-down"></i> ' +  fieldObj.label+required+tooltip+
 			            '</label>';
 
@@ -781,7 +990,7 @@ var dyFObj = {
         	value = formValues[field];
         }
 
-        mylog.log("value network", value);
+        //mylog.log("value network", value);
         if(value!="")
         	mylog.warn("--------------- dynform form Values",field,value);
 
@@ -811,9 +1020,16 @@ var dyFObj = {
         				dyFObj.init.initValues[field] = {};
         			dyFObj.init.initValues[field]["tags"] = fieldObj.values;
         		}
+
         		if(fieldObj.maximumSelectionLength)
         			dyFObj.init.initValues[field]["maximumSelectionLength"] =  fieldObj.maximumSelectionLength;
-        		mylog.log("fieldObj.data", fieldObj.data, fieldObj);
+        		mylog.log("select2TagsInput fieldObj.minimumInputLength", fieldObj.minimumInputLength);
+        		if(typeof fieldObj.minimumInputLength != "undefined" && typeof fieldObj.minimumInputLength == "number"){
+        			if(!dyFObj.init.initValues[field])
+        				dyFObj.init.initValues[field] = {};
+        			dyFObj.init.initValues[field]["minimumInputLength"] = fieldObj.minimumInputLength;
+        			mylog.log("select2TagsInput fieldObj dyFObj.init.initValues[field]", dyFObj.init.initValues[field]);
+        		}
         		if(typeof fieldObj.data != "undefined"){
         			value = fieldObj.data;
 	        		//dyFObj.init.initSelectNetwork[field]=fieldObj.data;
@@ -841,7 +1057,7 @@ var dyFObj = {
 		else if( fieldObj.inputType == "hidden" || fieldObj.inputType == "timestamp" ) {
 			if ( fieldObj.inputType == "timestamp" )
 				value = Date.now();
-			mylog.log("build field "+field+">>>>>> hidden, timestamp");
+			mylog.log("build field "+field+">>>>>> hidden, timestamp", value);
 			fieldHTML += '<input type="hidden" name="'+field+'" id="'+field+'" value="'+value+'"/>';
 		}
 		/* **************************************
@@ -877,9 +1093,9 @@ var dyFObj = {
 		***************************************** */
 		else if ( fieldObj.inputType == "checkboxSimple" ) {
    			if(value == "") value="25/01/2014";
-   			console.log("fieldObj ???",fieldObj, ( fieldObj.checked == "true" ));
+   			mylog.log("fieldObj ???",fieldObj, ( fieldObj.checked == "true" ));
 			var thisValue = ( fieldObj.checked == "true" ) ? "true" : "false";
-			console.log("fieldObj ??? thisValue", thisValue);
+			mylog.log("fieldObj ??? thisValue", thisValue);
 			//var onclick = ( fieldObj.onclick ) ? "onclick='"+fieldObj.onclick+"'" : "";
 			//var switchData = ( fieldObj.switch ) ? "data-on-text='"+fieldObj.params.onText+"' data-off-text='"+fieldObj.params.offText+"' data-label-text='"+fieldObj.switch.labelText+"' " : "";
 			mylog.log("build field "+field+">>>>>> checkbox");
@@ -986,19 +1202,24 @@ var dyFObj = {
         else if ( fieldObj.inputType == "uploader" ) {
         	if(placeholder == "")
         		placeholder="add Image";
-        	mylog.log("build field "+field+">>>>>> uploader");
-        	fieldHTML += '<div class="'+fieldClass+' fine-uploader-manual-trigger" data-type="citoyens" data-id="'+userId+'"></div>';
+        	mylog.log("build field "+field+">>>>>> uploader" );
+        	var uploaderId=(fieldObj.domElement) ? fieldObj.domElement : "imageElement"; 
+        	fieldHTML += '<div class=" col-xs-12 '+fieldClass+' fine-uploader-manual-trigger"  id="'+uploaderId+'" data-type="citoyens" data-id="'+userId+'"></div>';
+        	
         	if(fieldObj.docType=="image")
-			fieldHTML += 	'<script type="text/template" id="qq-template-gallery">';
+				fieldHTML += 	'<script type="text/template" id="qq-template-gallery">';
 			else
-			fieldHTML += 	'<script type="text/template" id="qq-template-manual-trigger">';
+				fieldHTML += 	'<script type="text/template" id="qq-template-manual-trigger">';
+
 			fieldHTML += 	'<div class="qq-uploader-selector qq-uploader';
 			if(fieldObj.docType=="image")
-			fieldHTML +=		' qq-gallery';
+				fieldHTML +=		' qq-gallery';
+
 			fieldHTML +=		'" qq-drop-area-text="'+tradDynForm.dropfileshere+'">'+
 							'<div class="qq-total-progress-bar-container-selector qq-total-progress-bar-container">'+
 							'<div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-total-progress-bar-selector qq-progress-bar qq-total-progress-bar"></div>'+
 							'</div>'+
+							//'<div class="qq-paste-element-triger"><input type="text" value="" placeholder="paste a link"/></div>'+
 							'<div class="qq-upload-drop-area-selector qq-upload-drop-area" qq-hide-dropzone>'+
 							'<span class="qq-upload-drop-area-text-selector"></span>'+
 							'</div>'+
@@ -1013,61 +1234,61 @@ var dyFObj = {
 							'<span class="qq-drop-processing-spinner-selector qq-drop-processing-spinner"></span>'+
 							'</span>';
 			if(fieldObj.docType=="image"){
-			fieldHTML += 	'<ul class="qq-upload-list-selector qq-upload-list" role="region" aria-live="polite" aria-relevant="additions removals">'+
-							'<li>'+
-							'<span role="status" class="qq-upload-status-text-selector qq-upload-status-text"></span>'+
-							'<div class="qq-progress-bar-container-selector qq-progress-bar-container">'+
-							'<div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-progress-bar-selector qq-progress-bar"></div>'+
-							'</div>'+
-							'<span class="qq-upload-spinner-selector qq-upload-spinner"></span>'+
-							'<div class="qq-thumbnail-wrapper">'+
-							'<img class="qq-thumbnail-selector" qq-max-size="120" qq-server-scale>'+
-							'</div>'+
-							'<button type="button" class="qq-upload-cancel-selector qq-upload-cancel">X</button>'+
-							'<button type="button" class="qq-upload-retry-selector qq-upload-retry">'+
-							'<span class="qq-btn qq-retry-icon" aria-label="Retry"></span>'+
-							'Retry'+
-							'</button>'+
-							''+
-							'<div class="qq-file-info">'+
-							'<div class="qq-file-name">'+
-							'<span class="qq-upload-file-selector qq-upload-file"></span>'+
-							//'<span class="qq-edit-filename-icon-selector qq-edit-filename-icon" aria-label="Edit filename"></span>'+
-							'</div>'+
-							'<input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">'+
-							'<span class="qq-upload-size-selector qq-upload-size"></span>'+
-							'<button type="button" class="qq-btn qq-upload-delete-selector qq-upload-delete">'+
-							'<span class="qq-btn qq-delete-icon" aria-label="Delete"></span>'+
-							'</button>'+
-							'<button type="button" class="qq-btn qq-upload-pause-selector qq-upload-pause">'+
-							'<span class="qq-btn qq-pause-icon" aria-label="Pause"></span>'+
-							'</button>'+
-							'<button type="button" class="qq-btn qq-upload-continue-selector qq-upload-continue">'+
-							'<span class="qq-btn qq-continue-icon" aria-label="Continue"></span>'+
-							'</button>'+
-							'</div>'+
-							'</li>'+
-							'</ul>';
+				fieldHTML += 	'<ul class="qq-upload-list-selector qq-upload-list" role="region" aria-live="polite" aria-relevant="additions removals">'+
+								'<li>'+
+								'<span role="status" class="qq-upload-status-text-selector qq-upload-status-text"></span>'+
+								'<div class="qq-progress-bar-container-selector qq-progress-bar-container">'+
+								'<div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-progress-bar-selector qq-progress-bar"></div>'+
+								'</div>'+
+								'<span class="qq-upload-spinner-selector qq-upload-spinner"></span>'+
+								'<div class="qq-thumbnail-wrapper">'+
+								'<img class="qq-thumbnail-selector" qq-max-size="120" qq-server-scale>'+
+								'</div>'+
+								'<button type="button" class="qq-upload-cancel-selector qq-upload-cancel">X</button>'+
+								'<button type="button" class="qq-upload-retry-selector qq-upload-retry">'+
+								'<span class="qq-btn qq-retry-icon" aria-label="Retry"></span>'+
+								'Retry'+
+								'</button>'+
+								''+
+								'<div class="qq-file-info">'+
+								'<div class="qq-file-name">'+
+								'<span class="qq-upload-file-selector qq-upload-file"></span>'+
+								//'<span class="qq-edit-filename-icon-selector qq-edit-filename-icon" aria-label="Edit filename"></span>'+
+								'</div>'+
+								'<input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">'+
+								'<span class="qq-upload-size-selector qq-upload-size"></span>'+
+								'<button type="button" class="qq-btn qq-upload-delete-selector qq-upload-delete">'+
+								'<span class="qq-btn qq-delete-icon" aria-label="Delete"></span>'+
+								'</button>'+
+								'<button type="button" class="qq-btn qq-upload-pause-selector qq-upload-pause">'+
+								'<span class="qq-btn qq-pause-icon" aria-label="Pause"></span>'+
+								'</button>'+
+								'<button type="button" class="qq-btn qq-upload-continue-selector qq-upload-continue">'+
+								'<span class="qq-btn qq-continue-icon" aria-label="Continue"></span>'+
+								'</button>'+
+								'</div>'+
+								'</li>'+
+								'</ul>';
 			}else{
-			fieldHTML += 	'<ul class="qq-upload-list-selector qq-upload-list" aria-live="polite" aria-relevant="additions removals">'+
-				                '<li>'+
-				                    '<div class="qq-progress-bar-container-selector">'+
-				                        '<div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-progress-bar-selector qq-progress-bar"></div>'+
-				                    '</div>'+
-				                    '<span class="qq-upload-spinner-selector qq-upload-spinner"></span>'+
-				                    '<img class="qq-thumbnail-selector" qq-max-size="100" qq-server-scale>'+
-				                    '<span class="qq-upload-file-selector qq-upload-file"></span>'+
-				                    //'<span class="qq-edit-filename-icon-selector qq-edit-filename-icon" aria-label="Edit filename"></span>'+
-				                    '<input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">'+
-				                    '<span class="qq-upload-size-selector qq-upload-size"></span>'+
-				                    '<button type="button" class="qq-btn qq-upload-cancel-selector qq-upload-cancel">Cancel</button>'+
-				                    '<button type="button" class="qq-btn qq-upload-retry-selector qq-upload-retry">Retry</button>'+
-				                    '<button type="button" class="qq-btn qq-upload-delete-selector qq-upload-delete">Delete</button>'+
-				                    '<span role="status" class="qq-upload-status-text-selector qq-upload-status-text"></span>'+
-				                '</li>'+
-				            '</ul>';
+				fieldHTML += '<ul class="qq-upload-list-selector qq-upload-list" aria-live="polite" aria-relevant="additions removals">'+
+					                '<li>'+
+					                    '<div class="qq-progress-bar-container-selector">'+
+					                        '<div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-progress-bar-selector qq-progress-bar"></div>'+
+					                    '</div>'+
+					                    '<span class="qq-upload-spinner-selector qq-upload-spinner"></span>'+
+					                    '<img class="qq-thumbnail-selector" qq-max-size="100" qq-server-scale>'+
+					                    '<span class="qq-upload-file-selector qq-upload-file"></span>'+
+					                    //'<span class="qq-edit-filename-icon-selector qq-edit-filename-icon" aria-label="Edit filename"></span>'+
+					                    '<input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">'+
+					                    '<span class="qq-upload-size-selector qq-upload-size"></span>'+
+					                    '<button type="button" class="qq-btn qq-upload-cancel-selector qq-upload-cancel">Cancel</button>'+
+					                    '<button type="button" class="qq-btn qq-upload-retry-selector qq-upload-retry">Retry</button>'+
+					                    '<button type="button" class="qq-btn qq-upload-delete-selector qq-upload-delete">Delete</button>'+
+					                    '<span role="status" class="qq-upload-status-text-selector qq-upload-status-text"></span>'+
+					                '</li>'+
+					            '</ul>';
 			}
-			fieldHTML += 				''+
+			fieldHTML += ''+
 							'<dialog class="qq-alert-dialog-selector">'+
 							'<div class="qq-dialog-message-selector"></div>'+
 							'<div class="qq-dialog-buttons">'+
@@ -1093,16 +1314,63 @@ var dyFObj = {
 							'</dialog>'+
 							'</div>'+
 							'</script>';
+			if(typeof dyFObj.init.uploader == "undefined") dyFObj.init.uploader=new Object;
+			uploadObject=new Object; 
 			if( fieldObj.showUploadBtn )
-        		dyFObj.init.initValues.showUploadBtn = fieldObj.showUploadBtn;
+        		uploadObject.showUploadBtn = fieldObj.showUploadBtn;
         	if( fieldObj.filetypes )
-        		dyFObj.init.initValues.filetypes = fieldObj.filetypes;
+        		uploadObject.filetypes = fieldObj.filetypes;
         	if( fieldObj.template )
-        		dyFObj.init.initValues.template = fieldObj.template;
-			if( $.isFunction( fieldObj.afterUploadComplete ) )
-        		dyFObj.init.initValues.afterUploadComplete = fieldObj.afterUploadComplete;
-        }
+        		uploadObject.template = fieldObj.template;
+			if( fieldObj.itemLimit )
+        		uploadObject.itemLimit = fieldObj.itemLimit;
+			if(fieldObj.endPoint)
+				uploadObject.endPoint=uploadObj.get("citoyens", userId, fieldObj.docType, null, null, fieldObj.endPoint);
+			if(typeof dySObj == "undefined" && $.isFunction( fieldObj.afterUploadComplete ))
+        		uploadObject.afterUploadComplete = fieldObj.afterUploadComplete;
+        	else if(typeof dySObj != "undefined" && Object.keys(dySObj.surveys).length != 0 && typeof fieldObj.afterUploadComplete == "string"){
+        		uploadObject.afterUploadComplete = function(){
+        			urlRedirect=baseUrl+fieldObj.afterUploadComplete;
+        			if(typeof formSession !=  "undefined" && formSession != "" && formSession != null )
+        				urlRedirect+="/session/"+formSession;
+        			if(typeof answerId != "undefined" && answerId!=""){
+        				urlRedirect+="/answer/"+answerId;
+        			}
+        			window.location=urlRedirect;
+        		};
+        	}else if(typeof updateForm != "undefined"){
+        		uploadObject.afterUploadComplete = function(){
+        			window.location.reload();
+        		};
+        	}
 
+        	if(typeof uploadObj.initList != "undefined" && Object.keys(uploadObj.initList).length > 0){
+        		uploadObject.initList=uploadObj.prepareInit(uploadObj.initList);
+        	} 
+        	dyFObj.init.uploader[uploaderId]=new Object;
+        	dyFObj.init.uploader[uploaderId]=uploadObject;
+        }
+         /* **************************************
+		* Folder INPUT
+		***************************************** */
+        else if ( fieldObj.inputType == "folder" ) {
+        	dataField="data-type='"+fieldObj.contextType+"' data-id='"+fieldObj.contextId+"' data-doctype='"+fieldObj.docType+"' data-contentkey='"+fieldObj.contentKey+"'";
+        	fieldHTML += iconOpen+'<button class="form-control col-xs-6 selectFolder btn-success" '+dataField+'>'+trad.choose+'</button><span class="nameFolder-form">'+fieldObj.emptyMsg+'</span>';
+        	dyFObj.initFieldOnload.folder = function(){
+        		init={docType:fieldObj.docType};
+				if(typeof folderId != "undefined" && folderId != "" && navInFolders[folderId].docType == fieldObj.docType){
+					dyFObj.init.folderUploadEvent(fieldObj.contextType, fieldObj.contextId, fieldObj.docType, fieldObj.contentKey, folderId);
+					init.folderId=folderId;
+				}
+                $(".selectFolder").click(function(e){
+                	var $this=$(this);
+                	e.preventDefault();
+                	folder.showPanel("get", null, null, function(e){
+		    			dyFObj.init.folderUploadEvent($this.data("type"), $this.data("id"), $this.data("doctype"), $this.data("contentkey"), e);
+	    			}, init);
+	    		});
+            }
+        }
         /* **************************************
 		* DATE INPUT , we use bootstrap-datepicker
 		***************************************** */
@@ -1115,7 +1383,7 @@ var dyFObj = {
         		value =moment(parseInt(value)*1000).format('DD/MM/YYYY');
         		//alert("switch:"+value);
         	}
-        	fieldHTML += iconOpen+'<input type="text" class="form-control dateInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
+        	fieldHTML += iconOpen+'<input type="text" autocomplete="off" class="form-control dateInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
         }
 
         /* **************************************
@@ -1125,7 +1393,7 @@ var dyFObj = {
         	if(placeholder == "")
         		placeholder="25/01/2014 08:30";
         	mylog.log("build field "+field+">>>>>> datetime");
-        	fieldHTML += iconOpen+'<input type="text" class="form-control dateTimeInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
+        	fieldHTML += iconOpen+'<input type="text" autocomplete="off" class="form-control dateTimeInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
         }
         /* **************************************
 		* DATE RANGE INPUT 
@@ -1209,8 +1477,8 @@ var dyFObj = {
 			if( formValues.address && formValues.geo && formValues.geoPosition ){
 				var initAddress = function(){
 					mylog.warn("init Adress location",formValues.address.addressLocality,formValues.address.postalCode);
-					dyFInputs.locationObj.copyMapForm2Dynform({address:formValues.address,geo:formValues.geo,geo:formValues.geoPosition});
-					dyFInputs.locationObj.addLocationToForm({address:formValues.address,geo:formValues.geo,geo:formValues.geoPosition}, -1);
+					dyFInputs.locationObj.copyMapForm2Dynform({address:formValues.address,geo:formValues.geo,geoPosition:formValues.geoPosition});
+					dyFInputs.locationObj.addLocationToForm({address:formValues.address,geo:formValues.geo,geoPosition:formValues.geoPosition});
 				};
 			}     
 			if( formValues.addresses ){
@@ -1249,7 +1517,12 @@ var dyFObj = {
 				};
 			}       
         } 
-
+        /* **************************************
+		* ARRAYFOMR , is a subdynForm, that builds a list of strutured answered using a
+		***************************************** */
+        else if ( fieldObj.inputType == "arrayForm" ) {
+        	mylog.log("build field "+field+">>>>>> array Form");
+       	}
         /* **************************************
 		* ARRAY , is a list of sequential values
 		***************************************** */
@@ -1266,7 +1539,7 @@ var dyFObj = {
         	fieldHTML +=   '<div class="inputs array">'+
 								'<div class="col-sm-10 no-padding">'+
 									'<img class="loading_indicator" src="'+parentModuleUrl+'/images/news/ajax-loader.gif" style="position: absolute;right: 5px;top: 10px;display:none;">'+
-									'<input type="text" name="'+field+'[]" class="addmultifield addmultifield0 form-control input-md value="" placeholder="'+placeholder+'"/>'+
+									'<input type="text" name="'+field+'[]" class="addmultifield addmultifield0 form-control input-md" value="" placeholder="'+placeholder+'"/>'+
 								'</div>'+
 								'<div class="col-sm-2 sectionRemovePropLineBtn">'+
 									'<a href="javascript:" data-id="'+field+fieldObj.inputType+'" class="removePropLineBtn col-md-12 btn btn-link letter-red" alt="Remove this line"><i class=" fa fa-minus-circle" ></i></a>'+
@@ -1297,10 +1570,10 @@ var dyFObj = {
 				if(typeof fieldObj.initOptions != "undefined")
 					initOptions=fieldObj.initOptions;
 
-				console.log("initField", fieldObj, fieldObj.value);
+				mylog.log("initField", fieldObj, fieldObj.value);
 					
 				$.each(fieldObj.value, function(optKey,optVal) { 
-					console.log("initField", optKey, "fieldObj.value", fieldObj.value, "class ."+field+fieldObj.inputType, "optVal", optVal, "field", field, initOptions);
+					mylog.log("initField", optKey, "fieldObj.value", fieldObj.value, "class ."+field+fieldObj.inputType, "optVal", optVal, "field", field, initOptions);
 					if(optKey == 0)
 	                    $(".addmultifield").val(optVal);
 	                else {
@@ -1436,27 +1709,28 @@ var dyFObj = {
         		//authorName=newsContext.authorName;
         	}
         	fieldHTML='<div id="createNews" class="form-group">'+
-        			'<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="post">'+
+        			'<label class="col-xs-12 text-left control-label no-padding" for="post">'+
 			            '<i class="fa fa-chevron-down"></i> '+tradDynForm.writenewshere+
 			        '</label>'+
-			        '<div id="mentionsText" class="col-md-12 col-sm-12 col-xs-12 no-padding">'+
+			        '<div id="mentionsText" class="col-xs-12 no-padding">'+
         				'<textarea name="newsText"></textarea>'+
         			'</div>'+
-					'<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="post">'+
+					'<label class="col-xs-12 text-left control-label no-padding" for="post">'+
 			            '<i class="fa fa-chevron-down"></i> '+tradDynForm.tags+
 			        '</label>'+
         			'<div class="no-padding">'+
           				'<input id="tags" type="" data-type="select2" name="tags" placeholder="#Tags" value="" style="width:100%;">'+
       				'</div>'+
-        			'<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="post">'+
+        			'<label class="col-xs-12 text-left control-label no-padding" for="post">'+
 			            '<i class="fa fa-chevron-down"></i> '+tradDynForm.newsvisibility+
 			        '</label>'+
-        			'<div class="dropdown no-padding col-md-12 col-sm-12 col-xs-12">'+
-          				'<a data-toggle="dropdown" class="btn btn-default col-md-12 col-sm-12 col-xs-12" id="btn-toogle-dropdown-scope" href="javascript:;">'+
+        			'<div class="dropdown no-padding col-xs-12">'+
+          				'<a data-toggle="dropdown" class="btn btn-default col-xs-12" id="btn-toogle-dropdown-scope" href="javascript:;">'+
           					'<i class="fa fa-connectdevelop"></i> '+tradDynForm.network+' <i class="fa fa-caret-down" style="font-size:inherit;"></i>'+
           				'</a>'+
           				'<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">';
-          					if(newsContext.targetType != "events"){
+          	if(newsContext.targetType != "events")
+          	{
             fieldHTML+=		'<li>'+
               					'<a href="javascript:;" id="scope-my-network" class="scopeShare" data-value="private">'+
               						'<h4 class="list-group-item-heading"><i class="fa fa-lock"></i> '+tradDynForm.private+'</h4>'+
@@ -1479,12 +1753,13 @@ var dyFObj = {
 			            '</ul>'+
 			            '<input type="hidden" name="scope" id="scope" value="restricted"/>'+
 	        		'</div>';
-	        		if(newsContext.targetType!="citoyens"){
-	        fieldHTML+=		'<label class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="post">'+
+	        if(newsContext.targetType!="citoyens")
+	        {
+	        fieldHTML+=		'<label class="col-xs-12 text-left control-label no-padding" for="post">'+
 			            '<i class="fa fa-chevron-down"></i> '+tradDynForm.newsauthor+
 		            '</label>'+
         			'<div class="dropdown no-padding col-md-12">'+
-          				'<a data-toggle="dropdown" class="btn btn-default col-md-12 col-sm-12 col-xs-12 text-left" id="btn-toogle-dropdown-targetIsAuthor" href="javascript:;">'+
+          				'<a data-toggle="dropdown" class="btn btn-default col-xs-12 text-left" id="btn-toogle-dropdown-targetIsAuthor" href="javascript:;">'+
            					'<img height=20 width=20 src="'+targetImg+'">'+  
            					' '+newsContext.targetName+
 				            ' <i class="fa fa-caret-down" style="font-size:inherit;"></i>'+
@@ -1522,7 +1797,7 @@ var dyFObj = {
         	mylog.log("build field "+field+">>>>>> scope");
         		//fieldClass += " select2TagsInput select2ScopeInput";				
 				fieldHTML += '<div class="col-md-12 no-padding">'+
-								'<div class="col-md-12 col-sm-12 col-xs-12">'+
+								'<div class="col-xs-12">'+
 									'<div class="btn-group  btn-group-justified margin-bottom-10 hidden-xs btn-group-scope-type" role="group">'+
 										'<select id="select-country"></select>'+
 									'</div>'+
@@ -1545,7 +1820,7 @@ var dyFObj = {
 											'<button type="button" class="btn btn-default tooltips" data-scope-type="zone"'+
 												'data-toggle="tooltip" data-placement="top" '+
 												'title="'+tradDynForm["Add a zone"]+'">'+
-												'<strong><i class="fa fa-bullseye"></i></strong> '+tradDynForm["Zone"]+
+												'<strong><i class="fa fa-bullseye"></i></strong> '+tradDynForm.Zone+
 											'</button>'+
 										'</div>'+
 									'</div>'+
@@ -1570,7 +1845,7 @@ var dyFObj = {
 											'<button type="button" class="btn btn-default tooltips" data-scope-type="zone"'+
 											'data-toggle="tooltip" data-placement="top" '+
 											'title="'+tradDynForm["Add a zone"]+'">'+
-											'<strong><i class="fa fa-bullseye"></i></strong> '+tradDynForm["Zone"]+
+											'<strong><i class="fa fa-bullseye"></i></strong> '+tradDynForm.Zone+
 											'</button>'+
 										'</div>'+
 									'</div>'+
@@ -1616,31 +1891,31 @@ var dyFObj = {
         } else if ( fieldObj.inputType == "formLocality") {
         	mylog.log("build field "+field+">>>>>> formLocality");
        		
-        	fieldHTML += "<div class='form-group inline-block padding-15 form-in-map formLocality col-md-6'>"+
-        					'<label style="font-size: 13px;" class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="newElement_country">'+
+        	fieldHTML += "<div class='col-md-6 col-xs-12 inline-block padding-15 form-in-map formLocality col-md-6'>"+
+        					'<label style="font-size: 13px;" class="col-xs-12 text-left control-label no-padding" for="newElement_country">'+
 								'<i class="fa fa-chevron-down"></i> '+tradDynForm.country+
 				            '</label>'+
-							"<select class='form-group col-md-10 col-xs-12' name='newElement_country' id='newElement_country'>"+
-								"<option value=''>"+tradDynForm.chooseCountry+"</option>";
+							"<select class='col-md-10 col-xs-12' name='newElement_country' id='newElement_country'>"+
+								"<option value=''>"+trad.chooseCountry+"</option>";
 								$.each(dyFObj.formInMap.countryList, function(key, v){
 									fieldHTML += "<option value='"+v.countryCode+"'>"+v.name+"</option>";
 								});
 				fieldHTML += "</select>"+
 							"<div id='divCity' class='hidden dropdown pull-left col-md-12 col-xs-12 no-padding'> "+
-								'<label style="font-size: 13px;" class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="newElement_country">'+
+								'<label style="font-size: 13px;" class="col-xs-12 text-left control-label no-padding" for="newElement_city">'+
 									'<i class="fa fa-chevron-down"></i> '+trad.city  +
 								'</label>'+
-						  		"<input autocomplete='off' class='form-group col-md-10 col-xs-12' type='text' name='newElement_city' placeholder='Search a city, a town or a postal code'>"+
-								"<ul class='dropdown-menu col-md-10 col-xs-12' id='dropdown-newElement_locality-found' style='margin-top: -15px; background-color : #ea9d13; max-height : 300px ; overflow-y: auto'>"+
+						  		"<input autocomplete='off' class='col-md-10 col-xs-12' type='text' name='newElement_city' placeholder='"+trad['Search a city, a town or a postal code']+"'>"+
+								"<ul class='dropdown-menu col-md-10 col-xs-12' id='dropdown-newElement_locality-found' style='margin-top: -2px; background-color : #ea9d13; max-height : 300px ; overflow-y: auto'>"+
 									"<li><a href='javascript:' class='disabled'>"+tradDynForm.searchACityATownOrAPostalCode +"</a></li>"+
 								"</ul>"+
 					  		"</div>"+
 							"<div id='divStreetAddress' class='hidden dropdown pull-left col-md-12 col-xs-12 no-padding'> "+
-								'<label style="font-size: 13px;" class="col-md-12 col-sm-12 col-xs-12 text-left control-label no-padding" for="newElement_country">'+
+								'<label style="font-size: 13px;" class="col-xs-12 text-left control-label no-padding" for="newElement_street">'+
 									'<i class="fa fa-chevron-down"></i> '+trad.streetFormInMap +
 					            '</label>'+
-								"<input class='form-group col-md-9 col-xs-9'  autocomplete='off' type='text' style='margin-right:-3px;' name='newElement_street' placeholder='"+trad.streetFormInMap +"'>"+
-								"<button class='col-md-1 col-xs-1 btn btn-default' style='padding:3px;border-radius:0 4px 4px 0;' type='text' id='newElement_btnSearchAddress'><i class='fa fa-search'></i></button>"+
+								"<input class='col-md-9 col-xs-9'  autocomplete='off' type='text' style='margin-right:-3px;' name='newElement_street' placeholder='"+trad.streetFormInMap +"'>"+
+								"<a href='javascript:;' class='col-md-1 col-xs-1 btn btn-default' style='padding:3px;border-radius:0 4px 4px 0 ; height: 33px;' type='text' id='newElement_btnSearchAddress'><i class='fa fa-search'></i></a>"+
 							"</div>"+
 							"<div class='dropdown pull-left col-xs-12 no-padding'> "+
 						  		"<ul class='dropdown-menu' id='dropdown-newElement_streetAddress-found' style='margin-top: -15px; background-color : #ea9d13; max-height : 300px ; overflow-y: auto'>"+
@@ -1653,26 +1928,32 @@ var dyFObj = {
 							"<div id='sumery' class='text-dark col-md-6 col-xs-12 no-padding'>"+
 								"<h4 class='text-center'>"+tradDynForm.addressSummary +" : </h4>"+
 								"<div id='street_sumery' class='col-xs-12'>"+
-									"<span>"+trad.streetFormInMap +" :</span>"+
-									"<span id='street_sumery_value'></span>"+
+									"<span>"+trad.streetFormInMap +" : </span>"+
+									"<b><span id='street_sumery_value'></span></b>"+
 								"</div>"+
 								"<div id='cp_sumery' class='col-xs-12'>"+
-									"<span>"+trad.postalCode +" :</span>"+
-									"<span id='cp_sumery_value'></span>"+
+									"<span>"+trad.postalCode +" : </span>"+
+									"<b><span id='cp_sumery_value'></span></b>"+
 								"</div>"+
 								"<div id='city_sumery' class='col-xs-12'>"+
-									"<span>"+trad.city +" :</span>"+
-									"<span id='city_sumery_value'></span>"+
+									"<span>"+trad.city +" : </span>"+
+									"<b><span id='city_sumery_value'></span></b>"+
 								"</div>"+
 								"<div id='country_sumery' class='col-xs-12'>"+
-									"<span>"+tradDynForm.country +" :</span>"+
-									"<span id='country_sumery_value'></span>"+
+									"<span>"+tradDynForm.country +" : </span>"+
+									"<b><span id='country_sumery_value'></span></b>"+
 								"</div>"+
 								"<hr class='col-md-12'>"+
-								"<center><a href='javascript:;' class='col-md-4 col-xs-4 btn btn-default' style='' type='text' id='btnValideAddress'>"+
+								"<a href='javascript:;' class='btn btn-success' type='text' id='btnValideAddress'>"+
 									tradDynForm.confirmAddress+
-								"</a></center>"+
+								"</a>"+
 							"</div>";
+				fieldHTML +="<div id='divNewAddress' class='text-dark col-xs-12 no-padding '>"+
+								"<a href='javascript:;' class='btn btn-success' style='margin-bottom: 10px;' type='text' id='newAddress'>"+
+									'<i class="fa fa-plus"></i> '+tradDynForm.addANewAddress +
+								"</a>"+
+							"</div>";
+
 
    //     		var isSelect2 = (fieldObj.isSelect2) ? "select2Input" : "";
    //     		fieldHTML += '<select class="'+isSelect2+' '+fieldClass+'" '+multiple+' name="'+field+'" id="'+field+'" style="width: 100%;height:30px;" data-placeholder="'+placeholder+'">';
@@ -1725,6 +2006,15 @@ var dyFObj = {
 		mylog.dir(formRules);
 		var errorHandler = $('.errorHandler', $(params.formId));
 
+		// $(params.formId).unbind('keydown').keydown(function(event) 
+		//   {
+		//   	if ( event.keyCode == 13)
+		//     {
+		// 		event.preventDefault();
+		// 		//alert("enter");
+		// 	}
+		// });
+
 		$(params.formId).validate({
 
 			rules : formRules,
@@ -1767,6 +2057,10 @@ var dyFObj = {
 			},
 			invalidHandler : function(event, validator) {//display error alert on form submit
 				errorHandler.show();
+				
+				//alert("error form");
+				//$(".btn-next").html('<span class="text-red">Errors <i class="fa fa-warning"></i></span>');
+				
 				// $("#btn-submit-form").html('Valider <i class="fa fa-arrow-circle-right"></i>').prop("disabled",false).one(function() { 
 				// 	$( settings.formId ).submit();	        	
 		  //       });
@@ -1819,22 +2113,26 @@ var dyFObj = {
 			{
 				$.each($(".select2TagsInput"),function () 
 				{
-					mylog.log( "id xxxxxxxxxxxxxxxxx " , $(this).attr("id") , dyFObj.init.initValues[ $(this).attr("id") ], dyFObj.init.initValues );
+					mylog.log( "select2TagsInput id xxxxxxxxxxxxxxxxx " , $(this).attr("id") , dyFObj.init.initValues[ $(this).attr("id") ], dyFObj.init.initValues );
 					if( dyFObj.init.initValues[ $(this).attr("id") ] && !$(this).hasClass( "select2-container" ))
 					{
-						mylog.log( "here2");
+						mylog.log( "select2TagsInput", dyFObj.init.initValues[ $(this).attr("id") ]);
 						var selectOptions = 
 						{
 						  "tags": dyFObj.init.initValues[ $(this).attr("id") ].tags ,
 						  "tokenSeparators": [','],
-						  "minimumInputLength" : 3,
+						  //"minimumInputLength" : 3,
 						  "placeholder" : ( $(this).attr("placeholder") ) ? $(this).attr("placeholder") : "",
 						};
 						if(dyFObj.init.initValues[ $(this).attr("id") ].maximumSelectionLength)
 							selectOptions.maximumSelectionLength = dyFObj.init.initValues[$(this).attr("id")]["maximumSelectionLength"];
+						mylog.log( "select2TagsInput dyFObj.init.initValues", dyFObj.init.initValues);
+						if(typeof dyFObj.init.initValues[ $(this).attr("id") ].minimumInputLength == "number")
+							selectOptions.minimumInputLength = dyFObj.init.initValues[$(this).attr("id")]["minimumInputLength"];
+
 						if(typeof dyFObj.init.initSelectNetwork != "undefined" && typeof dyFObj.init.initSelectNetwork[$(this).attr("id")] != "undefined" && dyFObj.init.initSelectNetwork[$(this).attr("id")].length > 0)
 							selectOptions.data=dyFObj.init.initSelectNetwork[$(this).attr("id")];
-						
+						mylog.log( "select2TagsInput selectOptions ", selectOptions);
 						$(this).removeClass("form-control").select2(selectOptions);
 						if(typeof mainTag != "undefined")
 							$(this).val([mainTag]).trigger('change');
@@ -1848,7 +2146,9 @@ var dyFObj = {
 		* DATE INPUT , we use http://xdsoft.net/jqplugins/datetimepicker/
 		***************************************** */
 		function loadDateTimePicker(callback) {
+			mylog.log("loadDateTimePicker");
 			if( ! jQuery.isFunction(jQuery.datetimepicker) ) {
+				mylog.log("loadDateTimePicker2");
 				lazyLoad( baseUrl+'/plugins/xdan.datetimepicker/jquery.datetimepicker.full.min.js', 
 						  baseUrl+'/plugins/xdan.datetimepicker/jquery.datetimepicker.min.css',
 						  callback);
@@ -1933,10 +2233,10 @@ var dyFObj = {
 		        //if(typeof showFormInMap != "undefined"){ showFormInMap(); }
 		        if(typeof formInMap.showMarkerNewElement != "undefined"){
 		        	$("#ajax-modal").modal("hide");
-		        	console.log(".locationBtn");
+		        	mylog.log(".locationBtn");
 					formInMap.actived = true ;
 			        showMap(true);
-		        	console.log(".locationBtn showMarkerNewElement");
+		        	mylog.log(".locationBtn showMarkerNewElement");
 		        	formInMap.showMarkerNewElement(); 
 		        }
 		    });
@@ -1959,9 +2259,9 @@ var dyFObj = {
 		/* **************************************
 		* Image uploader , we use https://github.com/FineUploader/fine-uploader
 		***************************************** */
-		if(  $(".fine-uploader-manual-trigger").length)
+		if(typeof dyFObj.init.uploader != "undefined" && Object.keys(dyFObj.init.uploader).length)
 		{
-			function loadFineUploader(callback,template) {
+			/*function loadFineUploader(callback,template) {
 				if( ! jQuery.isFunction(jQuery.fineUploader) ) {
 					if(template=='qq-template-manual-trigger')
 						var cssLazy=baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/fine-uploader-new.min.css';
@@ -1971,156 +2271,218 @@ var dyFObj = {
 							  cssLazy,
 							  callback);
 			    }
-			}
-			var docListIds=[];
-			var FineUploader = function(){
-				mylog.log("init fineUploader");
-				$(".fine-uploader-manual-trigger").fineUploader({
-		            template: (dyFObj.init.initValues.template) ? dyFObj.init.initValues.template : 'qq-template-manual-trigger',
-		            request: {
-		                endpoint: uploadObj.path
-		            },
-		            validation: {
-		                allowedExtensions: (dyFObj.init.initValues.filetypes) ? dyFObj.init.initValues.filetypes : ['jpeg', 'jpg', 'gif', 'png'],
-		                sizeLimit: 2000000
-		            },
-		            messages: {
-				        sizeError : '{file} '+tradDynForm.istooheavy+'! '+tradDynForm.limitmax+' : {sizeLimit}.',
-				        typeError : '{file} '+tradDynForm.invalidextension+'. '+tradDynForm.extensionacceptable+': {extensions}.'
-				    },
-				    
-		            callbacks: {
-		            	//when a img is selected
-					    onSubmit: function(id, fileName) {
-					    	$('.fine-uploader-manual-trigger').fineUploader('setEndpoint',uploadObj.path);	
-					    	//$('.fine-uploader-manual-trigger').fineUploader('uploadStoredFiles');
-    					    if( dyFObj.init.initValues.showUploadBtn  ){
-						      	$('#trigger-upload').removeClass("hide").click(function(e) {
-				        			$('.fine-uploader-manual-trigger').fineUploader('uploadStoredFiles');
-						        	urlCtrl.loadByHash(location.hash);
-				        			$('#ajax-modal').modal("hide");
-						        });
+			}*/
+			uploadObj.docListIds=[];
+			uploadObj.afterLoadUploader=false;
+			$.each(dyFObj.init.uploader, function(e,v){
+				var domElement="#"+e;
+				//var FineUploader = function(){
+					if(typeof v.endPoint == "undefined")
+						uploadObj.domTarget=domElement;
+					mylog.log("init fineUploader");
+					var endPointUploader=(typeof v.endPoint != "undefined") ? v.endPoint : uploadObj.path;
+					$(domElement).fineUploader({
+			            template: (v.template) ? v.template : 'qq-template-manual-trigger',
+			            paste: {
+					        defaultName: 'pasted_image',
+					        promptForName:false,
+					        targetElement: $(window)
+					    },
 
-					        }
+			            request: {
+			                endpoint: endPointUploader
+			            },
+			            validation: {
+			                allowedExtensions: (v.filetypes) ? v.filetypes : ['jpeg', 'jpg', 'gif', 'png'],
+			                sizeLimit: 2000000,
+			                itemLimit: (v.itemLimit) ? v.itemLimit : 0
+			            },
+			            messages: {
+					        sizeError : '{file} '+tradDynForm.istooheavy+'! '+tradDynForm.limitmax+' : {sizeLimit}.',
+					        typeError : '{file} '+tradDynForm.invalidextension+'. '+tradDynForm.extensionacceptable+': {extensions}.'
 					    },
-					    onCancel: function(id) {
-					    	if(($("ul.qq-upload-list > li").length-1)<=0)
-					    		$('#trigger-upload').addClass("hide");
-	        			},
-	        			
-					    //launches request endpoint
-					    //onUpload: function(id, fileName) {
-					      //alert(" > upload : "+id+fileName+contextData.type+contextData.id);
-					      //alert(" > request : "+ uploadObj.id +" :: "+ uploadObj.type);
-					      //console.log('onUpload uplaodObj',uploadObj);
-					      //var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
-					      //console.log('onUpload getEndpoint',ex);
-					    //},
-					    //launched on upload
-					    //onProgress: function(id, fileName, uploadedBytes,totalBytes) {
-					    	/*console.log('onProgress uplaodObj',uploadObj);
-					    	var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
-					    	console.log('onProgress getEndpoint',ex);
-					    	console.log('getInProgress',$('.fine-uploader-manual-trigger').fineUploader('getInProgress'));*/
-					      //alert("progress > "+" :: "+ uploadObj.id +" :: "+ uploadObj.type);
-					    //},
-					    //when every img finish upload process whatever the status
-					    onComplete: function(id, fileName,responseJSON,xhr) {
-					    	
-					    	console.log(responseJSON);
-					    	
-					    	if($("#ajaxFormModal #newsCreation").val()=="true"){
-					    		docListIds.push(responseJSON.id.$id);
-					    	}
-					    	if(!responseJSON.result){
-					    		toastr.error(trad.somethingwentwrong+" : "+responseJSON.msg );		
-					    		console.error(trad.somethingwentwrong , responseJSON.msg)
-					    	}
+					    session:{
+					    	endpoint:null
 					    },
-					    //when all upload is complete whatever the result
-					    onAllComplete: function(succeeded, failed) {
-					     	toastr.info( "Fichiers bien chargés !!");
-					      	if($("#ajaxFormModal #newsCreation").val()=="true"){
-					      		console.log("docslist",docListIds);
-					      		//var mentionsInput=[];
-					      		/*$('#ajaxFormModal #createNews textarea').mentionsInput('getMentions', function(data) {
-      								mentionsInput=data;
-    							});*/
-					      		var media=new Object;
-					      		if(uploadObj.contentKey=="file"){
-					      			media.type="gallery_files";
-					      			media.countFiles=docListIds.length;
-					      			media.files=docListIds;
-					      		}else{
-					      			media.type="gallery_images";
-					      			media.countImages=docListIds.length;
-					      			media.images=docListIds;
-					      		}
-					    		var addParams = {
-	              				  type: "news",
-	              				  parentId: uploadObj.id,
-	              				  parentType: uploadObj.type,
-	              				  scope:$("#ajaxFormModal #createNews #scope").val(),
-	              				  text:$("#ajaxFormModal #createNews textarea").val(),
-	              				  media: media
-	            				};
-	            				if ($("#ajaxFormModal #createNews #tags").val() != "")
-									addParams.tags = $("#ajaxFormModal #createNews #tags").val().split(",");
-								if($('#ajaxFormModal #createNews #authorIsTarget').length && $('#ajaxFormModal #createNews #authorIsTarget').val()==1)
-									addParams.targetIsAuthor = true;
-								/*if (mentionsResult.mentionsInput.length != 0){
-									addParams.mentions=mentionsResult.mentionsInput;
-									addParams.text=mentionsResult.text;
-								}*/
-								addParams=mentionsInit.beforeSave(addParams,'#ajaxFormModal #createNews textarea');
-								$.ajax({
-							        type: "POST",
-							        url: baseUrl+"/"+moduleId+"/news/save?tpl=co2",
-							        //dataType: "json",
-							        data: addParams,
-									type: "POST",
-							    })
-							    .done(function (data) {
+					    deleteFile: {
+					        enabled: true
+					    },
+			            callbacks: {
+			            	//when a img is selected
+						    onSubmit: function(id, fileName) {
 						    		
-									return true;
-							    }).fail(function(){
-								   toastr.error("Something went wrong, contact your admin"); 
-								   $("#btn-submit-form i").removeClass("fa-circle-o-notch fa-spin").addClass("fa-arrow-circle-right");
-								   $("#btn-submit-form").prop('disabled', false);
-							    });
-							}
-					    if( jQuery.isFunction(dyFObj.init.initValues.afterUploadComplete) )
-					      	dyFObj.init.initValues.afterUploadComplete();
-					     	uploadObj.gotoUrl = null;
-					    },
-					    onError: function(id) {
-					      toastr.info(trad.somethingwentwrong);
-					    }
-					},
-		            thumbnails: {
-		                placeholders: {
-		                    waitingPath: baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/processing.gif',
-		                    notAvailablePath: baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/retry.gif'
-		                }
-		            },
-		            autoUpload: false
-		        });
-				/*console.log(params);
-				if(typeof params.formValues.images != "undefined" && params.formValues.images.length > 0){
-					var imagesArray=[];
-					$.each(params.formValues.images,function(e,v){
-						var image={
-							"name":"ressource"+e,
-							"uuid":v.id,
-							"thumbnailUrl":v.imageThumbPath
-						};
-						imagesArray.push(image);
-					});
-					uploader.addInitialFiles(imagesArray);
-				}*/
-			};
-			if(  $(".fine-uploader-manual-trigger").length)
-				loadFineUploader(FineUploader,dyFObj.init.initValues.template);
+						    	//if(typeof v.endPoint == "undefined")
+						    	//	$(domElement).fineUploader('setEndpoint',uploadObj.path);
+	    					    if( v.showUploadBtn  ){
+							      	$('#trigger-upload').removeClass("hide").click(function(e) {
+					        			$(domElement).fineUploader('uploadStoredFiles');
+							        	urlCtrl.loadByHash(location.hash);
+					        			$('#ajax-modal').modal("hide");
+							        });
+						        }
+						    },
+						    onCancel: function(id) {
+						    	if(($("ul.qq-upload-list > li").length-1)<=0)
+						    		$('#trigger-upload').addClass("hide");
+		        			},
+		        			onPasteReceived: function(blob) {},
+
+						    //launches request endpoint
+						    //onUpload: function(id, fileName) {
+						      //alert(" > upload : "+id+fileName+contextData.type+contextData.id);
+						      //alert(" > request : "+ uploadObj.id +" :: "+ uploadObj.type);
+						      //mylog.log('onUpload uplaodObj',uploadObj);
+						      //var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
+						      //mylog.log('onUpload getEndpoint',ex);
+						    //},
+						    //launched on upload
+						    //onProgress: function(id, fileName, uploadedBytes,totalBytes) {
+						    	/*mylog.log('onProgress uplaodObj',uploadObj);
+						    	var ex = $('.fine-uploader-manual-trigger').fineUploader('getEndpoint');
+						    	mylog.log('onProgress getEndpoint',ex);
+						    	mylog.log('getInProgress',$('.fine-uploader-manual-trigger').fineUploader('getInProgress'));*/
+						      //alert("progress > "+" :: "+ uploadObj.id +" :: "+ uploadObj.type);
+						    //},
+						    //when every img finish upload process whatever the status
+						    onComplete: function(id, fileName,responseJSON,xhr) {
+						    	
+						    	console.log(responseJSON,xhr);
+						    	if(typeof responseJSON.survey != "undefined" && responseJSON.survey){
+						    		uploadObj.afterLoadUploader=false;
+						    		documentEl={
+						    			surveyId:uploadObj.formId,
+						    			answerId:uploadObj.answerId,
+						    			formId:dySObj.surveys.id,
+						    			answerSection: dySObj.activeSectionKey,
+						    			answerKey : responseJSON.survey,
+						    			documentId :responseJSON.id.$id
+						    		};
+						    		if(typeof updateForm !="undefined" && notNull(updateForm)){
+						    			
+						    			documentEl.formId = updateForm.form;
+	    								documentEl.answerSection = updateForm.step; 
+	    							}
+						    		$.ajax({
+								        type: "POST",
+								        url: baseUrl+"/survey/co/updatedocumentids",
+								        //dataType: "json",
+								        data: documentEl,
+										type: "POST",
+								    })
+								    .done(function (data){
+								    	uploadObj.afterLoadUploader=true;
+								    	if(typeof v.afterUploadComplete != "undefined" && jQuery.isFunction(v.afterUploadComplete) ){
+						    				v.afterUploadComplete();
+						    			}
+								    }).fail(function(){
+									  // toastr.error("Something went wrong, contact your admin");
+									   $("#btn-submit-form i").removeClass("fa-circle-o-notch fa-spin").addClass("fa-arrow-circle-right");
+									   $("#btn-submit-form").prop('disabled', false);
+								    });
+						    	}
+						    	if($("#ajaxFormModal #newsCreation").val()=="true"){
+						    		uploadObj.docListIds.push(responseJSON.id.$id);
+						    	}
+						    	if(!responseJSON.result){
+						    		toastr.error(trad.somethingwentwrong+" : "+responseJSON.msg );		
+						    		mylog.error(trad.somethingwentwrong , responseJSON.msg)
+						    	}
+						    },
+						    onSessionRequestComplete:function(response, success, xhrOrXdr){
+						    	//alert("sessiiiiiiion");
+						    	//console.log("sesionnnn", response, success, xhrOrXdr);
+						    },
+						    //when all upload is complete whatever the result
+						    onAllComplete: function(succeeded, failed) {
+						    	mylog.log("ooooooooooooo",succeeded,failed);
+						     	
+						      	if($("#ajaxFormModal #newsCreation").val()=="true"){
+						      		//var mentionsInput=[];
+						      		/*$('#ajaxFormModal #createNews textarea').mentionsInput('getMentions', function(data) {
+	      								mentionsInput=data;
+	    							});*/
+						      		var media=new Object;
+						      		if(uploadObj.contentKey=="file"){
+						      			media.type="gallery_files";
+						      			media.countFiles=uploadObj.docListIds.length;
+						      			media.files=uploadObj.docListIds;
+						      		}else{
+						      			media.type="gallery_images";
+						      			media.countImages=uploadObj.docListIds.length;
+						      			media.images=uploadObj.docListIds;
+						      		}
+						    		var addParams = {
+		              				  type: "news",
+		              				  parentId: uploadObj.id,
+		              				  parentType: uploadObj.type,
+		              				  scope:$("#ajaxFormModal #createNews #scope").val(),
+		              				  text:$("#ajaxFormModal #createNews textarea").val(),
+		              				  media: media
+		            				};
+		            				if ($("#ajaxFormModal #createNews #tags").val() != "")
+										addParams.tags = $("#ajaxFormModal #createNews #tags").val().split(",");
+									if($('#ajaxFormModal #createNews #authorIsTarget').length && $('#ajaxFormModal #createNews #authorIsTarget').val()==1)
+										addParams.targetIsAuthor = true;
+									/*if (mentionsResult.mentionsInput.length != 0){
+										addParams.mentions=mentionsResult.mentionsInput;
+										addParams.text=mentionsResult.text;
+									}*/
+									addParams=mentionsInit.beforeSave(addParams,'#ajaxFormModal #createNews textarea');
+									$.ajax({
+								        type: "POST",
+								        url: baseUrl+"/"+moduleId+"/news/save?tpl=co2",
+								        //dataType: "json",
+								        data: addParams,
+										type: "POST",
+								    })
+								    .done(function (data) {
+							    		
+										return true;
+								    }).fail(function(){
+									   toastr.error("Something went wrong, contact your admin"); 
+									   $("#btn-submit-form i").removeClass("fa-circle-o-notch fa-spin").addClass("fa-arrow-circle-right");
+									   $("#btn-submit-form").prop('disabled', false);
+								    });
+								}
+						    	if(uploadObj.afterLoadUploader){
+						    		//toastr.info( "Fichiers bien chargés !!");
+						    		if(typeof v.afterUploadComplete != "undefined" && jQuery.isFunction(v.afterUploadComplete) ){
+						    			v.afterUploadComplete();
+						    		}
+						     		uploadObj.gotoUrl = null;
+						     	}
+						    },
+						    onError: function(id) {
+						      toastr.info(trad.somethingwentwrong);
+						    }
+						},
+			            thumbnails: {
+			                placeholders: {
+			                    waitingPath: baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/processing.gif',
+			                    notAvailablePath: baseUrl+'/plugins/fine-uploader/jquery.fine-uploader/retry.gif'
+			                }
+			            },
+			            autoUpload: false
+			        });
+					if(typeof v.initList != "undefined" )
+						$(domElement).fineUploader("addInitialFiles",v.initList);
+					/*mylog.log(params);
+					if(typeof params.formValues.images != "undefined" && params.formValues.images.length > 0){
+						var imagesArray=[];
+						$.each(params.formValues.images,function(e,v){
+							var image={
+								"name":"ressource"+e,
+								"uuid":v.id,
+								"thumbnailUrl":v.imageThumbPath
+							};
+							imagesArray.push(image);
+						});
+						uploader.addInitialFiles(imagesArray);
+					}*/
+				//};
+				//if($(domElement).length)
+				//loadFineUploader(FineUploader,v.template);
+			});
 		}
 
 		/* **************************************
@@ -2155,7 +2517,7 @@ var dyFObj = {
 		* formLocality 
 		***************************************** */
 		if(  $(".formLocality").length ){
-			alert("formLocality");
+			//alert("formLocality");
 			dyFObj.formInMap.init();
 		}
 		
@@ -2185,7 +2547,7 @@ var dyFObj = {
 		***************************************** */
 		if(  $(".wysiwygInput").length )
 		{
-			console.log("wysiwygInput wysiwygInput");
+			mylog.log("wysiwygInput wysiwygInput");
 				var initField = function(){
 					$(".wysiwygInput").summernote({
 
@@ -2223,7 +2585,7 @@ var dyFObj = {
 		***************************************** */
 		if(  $(".markdownInput").length )
 		{
-			console.log("markdownInput");
+			mylog.log("markdownInput");
 			var initField = function(){
 				$(".markdownInput").markdown({
 						savable:true,
@@ -2264,6 +2626,7 @@ var dyFObj = {
 		* val can be a value when type array or {"label":"","value":""} when type property
 		***************************************** */
 		initValues : {},
+		uploader : {},
 		initSelect : {},
 		initSelectNetwork : [],
 		addfield : function ( parentContainer,val,name, type ) {
@@ -2293,13 +2656,13 @@ var dyFObj = {
 						  "tokenSeparators": [','],
 						  "placeholder" : ( $("#"+e).attr("placeholder") ) ? $("#"+e).attr("placeholder") : "",
 						};
-						mylog.log( "here3");
+						
 						if(dyFObj.init.initValues[ e ].maximumSelectionLength)
 							selectOptions.maximumSelectionLength = dyFObj.init.initValues[e]["maximumSelectionLength"];
-						mylog.log( "here3");
+						
 						if(typeof dyFObj.init.initSelectNetwork != "undefined" && typeof dyFObj.init.initSelectNetwork[e] != "undefined" && dyFObj.init.initSelectNetwork[e].length > 0)
 							selectOptions.data=dyFObj.init.initSelectNetwork[e];
-						mylog.log( "here3");
+						
 						$("#"+e).removeClass("form-control").select2(selectOptions);
 						if(typeof mainTag != "undefined")
 							$("#"+e).val([mainTag]).trigger('change');
@@ -2522,13 +2885,26 @@ var dyFObj = {
 		        });
 			  });
 		},
-
+		folderUploadEvent : function( type, id, docT, contentK, foldk){
+			if(foldk=="")
+				name=(docT=="image") ? trad.noalbumselected : trad.nofolderselected;
+			else
+				name=navInFolders[foldk].name;
+			$(".nameFolder-form").text(name);
+		    endPoint=uploadObj.get(type, id, docT, contentK, foldk);
+		    $("#imageElement").fineUploader('setEndpoint',endPoint);
+			uploadObj.gotoUrl="#page.type."+type+".id."+id+".view.gallery.dir."+docT;
+			if(contentK != "")
+				uploadObj.gotoUrl+=".key."+contentK;
+			if(foldk != "")
+				uploadObj.gotoUrl+=".folder."+foldk;
+		},
 		addHoursRange : function (addToDay){
 			mylog.log("dyFObj.init.addHoursRange", addToDay);
 			var countRange=$("#hoursRange"+addToDay+" .hoursRange").length;
 			mylog.log("countRange", countRange);
 			//alert(countRange);
-			str='<div class="col-md-12 col-sm-12 col-xs-12 hoursRange no-padding hoursRange'+countRange+'" data-value="'+countRange+'">'+
+			str='<div class="col-xs-12 hoursRange no-padding hoursRange'+countRange+'" data-value="'+countRange+'">'+
 					'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding">'+
 	        		'<i class="fa fa-hourglass-start"></i> Start hour'+
 	    			'</label>'+
@@ -2574,8 +2950,8 @@ var dyFObj = {
 			}
 			mylog.log("allWeek", allWeek);
 			//((allWeek == true) ? "style='display:none;'" : "")
-			var str = "<div class='col-md-12 col-sm-12 col-xs-12 no-padding'>"+
-				"<div id='selectedDays' class='col-md-12 col-sm-12 col-xs-12 text-center margin-bottom-10' "+((allWeek == true) ? "style='display:none;'" : "")+">";
+			var str = "<div class='col-xs-12 no-padding'>"+
+				"<div id='selectedDays' class='col-xs-12 text-center margin-bottom-10' "+((allWeek == true) ? "style='display:none;'" : "")+">";
 					$.each(arrayDayKeys,function(e,v){
 						var active = ((typeof data != "object" || typeof data[e] == "object" ) ? "active"  : "");
 						str+="<div class='inline'>"+
@@ -2583,7 +2959,7 @@ var dyFObj = {
 							"</div>";
 					});
 			str+="</div>"+
-				"<div id='daysList' class='col-md-12 col-sm-12 col-xs-12 no-padding'>";
+				"<div id='daysList' class='col-xs-12 no-padding'>";
 					$.each(arrayDayKeys,function(e,v){
 
 						var noneDay = ( (typeof data != "object" || typeof data[e] == "object")  ? ""  : "display:none;");
@@ -2593,18 +2969,18 @@ var dyFObj = {
 						// mylog.log("noneDay", noneDay);
 						// mylog.log("checked", checked);
 						// mylog.log("noneHours", noneHours);
-				str+=	"<div class='col-md-12 col-sm-12 col-xs-12 padding-bottom-10 padding-top-10 margin-bottom-5 shadow2' id='contentDays"+v+"' style='border-bottom:1px solid lightgray; "+noneDay+"'>"+
-							"<div class='col-md-12 col-sm-12 col-xs-12 no-padding'>"+
+				str+=	"<div class='col-xs-12 padding-bottom-10 padding-top-10 margin-bottom-5 shadow2' id='contentDays"+v+"' style='border-bottom:1px solid lightgray; "+noneDay+"'>"+
+							"<div class='col-xs-12 no-padding'>"+
 								'<label class="col-md-4 col-sm-5 col-xs-6 text-left control-label no-padding no-margin" for="allDaysMo">'+
 									'<i class="fa fa-calendar"></i> '+arrayKeyTrad[v].label+
 								'</label>'+
 								'<input type="checkbox" class="allDaysWeek" id="allDays'+v+'" value="true" data-key="'+v+'" '+checked+'/> '+tradDynForm.allday+
 							"</div>"+
-							'<div class="col-md-12 col-sm-12 col-xs-12" id="hoursRange'+v+'" '+noneHours+'>';
+							'<div class="col-xs-12" id="hoursRange'+v+'" '+noneHours+'>';
 								if( typeof data[e] == "object" && notNull(data[e].hours) ){
 									$.each(data[e].hours,function(kHour,vHour){
 										mylog.log("hours", kHour, vHour);
-										str +='<div class="col-md-12 col-sm-12 col-xs-12 hoursRange no-padding hoursRange'+kHour+'" data-value="'+kHour+'">'+
+										str +='<div class="col-xs-12 hoursRange no-padding hoursRange'+kHour+'" data-value="'+kHour+'">'+
 												'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding">'+
 								        		'<i class="fa fa-hourglass-start"></i> Start hour'+
 								    			'</label>'+
@@ -2625,7 +3001,7 @@ var dyFObj = {
 
 									});
 								}else{
-									str+= '<div class="col-md-12 col-sm-12 col-xs-12 hoursRange no-padding" data-value="0">'+
+									str+= '<div class="col-xs-12 hoursRange no-padding" data-value="0">'+
 										'<label class="col-md-6 col-sm-6 col-xs-6 text-left control-label no-padding" for="allDaysMo">'+
 											'<i class="fa fa-hourglass-start"></i> Start hour'+
 										'</label>'+
@@ -2741,7 +3117,7 @@ var dyFObj = {
 								"</div>";
 						msg = "Verifiez si le contact est dans Communecter";
 					}else if(dySObj.surveys != null){
-						str +='<a href="javascript:;" onclick="dySObj.goForward(\''+id+'\',\''+addslashes(elem.name)+'\', \''+elem.slug+'\' );" class="btn btn-xs btn-danger col-xs-12 w50p text-left padding-5 margin-5">'+
+						str +='<a href="javascript:;" onclick="dySObj.goForward(\''+id+'\',\''+addslashes(elem.name)+'\', \''+elem.slug+'\', \''+elem.email+'\' );" class="btn btn-xs btn-danger col-xs-12 w50p text-left padding-5 margin-5">'+
 							"<span>"+ htmlIco +"</span> <span> " + elem.name+"</br>"+where+ "</span>"+
 						"</a>"; 
 					}else{
@@ -2801,11 +3177,8 @@ var dyFObj = {
 			mylog.log("forminmap showMarkerNewElement");
 			mylog.log("formType", dyFObj.formInMap.formType);
 			$(".locationBtn").addClass("hidden");
-			if ( typeof surveyCountry != "undefined" && surveyCountry != null && surveyCountry != ""){
-				dyFObj.formInMap.NE_country = surveyCountry;
-			} else if( notNull(currentUser) && notNull(currentUser.addressCountry) && dyFObj.formInMap.NE_country== "" ){
-				dyFObj.formInMap.NE_country = currentUser.addressCountry;
-			}
+			
+			dyFObj.formInMap.initCountry();
 
 			$('[name="newElement_country"]').val(dyFObj.formInMap.NE_country);
 
@@ -2813,7 +3186,7 @@ var dyFObj = {
 				$("#divPostalCode").removeClass("hidden");
 				$("#divCity").removeClass("hidden");
 			}
-
+			mylog.log("dyFObj.formInMap.bindActived", dyFObj.formInMap.bindActived);
 			if(dyFObj.formInMap.bindActived == false)
 				dyFObj.formInMap.bindFormInMap();
 
@@ -2826,7 +3199,24 @@ var dyFObj = {
 
 			if(typeof networkJson == "undefined" || networkJson == null)
 				$("#mapLegende").addClass("hidden");
-			mylog.log("forminmap showMarkerNewElement END");
+
+			dyFObj.formInMap.newAddress(false);
+			//mylog.log("here");
+			//dyFInputs.locationObj.init();
+			mylog.log("forminmap showMarkerNewElement END!");
+		},
+		initCountry : function(){
+			if ( 	typeof dySObj != "undefined" && 
+					typeof dySObj.surveys != "undefined" && 
+					typeof dySObj.surveys.parentSurvey != "undefined" && 
+					typeof dySObj.surveys.parentSurvey.countryCode != "undefined" && 
+					dySObj.surveys.parentSurvey.countryCode != ""){
+				dyFObj.formInMap.NE_country = dySObj.surveys.parentSurvey.countryCode;
+			} else if( notNull(currentUser) && notNull(currentUser.addressCountry) && dyFObj.formInMap.NE_country== "" ){
+				dyFObj.formInMap.NE_country = currentUser.addressCountry;
+			}else{
+				dyFObj.formInMap.NE_country = "";
+			}
 		},
 		initVarNE : function(){
 			mylog.log("initVarNE");
@@ -2848,19 +3238,16 @@ var dyFObj = {
 			dyFObj.formInMap.NE_localityId = "";
 			dyFObj.formInMap.NE_betweenCP = false;
 
-			if ( typeof surveyCountry != "undefined" && surveyCountry != null && surveyCountry != ""){
-				dyFObj.formInMap.NE_country = surveyCountry;
-			} else if( notNull(currentUser) && notNull(currentUser.addressCountry) && dyFObj.formInMap.NE_country== "" ){
-				dyFObj.formInMap.NE_country = currentUser.addressCountry;
-			}
+			dyFObj.formInMap.initCountry();
 		},
 		initDropdown : function(){
 			mylog.log("initDropdown");
 			$("#dropdown-newElement_cp-found").html("<li><a href='javascript:' class='disabled'>"+trad['Currently researching']+"</a></li>");
 			$("#dropdown-newElement_city-found").html("<li><a href='javascript:' class='disabled'>"+trad['Search a city, a town or a postal code'] +"</a></li>");
 		},
-		initHtml : function(){			
-			$('[name="newElement_country"]').val(dyFObj.formInMap.NE_country);
+		initHtml : function(){
+			dyFObj.formInMap.initCountry();	
+			//$('[name="newElement_country"]').val(dyFObj.formInMap.NE_country);
 			$('[name="newElement_city"]').val("");
 			$('[name="newElement_street"]').val("");
 
@@ -2869,6 +3256,7 @@ var dyFObj = {
 			if(dyFObj.formInMap.NE_country == ""){
 				$("#divCity").addClass("hidden");
 			}
+			dyFObj.formInMap.showWarningGeo(false);
 		},
 		resumeLocality : function(cancel){
 			if(dyFObj.formInMap.NE_street != ""){
@@ -2897,25 +3285,32 @@ var dyFObj = {
 
 
 			if(dyFObj.formInMap.NE_country != "" && dyFObj.formInMap.NE_city != ""){
-				$("#btnValideAddress").prop('disabled', false);
-			}else
-				$("#btnValideAddress").prop('disabled', true);
+				//$("#btnValideAddress").prop('disabled', false);
+				$("#btnValideAddress").show();
+			}else{
+				//$("#btnValideAddress").prop('disabled', true);
+				$("#btnValideAddress").hide();
+			}
 		},
 		bindFormInMap : function(){
 			mylog.log("bindFormInMap");
 
-			$('[name="newElement_country"]').change(function(){
-				mylog.log("change country");
-				alert($(this).val());
-				dyFObj.formInMap.initVarNE()
-				dyFObj.formInMap.NE_country = $('[name="newElement_country"]').val() ;
+			$('#ajaxFormModal  #newElement_country').change(function(){
+				mylog.log("formInMap.NE_country D", $(this).val(), $('#ajaxFormModal  #newElement_country').val());
+				dyFObj.formInMap.initVarNE();
+				dyFObj.formInMap.NE_country = $(this).val() ;
+				mylog.log("formInMap.NE_country M", dyFObj.formInMap.NE_country );
+				dyFObj.formInMap.resumeLocality();
 				//dyFObj.formInMap.initHtml();
-				$("#country_sumery_value").html($('[name="newElement_country"]').val());
-				$("#btnValideAddress").prop('disabled', true);
+				// $("#country_sumery_value").html($('[name="newElement_country"]').val());
+				// $('[name="newElement_city"]').val("");
+				// $("#country_sumery_value").html($('[name="newElement_country"]').val());
+				// $("#btnValideAddress").prop('disabled', true);
+				$("#btnValideAddress").hide();
 				$("#divStreetAddress").addClass("hidden");
 
 				dyFObj.formInMap.initDropdown();
-				mylog.log("formInMap.NE_country", dyFObj.formInMap.NE_country, typeof dyFObj.formInMap.NE_country, dyFObj.formInMap.NE_country.length);
+				mylog.log("formInMap.NE_country F", dyFObj.formInMap.NE_country, typeof dyFObj.formInMap.NE_country, dyFObj.formInMap.NE_country.length);
 				if(dyFObj.formInMap.NE_country != ""){
 					$("#divCP").addClass("hidden");
 					$("#divCity").removeClass("hidden");
@@ -2965,6 +3360,11 @@ var dyFObj = {
 			// ---------------- newElement_streetAddress
 			$("#btnValideAddress").click(function(){
 				dyFObj.formInMap.valideLocality();
+			});
+
+
+			$("#newAddress").click(function(){
+				dyFObj.formInMap.newAddress(true);
 			});
 
 		},
@@ -3027,6 +3427,18 @@ var dyFObj = {
 
 			return locality;
 		},
+		newAddress : function(newA){
+			mylog.log("newAddress ", newA);
+			if(notEmpty(newA) && newA == true ){
+				$('.formLocality').show();
+				$('#sumery').show();
+				$('#divNewAddress').hide();
+			}else{
+				$('.formLocality').hide();
+				$('#sumery').hide();
+				$('#divNewAddress').show();
+			}
+		},
 		valideLocality : function(country){
 			mylog.log("valideLocality ", notEmpty(dyFObj.formInMap.NE_lat));
 			if(notEmpty(dyFObj.formInMap.NE_lat)){
@@ -3035,9 +3447,12 @@ var dyFObj = {
 				dyFInputs.locationObj.copyMapForm2Dynform(locObj);
 				dyFInputs.locationObj.addLocationToForm(locObj);
 			}
+
 			dyFObj.formInMap.initVarNE();
 			dyFObj.formInMap.resumeLocality();
 			dyFObj.formInMap.initHtml();
+			dyFObj.formInMap.newAddress(false);
+
 
 		},
 		// Pour effectuer une recherche a la Réunion avec Nominatim, il faut choisir le code de la France, pas celui de la Réunion
@@ -3096,7 +3511,7 @@ var dyFObj = {
 				callNominatim(requestPart, countryCode);
 			}
 			
-			dyFObj.formInMap.btnValideDisable(false);
+			//dyFObj.formInMap.btnValideDisable(false);
 		},
 		autocompleteFormAddress : function(currentScopeType, scopeValue){
 			mylog.log("autocompleteFormAddress", currentScopeType, scopeValue);
@@ -3207,7 +3622,7 @@ var dyFObj = {
 			});
 		},
 		add : function(complete, data, inseeGeoSHapes){
-			console.log("add", complete, data, inseeGeoSHapes);
+			mylog.log("add", complete, data, inseeGeoSHapes);
 			
 			dyFObj.formInMap.NE_insee = data.data("insee");
 			dyFObj.formInMap.NE_lat = data.data("lat");
@@ -3241,8 +3656,9 @@ var dyFObj = {
 				$("#divStreetAddress").addClass("hidden");
 			else
 				$("#divStreetAddress").removeClass("hidden");
-
+			$('[name="newElement_city"]').val(dyFObj.formInMap.NE_city);
 			dyFObj.formInMap.resumeLocality();
+
 		},
 		changeSelectCountrytim : function(){
 			mylog.log("changeSelectCountrytim", dyFObj.formInMap.NE_country);
@@ -3268,8 +3684,14 @@ var dyFObj = {
 			}
 		},
 		btnValideDisable : function(bool){
-			mylog.log("btnValideDisable");
-			$("#btnValideAddress").prop('disabled', bool);
+			mylog.log("btnValideDisable",bool);
+			//$("#btnValideAddress").prop('disabled', bool);
+
+			if(bool == true){
+				$("#btnValideAddress").show();
+			}else{
+				$("#btnValideAddress").hide();
+			}
 		}
 	},
 	
@@ -3287,71 +3709,109 @@ var dyFInputs = {
 	    dyFInputs.locationObj.addresses = (typeof dyFObj.elementData != "undefined" && dyFObj.elementData != null && typeof dyFObj.elementData.map.addresses != "undefined") ? dyFObj.elementData.map.addresses  :  [] ;
 	    updateLocality = false;
 	    // Initialize tags list for network in form of element
-		if(	typeof networkJson != 'undefined' && 
-			typeof networkJson.add != "undefined"  && 
-			typeof typeObj != "undefined" ){
-			$.each(networkJson.add, function(key, v) {
-				mylog.log("key", key);
-				if( typeof typeObj[key].dynForm != "undefined" ){
-					if(typeof networkJson.request.sourceKey != "undefined"){
-						sourceObject = {inputType:"hidden", value : networkJson.request.sourceKey[0]};
-						typeObj[key].dynForm.jsonSchema.properties.source = sourceObject;
-					}
+		if(	typeof networkJson != 'undefined' && typeof networkJson != null){
+			var networkTags = [];
+			var networkTagsCategory = {};
+			tagsList = [];
+			if(typeof networkJson.request != "undefined"){
+				if(typeof networkJson.request.mainTag != "undefined")
+					networkTags.push({id:networkJson.request.mainTag[0],text:networkJson.request.mainTag[0]});
 
-					if(v){
-
-						if(typeof networkJson.request.searchTag != "undefined"){
-							typeObj[key].dynForm.jsonSchema.properties.tags.data = networkJson.request.searchTag;
-							mylog.log("DATA NETWORK1", typeObj[key].dynForm.jsonSchema.properties.tags.data);
-						}
-
-						if(	typeof typeObj[key] != "undefined" &&
-							typeof typeObj[key].dynForm != "undefined" && 
-							typeof typeObj[key].dynForm.jsonSchema.properties.tags != "undefined"){
-							mylog.log("tags", typeof typeObj[key].dynForm.jsonSchema.properties.tags, typeObj[key].dynForm.jsonSchema.properties.tags);
-							mylog.log("networkTags", networkTags);
-							typeObj[key].dynForm.jsonSchema.properties.tags.values=networkTags;
-							if(typeof networkJson.request.mainTag != "undefined"){
-								typeObj[key].dynForm.jsonSchema.properties.tags.mainTag = networkJson.request.mainTag;
-								if(typeof typeObj[key].dynForm.jsonSchema.properties.tags.data == "undefined")
-									typeObj[key].dynForm.jsonSchema.properties.tags.data = [] ;
-
-								mylog.log("DATA NETWORK2", typeObj[key].dynForm.jsonSchema.properties.tags.data, networkJson.request.mainTag[0]);
-								
-								typeObj[key].dynForm.jsonSchema.properties.tags.data = $.merge(networkJson.request.mainTag, typeObj[key].dynForm.jsonSchema.properties.tags.data);
-								mylog.log("DATA NETWORK3", typeObj[key].dynForm.jsonSchema.properties.tags.data);
-
-							}
-						}
-
-						if(notNull(networkJson.dynForm)){
-							mylog.log("networkJson.dynForm");
-							mylog.log("networkJson.dynForm", "networkJson.dynForm");
-							if(notNull(networkJson.dynForm.extra)){
-								var nbListTags = 1 ;
-								mylog.log("networkJson.dynForm.extra.tags", "networkJson.dynForm.extra.tags"+nbListTags);
-								mylog.log(jsonHelper.notNull("networkJson.dynForm.extra.tags"+nbListTags));
-								while(jsonHelper.notNull("networkJson.dynForm.extra.tags"+nbListTags)){
-									typeObj[key].dynForm.jsonSchema.properties["tags"+nbListTags] = {
-										"inputType" : "tags",
-										"placeholder" : networkJson.dynForm.extra["tags"+nbListTags].placeholder,
-										"values" : networkTagsCategory[ networkJson.dynForm.extra["tags"+nbListTags].list ],
-										"data" : networkTagsCategory[ networkJson.dynForm.extra["tags"+nbListTags].list ],
-										"label" : networkJson.dynForm.extra["tags"+nbListTags].list
-									};
-									nbListTags++;
-									mylog.log("networkJson.dynForm.extra.tags", "networkJson.dynForm.extra.tags"+nbListTags);
-									mylog.log(jsonHelper.notNull("networkJson.dynForm.extra.tags"+nbListTags));
-								}
-								delete typeObj[key].dynForm.jsonSchema.properties.tags;
-							}
-						}
-					}
+				if(typeof networkJson.request.searchTag != "undefined"){
+					console.log("NETWORK searchTag", networkTags);
+					networkTags = $.merge(networkTags, networkJson.request.searchTag);
+					console.log("NETWORK searchTag", networkTags);
 				}
-				
-			});
+			}
+			
+			if(typeof networkJson.filter != "undefined" && typeof networkJson.filter.linksTag != "undefined"){
+				$.each(networkJson.filter.linksTag, function(category, properties) {
+					optgroupObject=new Object;
+					optgroupObject.text=category;
+					optgroupObject.children=[];
+					networkTagsCategory[category]=[];
+					$.each(properties.tags, function(i, tag) {
+						if($.isArray(tag)){
+							$.each(tag, function(keyTag, textTag) {
+								val={id:textTag,text:textTag};
+								if(jQuery.inArray( textTag, tagsList ) == -1 ){
+									optgroupObject.children.push(val);
+									tagsList.push(textTag);
+								}
+							});
+						}else{
+							val={id:tag,text:tag};
+							if(jQuery.inArray( tag, tagsList ) == -1 ){
+								optgroupObject.children.push(val);
+								tagsList.push(tag);
+							}
+						}
+					});
+					networkTags.push(optgroupObject);
+					networkTagsCategory[category].push(optgroupObject);
+				});
+			}
+
+
+			if(	typeof networkJson.add != "undefined"  && 
+				typeof typeObj != "undefined" ){
+				$.each(networkJson.add, function(key, v) {
+					mylog.log("key", key);
+					if( typeof typeObj[key].dynForm != "undefined" ){
+						if(typeof networkJson.request.sourceKey != "undefined"){
+							sourceObject = {inputType:"hidden", value : networkJson.request.sourceKey[0]};
+							typeObj[key].dynForm.jsonSchema.properties.source = sourceObject;
+						}
+
+						if(v){
+
+							if(typeof networkJson.request.searchTag != "undefined"){
+								typeObj[key].dynForm.jsonSchema.properties.tags.data = networkJson.request.searchTag;
+							}
+
+							if(	typeof typeObj[key] != "undefined" &&
+								typeof typeObj[key].dynForm != "undefined" && 
+								typeof typeObj[key].dynForm.jsonSchema.properties.tags != "undefined"){
+								typeObj[key].dynForm.jsonSchema.properties.tags.values=networkTags;
+								if(typeof networkJson.request.mainTag != "undefined"){
+									typeObj[key].dynForm.jsonSchema.properties.tags.mainTag = networkJson.request.mainTag;
+									if(typeof typeObj[key].dynForm.jsonSchema.properties.tags.data == "undefined")
+										typeObj[key].dynForm.jsonSchema.properties.tags.data = [] ;
+
+									typeObj[key].dynForm.jsonSchema.properties.tags.data = $.merge(networkJson.request.mainTag, typeObj[key].dynForm.jsonSchema.properties.tags.data);
+								}
+							}
+
+							if(notNull(networkJson.dynForm)){
+								if(notNull(networkJson.dynForm.extra)){
+									var nbListTags = 1 ;
+									while(jsonHelper.notNull("networkJson.dynForm.extra.tags"+nbListTags)){
+										typeObj[key].dynForm.jsonSchema.properties["tags"+nbListTags] = {
+											"inputType" : "tags",
+											"placeholder" : networkJson.dynForm.extra["tags"+nbListTags].placeholder,
+											"values" : networkTagsCategory[ networkJson.dynForm.extra["tags"+nbListTags].list ],
+											"data" : networkTagsCategory[ networkJson.dynForm.extra["tags"+nbListTags].list ],
+											"label" : networkJson.dynForm.extra["tags"+nbListTags].list
+										};
+										nbListTags++;
+									}
+									delete typeObj[key].dynForm.jsonSchema.properties.tags;
+								}
+							}
+
+							if(	typeof networkJson.request.parent != "undefined" && 
+								typeof networkJson.request.parent.id != "undefined" &&
+								typeof networkJson.request.parent.type != "undefined" ){
+								mylog.log("DATA NETWORK1 parent", networkJson.request.parent);
+								typeObj[key].dynForm.jsonSchema.properties.parentType = dyFInputs.inputHidden("");
+								typeObj[key].dynForm.jsonSchema.properties.parentId = dyFInputs.inputHidden("");
+								
+							}
+						}
+					}
+				});
+			}
 		}
-		
 	},
 	formLocality :function(label, placeholder) {
 		mylog.log("inputText ", inputObj);
@@ -3362,13 +3822,16 @@ var dyFInputs = {
 	    };
 
 		if(dyFObj.formInMap.countryList == null){
+			$("#btn-submit-form").prop('disabled', true);
 			$.ajax({
 				type: "POST",
-				url: baseUrl+"/"+moduleId+"/opendata/getcountries",
+				url: baseUrl+"/"+moduleId+"/opendata/getcountries/hasCity/true",
 				dataType: "json",
+				async: false,
 				success: function(data){
 					mylog.log("getcountries data",data);
 					dyFObj.formInMap.countryList = data;
+					$("#btn-submit-form").prop('disabled', false);
 					return inputObj;
 				},
 				error: function(error){
@@ -3376,7 +3839,7 @@ var dyFInputs = {
 				}
 			});
 		}
-	   
+	   	//alert("HERE");
     	return inputObj;
     },
 	inputText :function(label, placeholder, rules, custom) { 
@@ -3391,7 +3854,7 @@ var dyFInputs = {
     	return inputObj;
     },
     slug :function(label, placeholder, rules) { 
-    	console.log("rooooles",rules);
+    	mylog.log("rooooles",rules);
 		var inputObj = {
 			label : label,
 	    	placeholder : ( notEmpty(placeholder) ? placeholder : "... " ),
@@ -3412,12 +3875,12 @@ var dyFInputs = {
             			var value = $(this).val();
             			if(formInMap.formType.timer != false) clearTimeout(formInMap.formType.timer);
             			formInMap.formType.timer = setTimeout(function(){ 
-        					console.log("checking slug", true);
+        					mylog.log("checking slug", true);
             				$("#ajaxFormModal #slug").data("checking", true);
             				slugUnique(value); 
             			}, 1000);
             			
-            		}else{ console.log("already checking slug"); }
+            		}else{ mylog.log("already checking slug"); }
         		} else {
             		$("#ajaxFormModal #slug").parent().removeClass("has-success").addClass("has-error");//.find("span").text("Please enter at least 3 characters.");
             	}
@@ -3438,9 +3901,9 @@ var dyFInputs = {
 	    };
 	    if(type){
 	    	mylog.log("NAMEOFYOUR", dyFInputs.get(type).ctrl, trad[dyFInputs.get(type).ctrl]);
-	    	inputObj.label = tradDynForm["nameofyour"]+" " + trad[dyFInputs.get(type).ctrl]+" ";
+	    	inputObj.label = tradDynForm.nameofyour+" " + trad[dyFInputs.get(type).ctrl]+" ";
 	    	if(type=="classified") 
-	    		inputObj.label = tradDynForm["titleofyour"]+" "+ trad[type]+" ";
+	    		inputObj.label = tradDynForm.titleofyour+" "+ trad[type]+" ";
 
 	    	inputObj.placeholder = inputObj.label + " ...";
 
@@ -3510,14 +3973,15 @@ var dyFInputs = {
         inputType : "custom",
         html:"<div id='similarLink'><div id='listSameName' style='overflow-y: scroll; height:150px;border: 1px solid black; display:none'></div></div>",
     },
-    inputSelect :function(label, placeholder, list, rules) {
+    inputSelect :function(label, placeholder, list, rules, init) {
     	mylog.log("inputSelect", label, placeholder, list, rules);
 		var inputObj = {
 			inputType : "select",
 			label : ( notEmpty(label) ? label : "" ),
 			placeholder : ( notEmpty(placeholder) ? placeholder : trad.choose ),
 			options : ( notEmpty(list) ? list : [] ),
-			rules : ( notEmpty(rules) ? rules : {} )
+			rules : ( notEmpty(rules) ? rules : {} ),
+			init : ( notEmpty(init) ? init : null )
 		};
 		return inputObj;
 	},
@@ -3535,8 +3999,8 @@ var dyFInputs = {
 		return inputObj;
 	},
 	organizerId : function( organizerId, organizerType ){
-		return dyFInputs.inputSelectGroup( 	tradDynForm["whoorganizedevent"]+" ?", 
-											tradDynForm["whoorganize"]+" ?", 
+		return dyFInputs.inputSelectGroup( 	tradDynForm.whoorganizedevent+" ?", 
+											tradDynForm.whoorganize+" ?", 
 											firstOptions(), 
 											parentList( ["organizations","projects"], organizerId, organizerType ), 
 											{ required : true },
@@ -3557,13 +4021,15 @@ var dyFInputs = {
 												});
 											});
 	},
-	tags : function(list, placeholder, label) { 
+	tags : function(list, placeholder, label, minimumInputLength) { 
     	//var tagsL = (list) ? list : tagsList;
+    	mylog.log("updateRole tags", list, placeholder, label)
     	return {
 			inputType : "tags",
-			placeholder : placeholder != null ? placeholder : tradDynForm["tags"],
+			placeholder : placeholder != null ? placeholder : tradDynForm.tags,
 			values : (list) ? list : tagsList,
-			label : (label != null) ? label : tradDynForm["addtags"]
+			label : (label != null) ? label : tradDynForm.addtags,
+			minimumInputLength : (minimumInputLength != null) ? minimumInputLength : 3
 		}
 	},
 	radio : function(label,keyValues) { 
@@ -3602,14 +4068,12 @@ var dyFInputs = {
     	return {
 	    	inputType : "uploader",
 	    	docType : "image",
-	    	label : (label != null) ? label : tradDynForm["imageshere"]+" :", 
+	    	label : (label != null) ? label : tradDynForm.imageshere+" :", 
 	    	showUploadBtn : false,
 	    	template:'qq-template-gallery',
 	    	filetypes:['jpeg', 'jpg', 'gif', 'png'],
 	    	afterUploadComplete : function(){
-	    		//alert("afterUploadComplete :: "+uploadObj.gotoUrl);
-				//alert( "image upload then goto : "+uploadObj.gotoUrl );
-	            if(typeof urlCtrl != "undefined") {
+	    	    if(typeof urlCtrl != "undefined") {
 	            	dyFObj.closeForm();
 	            	urlCtrl.loadByHash( (uploadObj.gotoUrl) ? uploadObj.gotoUrl : location.hash );
 	            }
@@ -3628,18 +4092,17 @@ var dyFInputs = {
 	    	showUploadBtn : false,
 	    	docType : "file",
 	    	template:'qq-template-manual-trigger',
-	    	filetypes:["pdf","xls","xlsx","doc","docx","ppt","pptx","odt","ods","odp"],
+	    	filetypes:["pdf","xls","xlsx","doc","docx","ppt","pptx","odt","ods","odp", "csv"],
 	    	afterUploadComplete : function(){
 	    		//alert("afterUploadComplete :: "+uploadObj.gotoUrl);
 		    	dyFObj.closeForm();
 				//alert( "image upload then goto : "+uploadObj.gotoUrl );
-				if(location.hash.indexOf("view.library")>0){
-					navCollections=[];
-					buildNewBreadcrum("files");
-					getViewGallery(1,"","files");
-				}		
-				else
-	            	urlCtrl.loadByHash( (uploadObj.gotoUrl) ? uploadObj.gotoUrl : location.hash );
+				//if(location.hash.indexOf("view.gallery")>0){
+				//	buildNewBreadcrum("files");
+				//	getViewGallery(1,"","files");
+				//}		
+				//else
+	            urlCtrl.loadByHash( (uploadObj.gotoUrl) ? uploadObj.gotoUrl : location.hash );
 		    }
     	}
     },
@@ -3680,7 +4143,7 @@ var dyFInputs = {
 	    return res;
 	},
     price :function(label, placeholder, rules, custom) { 
-		var inputObj = dyFInputs.inputText(tradDynForm["pricesymbole"], tradDynForm["pricesymbole"]+" ...") ;
+		var inputObj = dyFInputs.inputText(tradDynForm.pricesymbole, tradDynForm.pricesymbole+" ...") ;
 	    inputObj.init = function(){
     		$('input#price').filter_input({regex:'[0-9]'});
       	};
@@ -3696,11 +4159,21 @@ var dyFInputs = {
     text :function (label,placeholder,rules) {  
     	var inputObj = {
     		inputType : "text",
-	    	label : ( notEmpty(label) ? label : tradDynForm["mainemail"] ),
+	    	label : ( notEmpty(label) ? label : tradDynForm.mainemail ),
 	    	placeholder : ( notEmpty(placeholder) ? placeholder : "exemple@mail.com" ),
 	    	rules : ( notEmpty(rules) ? rules : { email: true } )
 	    }
-	    console.log("create form input email", inputObj);
+	    mylog.log("create form input email", inputObj);
+	    return inputObj;
+	},
+
+	email :function (label,placeholder,rules) {  
+    	var inputObj = {
+    		inputType : "text",
+	    	label : ( notEmpty(label) ? label : tradDynForm.mainemail ),
+	    	placeholder : ( notEmpty(placeholder) ? placeholder : "exemple@mail.com" ),
+	    	rules : ( notEmpty(rules) ? rules : { email: true, required : true } )
+	    }
 	    return inputObj;
 	},
 	
@@ -3746,7 +4219,7 @@ var dyFInputs = {
 		return inputObj;  
 	},
 	location : {
-		label : tradDynForm["location"],
+		label : tradDynForm.location,
        	inputType : "location"
     },
     locationObj : {
@@ -3770,9 +4243,9 @@ var dyFInputs = {
 		    dyFInputs.locationObj.countLocation = 0 ;
 		},
 		init : function () {
-			mylog.log("init loc");
+			console.log("init loc");
 			$(".deleteLocDynForm").click(function(){
-				mylog.log("deleteLocDynForm", $(this).data("index"));
+				console.log("deleteLocDynForm", $(this).data("index"));
 				var index = $(this).data("index");
 				var indexLoc = $(this).data("indexLoc");
 				if(index == -1 && dyFInputs.locationObj.elementLocations.length > 1){
@@ -3879,7 +4352,7 @@ var dyFInputs = {
 			//elementLocation.push(positionObj);
 		},
 		addLocationToForm : function (locObj, index){
-			mylog.warn("---------------addLocationToForm----------------");
+			mylog.warn("---------------addLocationToForm----------------", locObj, index);
 			mylog.dir(locObj);
 			var strHTML = "";
 			if( locObj.address.addressCountry)
@@ -3896,7 +4369,7 @@ var dyFInputs = {
 			if( dyFInputs.locationObj.countLocation == 0){
 				btnSuccess = "btn-success";
 				//locCenter = "<span class='lblcentre'>(localité centrale)</span>";
-				locCenter = "<span class='lblcentre'> "+tradDynForm["mainLocality"]+"</span>"; 
+				locCenter = "<span class='lblcentre'> "+tradDynForm.mainLocality+"</span>"; 
 				boolCenter=true;
 			}
 
@@ -3913,14 +4386,15 @@ var dyFInputs = {
 					  "<a href='javascript:dyFInputs.locationObj.setAsCenter("+dyFInputs.locationObj.countLocation+")' class='centers center"+dyFInputs.locationObj.countLocation+" locationEl"+dyFInputs.locationObj.countLocation+" btn btn-xs "+btnSuccess+"'> <i class='fa fa-map-marker'></i>"+locCenter+"</a> <br/>";
 			}*/
 			if(typeof index != "undefined"){
+				mylog.log("---------------addLocationToForm---------------- IF", index);
 				strHTML =  
-			        "<div class='col-md-12 col-sm-12 col-xs-12 text-left shadow2 padding-15 margin-top-15 margin-bottom-15'>" + 
+			        "<div class='col-xs-12 text-left shadow2 padding-15 margin-top-15 margin-bottom-15'>" + 
 			          "<span class='pull-left locationEl"+dyFInputs.locationObj.countLocation+" locel text-red bold'>"+ 
 			            "<i class='fa fa-home fa-2x'></i> "+ 
 			            strHTML+ 
 			          "</span> "+ 
-			 
-			          "<a href='javascript:;' data-index='"+index+"' data-indexLoc='"+dyFInputs.locationObj.countLocation+"' "+ 
+
+			          "<a href='javascript:echo;' data-index='"+index+"' data-indexLoc='"+dyFInputs.locationObj.countLocation+"' "+ 
 			            "class='deleteLocDynForm locationEl"+dyFInputs.locationObj.countLocation+" btn btn-sm btn-danger pull-right'> "+ 
 			            "<i class='fa fa-times'></i> "+tradDynForm.clear+ 
 			          "</a>"+ 
@@ -3932,8 +4406,9 @@ var dyFInputs = {
 			           
 			        "</div>"; 
 			} else {
+				mylog.log("---------------addLocationToForm---------------- ESLE", index);
 				strHTML =  
-			        "<div class='col-md-12 col-sm-12 col-xs-12 text-left shadow2 padding-15 margin-top-15 margin-bottom-15'>" + 
+			        "<div class='col-xs-12 text-left shadow2 padding-15 margin-top-15 margin-bottom-15'>" + 
 			          "<span class='pull-left locationEl"+dyFInputs.locationObj.countLocation+" locel text-red bold'>"+ 
 			            "<i class='fa fa-home fa-2x'></i> "+ 
 			            strHTML+ 
@@ -3995,6 +4470,9 @@ var dyFInputs = {
 		removeLocation : function (ix,center){
 			mylog.log("dyFInputs.locationObj.removeLocation", ix, dyFInputs.locationObj.elementLocations);
 			dyFInputs.locationObj.elementLocation = null;
+			if(typeof dyFInputs.locationObj.elementLocations[ix].center != "undefined" && dyFInputs.locationObj.elementLocations[ix].center){
+				dyFInputs.locationObj.centerLocation = null;
+			} 
 			dyFInputs.locationObj.elementLocations.splice(ix,1);
 			$(".locationEl"+ix).parent().remove();
 			//delete dyFInputs.locationObj.elementLocations[ix];
@@ -4010,7 +4488,7 @@ var dyFInputs = {
 						if( typeof center != "undefined" && center && prop==0){
 							btnSuccess = "btn-success";
 							//locCenter = "<span class='lblcentre'>(localité centrale)</span>";
-							locCenter = "<span class='lblcentre'> "+tradDynForm["mainLocality"]+"</span>"; 
+							locCenter = "<span class='lblcentre'> "+tradDynForm.mainLocality+"</span>"; 
 							boolCenter=true;
 						}
 						domParent.find(".removeLocalityBtn").attr("href","javascript:dyFInputs.locationObj.removeLocation("+prop+","+boolCenter+")");
@@ -4023,8 +4501,9 @@ var dyFInputs = {
 				}
 				if(typeof center != "undefined" && center)
 					dyFInputs.locationObj.setAsCenter(0);
+				$(".locationBtn").html("<i class='fa fa-home'></i> "+tradDynForm.secondLocality);
 			} else{
-				$(".locationBtn").html("<i class='fa fa-home'></i> "+tradDynForm["mainLocality"]);
+				$(".locationBtn").html("<i class='fa fa-home'></i> "+tradDynForm.mainLocality);
 				//dyFInputs.locationObj.centerLocation = null;
 			}
 			
@@ -4044,7 +4523,7 @@ var dyFInputs = {
 			$(".centers").removeClass('btn-success');
 			$(".lblcentre").remove();
 			$.each(dyFInputs.locationObj.elementLocations,function(i, v) {
-				console.log(v); 
+				mylog.log(v); 
 				if(typeof v.center != "undefined" && v.center)
 					delete v.center;
 			})
@@ -4056,7 +4535,7 @@ var dyFInputs = {
 		}
     },
     scope : {
-		label : tradDynForm["localization"],
+		label : tradDynForm.localization,
        	inputType : "scope",
        	init : function () {
        		mylog.log("scopeObj", dyFInputs.scopeObj.scopeObj);
@@ -4207,7 +4686,7 @@ var dyFInputs = {
 
     },
     inputUrl :function (label,placeholder,rules, custom) {  
-    	label = ( notEmpty(label) ? label : tradDynForm["mainurl"] );
+    	label = ( notEmpty(label) ? label : tradDynForm.mainurl );
     	placeholder = ( notEmpty(placeholder) ? placeholder : "http://www.exemple.org" );
     	rules = ( notEmpty(rules) ? rules : { url: true } );
     	custom = ( notEmpty(custom) ? custom : "<div class='resultGetUrl resultGetUrl0 col-sm-12'></div>" );
@@ -4223,8 +4702,8 @@ var dyFInputs = {
 	    return inputObj;
 	},
     urls : {
-    	label : tradDynForm["freeinfourl"],
-    	placeholder : tradDynForm["freeinfourl"]+" ...",
+    	label : tradDynForm.freeinfourl,
+    	placeholder : tradDynForm.freeinfourl+" ...",
         inputType : "array",
         value : [],
         init:function(){
@@ -4233,7 +4712,7 @@ var dyFInputs = {
     },
     multiChoice : {
     	label : tradDynForm["Add answers"],
-    	placeholder : tradDynForm["answer"]+" ...",
+    	placeholder : tradDynForm.answer+" ...",
         inputType : "array",
         value : [],
         init:function(){
@@ -4242,7 +4721,7 @@ var dyFInputs = {
     },
     videos : {
     	label : "Your media videos here",
-    	placeholder : tradDynForm["sharevideourl"]+" ...",
+    	placeholder : tradDynForm.sharevideourl+" ...",
         inputType : "array",
         value : [],
         initOptions : {type:"video",labelAdd:"Add video link"},
@@ -4252,7 +4731,7 @@ var dyFInputs = {
     },
     urlsOptionnel : {
         inputType : "array",
-        placeholder : tradDynForm["urlandaddinfoandaction"],
+        placeholder : tradDynForm.urlandaddinfoandaction,
         value : [],
         init:function(){
             processUrl.getMediaFromUrlContent(".addmultifield0", ".resultGetUrl0",1);
@@ -4270,7 +4749,7 @@ var dyFInputs = {
     		$("#ajaxFormModal #url").bind("input keyup",function(e) {
             	processUrl.refUrl($(this).val());
             	/*if(result){
-            		console.log(result);
+            		mylog.log(result);
             	}*/
         	});
             //$(".urltext").css("display","none");
@@ -4286,10 +4765,10 @@ var dyFInputs = {
 	    	checked : checked, //$("#ajaxFormModal #"+id).val(),
 	    	init : function(){
 	    		//var checked = $("#ajaxFormModal #"+id).val();
-	    		console.log("checkcheck2", checked, "#ajaxFormModal #"+id);
+	    		mylog.log("checkcheck2", checked, "#ajaxFormModal #"+id);
 	    		var idTrue = "#ajaxFormModal ."+id+"checkboxSimple .btn-dyn-checkbox[data-checkval='true']";
 	    		var idFalse = "#ajaxFormModal ."+id+"checkboxSimple .btn-dyn-checkbox[data-checkval='false']";
-	    		console.log("checkcheck2", checked, "#ajaxFormModal #"+id);
+	    		mylog.log("checkcheck2", checked, "#ajaxFormModal #"+id);
 	    		$("#ajaxFormModal #"+id).val(checked);
 
 	    		if(typeof params["labelInformation"] != "undefined")
@@ -4323,7 +4802,7 @@ var dyFInputs = {
 	    		$("#ajaxFormModal ."+id+"checkboxSimple .btn-dyn-checkbox").click(function(){
 	    			var checkval = $(this).data('checkval');
 	    			$("#ajaxFormModal #"+id).val(checkval);
-	    			console.log("EVENT CLICK ON CHECKSIMPLE", checkval);
+	    			mylog.log("EVENT CLICK ON CHECKSIMPLE", checkval);
 	    			
 	    			if(checkval) {
 	    				$(idTrue).addClass("bg-green-k").removeClass("letter-green");
@@ -4386,7 +4865,7 @@ var dyFInputs = {
 	    		"onChange" : function(){
 	    			var checkbox = $("#ajaxFormModal #"+id).is(':checked');
 	    			$("#ajaxFormModal #"+id).val($("#ajaxFormModal #"+id).is(':checked'));
-	    			console.log("on change checkbox",$("#ajaxFormModal #"+id).val());
+	    			mylog.log("on change checkbox",$("#ajaxFormModal #"+id).val());
 	        		//$("#ajaxFormModal #"+id+"checkbox").append("<span class='lbl-status-check'></span>");
 	    			if (checkbox) {
 	    				$("#ajaxFormModal ."+id+"checkbox .lbl-status-check").html(
@@ -4394,13 +4873,13 @@ var dyFInputs = {
 	    				$(params["inputId"]).show(400);
 	    				/*if(id=="amendementActivated"){
 	    					var am = $("#ajaxFormModal #voteActivated").val();
-	    					console.log("am", am);
+	    					mylog.log("am", am);
 	    					if(am == "true")
 	    						$("#ajaxFormModal .voteActivatedcheckbox .bootstrap-switch-handle-on").click();
 	    				}
 	    				if(id=="voteActivated"){
 	    					var am = $("#ajaxFormModal #amendementActivated").val();
-	    					console.log("vote", am);
+	    					mylog.log("vote", am);
 	    					if(am == "true")
 	    						$("#ajaxFormModal .amendementActivatedcheckbox .bootstrap-switch-handle-on").click();
 	    				}*/
@@ -4426,9 +4905,9 @@ var dyFInputs = {
 	        	})
 	        },
 	    	"switch" : {
-	    		"onText" : tradDynForm["yes"],
-	    		"offText" : tradDynForm["no"],
-	    		"labelText":tradDynForm["allday"],
+	    		"onText" : tradDynForm.yes,
+	    		"offText" : tradDynForm.no,
+	    		"labelText":tradDynForm.allday,
 	    		"onChange" : function(){
 	    			var allDay = $("#ajaxFormModal #allDay").is(':checked');
 	    			var startDate = "";
@@ -4525,9 +5004,9 @@ var dyFInputs = {
 	        },
 	        options: {"allWeek" : true},
 	    	"switch" : {
-	    		"onText" : tradDynForm["yes"],
-	    		"offText" : tradDynForm["no"],
-	    		"labelText":tradDynForm["allweek"],
+	    		"onText" : tradDynForm.yes,
+	    		"offText" : tradDynForm.no,
+	    		"labelText":tradDynForm.allweek,
 	    		"css":{"min-width": "300px","margin": "10px"},
 	    		"onChange" : function(){
 	    			var allWeek = $("#ajaxFormModal #openingHours").is(':checked');
@@ -4567,6 +5046,15 @@ var dyFInputs = {
 	        	greaterThan: ["#ajaxFormModal #startDate",tradDynForm.thestartDate],
 	        	duringDates: ["#startDateParent","#endDateParent",tradDynForm.theendDate]
 		    }
+	    }
+    	return inputObj;
+    },
+    dateInput : function(typeDate, label, placeholder, rules){
+    	var inputObj = {
+	        inputType : ( notEmpty(typeDate) ? typeDate : "datetime" ),
+	        placeholder: ( notEmpty(placeholder) ? placeholder : "Saisir une date" ),
+	        label : ( notEmpty(label) ? label : "Saisir une date" ),
+	        rules : ( notEmpty(rules) ? rules : {} ) 
 	    }
     	return inputObj;
     },
@@ -4627,9 +5115,11 @@ var dyFInputs = {
         }
     },
     inputHidden :function(value, rules) { 
+    	console.log("inputHidden", value, rules);
 		var inputObj = { inputType : "hidden"};
 		if( notNull(value) ) inputObj.value = value ;
 		if( notNull(rules) ) inputObj.rules = rules ;
+		console.log("inputHidden and ", inputObj);
     	return inputObj;
     },
     get:function(type){
@@ -4695,6 +5185,159 @@ var dyFInputs = {
 };
 
 /* ***********************************
+ARRAY FORM help create array filled by dynForm entries and defined by dynform properties
+considers existing varaible ssuch as 
+form
+scenarioKey
+********************************** */
+var arrayForm = {
+	form : null,
+	buildFormSchema : function(f, k, q, pos) { 
+		arrayForm.form = {
+			jsonSchema : {
+				title : (jsonHelper.notNull( "ctxDynForms."+f+"."+k+"."+q)) ? ctxDynForms[f][k][q].title : form[scenarioKey][f].form.scenario[k].json.jsonSchema.title,
+				icon : (jsonHelper.notNull( "ctxDynForms."+f+"."+k+"."+q)) ? ctxDynForms[f][k][q].icon : form[scenarioKey][f].form.scenario[k].json.jsonSchema.icon,
+				onLoads : {
+					onload : function(){
+						dyFInputs.setHeader("bg-dark");
+						$('.form-group div').removeClass("text-white");
+						dataHelper.activateMarkdown(".form-control.markdown");
+						if( jsonHelper.notNull('ctxDynForms.'+f+'.'+k+'.'+q+'.onLoads.onload') ){
+							ctxDynForms[f][k][q].onLoads.onload();
+						}
+					}
+				},
+				save : function() { 
+					var data = {
+		    			formId : f,
+		    			answerSection : (typeof answerSection != "undefined") ? answerSection : f+".answers."+k+"."+q ,
+		    			arrayForm : true,
+		    			answers : arrayForm.getAnswers(arrayForm.form , true)
+		    		};
+		    		
+		    		//for saving edits
+		    		if(typeof pos != "undefined"){
+		    			data.answerSection = (typeof answerSection != "undefined") ? answerSection+"."+pos : f+".answers."+k+"."+q+"."+pos;
+		    			data.edit = true;
+		    		}
+
+		    		data.collection = answerCollection;
+	    			data.id = answerId;
+	    			urlPath = baseUrl+"/survey/co/update2";
+		    		
+		    		console.log("save",data);
+		    		//alert("save arrayForm");
+
+		    		$.ajax({ type: "POST",
+				        url: urlPath,
+				        data: data,
+						type: "POST",
+				    }).done(function (data) {
+				    	//toastr.success('Enregistré avec succés!');
+				    	window.location.reload(); 
+				    });
+				},
+				properties : (jsonHelper.notNull( "ctxDynForms."+f+"."+k+"."+q) ) ? ctxDynForms[f][k][q].properties : form[scenarioKey][f].form.scenario[k].json.jsonSchema.properties[q].properties
+			}
+		};
+		console.log("buildFormSchema AF form",arrayForm.form);
+		
+	},
+	add : function (f, k, q,pos,data) { 
+		console.log("add AF",f, k, q,pos,data);
+		arrayForm.buildFormSchema(f,k,q,pos);
+		if( typeof pos != "undefined" )
+			dyFObj.openForm( arrayForm.form, null, answers[f].answers[k][q][pos] );
+		else 
+			dyFObj.openForm( arrayForm.form );
+	},
+	del : function  (f,k,q,pos) { 
+		console.log("del AF",f,k,q,pos);
+		var modal = bootbox.dialog({
+	        message: "Vous bien sur ?",
+	        title: "Confirmez",
+	        buttons: [
+	          {
+	            label: "Ok",
+	            className: "btn btn-primary pull-left",
+	            callback: function() {
+	            	
+				data = {
+					formId : f,
+					answerSection : (typeof answerSection != "undefined") ? answerSection+"."+pos : f+".answers."+k+"."+q+"."+pos ,
+					answers : null,
+					pull : (typeof answerSection != "undefined") ? answerSection : f+".answers."+k+"."+q
+					
+				};
+				
+				data.collection = answerCollection;
+				data.id = answerId;
+				urlPath = baseUrl+"/survey/co/update2";
+				
+				console.log("save",data);
+
+				$.ajax({ type: "POST",
+			        url: urlPath,
+			         data: data,
+					type: "POST",
+			    }).done(function (data) {
+			    	window.location.reload(); 
+			    });
+	            }
+	          },
+	          {
+	            label: "Annuler",
+	            className: "btn btn-default pull-left",
+	            callback: function() {}
+	          }
+	        ],
+	        show: false,
+	        onEscape: function() {
+	          modal.modal("hide");
+	        }
+	    });
+	    modal.modal("show");
+		
+	},
+	edit : function  (f,k, q,pos) { 
+		console.log("edit AF",f,k,q,pos);
+		arrayForm.add(f, k, q, pos);
+	},
+	getAnswers : function(dynJson)
+	{
+		var editAnswers = {};
+		$.each( dynJson.jsonSchema.properties , function(field,fieldObj) { 
+	        console.log($(this).data("step")+"."+field, $("#"+field).val() );
+	        if( fieldObj.inputType ){
+	            if(fieldObj.inputType=="uploader"){
+	            	listObject=$('#'+fieldObj.domElement).fineUploader('getUploads');
+			    	goToUpload=false;
+			    	if(listObject.length > 0){
+			    		$.each(listObject, function(e,v){
+			    			if(v.status == "submitted")
+			    				goToUpload=true;
+			    		});
+			    	}
+
+					if( goToUpload ){       		
+			    
+	         		//if( $('#'+fieldObj.domElement).fineUploader('getUploads').length > 0 ){
+						$('#'+fieldObj.domElement).fineUploader('uploadStoredFiles');
+						editAnswers[field] = "";
+	            	}
+	            } else {
+	            	console.log(field,$("#"+field).val());
+	            	editAnswers[field] = $("#"+field).val();
+	            }
+	        }
+	    });
+	    
+		console.log("editAnswers",editAnswers);
+	    return editAnswers;
+	}
+}
+
+/* ***********************************
 			EXTRACTPROCCESS
 ********************************** */
 var processUrl = {
@@ -4711,16 +5354,16 @@ var processUrl = {
 	        url: baseUrl+"/"+moduleId+"/app/checkurlexists",
 	        data: { url: url },
 	        dataType: "json",
-	        success: function(data){ console.log("checkUrlExists", data);
+	        success: function(data){ mylog.log("checkUrlExists", data);
 	            if(data.status == "URL_EXISTS")
 	            urlExists = true;
 	            else
 	            urlExists = false;
-	            console.log("checkUrlExists", data);
+	            mylog.log("checkUrlExists", data);
 	            refUrl(url);
 	        },
 	        error: function(data){
-	            console.log("check url exists error");
+	            mylog.log("check url exists error");
 	        }
 	    });
 	},
@@ -4768,7 +5411,7 @@ var processUrl = {
 		       // var match_url = /\b(https?|ftp):\/\/([\-A-Z0-9. \-]+?|www\\.)(\/[\-A-Z0-9+&@#\/%=~_|!:,.;\-]*)?(\?[A-Z0-9+&@#\/%=~_|!:,.;\-]*)?/i;
 		       // var match_url=new RegExp("(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?");
 		        //var match_url=/[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
-		        var match_url=/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g;
+		        var match_url=/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ@:%_\+.~#?&//=]*)/g;
 
 		        if (match_url.test(getUrl.val())) 
 		        {
@@ -4893,16 +5536,15 @@ var processUrl = {
 		$("#refResult").addClass("hidden");
 		$("#send-ref").addClass("hidden");
 
-		urlValidated = "";
+		//urlValidated = "";
 
-	    $.ajax({ 
-	    	url: "//cors-anywhere.herokuapp.com/" + url, // 'http://google.fr', 
+	    //$.ajax({ 
+	    //	url: "//cors-anywhere.herokuapp.com/" + url, // 'http://google.fr', 
 	    	//crossOrigin: true,
-	    	timeout:10000,
-	        success:
-				function(data) {
-					
-				    var jq = $.parseHTML(data);
+	    //	timeout:10000,
+	      //  success:
+	    processUrl.extractUrl("", url,function(data) {
+				  /*  var jq = $.parseHTML(data);
 				    
 				    var tempDom = $('<output>').append($.parseHTML(data));
 				    var title = $('title', tempDom).html();
@@ -4911,7 +5553,7 @@ var processUrl = {
 				    if(stitle=="" || stitle=="undefined")
 				   		stitle = $('blockquote', tempDom).html();
 
-				   	//console.log("STITLE", stitle);
+				   	//mylog.log("STITLE", stitle);
 
 					if(stitle=="" || stitle=="undefined")
 				   		stitle = $('h2', tempDom).html();
@@ -4931,43 +5573,43 @@ var processUrl = {
 	                if(typeof favicon != "undefined"){
 	                    var faviconSrc = hostname+favicon;
 	                    if(favicon.indexOf("http")>=0) faviconSrc = favicon;
-	                }
+	                }*/
 
-					var description = $(tempDom).find('meta[name=description]').attr("content");
+					//var description = $(tempDom).find('meta[name=description]').attr("content");
 
-					var keywords = $(tempDom).find('meta[name=keywords]').attr("content");
-					//console.log("keywords", keywords);
+					//var keywords = $(tempDom).find('meta[name=keywords]').attr("content");
+					//mylog.log("keywords", keywords);
 
 					var arrayKeywords = new Array();
-					if(typeof keywords != "undefined")
-						arrayKeywords = keywords.split(",");
+					if(typeof data.keywords != "undefined")
+						arrayKeywords = data.keywords;
 
-					//console.log("arrayKeywords", arrayKeywords);
+					//mylog.log("arrayKeywords", arrayKeywords);
 
 					//if(typeof arrayKeywords[0] != "undefined") $("#form-keywords1").val(arrayKeywords[0]); else $("#form-keywords1").val("");
 					//if(typeof arrayKeywords[1] != "undefined") $("#form-keywords2").val(arrayKeywords[1]); else $("#form-keywords2").val("");
 					//if(typeof arrayKeywords[2] != "undefined") $("#form-keywords3").val(arrayKeywords[2]); else $("#form-keywords3").val("");
 					//if(typeof arrayKeywords[3] != "undefined") $("#form-keywords4").val(arrayKeywords[3]); else $("#form-keywords4").val("");
 
-					if(description=="" || description=="undefined")
-				   		if(stitle=="" || stitle=="undefined")
-				   			description = stitle;
-				   	params = new Object;
+					//if(description=="" || description=="undefined")
+				   	//	if(stitle=="" || stitle=="undefined")
+				   	//		description = stitle;
+				   /*	params = new Object;
 				   	params.title=title,
 				   	params.favicon=faviconSrc,
 				   	params.hostname=hostname,
 				   	params.description=description,
 				   	params.tags=arrayKeywords;
-					console.log(params);
+					mylog.log(params);*/
 					/*$("#form-title").val(title);
 	                $("#form-favicon").val(faviconSrc);
 	                $("#form-description").val(description);*/
 					
 
 					//color
-					$("#ajaxFormModal #name").val(title);   	
+					$("#ajaxFormModal #name").val(data.name);   	
 				   	//color	
-					$("#ajaxFormModal #description").val(description); 
+					$("#ajaxFormModal #description").val(data.description); 
 				   	//color
 				   	if(notEmpty(arrayKeywords))		
 						$("#ajaxFormModal #tags").select2("val",arrayKeywords);
@@ -5000,8 +5642,8 @@ var processUrl = {
 				    tempDom = "";
 
 				    checkAllInfo();*/	
-				    return params;		   
-				},
+				    //return params;		   
+				/*},
 			error:function(xhr, status, error){
 				$("#lbl-url").removeClass("letter-green").addClass("letter-red");
 				$("#status-ref").html("<span class='letter-red'><i class='fa fa-ban'></i> URL INNACCESSIBLE</span>");
@@ -5011,7 +5653,7 @@ var processUrl = {
 					$("#lbl-url").removeClass("letter-green").addClass("letter-red");
 					$("#status-ref").html("<span class='letter-red'><i class='fa fa-ban'></i> 404 : URL INTROUVABLE OU INACCESSIBLE</span>");
 				}
-			}
+			}*/
 		});
 	},
 	isValidURL:function(url) {

@@ -79,7 +79,7 @@ function getAjax(id,ajaxUrl,callback,datatype,blockUI)
   });
 }
 /*
-what can be a simple string which will go into the title bar 
+what : can be a simple string which will go into the title bar 
 or an aboject with properties like title, icon, desc
 getModal({title:"toto"},"/communecter/project/projectsv")
  */
@@ -93,7 +93,7 @@ function getModal(what, ajaxUrl,id)
 	mylog.log("getModal",what,"ajaxUrl",ajaxUrl,"event",id);
 	//var params = $(form).serialize();
 	//$("#ajax-modal-modal-body").html("<i class='fa fa-cog fa-spin fa-2x icon-big'></i> Loading");
-	$('body').modalmanager('loading'); 
+	
   $.unblockUI();
   $("#ajax-modal-modal-title").html("<i class='fa fa-refresh fa-spin'></i> Chargement en cours. Merci de patienter.");
   $("#ajax-modal-modal-body").html(""); 
@@ -131,7 +131,7 @@ function getModal(what, ajaxUrl,id)
 function lazyLoad (js,css, callback, notBase) { 
     mylog.warn("lazyLoad",js, css, callback, notBase);
     var url = (notBase==true ? js : baseUrl+js);
-    mylog.warn("url",url);
+    mylog.warn("api.js url",url);
     if( !$('script[src="'+url+'"]').length )
     {
         if(css)
@@ -140,7 +140,7 @@ function lazyLoad (js,css, callback, notBase) {
                type: "text/css",
                href: css 
             }).appendTo("head");
-          //!mylog.log("lazyLoad  before getScript",js);
+          //mylog.log("lazyLoad  before getScript",js);
         $.getScript( js, function( data, textStatus, jqxhr ) {
           //mylog.log("lazyLoad getScript");
           //if (typeof dynform !== undefined) alert("script has been loaded!");
@@ -673,6 +673,7 @@ var jsonHelper = {
   //jsonHelper.notNull("themeObj.blockUi","function") > false or true accordingly
   notNull : function (pathJson,type) 
   {
+    mylog.log(pathJson);
     if(pathJson.indexOf("[")>=0)
       pathJson = pathJson.replace(/\[/g, '.').replace(/]/g, '');
         
@@ -872,3 +873,17 @@ function buildRadioOptions(list,value, nameOption) {
     return html;
 }
 
+function formatDate(date) {
+  var monthNames = [
+    "Jan", "Fev", "Mars",
+    "Avril", "Mai", "Juin", "Juil",
+    "Aout", "Sept", "Oct",
+    "Nov", "Dec"
+  ];
+
+  var day = date.getDate();
+  var monthIndex = date.getMonth();
+  var year = date.getFullYear();
+
+  return day + ' ' + monthNames[monthIndex] + ' ' + year;
+}

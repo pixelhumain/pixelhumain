@@ -31,10 +31,10 @@ $mailConfigTest = array(
 
 $params = array(
     //Theme 
-    'theme' => 'CO2',
-    'CO2DomainName' => 'CO2', //used by CO2 theme, param header / css / js specific for each website using CO2 theme
-    // 'theme' => 'terla',
-    // 'CO2DomainName' => 'terla',
+     'theme' => 'CO2',
+     'CO2DomainName' => 'CO2', //used by CO2 theme, param header / css / js specific for each website using CO2 theme
+    //'theme' => 'terla',
+    //'CO2DomainName' => 'terla',
     "version"=> "2.1.0",
     //Beta Test ?
     'betaTest' => false,
@@ -115,6 +115,11 @@ $params = array(
         "need" => false,
         "poi" => true
     )*/
+    'poleEmploi' => array(
+        "client_id" => "PAR_communectertest_c46ea89b19688d7d3364badae07f308f722f83b0cd9bd040ecc5a468c6f1d07a",
+        "client_secret" => "de3f5d98dcefef02d98c239b3973878320ec7815005dff553afc35ae067f3dc9",
+        "scope" => "application_PAR_communectertest_c46ea89b19688d7d3364badae07f308f722f83b0cd9bd040ecc5a468c6f1d07a api_offresdemploiv1 o2dsoffre api_infotravailv1"
+    ),
   );
 
 if( !empty($overwriteList) && in_array($params["theme"], $overwriteList["modules"])){

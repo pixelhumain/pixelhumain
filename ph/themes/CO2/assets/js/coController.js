@@ -53,6 +53,7 @@ function  bindLBHLinks() {
 	});
 }
 
+        
 
 var urlCtrl = {
 	afterLoad : null,
@@ -231,7 +232,6 @@ var urlCtrl = {
 						//open path in a modal (#openModal)
 						if(pathT[0] == "modal"){
 							path = path.substring(5);
-							alert(baseUrl+'/'+moduleId+path);
 							smallMenu.openAjaxHTML(baseUrl+'/'+moduleId+path);
 						} else {
 							//console.log(">>>>>>>>>>>>>>>>>>> endPoint:",endPoint);
@@ -294,7 +294,7 @@ var urlCtrl = {
 			return ;
 		}
 
-		if( hash.indexOf("#default.directory") >= 0 &&
+		if( hash && hash.indexOf("#default.directory") >= 0 &&
 			location.hash.indexOf("#default.directory") >= 0 && CoAllReadyLoad==true){ 
 			var n = hash.indexOf("type=")+5;
 			var type = hash.substr(n);
@@ -340,12 +340,12 @@ var urlCtrl = {
 	        else
 	            title = "WELCOM MUNECT HEY !!!";
 	        if(panelName == "box-login"){
-				Login.openLogin();
 				$.unblockUI();
+				Login.openLogin();
 	        }
 			else if(panelName == "box-register"){
-				$('#modalRegister').modal("show");
 				$.unblockUI();
+				$('#modalRegister').modal("show");
 			}
 			else
 	       		showPanel(panelName,null,title);
@@ -418,7 +418,7 @@ var urlCtrl = {
 }
 
 function showAjaxPanel (url,title,icon, mapEnd , urlObj) { 
-	//alert("showAjaxPanel"+url);
+	alert("showAjaxPanel"+url);
 	$(".progressTop").show().val(20);
 	var dest = ( typeof urlObj == "undefined" || typeof urlObj.useHeader != "undefined" ) ? themeObj.mainContainer : ".pageContent" ;
 	mylog.log("showAjaxPanel", url, urlObj,dest,urlCtrl.afterLoad );	
@@ -472,8 +472,8 @@ function showAjaxPanel (url,title,icon, mapEnd , urlObj) {
 	        		urlCtrl.afterLoad = null;
 	        	}
 
-	        	if( custom && custom.logo )
-	    			$(".logo-menutop").attr( {'src':custom.logo} ); 	
+	        	//if( custom && custom.logo )
+	    		//	$(".logo-menutop").attr( {'src':custom.logo} ); 	
 
 
 	        	/*if(debug){
@@ -497,7 +497,115 @@ function showAjaxPanel (url,title,icon, mapEnd , urlObj) {
 	}, 100);
 }
 
-
+var mentionsInput=[];
+var mentionsInit = {
+	stopMention : false,
+	isSearching : false,
+	get : function(domElement){
+		mentionsInput=[];
+		$(domElement).mentionsInput({
+			allowRepeat:true,
+		 	onDataRequest:function (mode, query, callback) {
+			  	if(!mentionsInit.stopMention){
+				  	var data = mentionsContact;
+				  	data = _.filter(data, function(item) { return item.name.toLowerCase().indexOf(query.toLowerCase()) > -1 });
+					callback.call(this, data);
+					mentionsInit.isSearching=true;
+			   		var search = {"searchType" : ["citoyens","organizations","projects"], "name": query};
+			  		$.ajax({
+						type: "POST",
+				        url: baseUrl+"/"+moduleId+"/search/globalautocomplete",
+				        data: search,
+				        dataType: "json",
+				        success: function(retdata){
+				        	if(!retdata){
+				        		toastr.error(retdata.content);
+				        	}else{
+					        	mylog.log(retdata);
+					        	data = [];
+					        	//for(var key in retdata){
+						        //	for (var id in retdata[key]){
+						        $.each(retdata.results, function (e, value){
+							        	avatar="";
+							        	//console.log(retdata[key]);
+							        	//aert(retdata[key][id].type);
+							        	if(typeof value.profilThumbImageUrl != "undefined" && value.profilThumbImageUrl!="")
+							        		avatar = baseUrl+value.profilThumbImageUrl;
+							        	object = new Object;
+							        	object.id = e;
+							        	object.name = value.name;
+							        	object.slug = value.slug;
+							        	object.avatar = avatar;
+							        	object.type = value.type;
+							        	var findInLocal = _.findWhere(mentionsContact, {
+											name: value.name, 
+											type: value.type
+										}); 
+										if(typeof(findInLocal) == "undefined"){
+											mentionsContact.push(object);
+										}
+							 	//		}
+					        	//}
+					        	});
+					        	data=mentionsContact;
+					    		data = _.filter(data, function(item) { return item.name.toLowerCase().indexOf(query.toLowerCase()) > -1 });
+								callback.call(this, data);
+								mylog.log("callback",callback);
+				  			}
+						}	
+					});
+			  	}
+			 }
+	  	});
+	},
+	beforeSave : function(object, domElement){
+		$(domElement).mentionsInput('getMentions', function(data) {
+			mentionsInput=data;
+		});
+		if (typeof mentionsInput != "undefined" && mentionsInput.length != 0){
+			var textMention="";
+			$(domElement).mentionsInput('val', function(text) {
+				textMention=text;
+				console.log(textMention);
+				$.each(mentionsInput, function(e,v){
+					strRep=v.name;
+					while (textMention.indexOf("@["+v.name+"]("+v.type+":"+v.id+")") > -1){
+						if(typeof v.slug != "undefined")
+							strRep="@"+v.slug;
+						textMention = textMention.replace("@["+v.name+"]("+v.type+":"+v.id+")", strRep);
+					}
+				});
+			});			
+			object.mentions=mentionsInput;
+			object.text=textMention;
+		}
+		return object;		      		
+	},
+	addMentionInText: function(text,mentions){
+		$.each(mentions, function( index, value ){
+			if(typeof value.slug != "undefined"){
+				while (text.indexOf("@"+value.slug) > -1){
+					str="<span class='lbh' onclick='urlCtrl.loadByHash(\"#page.type."+value.type+".id."+value.id+"\")' onmouseover='$(this).addClass(\"text-blue\");this.style.cursor=\"pointer\";' onmouseout='$(this).removeClass(\"text-blue\");' style='color: #719FAB;'>"+
+			   						value.name+
+			   					"</span>";
+					text = text.replace("@"+value.slug, str);
+				}
+			}else{
+				//Working on old news
+		   		array = text.split(value.value);
+		   		text=array[0]+
+		   					"<span class='lbh' onclick='urlCtrl.loadByHash(\"#page.type."+value.type+".id."+value.id+"\")' onmouseover='$(this).addClass(\"text-blue\");this.style.cursor=\"pointer\";' onmouseout='$(this).removeClass(\"text-blue\");' style='color: #719FAB;'>"+
+		   						value.name+
+		   					"</span>"+
+		   				array[1];
+		   	}   					
+		});
+		return text;
+	},
+	reset: function(domElement){
+		$(domElement).mentionsInput('reset');
+	}
+}
 var smallMenu = {
 	destination : ".menuSmallBlockUI",
 	inBlockUI : true,
@@ -707,4 +815,42 @@ function inMyContacts (type,id) {
 		});
 	}
 	return res;
+}
+
+
+
+
+
+/// ce trouve dans co/assets/default/index.js
+
+function showNotif(show){
+	if(typeof show == "undefined"){
+		if($("#notificationPanelSearch").css("display") == "none") show = true; 
+    	else show = false;
+    }
+
+    if(show){
+    	$('#notificationPanelSearch').show("fast");
+    	markAllAsSeen(false,"");
+    	refreshNotifications(userId,"citoyens","","menuTop");
+
+    }
+	else 	 $('#notificationPanelSearch').hide("fast");
+
+	
+	$("#dropdown-user, #dropdown-dda, .dropdownApps-menuTop").removeClass("open");
+    showFloopDrawer(false);
+}
+
+
+function showFloopDrawer(show){ 
+	if(show){
+		if($(".floopDrawer" ).css("display") == "none"){
+			$(".floopDrawer").stop().show();
+			$(".floopDrawer" ).css("width", 0);
+			$(".floopDrawer" ).animate( { width: 300 }, 300 );
+		}
+	}else{
+		$(".floopDrawer").hide("fast");
+	}
 }

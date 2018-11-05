@@ -85,6 +85,7 @@
 ?>
 <style>
 
+
 	.<?php echo $moduleName; ?>{
 		/*z-index:-5;*/
 	}
@@ -281,3 +282,12 @@
 	// }
 
 </script>
+
+
+<style type="text/css">
+<?php /*if(@Yii::app()->session['custom']){ ?>
+.sigModuleBg {
+	top:300px;
+}
+<?php } */?>
+</style>

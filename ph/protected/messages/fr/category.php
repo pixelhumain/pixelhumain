@@ -221,41 +221,7 @@
         "Type of ressource" => "Choisir une catégorie",
         "Choose a category" => "Choisissez une catégorie",
         "Sub category" => "Sous-catégorie",
-        // TODO QUESTION OCEATOON : WHHYYYYYYYYY ?
-        //filters lel 1
-        "service"=>"service",
-            //filters lvl 2
-            "charity" => "Charité",
-            "education" => "Éducation",
-            "househelp" => "Aide à domicile",
-            "washing" => "Entretien, Ménage",
-            "gardening" => "Jardinage",
-            "farming" => "Agriculture",
-            "generalmaintenance" => "Maintenance",
-            "animalcare" => "Aide Animaux",
-            "childrencare" => "Aide aux enfants",
-            "ederlycare" => "Aide aux personnes agées",
-            "disabledcare" => "Aide aux personnes handicapés",
-            "hostinghelp" => "Aide à l'hébergement",
-        "competence"=>"compétence",
-            //filters lvl 2
-            "artistic" => "Artistique",
-            "laws" => "Légal",
-            "itdevlopment" => "Informatique",
-            "handcraft" => "Artisanat",
-            "animalcare" => "Soins des animaux",
-            "agriculture" => "Agriculture",
-            "restauration" => "Restauration",
-            "building" => "Construction",
-        "material"=>"matériel",
-            //filters lvl 2
-            "electronic"=> "Électronique",
-            "furniture"=> "Mobilier",
-            "primaryressources"=> "Ressource primaire",
-            "buildingtools"=> "Outil de construction",
-            "gardeningtools"=> "Outil de jardin",
-            "medicalstuff"=> "Médical",
-        // Bonnnnnnnnnnne version
+
         "Service"=>"Service",
             //filters lvl 2
             "Charity" => "Charité",
@@ -294,6 +260,7 @@
         "For sale" => "À vendre",
         "For rent" => "À louer",
         "Job offer" => "Offre d'emplois",
+        "Are you searching an offer or you post one"=>"Recherchez vous une offre ou vous en publiez une",
 
         //Chat
         "Chat inside CO" => "Chat interne <br/><small>Rocket Chat</small> ",

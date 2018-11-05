@@ -17,29 +17,15 @@
 </style>
 
 <div class="pageContent">
-
-<div id="affix-sub-menu" class="hidden-xs">
-    <div id="territorial-menu" class="col-md-10 col-sm-10 col-xs-12 margin-bottom-10">
-        <?php //if(false){
-            $params = CO2::getThemeParams();
-            foreach ($params["pages"] as $key => $value) {
-                if(@$value["inMenu"]==true && @$value["open"]==true){ ?>
-                    <a href="javascript:;" data-hash="<?php echo $key; ?>" 
-                    class="<?php echo $key; ?>ModBtn btn btn-link pull-left btn-menu-to-app hidden-top link-submenu-header lbh-menu-app">
-                            
-                    <i class="fa fa-<?php echo $value["icon"]; ?>"></i>
-                    <span class=""><?php echo Yii::t("common", $value["subdomainName"]); ?></span>
-                    <span class="<?php echo @$value["notif"]; ?> topbar-badge badge animated bounceIn badge-warning"></span>
-                    <?php if(@$value["notif"]){ ?>
-                    <?php } ?>
-                </a>  
-            <?php   }
-            } ?>
-    </div>
-</div>
-
 	<div class="col-md-12 col-lg-12 col-sm-12 imageSection no-padding" 
 		 style="margin-top: 80px; position:relative;">
+
+		<div class="col-md-12">
+			<div id="videoDocsImg" class="col-xs-12 no-padding">
+			    	<a target="_blank" href="https://www.helloasso.com/associations/open-atlas/collectes/communecter/don"><img class="img-responsive" src="<?php echo $this->module->assetsUrl; ?>/images/banniere-Campagne-Acoeur.jpg"/></a>
+				</div>
+			
+		</div>
 
 		<div class="col-md-12">
 			<?php if(!isset(Yii::app()->session['userId'])) { ?>
@@ -261,7 +247,7 @@
 								<br><br>
 								<a href="#search" target="_blank">
 									<img class="img-responsive shadow2" style="margin:0 auto;margin-top: 0px;border-radius: 5px;" 
-									src="<?php echo $this->module->assetsUrl; ?>/images/home/searchengine.png"/>
+									src="<?php echo $this->module->assetsUrl; ?>/images/home/<?php echo Yii::app()->language ?>/searchengine.png"/>
 								</a>
 								<br>
 								<?php echo Yii::t("home","The specialty of <b>Communecter</b> is to give you access to the data you are interested in"); ?>,<br>

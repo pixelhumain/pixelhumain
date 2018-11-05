@@ -51,6 +51,8 @@
 		"Call ressources you need or purpose it.<br/> Sharing our knowledge to built it better"=>"Chercher une ressource manquante ou la mettre à disposition.<br/> Partarger notre connaissance et nos compétences<br/>pour construire ensemble",
 		"Material, Conpetences, Services<br/>Together we are stronger"=>"Matériel, Compétences, Services<br/>Ensemble on est plus fort",
 		"Every place hides creativity and life"=>"Chaque lieu cache de la créativité et de la vie",
+		"Every point hides creativity and life"=>"Chaque point cache de la créativité et de la vie",
+		"Points of interests are centers of meeting, collective creation and are full of energy"=>"Les points d'intérêts sont des centres de rencontres, de création collectives et regorgent d'énergie",
 		"Places are centers of meeting, collective creation and are full of energy"=>"Les lieux sont des centres de rencontres, de création collectives et regorgent d'énergie",
 		"There is none sens to keep it for you<br/> Economy is capital"=>"Le garder pour soi n'a aucun sens.<br/> L'économie est capital",
 		"The market of classifieds is the creation of value.<br/> Exchange, hire, buy and sell localy faster and faster to produce value and develop a real economy."=>"Le marché des annonces crée de la valeur.<br/>Echanger, employer, acheter et vendre localement encore et encore pour produire de la valeur et développer une réelle économie",
@@ -94,6 +96,9 @@
 		"THINKERS"=>"PENSEURS",
 		"CROWDFUNDERS"=>"CROWDFUNDERS",
 		"INTEROPERATORS"=>"INTEROPÉR'ACTEURS",
+		"Win points <span class='letter-red'>using {website}</span>.<br/><span class='letter-red'>Each link</span> you did with people, organizations, projects, events <span class='letter-red'>improve your score</span>.<br/> Later will be added <span class='letter-red'>exchanges of ressources</span>, <span class='letter-red'>the number of posts</span> and <span class='letter-red'>your activity on public policy</span>"=>"Gagnez des points <span class='letter-red'>en utilisant {website}</span>.<br/><span class='letter-red'>Chaque lien que vous faites</span> avec des personnes, organisations, événements ou projets <span class='letter-red'>augmente</span> votre score.<br/> Plus tard viendront s'ajouter, entre autre, <span class='letter-red'>l'échange de ressources</span>, le <span class='letter-red'>nombre de publications</span> et votre <span class='letter-red'>participation aux sondages</span>.",
+		"You have today <span class='letter-red'>{points} point</span>"=> "Vous avez aujourd'hui <span class='letter-red'>{points} point</span>",
+		"You have today <span class='letter-red'>{points} points</span>"=> "Vous avez aujourd'hui <span class='letter-red'>{points} points</span>",
 
 
 	);

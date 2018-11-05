@@ -16,12 +16,14 @@
                  <?php echo Yii::t("common", "LOCAL CONNECTED CITIZENS");
 
              foreach ( $data as $key => $person) {
-
-              echo "<tr>
-         <td align='left'> <h3>Un nouvel utilisateur s'est inscrit sur le site : ".$person["name"]."</h3>";
-
-                echo  'N\'oubliez pas de le modérer sur le <a href="'.Yii::app()->getRequest()->getBaseUrl(true).'/'.Yii::app()->getController()->moduleId.'/#admin.directory"> back office</a><br/></td>
-      </tr>';
+              if(empty($person["invitedBy"])){
+                echo "<tr> <td align='left'> <h3>Un nouvel utilisateur s'est inscrit sur le site : <a href='".Yii::app()->getRequest()->getBaseUrl(true)."/#@".$person["slug"]."' target='_blank'>".$person["name"]."</a></h3>";
+                echo  '</td></tr>';
+              }else{
+                echo "<tr> <td align='left'> <h3>Un nouvel utilisateur a été invité sur le site : <a href='".Yii::app()->getRequest()->getBaseUrl(true)."/#@".$person["slug"]."' target='_blank'>".$person["name"]."</a></h3>";
+                echo  '</td></tr>';
+              }
+              
                
              }
 

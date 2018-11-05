@@ -43,6 +43,76 @@
 						</ul>
 					</div>
 				</div>
+
+				<?php if (!empty($params['request']['searchType']) && in_array(Classified::COLLECTION, $params['request']['searchType']) ){ ?>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding text-left subsub" id="sub-menu-left">
+						
+						<a href="javascript:;" class="btn btn-default text-dark margin-bottom-5 tagParent titleTag" style="margin-left:-5px;" data-keycat="classifieds">
+							<i class="fa fa-chevron-circle-down hidden-xs"></i> Type Annonces
+						</a><br>
+
+						<a href="javascript:;" class="btn btn-default text-azure margin-bottom-5 hidden classifiedsFilterAuto keycat-classifieds" data-filtre="classifieds" data-parent="classifieds">
+							<i class="fa fa-angle-right"></i> <?php echo Yii::t("common","Offer") ?>
+						</a><br class="hidden">
+
+						<a href="javascript:;" class="btn btn-default text-azure margin-bottom-5 hidden classifiedsFilterAuto keycat-classifieds" data-filtre="ressources" data-parent="classifieds">
+							<i class="fa fa-angle-right"></i> <?php echo Yii::t("common","Formation") ?>
+						</a><br class="hidden">
+
+						<a href="javascript:;" class="btn btn-default text-azure margin-bottom-5 hidden classifiedsFilterAuto keycat-classifieds" data-filtre="jobs" data-parent="classifieds">
+							<i class="fa fa-angle-right"></i> <?php echo Yii::t("common","Annonce") ?>
+						</a><br class="hidden">
+						
+					</div>
+				<?php } ?>
+				
+
+				<?php if (!empty($params['request']['searchType']) && in_array(Event::COLLECTION, $params['request']['searchType']) ){ ?>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding text-left subsub" id="sub-menu-left">
+						
+						<a href="javascript:;" class="btn btn-default text-dark margin-bottom-5 tagParent titleTag" style="margin-left:-5px;" data-keycat="dateevent">
+							<i class="fa fa-chevron-circle-down hidden-xs"></i> Dates
+						</a><br>
+
+						<span class="btn btn-default text-azure margin-bottom-5 hidden keycat-dateevent" data-parent="dateevent">
+							<i class="fa fa-angle-right"></i> <?php echo Yii::t("common","From") ?>
+							<input type="text" name="dateStartFiltre" id="dateStartFiltre" class="dateTimeInput">
+						</span>
+
+						<br class="hidden">
+
+						<span class="btn btn-default text-azure margin-bottom-5 hidden keycat-dateevent" data-parent="dateevent">
+							<i class="fa fa-angle-right"></i> <?php echo Yii::t("common","To") ?>
+							<input type="text" name="dateEndFiltre" id="dateEndFiltre" class="dateTimeInput">
+						</span><br class="hidden">
+						
+					</div>
+
+					<?php 
+
+					$listEventType = Lists::get(array("eventTypes")); 
+					//var_dump($listEventType);
+					if(!empty($listEventType) && !empty($listEventType["eventTypes"]) ){ ?>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding text-left subsub" id="sub-menu-left">
+						
+							<a href="javascript:;" class="btn btn-default text-dark margin-bottom-5 tagParent titleTag" style="margin-left:-5px;" data-keycat="eventTypes">
+								<i class="fa fa-chevron-circle-down hidden-xs"></i> Types d'évenements
+							</a><br>
+
+							<?php 
+							foreach ($listEventType["eventTypes"] as $key => $value) { ?>
+								<a href="javascript:;" class="btn btn-default text-azure margin-bottom-5 hidden eventsTypeAuto keycat-eventTypes" data-filtre="<?php echo $key ; ?>" data-parent="eventTypes">
+									<i class="fa fa-angle-right"></i> <?php echo Yii::t( "category",$value); ?>
+								</a><br class="hidden">
+							<?php } ?>
+							
+						</div>
+					<?php
+					}
+					?>
+
+					
+				<?php } ?>
 	
 				
 		
@@ -140,6 +210,33 @@ jQuery(document).ready(function() {
 			$(".keycat-"+$(this).data("keycat")).addClass("hidden");
 		}
 	});
+
+	
+
+
+	var initDateTime = function(){
+		mylog.log("init dateTimeInput");
+		jQuery.datetimepicker.setLocale('fr');
+		$(".dateTimeInput").datetimepicker({
+			weekStart: 1,
+			step: 15,
+			lang: 'fr',
+			format: 'd/m/Y H:i'
+		});
+	};
+	if(  $(".dateTimeInput").length){
+		loadDateTimePicker(initDateTime);
+	}
+
 });
 
+function loadDateTimePicker(callback) {
+	mylog.log("loadDateTimePicker");
+	if( ! jQuery.isFunction(jQuery.datetimepicker) ) {
+		mylog.log("loadDateTimePicker2");
+		lazyLoad( baseUrl+'/plugins/xdan.datetimepicker/jquery.datetimepicker.full.min.js', 
+				  baseUrl+'/plugins/xdan.datetimepicker/jquery.datetimepicker.min.css',
+				  callback);
+	}
+}
 </script>
