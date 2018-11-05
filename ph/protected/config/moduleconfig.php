@@ -23,5 +23,6 @@ $activeModules = array(
 	"interop",
 	"map",
 	"eco",
-	"custom"
+	"custom",
+	"mynetwork"
 	);
