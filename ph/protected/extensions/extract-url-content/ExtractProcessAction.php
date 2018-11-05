@@ -17,8 +17,8 @@ class ExtractProcessAction extends CAction{
 			    }
 			    if(in_array($str,["search","agenda","live","annonces","home", "welcome", "ressources"]) || $str=="")
 			    	return false;
-			    else	
-			    	return $str;
+			    else
+			    	return (strpos($str, "@") > -1) ? substr($str,(-strlen($str)+1)) : $str;
 			}else 
 				return false;
 		}
