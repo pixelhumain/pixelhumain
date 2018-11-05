@@ -191,5 +191,7 @@
 		"<b>Private :</b> Event visible only by its attendees and create contents only for attendees and admins<br/><b>Public :</b> Event visible in search engine, agenda and communication available for all" => "<b>Privat :</b> Veranstaltung nur für Teilnehmer sichtbar und Inhalte nur für Teilnehmer und Administratoren<br/><b>Öffentlich :</b> Veranstaltung sichtbar in Suchmaschine, Agenda und Kommunikation für alle",
 		"<b>Private :</b> Project visible only by its contributors and create contents accessible only by its community<br/><b>Public :</b> Project visible in search engine and communication available for all" => "<b>Privat :</b> Projekt nur für seine Mitwirkenden sichtbar und Inhalte nur für seine Community zugänglich<br/><b>Öffentlich :</b> Projekt sichtbar in Suchmaschine und Kommunikation für alle zugänglich",
 		"Add a new address" => "Neue Adresse hinzufügen",
+		
+		"You can&#146;t upload {netItems} items. Item limit is {itemLimit}." => "Sie können keine {netItems} Elemente hochladen. Das Elemente-Limit ist {itemLimit}",
 	)
 ?>
