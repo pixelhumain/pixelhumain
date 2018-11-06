@@ -424,6 +424,9 @@ hr.angle-down, hr.plus {
     border-radius: 5px;
     /*float: right;*/
 }
+.item-comment.bg-red-comment .comment-container-white, .item-comment.bg-green-comment .comment-container-white{
+    background-color: rgba(255, 255, 255, 0.3) !important;
+}
 
 .bg-white-comment{
     background-color:#fff !important;
