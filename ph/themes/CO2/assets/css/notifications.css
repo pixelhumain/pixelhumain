@@ -56,8 +56,10 @@
 	.notifications a.notif, .notificationsElement a.notif{
 		padding-top: 0px !important;
 		background-color: transparent;
-		color: #354535;
+		color: #354535 !important;
 		font-size: 13px;
+		font-weight: 100;
+		text-align:left;
 	}
 	ul.notifList{
 		position: absolute;
@@ -137,7 +139,7 @@
 		bottom: 4px;
 		border-radius:25px !important;
 		border:1px solid grey;
-		color: grey;
+		color: grey !important;
 	}
 	.removeBtn:hover{
 		background-color: grey;
@@ -199,6 +201,23 @@
 	right: 27px !important;
 	top: 68px !important;
 }
+.main-container.vertical .notifications .bottomNotifs{
+	bottom: -3px !important;
+}
+@media (min-width: 993px) {
+	.main-container.vertical #notificationPanelSearch.arrow_box{
+		right: -200px !important;
+	    top: 48px !important;
+	    position: absolute;
+	    height: 500px;
+	    max-width: inherit;
+	    width: 480px !important;
+	}
+	.main-container.vertical #notificationPanelSearch.arrow_box:before, .main-container.vertical #notificationPanelSearch.arrow_box:after {
+	    right: 210px;
+	    left: inherit;
+	}
+}
  @media (min-width: 767px) and (max-width: 992px) {
  	#notificationPanelSearch.arrow_box::before,
 	#notificationPanelSearch.arrow_box::after{
@@ -208,6 +227,10 @@
 	.main-container.vertical #notificationPanelSearch.arrow_box:before,
 	.main-container.vertical #notificationPanelSearch.arrow_box:after{
 		left:65%;
+	}
+	.main-container.vertical #notificationPanelSearch .btn-reload-notif{
+	    font-size: 12px;
+		margin-right: -5px !important;
 	}
  }
 

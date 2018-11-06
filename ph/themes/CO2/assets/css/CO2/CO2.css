@@ -800,7 +800,7 @@ section {
         right: inherit;
     }*/
     @media (max-width: 767px) {	
-	    #mainNav.vertical .btn-show-map, #mainNav.vertical #dropdown-apps{
+	    #mainNav.vertical .btn-show-map{
 	    	display:block;
 	    }
         #vertical #affix-sub-menu{
