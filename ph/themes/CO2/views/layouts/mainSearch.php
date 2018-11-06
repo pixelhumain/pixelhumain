@@ -255,7 +255,9 @@
                 //FineUplaoder (called in jquery.dynform.js)
                 '/plugins/fine-uploader/jquery.fine-uploader/fine-uploader-gallery.css',
                 '/plugins/fine-uploader/jquery.fine-uploader/jquery.fine-uploader.js',
-                '/plugins/fine-uploader/jquery.fine-uploader/fine-uploader-new.min.css'
+                '/plugins/fine-uploader/jquery.fine-uploader/fine-uploader-new.min.css',
+                '/plugins/facemotion/faceMocion.css',
+                '/plugins/facemotion/faceMocion.js',
             );
             if(Yii::app()->language!="en")
                 array_push($cssAnsScriptFilesModule,"/plugins/jquery-validation/localization/messages_".Yii::app()->language.".js");
