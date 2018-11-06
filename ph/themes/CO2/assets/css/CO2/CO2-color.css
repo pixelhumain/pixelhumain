@@ -437,7 +437,7 @@ hr.angle-down, hr.plus {
 }
 
 .timeline-panel .bg-white-comment{
-    background-color:rgba(255, 255, 255, 0.3) !important;
+    background-color:rgba(255, 255, 255, 0.5) !important;
 }
 
 .item-comment{
