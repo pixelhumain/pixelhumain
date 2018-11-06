@@ -50,7 +50,7 @@
 						<th style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 19px;font-size: 15px;">
 							<a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;"><img align="right" width="200" src="<?php echo Yii::app()->getRequest()->getBaseUrl(true)."/images/bdb.png"?>" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;width: auto;max-width: 100%;clear: both;display: block;border: none;" alt="Intelligence collective"></a>
 							<b><h5 style="color: inherit;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;word-wrap: normal;margin-bottom: 10px;font-size: 20px;"></h5></b><br>
-							<?php echo yii::t("mail","The user {who} asks to become {what} of {where}",array("{who}"=>@$newPendingAdmin["username"],"{what}"=>Yii::t("common",$typeOfDemand) ,"{where}"=>@$parent["name"])) ?>.
+							<?php echo yii::t("mail","The user {who} asks to become {what} of {where}",array("{who}"=>@$newPendingAdmin["name"],"{what}"=>Yii::t("common",$typeOfDemand) ,"{where}"=>@$parent["name"])) ?>.
 							<br><br><br>
 							<?php echo yii::t("mail", "For more details on the user {who}, you can visit {what}",array("{who}"=> @$newPendingAdmin["username"],"{what}"=>'<a href="'.Yii::app()->getRequest()->getBaseUrl(true).'/'.$this->module->id.'#page.type.'.Person::COLLECTION.'.id.'.(String) @$newPendingAdmin["_id"].'">'.Yii::t("mail","his profile").'</a>')) ?>.
 							<br><br>
