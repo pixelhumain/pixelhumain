@@ -200,6 +200,7 @@
 	bottom: 30% !important;
 	right: 27px !important;
 	top: 68px !important;
+	z-index: 100000;
 }
 
 @media (min-width: 993px) {

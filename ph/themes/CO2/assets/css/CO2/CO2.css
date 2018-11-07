@@ -2065,10 +2065,10 @@ margin-right: 5px;
 	left:40%;
 	right:0px;
 	background-color: white;
-	z-index: 15000;
+	z-index: 150000;
 }
 #modalDeleteAm, #modalAssignMe{
-	z-index: 10002;
+	z-index: 100020;
 }
 
 #modal-preview-coop #amendement-container{
