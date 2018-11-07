@@ -178,8 +178,6 @@
                             <?php echo @$countNotifElement ?>
                         </span>
                         <span class="tooltips-top-menu-btn"><?php echo Yii::t("common", "My notifications"); ?></span>
-
-                        <?php $this->renderPartial($layoutPath.'notifications'); ?>
                     </button>
                     <?php if(@$me && @$me["links"] && (@$me["links"]["memberOf"] || @$me["links"]["contributors"])){ ?>
                     <button class="menu-button btn-menu btn-dashboard-dda text-dark pull-right hidden-xs" 
@@ -407,7 +405,7 @@
 
 $this->renderPartial($layoutPath.'loginRegister', array("subdomain" => $subdomain)); 
 
-//if(isset(Yii::app()->session['userId']))  
-
+if(isset(Yii::app()->session['userId']))  
+    $this->renderPartial($layoutPath.'notifications'); 
 $this->renderPartial($layoutPath.'formCreateElement'); ?>
 
