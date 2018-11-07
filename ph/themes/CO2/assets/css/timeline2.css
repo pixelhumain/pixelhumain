@@ -305,6 +305,17 @@ h5.srcMedia{
     font-weight: inherit !important;
     cursor: pointer;
   }
+  .nbNewsComment:hover{
+    text-decoration: underline;
+  }
+  .reportAbuse {
+    text-decoration: none;
+  }
+  .reportAbuse span{
+    font-size: 11px;
+    vertical-align: text-bottom;
+    line-height: 10px;
+  }
   #reasonComment{
     margin-top:15px;
   }

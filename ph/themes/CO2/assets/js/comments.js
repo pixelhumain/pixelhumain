@@ -20,8 +20,8 @@ function initCommentsTools(listObjects, type, canComment, parentId){
             sectionHtmlCount +="<div class='emojicon"+type+" "+e+" pull-left'></div>";
             totalReaction=totalReaction+v;
           });
-          sectionHtmlCount+="<span class='pull-left'>"+totalReaction+"</span>";
-          sectionHtmlCount+="</div>"
+          sectionHtmlCount+="<span class='pull-left margin-left-5'>"+totalReaction+"</span>";
+          sectionHtmlCount+="</a>"
         }
         if(commentCount > 0){
           sectionHtmlCount+="<span class='nbNewsComment pull-right newsAddComment' data-media-id='"+idMedia+"''>" + commentCount + " ";
@@ -56,7 +56,7 @@ function initCommentsTools(listObjects, type, canComment, parentId){
           if(typeof media.scope.type != "undefined" && media.scope.type != "private")
             actionOn =  actionOn+
                              "<button class='text-dark btn btn-link no-padding margin-right-5 btn-share bold'"+
-                                " style='margin-top:-3px;'" +
+                                " style='margin-top:-1px;'" +
                                 " data-id='"+idMediaShare+"' data-type='"+typeMediaShare+"'>"+
                                 "<i class='fa fa-retweet'></i> "+trad.share+
                              "</button>";
@@ -243,7 +243,7 @@ function voteCheckAction(idVote, newsObj, mediaTarget) {
   voteHtml= "<span class='reaction-news' data-count='"+voteUpCount+"' data-id='"+idVote+"' data-type='"+mediaTarget+"' "+valueVote+"></span>";
   if(mediaTarget!="news" || reportAbuseCount > 0){
     voteHtml+="<a href='javascript:;' class='reportAbuse pull-right margin-left-10' data-count='"+reportAbuseCount+"' data-id='"+idVote+"' data-type='"+mediaTarget+"'>"+
-      "<span class='label "+textReportAbuse+"'>"+reportAbuseCount+" <i class='fa fa-flag'></i></span>"+
+      "<span class='label "+textReportAbuse+" no-padding'>"+reportAbuseCount+" <i class='fa fa-flag'></i></span>"+
     "</a>";
   }
     //onclick='newsReportAbuse(this, \""+idVote+"\")'

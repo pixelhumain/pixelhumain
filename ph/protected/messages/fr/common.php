@@ -387,6 +387,7 @@ return array(
 	"Are you sure to join the organization" => "Etes-vous sûr de rejoindre l'organisation",
 	"Are you sure to join the project" => "Etes-vous sûr de rejoindre le projet",
 	"Are you sure to participate to the event" => "Etes-vous sûr de participer à cet événement",
+	"Do you validate this user"=>"Validez-vous cet-te utilisateur-rice",
 	"Are you sure to refuse this invitation" => "Etes-vous sûr-e de refuser cette invitation",
 	"Are you sure to refuse to administrate {what}"=> "Etes-vous sûr-e de refuser d&#146;administrer {what}",
 	"Are you admin" => "Êtes-vous admin",
@@ -412,8 +413,9 @@ return array(
 	//Status
 	"waiting for validation" => "attente de validation",
 	"Please wait while we fetch the information." => "Veuillez patienter, on récupère les informations",
-	"unregistred" => "non inscrit-e",
-	"not activated" => "non activé-e",
+	"unregistred" => "non inscrit⋅e",
+	"not activated" => "non activé⋅e",
+	"Invited to administrate"=>"Invité⋅e pour administrer",
 	//Attributes
 	"Me" => "Moi",
 	"Person" => "Citoyen",
@@ -584,6 +586,7 @@ return array(
 	"<span class='text-red'>CO</span>mmon live"=>"Le fil d'actualité <span class='text-red'>CO</span>mmun",
 	"Create a page"=>"Créer une page",
 	"Create a classified ad"=>"Publier une annonce",
+	"Create a job offer"=>"Publier une offre d'emploi",
 	"Create an event"=>"Créer un événement",
 	"Create something"=>"Créer quelque chose",
 	"Launch search"=> "Lancer la recherche",

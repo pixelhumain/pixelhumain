@@ -447,7 +447,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 }
 
 .sub-menu-social.affix {
-    top: 80px !important;
+    top: 76px !important;
     position: fixed;
     right: 0;
     z-index: 100;

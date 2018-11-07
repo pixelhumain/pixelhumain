@@ -260,6 +260,7 @@
         "For sale" => "À vendre",
         "For rent" => "À louer",
         "Job offer" => "Offre d'emplois",
+        "Are you searching an offer or you post one"=>"Recherchez vous une offre ou vous en publiez une",
 
         //Chat
         "Chat inside CO" => "Chat interne <br/><small>Rocket Chat</small> ",

@@ -219,6 +219,21 @@
 </div>
 <script type="text/javascript">
 jQuery(document).ready(function() {
+   /* $(".toolbar-bottom-apps").hide().removeClass("hidden");
+    $('#show-bottom-app').off().click(function(){
+        $(".toolbar-bottom-apps").toggle(100);
+        $(".toolbar-bottom-adds").hide(200);
+        $('.toolbar-bottom-apps .btn').click(function(){
+            console.log(".toolbar-bottom-apps btn click");
+            $(".toolbar-bottom-apps").hide(200);
+        });
+    });
+    $('.toolbar-bottom-apps').unbind("mouseleave").mouseleave(function(){
+        console.log(".toolbar-bottom-apps mouseleave");
+        $(".toolbar-bottom-apps").hide(200);
+    });*/
+
+
 
     $(".toolbar-bottom-adds").hide().removeClass("hidden");
     $('#show-bottom-add').off().click(function(){
