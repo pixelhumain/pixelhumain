@@ -408,9 +408,8 @@ function slugify (value,slug) {
 	// 3) enleve tout les caratères non alphanumeriques
 	// 4) enlève les doubles tirets
   if(typeof slug != "undefined" && slug){
-    return value.toLowerCase()
-      .replace(/\s+/g, '-')
-      .replace(/[^a-z0-9-]/g, '')
+    return value.replace(/\s+/g, '-')
+      .replace(/[^a-z0-9A-Z]/g, '')
       .replace(/\-{2,}/g,'-');
   }
   else{
