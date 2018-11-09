@@ -706,7 +706,10 @@ return array(
 	"Follow this project" => "Suivre ce projet",
 	"Unfollow" => "Ne plus suivre",
 	"Cancel this link"=>"Annuler ce lien",
-	
+	"Already follow"=>"Déjà abonné⋅e",
+	"Already attendee"=>"Déjà participant⋅e",
+	"Already member"=>"Déjà membre",
+	"Already contributor"=>"Déjà contributeur⋅rice",
 	"Add Something to your network" => "Ajouter quelque chose à votre réseau" ,
 	"Add"							=> "Ajouter",
 	"add"							=> "ajouter",
