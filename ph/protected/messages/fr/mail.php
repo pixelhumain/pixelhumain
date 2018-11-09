@@ -168,10 +168,12 @@
 
 
 		//REACT
-		"{who} reacts on a news {what} from {where}" => "{who} a réagi sur la publication {what} de {where}",
-		"{who} react on a news {what} from {where}" => "{who} ont réagi sur la publication {what} de {where}",
+		"{who} reacts on a news from {where}" => "{who} a réagi sur la publication de {where}",
+		"{who} react on a news from {where}" => "{who} ont réagi sur la publication de {where}",
 		"{who} reacts on your news {what}"=>"{who} a réagi sur votre publication {what}",
 		"{who} react on your news {what}"=>"{who} ont réagi sur votre publication {what}",
+		"{who} reacts on your comment on {where}"=>"{who} a réagi sur votre commentaire sur {where}",
+		"{who} react on your comment on {where}" => "{who} ont réagi à votre commentaire sur {where}",	
 
 		//DELETE
 		"{who} asks the suppression of {where}"=>"{who} demande la suppression de {where}",
