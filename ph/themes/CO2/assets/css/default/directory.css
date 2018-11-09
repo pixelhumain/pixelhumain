@@ -699,7 +699,6 @@
 
 .entityLight .btn-share,
 .entityLight .followBtn{
-  visibility: hidden;    
   margin-right: 10px;
 }/*
 .searchEntity.entityLight:hover{
@@ -1068,6 +1067,9 @@
   color:#2BB0C6 !important;
   border: 0px !important;
   box-shadow: none;
+}
+.btn-element-panel-link.disabled{
+  opacity: inherit !important;
 }
 @media (max-width: 768px) {
   .btn-select-type-anc.col-xs-5{

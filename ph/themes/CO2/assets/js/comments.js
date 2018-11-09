@@ -14,13 +14,18 @@ function initCommentsTools(listObjects, type, canComment, parentId){
 
         var sectionHtmlCount = '';
         if(typeof media.voteCount != "undefined"){
-          sectionHtmlCount = "<a href='javascript:;' onclick='getReactionList(\""+idMedia+"\",\""+type+"\");' class='content-reactions-"+type+"'>";
+          sectionHtmlCount = "<a href='javascript:;' onclick='getReactionList(\""+idMedia+"\",\""+type+"\");' class='content-reactions-"+type+" content-reactions-"+type+"-"+idMedia+"'>";
           totalReaction=0;
           $.each(media.voteCount, function(e, v){
-            sectionHtmlCount +="<div class='emojicon"+type+" "+e+" pull-left'></div>";
+            addClassCount="";
+            if(userId != "" && "undefined" != typeof media.vote 
+              && "undefined" != typeof media.vote[userId] 
+              && "undefined" != typeof media.vote[userId].status && media.vote[userId].status==e)
+                addClassCount="currentUserVote";
+            sectionHtmlCount +="<div class='emojicon"+type+" "+e+" "+addClassCount+" pull-left' data-count='"+v+"'></div>";
             totalReaction=totalReaction+v;
           });
-          sectionHtmlCount+="<span class='pull-left margin-left-5'>"+totalReaction+"</span>";
+          sectionHtmlCount+="<span class='pull-left margin-left-5 totalCountReaction' data-count='"+totalReaction+"'>"+totalReaction+"</span>";
           sectionHtmlCount+="</a>"
         }
         if(commentCount > 0){
@@ -40,7 +45,7 @@ function initCommentsTools(listObjects, type, canComment, parentId){
         else if (type=="comments"){
           countReplies=(typeof media.replies != "undefined") ? Object.keys(media.replies).length : 0;
           s=(countReplies > 1) ? "s" : "";
-          lblReply = trad.answer;
+          lblReply = "<i class='fa fa-reply fa-rotate-180'></i> "+trad.answer;
           parentId=(notNull(parentId)) ? parentId : idMedia;
           if(countReplies >= 1) lblReply = "<i class='fa fa-reply fa-rotate-180'></i>"+countReplies+" "+trad["answer"+s];
           actionOn= '<a class="" href="javascript:answerComment(\''+idMedia+'\', \''+idMedia+'\',\''+media.contextType+'\')">'+lblReply+'</a>';
@@ -70,7 +75,9 @@ function initCommentsTools(listObjects, type, canComment, parentId){
                              "</small>";
         }
         if(sectionHtmlCount!=""){
-          sectionHtmlCount="<div class='col-xs-12 no-padding'>"+sectionHtmlCount+"</div><hr class='col-xs-12 margin-top-5 margin-bottom-5 no-padding'></hr>";
+          sectionHtmlCount="<div class='col-xs-12 no-padding sectionHtmlCount-"+type+"-"+idMedia+"'>"+sectionHtmlCount+"</div>"
+          if(type!="comments")
+            sectionHtmlCount+="<hr class='col-xs-12 margin-top-5 margin-bottom-5 no-padding'></hr>";
         }
 
         actionOn = actionOn+voteCheckAction(idMedia, media, type);
@@ -134,13 +141,14 @@ function initReactionTools(idObject, type){
   $("#footer-"+type+"-"+idObject+' .reaction-news').faceMocion({
         emociones:[
          {"emocion":"love","TextoEmocion":trad.ilove, "class" : "amo", "color": "text-red" },
-         {"emocion":"bothered","TextoEmocion":trad.bothering,"class" : "molesto", "color": "letter-red"},
-         {"emocion":"scared","TextoEmocion":trad.scaring, "class" : "asusta", "color": "text-purple"},
-         {"emocion":"enjoy","TextoEmocion":trad.enjoying, "class" : "divierte","color": "text-orange"},
-         {"emocion":"like","TextoEmocion":trad.ilike, "class" : "gusta", "color": "letter-blue"},
+         {"emocion":"bothered","TextoEmocion":trad.bothering,"class" : "molesto", "color": "text-orange"},
+         {"emocion":"scared","TextoEmocion":trad.what, "class" : "asusta", "color": "text-purple"},
+         {"emocion":"enjoy","TextoEmocion":trad.toofunny, "class" : "divierte","color": "text-orange"},
+         {"emocion":"like","TextoEmocion":"+1", "class" : "gusta", "color": "text-red"},
          {"emocion":"sad","TextoEmocion":trad.sad, "class" : "triste", "color": "text-azure"},
-         {"emocion":"amazed","TextoEmocion":trad.amazing, "class" : "asombro", "color":"text-brown"},
-         {"emocion":"glad","TextoEmocion":trad.glad, "class" : "alegre", "color":"letter-green"}
+         {"emocion":"support","TextoEmocion":trad.isupport, "class" : "support", "color":"letter-blue"},
+         {"emocion":"glad","TextoEmocion":trad.cool, "class" : "alegre", "color":"text-orange"},
+         {"emocion":"disguted","TextoEmocion":trad.burk, "class" : "disguted", "color":"text-brown"}
          ],
          callback: function(contentDiv, emo) {
          // console.log($(e).parent());
@@ -154,9 +162,11 @@ function actionOnMedia(contentDiv,action,method, detail) {
   //var type="news";
   //if(typeof parentTypeComment != "undefined")
     //type = parentTypeComment;
+  var typeObj=contentDiv.data("type");
+  var idObj=contentDiv.data("id");
   params=new Object,
-  params.id=contentDiv.data("id"),
-  params.collection=contentDiv.data("type"),
+  params.id=idObj,
+  params.collection=typeObj,
   params.action=action;
   if(notNull(detail)){
     params.details=detail;
@@ -165,7 +175,6 @@ function actionOnMedia(contentDiv,action,method, detail) {
   if(method){
     params.unset=method;
   }
-  mylog.log(params);
   $.ajax({
     url: baseUrl+'/'+moduleId+"/action/addaction/",
     data: params,
@@ -188,8 +197,11 @@ function actionOnMedia(contentDiv,action,method, detail) {
                 //$(".newsReport[data-id="+params.id+"]").hide();
               }
               else{
-                if(count < count+data.inc)
+                if(count < count+data.inc){
+                  if(action=="vote")
+                    callbackVote(typeObj, idObj, data.element.vote[userId].status);
                   toastr.success(trad["voteaddedsuccess"]);
+                }
                 else
                   toastr.success(trad["voteremovedsuccess"]);  
               }                   
@@ -202,6 +214,44 @@ function actionOnMedia(contentDiv,action,method, detail) {
           }
   });
 }
+function callbackVote(type, id, status){
+  htmlContent="";
+  //Check if a reaction is already done on object to know if vote count container exists
+  if($(".content-reactions-"+type+"-"+id).length<=0){
+    htmlContent="<a href='javascript:;' onclick='getReactionList(\""+id+"\",\""+type+"\");' class='content-reactions-"+type+" content-reactions-"+type+"-"+id+"'>"+
+        "<span class='pull-left margin-left-5 totalCountReaction' data-count='0'></span>"+
+      "</a>";
+    targetDom=".sectionHtmlCount-"+type+"-"+id;
+  }
+  //Check if a reaction or a comment is already done on object to know if count container exists in footer
+  if($(".sectionHtmlCount-"+type+"-"+id).length<=0){
+    htmlContent="<div class='col-xs-12 no-padding sectionHtmlCount-"+type+"-"+id+"'>"+htmlContent+"</div>";
+    if(type!="comments")
+      htmlContent+="<hr class='col-xs-12 margin-top-5 margin-bottom-5 no-padding'></hr>";
+    targetDom="#footer-"+type+"-"+id;
+  }
+  if(htmlContent!="")
+    $(targetDom).prepend(htmlContent);
+  //Check if user reaction voted on this object
+  if($(".content-reactions-"+type+"-"+id+" .currentUserVote").length > 0){
+    countLastVote=parseInt($(".content-reactions-"+type+"-"+id+" .currentUserVote").data("count"));
+    if(countLastVote>1){
+      $(".content-reactions-"+type+"-"+id+" .currentUserVote").data("count", (countLastVote-1)).removeClass("currentUserVote");
+    }
+    else
+      $(".content-reactions-"+type+"-"+id+" .currentUserVote").remove();
+  }else{
+    //Increment total of vote account
+    incTotal=parseInt($(".content-reactions-"+type+"-"+id+" .totalCountReaction").data("count"))+1;
+    $(".content-reactions-"+type+"-"+id+" .totalCountReaction").data("count", incTotal).text(incTotal);
+  }
+  //Check if this status vote already existed for this object
+  if($(".content-reactions-"+type+"-"+id+" .emojicon"+type+"."+status).length <=0)
+    $(".content-reactions-"+type+"-"+id).prepend("<div class='emojicon"+type+" "+status+" currentUserVote pull-left' data-count='1'></div>");
+  else
+    $(".content-reactions-"+type+"-"+id+" .emojicon"+type+"."+status).addClass("currentUserVote").data("count", parseInt($(".content-reactions-"+type+"-"+id+" .emojicon"+type+"."+status).data("count"))+1);
+}
+
 function getReactionList(idMedia, type){
     showModalReactions();
     getAjax('#reactionsContent' ,baseUrl+'/'+moduleId+"/action/list/type/"+type+"/id/"+idMedia+"/actionType/vote",function(){},"html");
@@ -242,7 +292,8 @@ function voteCheckAction(idVote, newsObj, mediaTarget) {
  
   voteHtml= "<span class='reaction-news' data-count='"+voteUpCount+"' data-id='"+idVote+"' data-type='"+mediaTarget+"' "+valueVote+"></span>";
   if(mediaTarget!="news" || reportAbuseCount > 0){
-    voteHtml+="<a href='javascript:;' class='reportAbuse pull-right margin-left-10' data-count='"+reportAbuseCount+"' data-id='"+idVote+"' data-type='"+mediaTarget+"'>"+
+    classPull=(mediaTarget=="news") ? "pull-right":"";
+    voteHtml+="<a href='javascript:;' class='reportAbuse "+classPull+" margin-left-10' data-count='"+reportAbuseCount+"' data-id='"+idVote+"' data-type='"+mediaTarget+"'>"+
       "<span class='label "+textReportAbuse+" no-padding'>"+reportAbuseCount+" <i class='fa fa-flag'></i></span>"+
     "</a>";
   }
@@ -265,8 +316,8 @@ function bindEventTextArea(idTextArea, idComment, contextType, isAnswer, parentC
           //submit form via ajax, this is not JS but server side scripting so not showing here
           saveComment($(idTextArea).val(), parentCommentId, idTextArea, pathContext);
           $(idTextArea).val("");
-          $(idTextArea).css('height', "34px");
-          var heightTxtArea = $(idTextArea).css("height");
+          $(idTextArea+", #container-txtarea-"+idUx).css('height', "34px");
+          //var heightTxtArea = $(idTextArea).css("height");
           //$("#container-txtarea-"+idUx).css('height', heightTxtArea);
         }else
           mentionsInit.isSearching=false;
@@ -487,8 +538,8 @@ function bindEventTextArea(idTextArea, idComment, contextType, isAnswer, parentC
 
     var html = '<div id="container-txtarea-'+parentCommentId+'" class="content-new-comment">' +
 
-            '<img src="'+profilThumbImageUrlUser+'" class="img-responsive pull-left" '+
-            '  style="margin-right:10px;height:32px; border-radius:3px;">'+
+            '<img src="'+profilThumbImageUrlUser+'" class="img-responsive pull-left img-circle" '+
+            '  style="margin-right:10px;height:32px;">'+
           
             '<div class="ctnr-txtarea">';
 

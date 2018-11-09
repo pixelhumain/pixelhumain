@@ -1,4 +1,4 @@
-.faceMocion { display: none;padding-bottom:8px;padding-top:8px;padding-right: 8px;
+.faceMocion { display: none;padding-bottom:8px;padding-top:8px;padding-right: 8px;z-index: 100000;
 padding-left: 0px;box-sizing: border-box;background: white;color: white;position: absolute;width: auto;/*height: 45px;*/line-height: 25px;border-radius: 50px;transition: .25sease-in-out;color:black;border: 1px solid #eee;-webkit-box-shadow: 4px 4px 21px -9px rgba(0,0,0,0.75);-moz-box-shadow: 4px 4px 21px -9px rgba(0,0,0,0.75);box-shadow: 4px 4px 21px -9px rgba(0,0,0,0.75);}
 .faceMocion div{margin-left: 8px;float: left;width: 30px; height: 30px; cursor: pointer; transition: all 0.2s ease; background-size: 30px;}
 .selectorFace{   
@@ -23,31 +23,81 @@ padding-left: 0px;box-sizing: border-box;background: white;color: white;position
     transition: all 0.2s ease;
     background-size: 18px !important;
 }
+.molesto{
+    background: url(sqhTN9lgaY1.png) 0 0; 
+    transform: scale(1.2);
+    -webkit-transform-origin-y: -3px;
+}
+.faceMocion .molesto:hover{
+    -webkit-transform:scale(1.5);
+    -moz-transform:scale(1.5);
+    -ms-transform:scale(1.5);
+    -o-transform:scale(1.5);
+    transform:scale(1.5);
+}
+.asusta{
+    background: url(sqhTN9lgaY1.png) 0 -30px;
+    transform: scale(1.4);
+    -webkit-transform-origin-y: 23px;
+ }
+.faceMocion .asusta:hover{
+    -webkit-transform:scale(1.65);
+    -moz-transform:scale(1.65);
+    -ms-transform:scale(1.65);
+    -o-transform:scale(1.65);
+    transform:scale(1.65);
+}
+.divierte{
+    background: url(sqhTN9lgaY1.png) 0 -60px;
+    transform: scale(1.2);
+ }
+.faceMocion .divierte:hover{
+    -webkit-transform:scale(1.45);
+    -moz-transform:scale(1.45);
+    -ms-transform:scale(1.45);
+    -o-transform:scale(1.45);
+    transform:scale(1.45);
+}
+.gusta{background: url(sqhTN9lgaY1.png) 0 -122px; }
+.amo{background: url(sqhTN9lgaY1.png) 0 -91px; }
+.triste{background: url(sqhTN9lgaY1.png) 0 -153px; }
+.support{background: url(sqhTN9lgaY1.png) 0 -184px; }
+.alegre{
+    background: url(sqhTN9lgaY1.png) 0 -216px;
+    transform: scale(1.35);
+    -webkit-transform-origin-y: 10px;
+}
+.disguted{
+    background: url(sqhTN9lgaY1.png) 0 -247px;
+    transform: translateY(3px);
+}
+.faceMocion .alegre:hover{
+    -webkit-transform:scale(1.6);
+    -moz-transform:scale(1.6);
+    -ms-transform:scale(1.6);
+    -o-transform:scale(1.6);
+    transform:scale(1.6);
+}
 .faceMocion div:hover{ -webkit-transform:scale(1.25);-moz-transform:scale(1.25);-ms-transform:scale(1.25);-o-transform:scale(1.25);transform:scale(1.25);}
-.molesto{background: url(sqhTN9lgaY1.png) 0 0; }
-.asusta{background: url(sqhTN9lgaY1.png) 0 -30px; }
-.divierte{background: url(sqhTN9lgaY1.png) 0 -60px; }
-.gusta{background: url(sqhTN9lgaY1.png) 0 -90px; }
-.amo{background: url(sqhTN9lgaY1.png) 0 -360px; }
-.triste{background: url(sqhTN9lgaY1.png) 0 -150px; }
-.asombro{background: url(sqhTN9lgaY1.png) 0 -420px; }
-.alegre{background: url(sqhTN9lgaY1.png) 0 -210px; }
+
 .selectorFace.molesto, .emojiconnews.bothered{ background: url(sqhTN9lgaY1.png) 0 0; }
 .selectorFace.asusta,.emojiconnews.scared{background: url(sqhTN9lgaY1.png) 0 -18px; }
 .selectorFace.divierte, .emojiconnews.enjoy{background: url(sqhTN9lgaY1.png) 0 -36px; }
-.selectorFace.gusta,.emojiconnews.like{background: url(sqhTN9lgaY1.png) 0 -54px; }
-.selectorFace.amo, .emojiconnews.love{background: url(sqhTN9lgaY1.png) 0 -360px; }
-.selectorFace.triste, .emojiconnews.sad{background: url(sqhTN9lgaY1.png) 0 -90px; }
-.selectorFace.asombro, .emojiconnews.amazed{background: url(sqhTN9lgaY1.png) 0 -108px; }
-.selectorFace.alegre, .emojiconnews.glad{background: url(sqhTN9lgaY1.png) 0 -126px; }
+.selectorFace.gusta,.emojiconnews.like{background: url(sqhTN9lgaY1.png) 0 -73px;height: 19px; }
+.selectorFace.amo, .emojiconnews.love{background: url(sqhTN9lgaY1.png) 0 -54px; height: 19px;}
+.selectorFace.triste, .emojiconnews.sad{background: url(sqhTN9lgaY1.png) 0 -92px; }
+.selectorFace.support, .emojiconnews.support{background: url(sqhTN9lgaY1.png) 0 -110px; }
+.selectorFace.alegre, .emojiconnews.glad{background: url(sqhTN9lgaY1.png) 0 -129px; }
+.selectorFace.disguted, .emojiconnews.disguted{background: url(sqhTN9lgaY1.png) 0 -149px; transform: inherit;}
 .emojiconcomments.bothered, .userReactionList.bothered{ background: url(sqhTN9lgaY1.png) 0 0; }
 .emojiconcomments.scared,.userReactionList.scared{background: url(sqhTN9lgaY1.png) 0 -14px; }
 .emojiconcomments.enjoy,.userReactionList.enjoy{background: url(sqhTN9lgaY1.png) 0 -28px; }
-.emojiconcomments.like,.userReactionList.like{background: url(sqhTN9lgaY1.png) 0 -42px; }
-.emojiconcomments.love,.userReactionList.love{background: url(sqhTN9lgaY1.png) 0 -56px; }
+.emojiconcomments.like,.userReactionList.like{background: url(sqhTN9lgaY1.png) 0 -56px; height: 15px; }
+.emojiconcomments.love,.userReactionList.love{background: url(sqhTN9lgaY1.png) 0 -43px; }
 .emojiconcomments.sad,.userReactionList.sad{background: url(sqhTN9lgaY1.png) 0 -70px; }
-.emojiconcomments.amazed,.userReactionList.amazed{background: url(sqhTN9lgaY1.png) 0 -84px; }
+.emojiconcomments.support,.userReactionList.support{background: url(sqhTN9lgaY1.png) 0 -86px; }
 .emojiconcomments.glad,.userReactionList.glad{background: url(sqhTN9lgaY1.png) 0 -98px; }
+.emojiconcomments.disguted, .userReactionList.disguted{background: url(sqhTN9lgaY1.png) 0 -115px;}
 
 .empty{width: 0px;margin-right: 0px; }
 .text-emotion{cursor: pointer;}
@@ -56,7 +106,7 @@ border-radius:5px;padding:3px;color:#fff;font-family: sans-serif;font-size: 12px
 .IconoPequenio{width: 24px;height: 24px; background-size: 24px; background-repeat: no-repeat;}
 .content-reactions-comments{
 	position: absolute;
-    right: 0px;
+    right: 5px;
     top: -10px;
 }
 .emojiconcomments, .userReactionList{   
