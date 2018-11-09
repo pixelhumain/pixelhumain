@@ -175,7 +175,7 @@ $session = (!empty($_GET["session"]) ? $_GET["session"] : "1");
 
             <li role="separator" class="divider"></li>
             <li class="text-admin">
-                <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true)."/#page.type.".Person::COLLECTION.".id.".Yii::app()->session["userId"].".view.settings" ; ?>" target="_blanck" lass="lbh bg-white">
+                <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true).'/#settings.page.myAccount' ; ?>" target="_blanck" lass="lbh bg-white">
                     <i class="fa fa-cogs"></i> <?php echo Yii::t("common", "My parameters") ; ?>
                 </a>
             </li>

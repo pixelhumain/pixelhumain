@@ -120,13 +120,13 @@
 		"{who} writes posts on the wall of {where}" => "{who} a écrit plusieurs posts sur le mur de {where}",
 		// add
 		"{who} write posts" => "{who} ont écrit plusieurs posts",
-		"{who} added a new event : {what}" => "{who} a ajouté un événement : {what}",
-		"{who} added a new project : {what}" => "{who} a ajouté un projet : {what}",
-		"{who} added a new classified : {what}" => "{who} a ajouté une nouvelle annonces : {what}",
-		"{who} added a new point of interest : {what}" => "{who} a ajouté un point d'intéret : {what}",
-		"{who} added a new proposal : {what}" => "{who} a ajouté une proposition : {what}",
-		"{who} added a new action : {what}" => "{who} a ajouté une action : {what}",
-		"{who} added a new room : {what}" => "{who} a ajouté une espace de décision : {what}",
+		"{who} added a new event : {what} on {where}" => "{who} a ajouté un événement : {what} dans {where}",
+		"{who} added a new project : {what} on {where}" => "{who} a ajouté un projet : {what} dans {where}",
+		"{who} added a new classified : {what} on {where}" => "{who} a ajouté une nouvelle annonces : {what} dans {where}",
+		"{who} added a new point of interest : {what} on {where}" => "{who} a ajouté un point d'intéret : {what} dans {where}",
+		"{who} added a new proposal : {what} in {where}" => "{who} a ajouté une proposition : {what} sur {where}",
+		"{who} added a new action : {what} in {where}" => "{who} a ajouté une action : {what} sur {where}",
+		"{who} added a new room : {what} in {where}" => "{who} a ajouté une espace de décision : {what} sur {where}",
 
 		"{who} have added new events on {where}"=>"{who} ont ajouté plusieurs événements sur {where}",
 		"{who} have added new classifieds on {where}"=>"{who} ont ajouté plusieurs annonces sur {where}",
@@ -168,10 +168,12 @@
 
 
 		//REACT
-		"{who} reacts on a news {what} from {where}" => "{who} a réagi sur la publication {what} de {where}",
-		"{who} react on a news {what} from {where}" => "{who} ont réagi sur la publication {what} de {where}",
+		"{who} reacts on a news from {where}" => "{who} a réagi sur la publication de {where}",
+		"{who} react on a news from {where}" => "{who} ont réagi sur la publication de {where}",
 		"{who} reacts on your news {what}"=>"{who} a réagi sur votre publication {what}",
 		"{who} react on your news {what}"=>"{who} ont réagi sur votre publication {what}",
+		"{who} reacts on your comment on {where}"=>"{who} a réagi sur votre commentaire sur {where}",
+		"{who} react on your comment on {where}" => "{who} ont réagi à votre commentaire sur {where}",	
 
 		//DELETE
 		"{who} asks the suppression of {where}"=>"{who} demande la suppression de {where}",

@@ -381,7 +381,7 @@
 
             <li role="separator" class="divider"></li>
             <li class="text-admin">
-                <a href="#page.type.<?php echo Person::COLLECTION ?>.id.<?php echo Yii::app()->session["userId"] ?>.view.settings" class="lbh bg-white">
+                <a href="#settings.page.myAccount" class="lbh bg-white">
                     <i class="fa fa-cogs"></i> <?php echo Yii::t("common", "My parameters") ; ?>
                 </a>
             </li>
