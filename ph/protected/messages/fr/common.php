@@ -1218,6 +1218,7 @@ merci de renseigner votre code postal dans l'adresse de votre profil.",
 	"by" => "par",
 	"on" => "sur",
 	"in"=>"dans",
+	"In"=>"À",
 
 	"About" => "A propos",
 
