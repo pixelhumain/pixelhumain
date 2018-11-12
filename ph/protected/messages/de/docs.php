@@ -96,5 +96,7 @@
 		"THINKERS" => "DENKER",
 		"CROWDFUNDERS" => "CROWDFUNDERS",
 		"INTEROPERATORS" => "INTEROPERATOREN",
+		"Every point hides creativity and life" => "In jedem Ort steckt Kreativität und Leben",
+		"Points of interests are centers of meeting, collective creation and are full of energy" => "Interessante Orte sind Treffpunkte, kollektiver Schöpfung und voller Energie",
 	);
 ?>
