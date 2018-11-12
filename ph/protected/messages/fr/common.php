@@ -493,6 +493,7 @@ return array(
 	"History" => "Historique",
 	"Settings" => "Paramètres",
 	"More" => "Plus",
+	"Notifications preferences" => "Paramètres de notification",
 	"Confidentiality params" => "Paramètres de confidentialité",
 	"Confidentiality"=>"Confidentialité",
 	"Confidentiality of your personal informations" => "Confidentialité de vos informations personnelles",
