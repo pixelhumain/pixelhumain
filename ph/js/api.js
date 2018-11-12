@@ -382,7 +382,9 @@ function showAsColumn(resp,id)
 
 /* --------------------------------------------------------------- */
 
-function slugify (value,slug) {    
+function slugify (value,slug) {
+
+  mylog.log("slugify",value,slug);
 	var rExps=[
 	{re:/[\xC0-\xC6]/g, ch:'A'},
 	{re:/[\xE0-\xE6]/g, ch:'a'},

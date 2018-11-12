@@ -5,6 +5,7 @@
     $preferences = Preference::getPreferencesByTypeId(@Yii::app()->session["userId"], Person::COLLECTION);
 ?>
 <script>
+    //alert("init");
     var themeUrl = "<?php echo Yii::app()->theme->baseUrl;?>";
     var themeParams = <?php echo json_encode(@$themeParams);?>;
     var domainName = "<?php echo Yii::app()->params["CO2DomainName"];?>";
@@ -38,7 +39,7 @@
         "chat": <?php echo json_encode( Chat::getConfig() ) ?>,
         "interop": <?php echo json_encode( Interop::getConfig() ) ?>,
         //"mynetwork": <?php //echo json_encode( Mynetwork::getConfig() ) ?>,
-        //"map": <?php //echo json_encode( Map::getConfig() ) ?>,
+        "map": <?php echo json_encode( Map::getConfig() ) ?>,
         "eco" : <?php echo json_encode( array(
             "module" => "eco",
             "url"    => Yii::app()->getModule( "eco" )->assetsUrl
