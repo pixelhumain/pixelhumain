@@ -13,22 +13,28 @@ $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.m
 					<tr style="padding: 0;vertical-align: top;text-align: left;">
 						<th style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 19px;font-size: 15px;">
 							<b>
-								<h5 style="color: inherit;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: center;line-height: 1.3;word-wrap: normal;margin-bottom: 10px;font-size: 20px;">
-									<?php echo Yii::t("mail","Il y a du nouveau dans votre réseau") ?>
+								<h5 style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin-top: 15px;text-align: center;line-height: 1.3;word-wrap: normal;margin-bottom: 10px;font-size: 20px;">
+									<?php echo Yii::t("mail","There's something new in your network") ?>
 								</h5>
 							</b>
 							<br/>
 							<?php 
 							foreach ($data["data"] as $key => $value) {
-								echo "<div style='padding-left:10px;'><p>".Mail::translateLabel($value)." </p>";
+								echo "<div style='color: #3c5665; padding-left:10px;'><p>".Mail::translateLabel($value)." </p>";
 								if(!empty($value["value"]))
 									echo "<p style='padding:10px 20px;margin:1%;border:1px solid lightgray; font-style:italic; border-radius:10px; width:90%;white-space: pre-line;'>".$value["value"]." </p></br>";
 								echo "</div>";
 							}
 
 							$nbN = $data["countData"] - count($data["data"]) ;
-							if( $nbN > 0 ) 
-								echo "<div style='padding-left:10px;'><p>"."Plus ".$nbN." notification(s) à découvrir"." </p></div>";
+							if( $nbN > 0 ){
+
+								$strNB = "<span style='color : #ea0040'>".$nbN."</span>";
+								echo "<div style='padding-left:10px;'><p>".Yii::t("mail","More than {count} notification(s) to discover", array("{count}" => $strNB)) ." </p></div>";
+							} 
+								
+
+
 							?>
 						</th>
 					</tr>					

@@ -112,8 +112,10 @@
 
 		// post
 		"{who} writes a post on your wall"=>"{who} a écrit un post sur votre mur",
-		"{who} publishes a new post"=>"{where} a publié un post",
-		"{who} publishes new posts"=>"{where} a publié plusieurs posts",
+		"{who} publishes a new post"=>"{who} a publié un post",
+		"{who} publishes new posts"=>"{who} a publié plusieurs posts",
+		"{where} publishes a new post"=>"{where} a publié un post",
+		"{where} publishes new posts"=>"{where} a publié plusieurs posts",
 		"{who} writes a post on the wall of {where}" => "{who} a écrit un post sur le mur de {where}",
 		"{who} writes a post on the wall of {where}" => "{who} a écrit un post sur le mur de {where}",
 		"{who} write posts on the wall of {where}" => "{who} ont écrit plusieurs posts sur le mur de {where}",
@@ -214,5 +216,11 @@
 		"{who} added few comments on resolution {what} in {where}"=>"{who} a commenté plusieurs fois la résolution {what} dans {where}",
 		"of creation"=> "de création",
 		"shared"=>"partagé",
+
+
+
+
+		"There's something new in your network" => "Il y a du nouveau dans votre réseau",
+		"More than {count} notification(s) to discover" => "Plus que {count} notification(s) à découvrir",
 );
 ?> 

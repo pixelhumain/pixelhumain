@@ -45,3 +45,7 @@
 .btn-dyn-checkbox:hover{
 	border: 4px solid rgba(191, 191, 191, 0.5);
 }
+
+/*#ajax-modal{
+	z-index: 2000000;
+}*/
