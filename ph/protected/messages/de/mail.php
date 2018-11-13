@@ -106,5 +106,12 @@
 		"Don't wait anymore and join us !!" => "Warten Sie nicht mehr und schließen Sie sich uns an!",
 		"The team of {what}" => "Das Team von {what}",
 		
+		"A citizen ask to become {what} of {where}" => "Ein Bürger bittet darum, {what} von {where} zu werden",
+		"You have been invited to {website} by {who}" => "Sie wurden zu {website} von {who} eingeladen",
+		"Confirm your account on {website}" => "Bestätigen Sie Ihr Konto auf {website}",
+		"Retreive your password on {website}" => "Stellen Sie Ihr Passwort auf {website} wieder her",
+		"New user on {website}" => "Neuer Benutzer auf {website}",
+		"New professional account on {website}" => "Neues Benutzerkonto auf {website}",
+		
 );
 ?>

@@ -188,6 +188,8 @@
 
         <?php // BOUBOULE NOT USE FOR MOMENT =>if($CO2DomainName == "kgougle" || $CO2DomainName == "CO2")
             //    $this->renderPartial($layoutPath."modals/".$CO2DomainName.'/radioplayermodal', array( "layoutPath"=>$layoutPath ) ); 
+
+        //$this->renderPartial($layoutPath."modals/".$CO2DomainName.'/selectCreate', array( "layoutPath"=>$layoutPath ) ); 
         ?> 
         
         <?php 
@@ -341,7 +343,14 @@
         <?php $this->renderPartial('../cooperation/pod/modalCommon', array()); ?>
 
         <?php // BOUBOULE NOT USE FOR MOMENT $this->renderPartial($layoutPath.'modals.'.$CO2DomainName.'.mainMenu', array("me"=>$me) ); ?>
+
         <?php $this->renderPartial( $layoutPath.'menuBottom.'.Yii::app()->params["CO2DomainName"], array("themeParams"=>@$params)); ?>
+        <?php /*
+        smallMenu.open($(".menuSmallMenu").html(),"blockUI","black")
+        if(!isset($me)) $me = "";
+                $this->renderPartial($layoutPath.".menus.menuSmall", 
+                         array(  "me"=>$me,
+                                 "myCity" => @$myCity));*/ ?>
         <?php 
             if(false && (($CO2DomainName == "CO2" &&
                 !@Yii::app()->session["userId"] && 

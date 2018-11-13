@@ -126,7 +126,7 @@ $this->renderPartial($layoutPath.'initJs',
       if(@$el["el"]["custom"]["menu"])
         $CO2DomainName = $el["el"]["custom"]["menu"];
 
-      if( @$el["el"]["custom"] )
+      //if( @$el["el"]["custom"] )
         $this->renderPartial( "co2.views.custom.init",array( "custom" => $el["type"].".".$el["id"] ) );
     } else if(Yii::app()->controller->action->id == "tags" && @$_GET['l']  ){
       $tag = explode(".",@$_GET['l'])[0];

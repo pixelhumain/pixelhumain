@@ -37,7 +37,10 @@
             "news":true,
             "directory":true,
             "gallery":true
-        }
+        },
+        "initmap" : [ 
+            43.0542733,
+            2.51247145749955 ]
     },
     "add" : {
         "organization" : true,

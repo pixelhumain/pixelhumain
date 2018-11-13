@@ -2067,7 +2067,7 @@ margin-right: 5px;
 	background-color: white;
 	z-index: 150000;
 }
-#modalDeleteAm, #modalAssignMe{
+#modalDeleteAm, #modalAssignMe, #modalExplainGamification{
 	z-index: 100020;
 }
 
