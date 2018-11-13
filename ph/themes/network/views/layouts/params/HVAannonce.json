@@ -46,7 +46,22 @@
         "classifieds" : true
     },
     "filter" : {
-        "types" : false
+        "types" : true,
+        "linksTag" : {
+            "Type d'annonces" : {
+                "tagParent" : "Type",
+                "background-color" : "#f5f5f5",
+                "image" : "Travail.png",
+                "tags" : {
+                  "dons" : "dons",
+                  "emplois" : "emplois",
+                  "bénévoles" : "bénévoles",
+                  "soutien de projet" : "soutien de projet",
+                  "troc et échanges" : "troc et échanges",
+                  "woofing" : "woofing"
+                }
+            }
+        }
     },
     "result" : {
         "displayImage" : true,
