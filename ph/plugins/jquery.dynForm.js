@@ -4783,11 +4783,8 @@ var dyFInputs = {
 	    		mylog.log("checkcheck2", checked, "#ajaxFormModal #"+id);
 	    		var idTrue = "#ajaxFormModal ."+id+"checkboxSimple .btn-dyn-checkbox[data-checkval='true']";
 	    		var idFalse = "#ajaxFormModal ."+id+"checkboxSimple .btn-dyn-checkbox[data-checkval='false']";
-	    		mylog.log("checkcheck2", checked, "#ajaxFormModal #"+id);
-	    		alert(idFalse);
 	    		if(typeof $("#ajaxFormModal #"+id).data("checked") != "undefined")
 	    			checked=$("#ajaxFormModal #"+id).data("checked");//$("#ajaxFormModal #"+id).hasAttr("data-checked");
-	    		alert(checked);
 	    		$("#ajaxFormModal #"+id).val(checked);
 
 	    		if(typeof params["labelInformation"] != "undefined")
@@ -4805,7 +4802,6 @@ var dyFInputs = {
 	    					"</span>");
 	        	}
 				else if(checked == "false" || !checked){ 
-	    			alert('ici:'+idFalse);
 	    			$(idFalse).addClass("bg-red").removeClass("letter-red");
 	    			$("#ajaxFormModal ."+id+"checkboxSimple label").append(
 	    					"<span class='lbl-status-check margin-left-10'>"+
