@@ -1952,6 +1952,7 @@ var dyFObj = {
 									'<i class="fa fa-plus"></i> '+tradDynForm.addANewAddress +
 								"</a>"+
 							"</div>";
+				fieldHTML +="<div id='divMapLocality' class='text-dark col-xs-12 no-padding ' style='height: 300px;'></div>";
 
 
    //     		var isSelect2 = (fieldObj.isSelect2) ? "select2Input" : "";
@@ -3173,6 +3174,10 @@ var dyFObj = {
 		saveCities : {},
 		bindActived : false,
 		init : function(){
+
+			
+			
+
 			mylog.log("forminmap showMarkerNewElement");
 			mylog.log("formType", dyFObj.formInMap.formType);
 			$(".locationBtn").addClass("hidden");
@@ -3203,6 +3208,15 @@ var dyFObj = {
 			//mylog.log("here");
 			//dyFInputs.locationObj.init();
 			mylog.log("forminmap showMarkerNewElement END!");
+
+			// lazyLoad( modules.map.url+'/js/map.js', null, function() {
+			// 	alert("here");
+				var paramsMapLocality = {
+						container : "divMapLocality"
+					};
+					
+				mapObj.init(paramsMapLocality);
+			// } );
 		},
 		initCountry : function(){
 			if ( 	typeof dySObj != "undefined" && 
