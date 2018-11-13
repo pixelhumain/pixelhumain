@@ -58,6 +58,7 @@
     #mainNav.vertical{
         box-shadow: 0px 2px 3px -3px rgba(0,0,0,0.5);
         border-bottom: 1px solid #dadada;
+        z-index: 100000;
     }
 </style>
 <!-- Navigation -->
@@ -380,7 +381,7 @@
 
             <li role="separator" class="divider"></li>
             <li class="text-admin">
-                <a href="#page.type.<?php echo Person::COLLECTION ?>.id.<?php echo Yii::app()->session["userId"] ?>.view.settings" class="lbh bg-white">
+                <a href="#settings.page.myAccount" class="lbh bg-white">
                     <i class="fa fa-cogs"></i> <?php echo Yii::t("common", "My parameters") ; ?>
                 </a>
             </li>
@@ -404,8 +405,7 @@
 
 $this->renderPartial($layoutPath.'loginRegister', array("subdomain" => $subdomain)); 
 
-if(isset(Yii::app()->session['userId'])) 
+if(isset(Yii::app()->session['userId']))  
     $this->renderPartial($layoutPath.'notifications'); 
-
 $this->renderPartial($layoutPath.'formCreateElement'); ?>
 

@@ -800,7 +800,7 @@ section {
         right: inherit;
     }*/
     @media (max-width: 767px) {	
-	    #mainNav.vertical .btn-show-map, #mainNav.vertical #dropdown-apps{
+	    #mainNav.vertical .btn-show-map{
 	    	display:block;
 	    }
         #vertical #affix-sub-menu{
@@ -1480,10 +1480,10 @@ h3.title_panel_map{
 .portfolio-modal{
 	padding-right:0px !important;
 	background-color: white;
-	z-index:20000;
+	z-index:200000;
 }
 #modalRegisterSuccess, #modalSendAgainSuccess, #modalNewPasswordSuccess{
-	z-index:20000;	
+	z-index:200000;	
 }
 .portfolio-modal .close-modal{
 	z-index:10;
@@ -1976,7 +1976,7 @@ margin-right: 5px;
 #ajax-modal.portfolio-modal.modal{
 	background-color: rgba(0,0,0,0.5);
 	min-height:unset !important;
-	z-index: 100000;
+	z-index: 200000;
 }
 
 #ajax-modal .modal-content{
@@ -2065,10 +2065,10 @@ margin-right: 5px;
 	left:40%;
 	right:0px;
 	background-color: white;
-	z-index: 15000;
+	z-index: 150000;
 }
-#modalDeleteAm, #modalAssignMe{
-	z-index: 10002;
+#modalDeleteAm, #modalAssignMe, #modalExplainGamification{
+	z-index: 100020;
 }
 
 #modal-preview-coop #amendement-container{
@@ -2084,7 +2084,7 @@ margin-right: 5px;
 	display: none;
 	right:0px;
 	background-color: white;
-	z-index: 15000;
+	z-index: 150000;
 }
 
 .xdsoft_datetimepicker{

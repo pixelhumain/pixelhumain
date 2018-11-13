@@ -1,9 +1,9 @@
 <!-- start: PAGESLIDE RIGHT -->
 <?php 
-$cssAnsScriptFilesModule = array(
+/*$cssAnsScriptFilesModule = array(
 	'/js/default/notifications.js'
 );
-HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, $this->module->getParentAssetsUrl());
+HtmlHelper::registerCssAndScriptsFiles($cssAnsScriptFilesModule, $this->module->getParentAssetsUrl());*/
 $cssAnsScriptFilesModule = array(
  	'/css/notifications.css'
  );

@@ -104,6 +104,7 @@ return array(
 	"{who} added a new event on {where}" => "{who} a ajouté un événement {what} dans {where}",
 	"{who} added a new need on {where}" => "{who} a ajouté un besoin {what} dans {where}",
 	"{who} added a new post in {where}" => "{who} a ajouté un post dans {where}",
+	"{who} added a new classified on {where}"=>"{who} a ajouté une annonce {where}",
 	"{who} added a new profil image on {where}" => "{who} a ajouté une nouvelle image de profil dans {where}",
 	"{who} added new images to the album of {where}" => "{who} a ajouté des images à l'album de {where}",
 	"A new resolution {what} is added in {where}" => "Une nouvelle résolution {what} est ajoutée à {where}", 
