@@ -493,6 +493,7 @@ return array(
 	"History" => "Historique",
 	"Settings" => "Paramètres",
 	"More" => "Plus",
+	"Notifications preferences" => "Paramètres de notification",
 	"Confidentiality params" => "Paramètres de confidentialité",
 	"Confidentiality"=>"Confidentialité",
 	"Confidentiality of your personal informations" => "Confidentialité de vos informations personnelles",
@@ -1217,6 +1218,7 @@ merci de renseigner votre code postal dans l'adresse de votre profil.",
 	"by" => "par",
 	"on" => "sur",
 	"in"=>"dans",
+	"In"=>"À",
 
 	"About" => "A propos",
 
