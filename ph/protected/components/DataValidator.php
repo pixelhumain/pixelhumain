@@ -136,7 +136,7 @@ class DataValidator {
 			//Validate field
 			if (isset($data["rules"])) {
 				$rules = $data["rules"];
-				$functionImport = array("organizationSameName") ;
+				$functionImport = array("organizationSameName", "getDateTimeFromString", "eventEndDate", "eventStartDate") ;
 				
 				foreach ($rules as $rule) {
 					if( empty($import) || !in_array($rule, $functionImport) ){

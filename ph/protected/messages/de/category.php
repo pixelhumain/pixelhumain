@@ -272,5 +272,6 @@
 	"Only posts" => "Nur Beiträge",
 	"Activity of communecters" => "Aktivität von Communecters",
 	"Surveys" => "Umfragen",
+	"Are you searching an offer or you post one" => "Suchen Sie ein Angebot oder veröffentlichen Sie eins",
 	);
 ?>
