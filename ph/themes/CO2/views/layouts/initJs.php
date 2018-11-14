@@ -48,9 +48,11 @@
             "url"    => Yii::app()->getModule( "co2" )->assetsUrl
         )); ?>,
         "cotools" : <?php echo json_encode( array(
+
             "module" => "cotools",
             "init"   => Yii::app()->getModule( "cotools" )->assetsUrl."/js/init.js" ,
             "form"   => Yii::app()->getModule( "cotools" )->assetsUrl."/js/dynForm.js" ,
+
         )); ?>
     };
     
