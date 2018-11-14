@@ -23,7 +23,7 @@ $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.m
 								echo "<div style='color: #3c5665; padding-left:10px;'><p>".Mail::translateLabel($value)." </p>";
 								if(!empty($value["value"]))
 									echo "<p style='padding:10px 20px;margin:1%;border:1px solid lightgray; font-style:italic; border-radius:10px; width:90%;white-space: pre-line;'>".$value["value"]." </p></br>";
-								echo "</div>";
+								echo "</div><br/>";
 							}
 
 							$nbN = $data["countData"] - count($data["data"]) ;
