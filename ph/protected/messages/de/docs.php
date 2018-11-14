@@ -97,6 +97,9 @@
 		"CROWDFUNDERS" => "CROWDFUNDERS",
 		"INTEROPERATORS" => "INTEROPERATOREN",
 		"Every point hides creativity and life" => "In jedem Ort steckt Kreativität und Leben",
-		"Points of interests are centers of meeting, collective creation and are full of energy" => "Interessante Orte sind Treffpunkte, kollektiver Schöpfung und voller Energie",
+		"Points of interests are centers of meeting, collective creation and are full of energy" => "Besondere Orte sind Treffpunkte, kollektiver Schöpfungskraft und stecken voller Energie",
+		"Win points <span class='letter-red'>using {website}</span>.<br/><span class='letter-red'>Each link</span> you did with people, organizations, projects, events <span class='letter-red'>improve your score</span>.<br/> Later will be added <span class='letter-red'>exchanges of ressources</span>, <span class='letter-red'>the number of posts</span> and <span class='letter-red'>your activity on public policy</span>" => "Gewinnpunkte <span class='letter-red'> unter Verwendung von {website}</span>.<br/><span class='letter-red'>Jede Verbindung</span>, den Sie mit Menschen, Organisationen, Projekten, Events eingegangen sind <span class='letter-red'>verbessert Ihre Punktzahl</span>.<br/> Später wird noch <span class='letter-red'>der Austausch von Ressourcen</span>, <span class='letter-red'>die Anzahl der Beiträge</span> und <span class='letter-red'>Ihre Tätigkeit im Bereich der öffentlichen Ordnung mit berücksichtigt werden</span>",
+		"You have today <span class='letter-red'>{points} point</span>" => "Sie haben heute <span class='letter-red'>{points} Punkte</span>",
+		"You have today <span class='letter-red'>{points} points</span>" => "Sie haben heute <span class='letter-red'>{points} Punkte</span>",
 	);
 ?>
