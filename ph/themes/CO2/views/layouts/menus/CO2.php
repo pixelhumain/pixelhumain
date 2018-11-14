@@ -240,7 +240,17 @@
             <div class="dropdown pull-right" id="dropdown-user">
                 <div class="dropdown-main-menu" style="right:50px !important;">
                     <ul class="dropdown-menu arrow_box">
-                         <li class="text-left visible-xs">
+                         <?php   
+                            foreach (@Yii::app()->session["paramsConfig"]["pages"] as $key => $value) {
+                                if(@$value["inMenu"]==true && @$value["open"]==true){ ?>
+                                    <li class="text-left visible-xs">
+                                        <a href="javascript:;" data-hash="<?php echo $key ?>" class="lbh-menu-app bg-white letter-red">
+                                            <i class="fa fa-<?php echo $value["icon"] ?>"></i> <span class="<?php echo str_replace("#","",$key); ?>ModSpan"><?php echo Yii::t("common", @$value["subdomainName"]); ?></span>
+                                        </a>
+                                    </li>
+                            <?php } 
+                            } ?>
+                        <!-- <li class="text-left visible-xs">
                             <a href="javascript:;" data-hash="#search" class="lbh-menu-app bg-white text-red">
                                 <i class="fa fa-search"></i> <?php echo Yii::t("common", "Search") ?>
                             </a>
@@ -260,7 +270,7 @@
                                 <i class="fa fa-bullhorn"></i> <?php echo Yii::t("common", "Ads") ?>
                             </a>
                         </li>
-                       
+                       -->
                         <li class="text-left visible-xs">
                             <a href="#default.view.page.links" class="lbhp text-red bg-right">
                                 <i class="fa fa-life-ring"></i> <?php echo Yii::t("common", "Help") ?>
@@ -278,10 +288,12 @@
 <div class="dropdown dropdownApps-menuTop" aria-labelledby="dropdownApps">
     
         <div class="dropdown-menu arrow_box">
-            <?php   foreach (Yii::app()->session["paramsConfig"]["pages"] as $key => $value) {
-            if(@$value["inMenu"]==true && @$value["open"]==true){ ?>
+            <?php   
+            foreach (@Yii::app()->session["paramsConfig"]["pages"] as $key => $value) {
+                if(@$value["inMenu"]==true && @$value["open"]==true){ ?>
                 <a class="dropdown-item padding-5 text-center col-xs-6 lbh-menu-app" href="javascript:;" data-hash="<?php echo $key; ?>" data-toggle="tooltip" data-placement="bottom" ><i class="fa fa-<?php echo $value["icon"]; ?> fa-2x"></i><br/><span class="<?php echo str_replace("#","",$key); ?>ModSpan"><?php echo Yii::t("common", @$value["subdomainName"]); ?></span></a>
-            <?php } } ?>
+            <?php } 
+            } ?>
         </div>
 </div>
  <div class="dropdown pull-right" id="dropdown-dda">
@@ -321,13 +333,18 @@
             
 
             <li role="separator" class="divider visible-xs"></li>
-            
-             <li class="text-left visible-xs">
-                <a href="#search" class="lbh bg-white letter-red">
-                    <i class="fa fa-search"></i> <span class="searchModSpan"><?php echo Yii::t("common", "All") ?></span>
-                </a>
-            </li>
-            <li class="text-left visible-xs">
+            <?php   
+            foreach (@Yii::app()->session["paramsConfig"]["pages"] as $key => $value) {
+                if(@$value["inMenu"]==true && @$value["open"]==true){ ?>
+                    <li class="text-left visible-xs">
+                        <a href="<?php echo $key ?>" class="lbh bg-white letter-red">
+                            <i class="fa fa-<?php echo $value["icon"] ?>"></i> <span class="<?php echo str_replace("#","",$key); ?>ModSpan"><?php echo Yii::t("common", @$value["subdomainName"]); ?></span>
+                        </a>
+                    </li>
+            <?php } 
+            } ?>
+             
+           <!-- <li class="text-left visible-xs">
                 <a href="#live" class="lbh bg-white letter-red">
                     <i class="fa fa-calendar"></i> <span class="liveModSpan"><?php echo Yii::t("common", "News feed") ?></span>
                 </a>
@@ -341,7 +358,7 @@
                 <a href="#annonces" class="lbh bg-white letter-red">
                     <i class="fa fa-bullhorn"></i> <span class="annoncesModSpan"><?php echo Yii::t("common", "Classifieds") ?></span>
                 </a>
-            </li>
+            </li>-->
 
             <li role="separator" class="divider statistics-btn"></li>
             <li class="statistics-btn">
