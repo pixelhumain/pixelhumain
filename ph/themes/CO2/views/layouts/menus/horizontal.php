@@ -1,10 +1,10 @@
-<div id="territorial-menu" class="col-md-12 col-sm-12 col-xs-12 margin-bottom-10">
+<?php $visibleClass=($params["numberOfApp"]<=1) ? "visible-xs": ""; ?>
+<div id="territorial-menu" class="col-md-12 col-sm-12 col-xs-12 margin-bottom-10 <?php echo $visibleClass ?>">
     <button class="btn visible-xs pull-left menu-btn-scope-filter text-red elipsis"
         data-type="<?php echo @$type; ?>">
         <i class="fa fa-map-marker"></i> <span class="header-label-scope"><?php echo Yii::t("common","where ?") ?></span>
     </button>
     <?php //if(false){
-        $params = CO2::getThemeParams();
         foreach ($params["pages"] as $key => $value) {
             if(@$value["inMenu"]==true && @$value["open"]==true){ ?>
                 <a href="javascript:;" data-hash="<?php echo $key; ?>" 

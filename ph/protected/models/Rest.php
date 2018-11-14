@@ -23,31 +23,47 @@ class Rest
 	}
 
 	// function to convert array to xml
-	public static function array_to_xml( $data, $xml_data, $format="xml") {		
+	public static function array_to_xml( $data, $xml_data, $format="xml") {	//Prend en compte le fichier, le fichier xml et le format	
 
+		//parcours du fichier
 		foreach($data as $key => $value) {
+			//Si le format est KML
 			if ($format == Translate::FORMAT_KML)
 				$key = 'Folder';
 
+			//Si la $key est de type numérique
 			if( is_numeric($key) )
 				$key = 'Placemark';
 
+			//Si le format est RSS
 			if( $format == Translate::FORMAT_RSS )
 				$key = 'item';
 
+			//Si $value est un tableau
 			if( is_array($value) ) {
+				//On ajoute dans $xml_data l'enfant de la $key
 				$subnode = $xml_data->addChild($key);
+				//On reappel à la fonctionne.
 				self::array_to_xml($value, $subnode);
 			} else {
+
+				//Ajout un enfant la $key et convertis le $value en format HTML.
+
 				$xml_data->addChild("$key",htmlspecialchars("$value"));
 
 				if ($key == "img") {
+					//Récupère l'enfant de $xml_data
 					$img = $xml_data->children();
+					//Ajout l'attribut de $value 'src' à $img
 					$img->addAttribute('src',$value);
 				} else if ($key == "enclosure") {
+					//Si $xml_data est définie & différent de NULL.
 					if (isset($xml_data)) {
+						//Parcours dans le <balise>
 						foreach ($xml_data->children() as $parent => $child){ 
+							//Dans le cas si les parents sont "enclosures"
 							if ($parent == "enclosure") {
+								//Alors on ajoute l'attribute lien (qu'on le récupère au passage) et type,image/jpeg
 								$child->addAttribute('url',$value);
 								$child->addAttribute('type', 'image/jpeg');
 							}
@@ -57,6 +73,7 @@ class Rest
 	        }
 	    }
 		
+
 		return $xml_data;
 	}
 
@@ -67,18 +84,26 @@ class Rest
 	}
 
 	public static function xml($res, $xml_element, $format) { 
+		//Récupère le $res (aucune idée ce que s'est), $xml_element (aucune idée), $format (xml).
 
 		header("Content-type: text/xml");
 
+		//Si le format est KML
 		if ($format == Translate::FORMAT_KML) {
+			//On crée un tableau $res2["Folder"]
 			$res2["Folder"] = array();
+			//On ajout dans le tableau $res
 			array_push($res2["Folder"], $res);
+			//Et change $res par rapport à $res
 			$res = $res2["Folder"];
 		}
 
+		//On fait appel à la fonction array_to_xml
 		$xml_inter = self::array_to_xml( $res, $xml_element, $format );
+		//asXML = Retourne une chaîne XML basée sur un élément SimpleXML (d'après php.net) (ce que entre <balise>contenu</balise>)
 		$xml_result = $xml_inter -> asXML();
 
+		//Affiche $xml_result;
 		echo $xml_result;
 	}
 	

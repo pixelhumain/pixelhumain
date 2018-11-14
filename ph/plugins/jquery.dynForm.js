@@ -373,7 +373,8 @@ var dyFObj = {
 			}
 		});
 		if( typeof formData.source != "undefined" && formData.source != "" ){
-			formData.source = { insertOrign : "network",
+			originInsert=(typeof custom != "undefined" && notNull(custom)) ? "costum" : "network";
+			formData.source = { insertOrign : originInsert,
 								keys : [ 
 									formData.source
 								],
@@ -987,8 +988,9 @@ var dyFObj = {
         	value = fieldObj.value;
         else if (formValues && formValues[field]) {
         	value = formValues[field];
+        }else if(formValues && field=="public" && typeof formValues[field] != "undefined"){
+			value = formValues[field];
         }
-
         //mylog.log("value network", value);
         if(value!="")
         	mylog.warn("--------------- dynform form Values",field,value);
@@ -1091,15 +1093,22 @@ var dyFObj = {
 		* CHECKBOX SIMPLE
 		***************************************** */
 		else if ( fieldObj.inputType == "checkboxSimple" ) {
-   			if(value == "") value="25/01/2014";
+   			//if(value == "") value="25/01/2014";
    			mylog.log("fieldObj ???",fieldObj, ( fieldObj.checked == "true" ));
+   			mylog.log("fieldObj simplecheck???",value);
+   			
 			var thisValue = ( fieldObj.checked == "true" ) ? "true" : "false";
+			forced="";
+			if(value!==""){
+				thisValue = (!value) ? "false" : "true";
+				forced="data-checked='"+thisValue+"'";
+			}
 			mylog.log("fieldObj ??? thisValue", thisValue);
 			//var onclick = ( fieldObj.onclick ) ? "onclick='"+fieldObj.onclick+"'" : "";
 			//var switchData = ( fieldObj.switch ) ? "data-on-text='"+fieldObj.params.onText+"' data-off-text='"+fieldObj.params.offText+"' data-label-text='"+fieldObj.switch.labelText+"' " : "";
 			mylog.log("build field "+field+">>>>>> checkbox");
 			fieldHTML += '<input type="hidden" class="'+fieldClass+'" name="'+field+'" id="'+field+'" '+
-								'value="'+thisValue+'"/> ';
+								'value="'+thisValue+'" '+forced+' /> ';
 			fieldHTML += '<div class="col-lg-6 padding-5">'+
 							'<a href="javascript:" class="btn-dyn-checkbox btn btn-sm bg-white letter-green col-xs-12"'+
 							' data-checkval="true"' +
@@ -3707,109 +3716,116 @@ var dyFInputs = {
 	    dyFInputs.locationObj.countLocation = 0 ;
 	    dyFInputs.locationObj.addresses = (typeof dyFObj.elementData != "undefined" && dyFObj.elementData != null && typeof dyFObj.elementData.map.addresses != "undefined") ? dyFObj.elementData.map.addresses  :  [] ;
 	    updateLocality = false;
-	    // Initialize tags list for network in form of element
-		if(	typeof networkJson != 'undefined' && typeof networkJson != null){
-			var networkTags = [];
-			var networkTagsCategory = {};
-			tagsList = [];
-			if(typeof networkJson.request != "undefined"){
-				if(typeof networkJson.request.mainTag != "undefined")
-					networkTags.push({id:networkJson.request.mainTag[0],text:networkJson.request.mainTag[0]});
+	    // Forced dynForm in network or cOstum
+	    if(typeof networkJson != 'undefined' && notNull(networkJson))
+	    	dyFInputs.initializeTypeObjForm(networkJson);
+	    if(typeof custom != 'undefined' && notNull(custom))
+	    	dyFInputs.initializeTypeObjForm(custom);
+	},
+	initializeTypeObjForm : function(object){
+		// Initialize tags list for network in form of element
+		var networkTags = [];
+		var networkTagsCategory = {};
+		tagsList = [];
+		if(typeof object.request != "undefined"){
+			if(typeof object.request.mainTag != "undefined")
+				networkTags.push({id:object.request.mainTag[0],text:object.request.mainTag[0]});
 
-				if(typeof networkJson.request.searchTag != "undefined"){
-					console.log("NETWORK searchTag", networkTags);
-					networkTags = $.merge(networkTags, networkJson.request.searchTag);
-					console.log("NETWORK searchTag", networkTags);
-				}
+			if(typeof object.request.searchTag != "undefined"){
+				console.log("NETWORK searchTag", networkTags);
+				networkTags = $.merge(networkTags, object.request.searchTag);
+				console.log("NETWORK searchTag", networkTags);
 			}
-			
-			if(typeof networkJson.filter != "undefined" && typeof networkJson.filter.linksTag != "undefined"){
-				$.each(networkJson.filter.linksTag, function(category, properties) {
-					optgroupObject=new Object;
-					optgroupObject.text=category;
-					optgroupObject.children=[];
-					networkTagsCategory[category]=[];
-					$.each(properties.tags, function(i, tag) {
-						if($.isArray(tag)){
-							$.each(tag, function(keyTag, textTag) {
-								val={id:textTag,text:textTag};
-								if(jQuery.inArray( textTag, tagsList ) == -1 ){
-									optgroupObject.children.push(val);
-									tagsList.push(textTag);
-								}
-							});
-						}else{
-							val={id:tag,text:tag};
-							if(jQuery.inArray( tag, tagsList ) == -1 ){
+		}
+		
+		if(typeof object.filter != "undefined" && typeof object.filter.linksTag != "undefined"){
+			$.each(object.filter.linksTag, function(category, properties) {
+				optgroupObject=new Object;
+				optgroupObject.text=category;
+				optgroupObject.children=[];
+				networkTagsCategory[category]=[];
+				$.each(properties.tags, function(i, tag) {
+					if($.isArray(tag)){
+						$.each(tag, function(keyTag, textTag) {
+							val={id:textTag,text:textTag};
+							if(jQuery.inArray( textTag, tagsList ) == -1 ){
 								optgroupObject.children.push(val);
-								tagsList.push(tag);
+								tagsList.push(textTag);
 							}
+						});
+					}else{
+						val={id:tag,text:tag};
+						if(jQuery.inArray( tag, tagsList ) == -1 ){
+							optgroupObject.children.push(val);
+							tagsList.push(tag);
 						}
-					});
-					networkTags.push(optgroupObject);
-					networkTagsCategory[category].push(optgroupObject);
+					}
 				});
-			}
+				networkTags.push(optgroupObject);
+				networkTagsCategory[category].push(optgroupObject);
+			});
+		}
 
 
-			if(	typeof networkJson.add != "undefined"  && 
-				typeof typeObj != "undefined" ){
-				$.each(networkJson.add, function(key, v) {
-					mylog.log("key", key);
-					if( typeof typeObj[key].dynForm != "undefined" ){
-						if(typeof networkJson.request.sourceKey != "undefined"){
-							sourceObject = {inputType:"hidden", value : networkJson.request.sourceKey[0]};
+		if(	typeof object.add != "undefined"  && 
+			typeof typeObj != "undefined" ){
+			$.each(object.add, function(key, v) {
+				mylog.log("key", key);
+				//key=(key=="jobs" || key=="ressources") ? "classifieds" : key;
+				key=(typeof typeObj[key].sameAs != "undefined") ? typeObj[key].sameAs : key; 
+				if( typeof typeObj[key].dynForm != "undefined"){
+					if( typeof object.request != "undefined"){
+						if(typeof object.request.sourceKey != "undefined"){
+							sourceObject = {inputType:"hidden", value : object.request.sourceKey[0]};
 							typeObj[key].dynForm.jsonSchema.properties.source = sourceObject;
 						}
-
 						if(v){
-
-							if(typeof networkJson.request.searchTag != "undefined"){
-								typeObj[key].dynForm.jsonSchema.properties.tags.data = networkJson.request.searchTag;
+							if(typeof object.request.searchTag != "undefined"){
+								typeObj[key].dynForm.jsonSchema.properties.tags.data = object.request.searchTag;
 							}
 
 							if(	typeof typeObj[key] != "undefined" &&
 								typeof typeObj[key].dynForm != "undefined" && 
 								typeof typeObj[key].dynForm.jsonSchema.properties.tags != "undefined"){
 								typeObj[key].dynForm.jsonSchema.properties.tags.values=networkTags;
-								if(typeof networkJson.request.mainTag != "undefined"){
-									typeObj[key].dynForm.jsonSchema.properties.tags.mainTag = networkJson.request.mainTag;
+								if(typeof object.request.mainTag != "undefined"){
+									typeObj[key].dynForm.jsonSchema.properties.tags.mainTag = object.request.mainTag;
 									if(typeof typeObj[key].dynForm.jsonSchema.properties.tags.data == "undefined")
 										typeObj[key].dynForm.jsonSchema.properties.tags.data = [] ;
 
-									typeObj[key].dynForm.jsonSchema.properties.tags.data = $.merge(networkJson.request.mainTag, typeObj[key].dynForm.jsonSchema.properties.tags.data);
+									typeObj[key].dynForm.jsonSchema.properties.tags.data = $.merge(object.request.mainTag, typeObj[key].dynForm.jsonSchema.properties.tags.data);
 								}
 							}
 
-							if(notNull(networkJson.dynForm)){
-								if(notNull(networkJson.dynForm.extra)){
-									var nbListTags = 1 ;
-									while(jsonHelper.notNull("networkJson.dynForm.extra.tags"+nbListTags)){
-										typeObj[key].dynForm.jsonSchema.properties["tags"+nbListTags] = {
-											"inputType" : "tags",
-											"placeholder" : networkJson.dynForm.extra["tags"+nbListTags].placeholder,
-											"values" : networkTagsCategory[ networkJson.dynForm.extra["tags"+nbListTags].list ],
-											"data" : networkTagsCategory[ networkJson.dynForm.extra["tags"+nbListTags].list ],
-											"label" : networkJson.dynForm.extra["tags"+nbListTags].list
-										};
-										nbListTags++;
-									}
-									delete typeObj[key].dynForm.jsonSchema.properties.tags;
-								}
-							}
-
-							if(	typeof networkJson.request.parent != "undefined" && 
-								typeof networkJson.request.parent.id != "undefined" &&
-								typeof networkJson.request.parent.type != "undefined" ){
-								mylog.log("DATA NETWORK1 parent", networkJson.request.parent);
+							
+							if(	typeof object.request.parent != "undefined" && 
+								typeof object.request.parent.id != "undefined" &&
+								typeof object.request.parent.type != "undefined" ){
+								mylog.log("DATA NETWORK1 parent", object.request.parent);
 								typeObj[key].dynForm.jsonSchema.properties.parentType = dyFInputs.inputHidden("");
 								typeObj[key].dynForm.jsonSchema.properties.parentId = dyFInputs.inputHidden("");
 								
 							}
 						}
 					}
-				});
-			}
+					if(v && notNull(object.dynForm)){
+						if(notNull(object.dynForm.extra)){
+							var nbListTags = 1 ;
+							while(jsonHelper.notNull("object.dynForm.extra.tags"+nbListTags)){
+								typeObj[key].dynForm.jsonSchema.properties["tags"+nbListTags] = {
+									"inputType" : "tags",
+									"placeholder" : object.dynForm.extra["tags"+nbListTags].placeholder,
+									"values" : networkTagsCategory[ object.dynForm.extra["tags"+nbListTags].list ],
+									"data" : networkTagsCategory[ object.dynForm.extra["tags"+nbListTags].list ],
+									"label" : object.dynForm.extra["tags"+nbListTags].list
+								};
+								nbListTags++;
+							}
+							delete typeObj[key].dynForm.jsonSchema.properties.tags;
+						}
+					}
+				}
+			});
 		}
 	},
 	formLocality :function(label, placeholder) {
@@ -4767,7 +4783,8 @@ var dyFInputs = {
 	    		mylog.log("checkcheck2", checked, "#ajaxFormModal #"+id);
 	    		var idTrue = "#ajaxFormModal ."+id+"checkboxSimple .btn-dyn-checkbox[data-checkval='true']";
 	    		var idFalse = "#ajaxFormModal ."+id+"checkboxSimple .btn-dyn-checkbox[data-checkval='false']";
-	    		mylog.log("checkcheck2", checked, "#ajaxFormModal #"+id);
+	    		if(typeof $("#ajaxFormModal #"+id).data("checked") != "undefined")
+	    			checked=$("#ajaxFormModal #"+id).data("checked");//$("#ajaxFormModal #"+id).hasAttr("data-checked");
 	    		$("#ajaxFormModal #"+id).val(checked);
 
 	    		if(typeof params["labelInformation"] != "undefined")
@@ -4777,15 +4794,14 @@ var dyFInputs = {
 									params["labelInformation"]+
 							"</small>");
 
-	        	if(checked == "true"){
+	        	if(checked == "true" || checked){
 	    			$(idTrue).addClass("bg-green-k").removeClass("letter-green");
 	    			$("#ajaxFormModal ."+id+"checkboxSimple label").append(
 	    					"<span class='lbl-status-check margin-left-10'>"+
 	    						'<span class="letter-green"><i class="fa fa-check-circle"></i> '+params["onLabel"]+'</span>'+
 	    					"</span>");
 	        	}
-
-	    		if(checked == "false"){ 
+				else if(checked == "false" || !checked){ 
 	    			$(idFalse).addClass("bg-red").removeClass("letter-red");
 	    			$("#ajaxFormModal ."+id+"checkboxSimple label").append(
 	    					"<span class='lbl-status-check margin-left-10'>"+

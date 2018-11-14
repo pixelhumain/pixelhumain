@@ -72,6 +72,14 @@
                 ?>
                 <img src="<?php echo $logo;?>" class="logo-menutop pull-left" height=25>
             </a>
+            <?php if(@Yii::app()->session["paramsConfig"]["numberOfApp"]>1){ ?> 
+            <span class="dropdown dropdownApps pull-left hidden-xs" id="dropdown-apps">
+                <button class="dropdown-toggle menu-button btn-menu btn-menu-apps text-dark pull-right"  type="button" id="dropdownApps" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" data-placement="bottom" 
+                      title="<?php echo Yii::t("common","Applications") ?>" alt="<?php echo Yii::t("common","Applications") ?>">
+                  <i class="fa <?php echo Application::ICON ?> letter-red"></i>
+                </button>
+            </span>
+            <?php } ?>
         </div>
         <?php if( $subdomain == "search" ||
                 $subdomain == "ressource" ||
@@ -95,8 +103,11 @@
                     data-type="<?php echo @$type; ?>">
                     <i class="fa fa-map-marker"></i> <span class="header-label-scope"><?php echo Yii::t("common","where ?") ?></span>
             </button>
+            <?php if($menuApp=="vertical" || @Yii::app()->session['paramsConfig']["numberOfApp"]<=1){ ?>
              <button class="btn btn-show-filters hidden-xs"> <i class="fa fa-filter visible-sm pull-left" style="font-size:18px;"></i><span class="hidden-sm"><?php echo Yii::t("common", "Filters") ?></span> <span class="topbar-badge badge animated bounceIn badge-warning"></span> <i class="fa fa-angle-down"></i></button>
-        <?php } ?>
+
+        <?php } 
+        } ?>
 
         <?php if( $subdomain == "welcome" || 
                     $subdomain=="page" ||
@@ -195,21 +206,12 @@
                       <span class="chatNotifs topbar-badge badge animated bounceIn badge-warning"></span>
                       <span class="tooltips-top-menu-btn"><?php echo Yii::t("common", "My chat"); ?></span>
                     </button>
-                    <a href="#myhome" class="lbh menu-button btn-menu btn-menu-chat text-dark pull-right btn-menu-tooltips" 
+                    <a href="#myhome" class="lbh menu-button btn-menu btn-menu-home text-dark pull-right btn-menu-tooltips" 
                            data-toggle="tooltip" data-placement="bottom" 
                           title="<?php echo Yii::t("common","Home") ?>" alt="<?php echo Yii::t("common","Home") ?>" style="width: inherit !important;text-transform: capitalize;">
                       <i class="fa fa-home"></i> <span class="hidden-xs hidden-sm" style="font-size: 16px;"><?php echo Yii::t("common","Home") ?></span>
                       <span class="tooltips-top-menu-btn"><?php echo Yii::t("common", "My home"); ?></span>
                     </a>
-
-
-                    
-                    <span class="dropdown dropdownApps" id="dropdown-apps">
-                        <button class="dropdown-toggle menu-button btn-menu btn-menu-apps text-dark pull-right"  type="button" id="dropdownApps" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" data-placement="bottom" 
-                              title="<?php echo Yii::t("common","Applications") ?>" alt="<?php echo Yii::t("common","Applications") ?>">
-                          <i class="fa <?php echo Application::ICON ?> letter-red"></i>
-                        </button>
-                    </span>
 
 
                 <?php } else { ?>
@@ -274,14 +276,13 @@
 </nav>
 <!-- DROPDOWNS OF MENUTOP -->
 <div class="dropdown dropdownApps-menuTop" aria-labelledby="dropdownApps">
-    <div class="dropdown-main-menu">
+    
         <div class="dropdown-menu arrow_box">
-            <a class="dropdown-item padding-5 text-center col-xs-6 lbh-menu-app" href="javascript:;" data-hash="#search" data-toggle="tooltip" data-placement="bottom" ><i class="fa <?php echo Search::ICON ?> fa-2x"></i><br/><span class="searchModSpan"><?php echo Yii::t("common","All") ?></span></a>
-            <a class="dropdown-item padding-5 text-center col-xs-6 lbh-menu-app" href="javascript:;" data-hash="#live" data-toggle="tooltip" data-placement="bottom" ><i class="fa <?php echo News::ICON2 ?> fa-2x"></i><br/><span class="liveModSpan"><?php echo Yii::t("common","News feed") ?></span></a>
-            <a class="dropdown-item padding-5 text-center col-xs-6 lbh-menu-app" href="javascript:;" data-hash="#agenda" data-toggle="tooltip" data-placement="bottom"><i class="fa <?php echo Event::ICON ?> fa-2x"></i><br/><span class="agendaModSpan"><?php echo Yii::t("common","Events") ?></span></a>
-            <a class="dropdown-item padding-5 text-center col-xs-6 lbh-menu-app" href="javascript:;" data-hash="#annonces" data-toggle="tooltip" data-placement="bottom"><i class="fa <?php echo Classified::ICON ?> fa-2x"></i><br/><span class="annoncesModSpan"><?php echo Yii::t("common","Classifieds") ?></span></a>
+            <?php   foreach (Yii::app()->session["paramsConfig"]["pages"] as $key => $value) {
+            if(@$value["inMenu"]==true && @$value["open"]==true){ ?>
+                <a class="dropdown-item padding-5 text-center col-xs-6 lbh-menu-app" href="javascript:;" data-hash="<?php echo $key; ?>" data-toggle="tooltip" data-placement="bottom" ><i class="fa fa-<?php echo $value["icon"]; ?> fa-2x"></i><br/><span class="<?php echo str_replace("#","",$key); ?>ModSpan"><?php echo Yii::t("common", @$value["subdomainName"]); ?></span></a>
+            <?php } } ?>
         </div>
-    </div>
 </div>
  <div class="dropdown pull-right" id="dropdown-dda">
     <div class="dropdown-main-menu">
