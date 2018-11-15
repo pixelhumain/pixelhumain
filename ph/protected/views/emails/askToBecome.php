@@ -50,14 +50,13 @@
 						<th style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 19px;font-size: 15px;">
 							<a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true) ?>" style="color: #e33551;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;text-decoration: none;"><img align="right" width="200" src="<?php echo Yii::app()->getRequest()->getBaseUrl(true)."/images/bdb.png"?>" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;width: auto;max-width: 100%;clear: both;display: block;border: none;" alt="Intelligence collective"></a>
 							<b><h5 style="color: inherit;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 1.3;word-wrap: normal;margin-bottom: 10px;font-size: 20px;"></h5></b><br>
-							<?php echo yii::t("mail","The user {who} asks to become {what} of {where}",array("{who}"=>@$newPendingAdmin["name"],"{what}"=>Yii::t("common",$typeOfDemand) ,"{where}"=>@$parent["name"])) ?>.
-							<br><br><br>
-							<?php echo yii::t("mail", "For more details on the user {who}, you can visit {what}",array("{who}"=> @$newPendingAdmin["username"],"{what}"=>'<a href="'.Yii::app()->getRequest()->getBaseUrl(true).'/'.$this->module->id.'#page.type.'.Person::COLLECTION.'.id.'.(String) @$newPendingAdmin["_id"].'">'.Yii::t("mail","his profile").'</a>')) ?>.
+							<?php 
+							echo Yii::t("mail","The user {who} asks to become {what} of {where}",array("{who}"=>'<a href="'.Yii::app()->getRequest()->getBaseUrl(true).'/'.$this->module->id.'#page.type.'.Person::COLLECTION.'.id.'.$newPendingAdmin["id"].'">'.@$newPendingAdmin["name"].'</a>',"{what}"=>Yii::t("common",$typeOfDemand) ,"{where}"=>'<a href="'.$url.'">'.@$parent["name"].'</a>')) ?>.
 							<br><br>
-							<?php echo yii::t("mail","In order to validate this user as {what}, go to the community of {where}",array("{what}"=>yii::t("common",$typeOfDemand),"{where}"=>'<a href="'.$url.'">'.$parent["name"].'</a>')); ?>.
+							<?php echo Yii::t("mail","In order to validate this user as {what}, go to the community of {where}",array("{what}"=>yii::t("common",$typeOfDemand),"{where}"=>'<a href="'.$url.'">'.$parent["name"].'</a>')); ?>.
 							<br><br>
 							<?php echo Yii::t("mail","If the link doesn&apos;t work, you can copy it in your browser&apos;s address"); ?> :
-							<br><div style="word-break: break-all;"><?php echo $url?></div>
+							<br><div style="word-break: break-all;"><br><i><?php echo $url?></i></div>
 						</th>
 					</tr>
 				</table>
