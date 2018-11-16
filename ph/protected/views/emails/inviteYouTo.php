@@ -1,31 +1,36 @@
   <?php
 
-  $parentType = $target["type"];
+$parentType = $target["type"];
 
-    $logoHeader=(@$logoHeader) ? $logoHeader : "";
-  $urlSite=Yii::app()->getRequest()->getBaseUrl(true);
-  $urlInvite=Yii::app()->getRequest()->getBaseUrl(true)."/#page.type.".$parentType.".id.".$target["id"];
-  if(@$url){
-    $urlInvite=Yii::app()->getRequest()->getBaseUrl(true).$url;
-    $urlSite=$urlInvite;
-    if(strrpos($url, "custom") !== false)
-      $urlInvite=$urlSite."#page.type.".$parentType.".id.".$target["id"];
-  }
-  $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.mail.header', array("logo"=>@$logoHeader, "url"=> $urlSite));
-  //$url = Yii::app()->getRequest()->getBaseUrl(true)."/#page.type.".$parentType.".id.".$target["id"];
-  $verb = "contribute";
-  $typeOfDemand = "contribute to";
-  $verbAction=$verb;
-  if($verb=="contribute")
-    $verbAction="contribute to";
-  else if ($verb=="participate")
-    $verbAction="participate to";
-  if(in_array($parentType, [Organization::COLLECTION,Project::COLLECTION,Event::COLLECTION])){    
-    $whereThis=Yii::t("common","this ".Element::getControlerByCollection($parentType));
-    $whereThe=Yii::t("common","the ".Element::getControlerByCollection($parentType));
-  }else{
-    $whereThis=$whereThe=$target["name"];
-  }
+$logoHeader=(@$logoHeader) ? $logoHeader : "";
+$urlSite=Yii::app()->getRequest()->getBaseUrl(true);
+$urlInvite=Yii::app()->getRequest()->getBaseUrl(true)."/#page.type.".$parentType.".id.".$target["id"];
+if(@$url){
+	$urlInvite=Yii::app()->getRequest()->getBaseUrl(true).$url;
+	$urlSite=$urlInvite;
+	if(strrpos($url, "custom") !== false)
+		$urlInvite=$urlSite."#page.type.".$parentType.".id.".$target["id"];
+}
+$this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.mail.header', array("logo"=>@$logoHeader, "url"=> $urlSite));
+//$url = Yii::app()->getRequest()->getBaseUrl(true)."/#page.type.".$parentType.".id.".$target["id"];
+$verb = $value["verb"];
+$typeOfDemand = $value["typeOfDemand"];
+$verbAction=$verb;
+if($value["typeOfDemand"]=="admin")
+	$verbAction="administrate";
+else{
+	if($verb=="contribute")
+		$verbAction="contribute to";
+	else if ($verb=="participate")
+		$verbAction="participate to";
+}
+
+if(in_array($parentType, [Organization::COLLECTION,Project::COLLECTION,Event::COLLECTION])){    
+	$whereThis=Yii::t("common","this ".Element::getControlerByCollection($parentType));
+	$whereThe=Yii::t("common","the ".Element::getControlerByCollection($parentType));
+}else{
+	$whereThis=$whereThe=$target["name"];
+}
   ?>
     <table class="row" style="border-spacing: 0;border-collapse: collapse;padding: 0;vertical-align: top;text-align: left;width: 100%;position: relative;display: table;"><tbody><tr style="padding: 0;vertical-align: top;text-align: left;"> <!-- Horizontal Digest Content -->
       <th class="small-12 large-12 columns first" style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0 auto;text-align: left;line-height: 19px;font-size: 15px;padding-left: 16px;padding-bottom: 16px;width: 564px;padding-right: 8px;">
