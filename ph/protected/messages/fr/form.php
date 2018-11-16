@@ -185,8 +185,8 @@
 		"Make your project publicly visible"=>"Rendre le projet visible publiquement",
 		"<b>Private :</b> Event visible only by its attendees and create contents only for attendees and admins<br/><b>Public :</b> Event visible in search engine, agenda and communication available for all"=>"<b>Privé :</b> Événement visible seulement pour les participants et le contenu sera accessible par eux et les administrateurs uniquement<br/><b>Public :</b> Événement visble depuis le moteur de recherche et dans l'agenda public ainsi que la communication faite dessus",
 		"<b>Private :</b> Project visible only by its contributors and create contents accessible only by its community<br/><b>Public :</b> Project visible in search engine and communication available for all"=>"<b>Privé :</b> Projet visible seulement pour les contributeurs et le contenu sera accessible par eux uniquement<br/><b>Public :</b> Projet visble depuis le moteur de recherche ainsi que la communication faite dessus",
-
-
+		"<b>Private :</b> Ressource visible only by person or community (member & admin) who post it<br/><b>Public :</b> Ressource visible by all"=>"<b>Privée :</b> Ressource visible seulement par la personne ou la communité (membre & admin) qui l'a publiée <br/><b>Public :</b> Ressource visible de tous",
+		"Make the ressource publicly visible"=>"Rendre la ressource visible publiquement",
 		"Add a new address" => "Ajouter une nouvelle adresse",
 		"You can&#146;t upload {netItems} items.  Item limit is {itemLimit}."=>"Vous ne pouvez pas ajouter {netItems} documents. La limite d'élément est de {itemLimit}.",
 
