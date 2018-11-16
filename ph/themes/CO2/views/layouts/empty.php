@@ -5,7 +5,6 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="language" content="<?php echo Yii::app()->language; ?>" />
   
-  
   <meta name="publisher" content="Pixel Humain on Github">
   <meta name="author" lang="<?php echo Yii::app()->language; ?>" content="Pixel Humain" />
   <meta name="robots" content="Index,Follow" />
@@ -74,7 +73,7 @@ $cssJS = array(
 );
 HtmlHelper::registerCssAndScriptsFiles($cssJS, Yii::app()->getModule( "co2" )->getAssetsUrl() );
   
-  $cs = Yii::app()->getClientScript();
+  
   $cs->registerScriptFile(Yii::app()->request->baseUrl. '/plugins/jQuery/jquery-2.1.1.min.js' );
   ?>
   

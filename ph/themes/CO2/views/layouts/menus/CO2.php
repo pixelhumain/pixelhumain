@@ -241,6 +241,7 @@
                 <div class="dropdown-main-menu" style="right:50px !important;">
                     <ul class="dropdown-menu arrow_box">
                          <?php   
+                         if(@Yii::app()->session["paramsConfig"]["pages"]){
                             foreach (@Yii::app()->session["paramsConfig"]["pages"] as $key => $value) {
                                 if(@$value["inMenu"]==true && @$value["open"]==true){ ?>
                                     <li class="text-left visible-xs">
@@ -249,6 +250,7 @@
                                         </a>
                                     </li>
                             <?php } 
+                        }
                             } ?>
                         <!-- <li class="text-left visible-xs">
                             <a href="javascript:;" data-hash="#search" class="lbh-menu-app bg-white text-red">
@@ -289,10 +291,12 @@
     
         <div class="dropdown-menu arrow_box">
             <?php   
+            if(@Yii::app()->session["paramsConfig"]["pages"]){
             foreach (@Yii::app()->session["paramsConfig"]["pages"] as $key => $value) {
                 if(@$value["inMenu"]==true && @$value["open"]==true){ ?>
                 <a class="dropdown-item padding-5 text-center col-xs-6 lbh-menu-app" href="javascript:;" data-hash="<?php echo $key; ?>" data-toggle="tooltip" data-placement="bottom" ><i class="fa fa-<?php echo $value["icon"]; ?> fa-2x"></i><br/><span class="<?php echo str_replace("#","",$key); ?>ModSpan"><?php echo Yii::t("common", @$value["subdomainName"]); ?></span></a>
             <?php } 
+        }
             } ?>
         </div>
 </div>
@@ -334,6 +338,7 @@
 
             <li role="separator" class="divider visible-xs"></li>
             <?php   
+            if(@Yii::app()->session["paramsConfig"]["pages"]){
             foreach (@Yii::app()->session["paramsConfig"]["pages"] as $key => $value) {
                 if(@$value["inMenu"]==true && @$value["open"]==true){ ?>
                     <li class="text-left visible-xs">
@@ -342,6 +347,7 @@
                         </a>
                     </li>
             <?php } 
+        }
             } ?>
              
            <!-- <li class="text-left visible-xs">
