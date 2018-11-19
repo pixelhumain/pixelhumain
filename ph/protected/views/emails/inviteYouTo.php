@@ -54,4 +54,21 @@ if(in_array($parentType, [Organization::COLLECTION,Project::COLLECTION,Event::CO
               <?php echo Yii::t("mail","If the link doesn&apos;t work, you can copy it in your browser&apos;s address"); ?> :
               <br><div style="word-break: break-all;"><?php echo $urlInvite?></div>
               
-  <?php $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.mail.footer', array("name"=>$title, "url"=>$urlSite)); ?>
+            </th>
+          </tr>         
+        </table>
+
+          </th>
+    </tr>
+
+    <tr style="padding: 0;vertical-align: top;text-align: left;">
+      <td style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 19px;font-size: 15px;">
+        
+        <?php $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.mail.footer'); ?>
+
+      </td>
+
+    </tr>
+
+  </tbody>
+</table>
