@@ -42,9 +42,8 @@ return array(
 	"212" => "Le Type \"Groupe\"  a été attribué a cette organisation. Veuilliez changer le type de l'organisation s'il ne correspond pas à ce type.",
 	"250" => "L'entité a été mis a jour.",
 	"300" => "Il manque le type à l'élément",
-);
 
-		//Trad
+	//Trad
 	"add my mapping." => "ajouter mon mapping.",
 	"Grab the name your mapping" => "Saisir le nom de votre mapping",
 	"Add my mapping" => "Ajouter mon mapping",
