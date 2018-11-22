@@ -15,6 +15,7 @@
     //Network::getNetworkJson(Yii::app()->params['networkParams']);
 
     $params = CO2::getThemeParams();
+    Yii::app()->session['paramsConfig']=$params;
     $metaTitle = @$params["metaTitle"];
     $metaDesc = @$params["metaDesc"]; 
     $metaImg = Yii::app()->getRequest()->getBaseUrl(true)."/themes/CO2".@$params["metaImg"];
@@ -65,15 +66,14 @@
       $getType = (isset($_GET["type"]) && $_GET["type"] != "citoyens") ? $_GET["type"] : "citoyens";
     }else{
       $myFormContact = null;
-
     }
     $communexion = CO2::getCommunexionCookies();
             
     $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
-     $this->renderPartial($layoutPath.'initJs', 
-                                 array( "me"=>$me, "parentModuleId" => $parentModuleId, "myFormContact" => @$myFormContact, "communexion" => $communexion));
+    $this->renderPartial($layoutPath.'initJs', 
+                                 array( "me"=>$me, "parentModuleId" => $parentModuleId, "myFormContact" => @$myFormContact, "communexion" => $communexion, "themeParams"=>$params));
     if($this->module->id == "custom"){
-        $this->renderPartial( 'co2.views.custom.init' ); 
+        $this->renderPartial( 'co2.views.custom.init' );
     }else 
         Yii::app()->session["custom"]=null;
         ?>
@@ -108,13 +108,12 @@
               ?>   
         
         <?php  if( isset(Yii::app()->session["userId"]) )
-                $this->renderPartial($modulePath.'/news/modalShare', array());
+                $this->renderPartial($modulePath.'/news/modalShare', array()); 
         ?>
- 
-        <div class="main-container col-md-12 col-sm-12 col-xs-12 no-padding">
+        <div class="main-container col-md-12 col-sm-12 col-xs-12 <?php echo @Yii::app()->session['paramsConfig']["appRendering"] ?>">
 
             <?php 
-                    $CO2DomainName = Yii::app()->params["CO2DomainName"];
+                  /*  $CO2DomainName = Yii::app()->params["CO2DomainName"];
                     $this->renderPartial( $layoutPath.'menus/'.$CO2DomainName, 
                                             array( "layoutPath"=>$layoutPath , 
                                                     "subdomain"=>"", //$subdomain,
@@ -122,42 +121,76 @@
                                                     "mainTitle"=>"", //$mainTitle,
                                                     "placeholderMainSearch"=>"", //$placeholderMainSearch,
                                                     "type"=>@$type,
-                                                    "me" => $me) );
-                
+                                                    "me" => $me,
+                                                    "themeParams"=>$params) );
+                   <header>
+                    <div class="col-md-12 text-center main-menu-app" style="">
+                        <?php 
+                            $CO2DomainName = Yii::app()->params["CO2DomainName"];
+                            $this->renderPartial( $layoutPath.'menus.moduleMenu',array( "params" => $params , 
+                                                                                        "subdomain"  => ""));
+                        ?>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="intro-text">  
 
-            ?>
-            <header>
-                <div class="col-md-12 text-center main-menu-app" style="">
-                    <?php 
-                        $CO2DomainName = Yii::app()->params["CO2DomainName"];
-                        $this->renderPartial( $layoutPath.'menus.moduleMenu',array( "params" => $params , 
-                                                                                    "subdomain"  => ""));
-                    ?>
-                </div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="intro-text">  
+                                    <?php $this->renderPartial($layoutPath.'headers/'.Yii::app()->params["CO2DomainName"],
+                                    array("themeParams"=>$params)); ?>
 
-                                <?php $this->renderPartial($layoutPath.'headers/'.Yii::app()->params["CO2DomainName"]); ?>
-
-                                    
+                                        
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </header>
+                </header>*/
+               
+            ?>
             <div class="pageContent"></div>
         </div>
         
 
         <div id="modal-preview-coop" class="shadow2 hidden"></div>
+        <div id="modal-settings" class="shadow2"></div>
         <div id="floopDrawerDirectory" class="floopDrawer"></div>
-    
+        <div class="portfolio-modal modal fade" id="openModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="modal-header text-dark">
+                                <h3 class="modal-title text-center" id="ajax-modal-modal-title">
+                                    <i class="fa fa-angle-down"></i> <i class="fa " id="ajax-modal-icon"></i> 
+                                </h3>
+                            </div>
+                            
+                            <div id="ajax-modal-modal-body" class="modal-body">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 text-center" style="margin-top:50px;margin-bottom:50px;">
+                    <hr>
+                    <a href="javascript:" style="font-size: 13px;" type="button" class="" data-dismiss="modal">
+                    <i class="fa fa-times"></i> <?php echo Yii::t("common","Back") ?>
+                    </a>
+                </div>
+            </div>
+        </div>
         
 
-        <?php if($CO2DomainName == "kgougle" || $CO2DomainName == "CO2")
-                $this->renderPartial($layoutPath."modals/".$CO2DomainName.'/radioplayermodal', array( "layoutPath"=>$layoutPath ) ); 
+        <?php // BOUBOULE NOT USE FOR MOMENT =>if($CO2DomainName == "kgougle" || $CO2DomainName == "CO2")
+            //    $this->renderPartial($layoutPath."modals/".$CO2DomainName.'/radioplayermodal', array( "layoutPath"=>$layoutPath ) ); 
+
+        //$this->renderPartial($layoutPath."modals/".$CO2DomainName.'/selectCreate', array( "layoutPath"=>$layoutPath ) ); 
         ?> 
         
         <?php 
@@ -225,7 +258,9 @@
                 //FineUplaoder (called in jquery.dynform.js)
                 '/plugins/fine-uploader/jquery.fine-uploader/fine-uploader-gallery.css',
                 '/plugins/fine-uploader/jquery.fine-uploader/jquery.fine-uploader.js',
-                '/plugins/fine-uploader/jquery.fine-uploader/fine-uploader-new.min.css'
+                '/plugins/fine-uploader/jquery.fine-uploader/fine-uploader-new.min.css',
+                '/plugins/facemotion/faceMocion.css',
+                '/plugins/facemotion/faceMocion.js',
             );
             if(Yii::app()->language!="en")
                 array_push($cssAnsScriptFilesModule,"/plugins/jquery-validation/localization/messages_".Yii::app()->language.".js");
@@ -308,8 +343,8 @@
         
         <?php $this->renderPartial('../cooperation/pod/modalCommon', array()); ?>
 
-        <?php $this->renderPartial($layoutPath.'modals.'.$CO2DomainName.'.mainMenu', array("me"=>$me) ); ?>
-        <?php $this->renderPartial( $layoutPath.'menuBottom.'.Yii::app()->params["CO2DomainName"]); ?>
+        <?php // BOUBOULE NOT USE FOR MOMENT $this->renderPartial($layoutPath.'modals.'.$CO2DomainName.'.mainMenu', array("me"=>$me) ); ?>
+        <?php $this->renderPartial( $layoutPath.'menuBottom.'.Yii::app()->params["CO2DomainName"], array("themeParams"=>@Yii::app()->session['paramsConfig'])); ?>
         <?php 
             if(false && (($CO2DomainName == "CO2" &&
                 !@Yii::app()->session["userId"] && 
@@ -322,10 +357,9 @@
 
         ?>
         
-        <script>    
-            //alert("theme : <?php echo Yii::app()->theme->name?>");      
+        <script>        
             var CO2DomainName = "<?php echo $CO2DomainName; ?>";
-            var CO2params = <?php echo json_encode($params); ?>;
+            var CO2params = <?php echo json_encode(Yii::app()->session['paramsConfig']); ?>;
             
             
             jQuery(document).ready(function() { 
@@ -333,7 +367,7 @@
                 if( typeof custom != "undefined" && custom.logo ){
                     custom.init("mainSearch");
                 }
-                var pageUrls = <?php echo json_encode($params["pages"]); ?>;
+                var pageUrls = <?php echo json_encode(Yii::app()->session['paramsConfig']["pages"]); ?>;
                 $.each( pageUrls ,function(k , v){ 
                     if(typeof urlCtrl.loadableUrls[k] == "undefined")
                         urlCtrl.loadableUrls[k] = v;

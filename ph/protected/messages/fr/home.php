@@ -195,6 +195,13 @@
 			
 		"+ more details in video" =>
 			"+ de détails en vidéo",
+		"No activity around you. Be the first to show that your territory is moving"=>"Pas d&#146;activités autour de vous. Soyez le⋅la premier⋅ère à montrer que ça bouge chez vous",
+		"Add an event, a point of interest, a classified"=>"Ajoutez un événement, un point d&#146;intérêt, une annonce",
+		"If nobody shares what he knows, nothing could be commonly bigger."=>"Si personne ne partage ce qu&#146;il sait, alors rien ne peut collaborativement plus grand",
+		"Around me"=>"Autour de moi",
+		"Be the first to reference an element on your territory"=> "Soyez le⋅la premier⋅ère à référencer un acteur sur votre territoire",
+		"You are the main protagonist to create its free and open map"=>"Vous en êtes le⋅la protagoniste principale afin de créer sa carte libre et ouverte",
+		"Reference your city hall, a NGO, a local business, a place or an initiative <b>you know around you</b>."=>"Référencez votre mairie, une association, un commerce solidaire, un lieu ou une initiative <b>que vous aimez</b>",
 
 	);
 ?>

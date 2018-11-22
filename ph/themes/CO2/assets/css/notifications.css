@@ -1,23 +1,26 @@
-.notifications li {
+.notifications li, .notificationsElement li {
 		min-height:50px;
 		padding: 10px;
 		background-color: rgba(197, 225, 197, 0.3);
 		border-bottom: 1px dashed #bed1be;
 	}
-	.notifications li.read{
+	.notifications li.read, .notificationsElement li.read{
 		background-color:white !important;
 	}
-	.notifications{
+	.notifications, .notificationsElement{
 		/*background-color: white;*/
 		color: #528195;
 		padding: 2px 0px !important;
 	}
-	.notifications .pageslide-title{
+	.notifications .pageslide-title, .notificationsElement .pageslide-title{
 		padding-left: 10px;
 		text-align: inherit; 
 		color:#67B04C;
 		font-size: 14px !important;
 		text-transform: none !important;
+	}
+	.notificationsElement ul{
+		list-style: none;
 	}
 	#notificationPanelSearch{
 	position: fixed;
@@ -50,15 +53,17 @@
 		box-shadow: 0px 0px 3px 0px #656565;
 		filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=NaN, Strength=3);*/
 	}
-	.notifications a.notif{
+	.notifications a.notif, .notificationsElement a.notif{
 		padding-top: 0px !important;
 		background-color: transparent;
-		color: #354535;
+		color: #354535 !important;
 		font-size: 13px;
+		font-weight: 100;
+		text-align:left;
 	}
 	ul.notifList{
 		position: absolute;
-		bottom: 0px !important;
+		bottom: 20px !important;
 		overflow-y: auto;
 		padding-right: 10px;
 		top: 45px;
@@ -70,9 +75,13 @@
 		filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=NaN, Strength=3);
 	}
 
-	
+	.notifications .bottomNotifs{
+		position: absolute;
+    	bottom: 5px;
+   		font-style: italic;
+	}
 
-	.notifications .pageslide-list a .label{
+	.notifications .pageslide-list a .label, .notificationsElement .pageslide-list a .label{
 		opacity: 0.7;
 		font-size: 20px !important;
 		border-radius: 30px !important;
@@ -86,13 +95,13 @@
 		background-color: #56c557 !important;
 	}
 
-	.notifications .message,.notifications .time {
+	.notifications .message,.notifications .time, .notificationsElement .message,.notificationsElement .time {
 		width:100%;
 	}
-	.notifications .content-icon{
+	.notifications .content-icon, .notificationsElement .content-icon{
 		margin-right: 10px;
 	}
-	.notifications .time {
+	.notifications .time, .notificationsElement .time {
 	   color: #4d654d;
 	}
 	.btn-notification-action{
@@ -130,17 +139,46 @@
 		bottom: 4px;
 		border-radius:25px !important;
 		border:1px solid grey;
-		color: grey;
+		color: grey !important;
 	}
 	.removeBtn:hover{
 		background-color: grey;
-		color: white;
+		color: white !important;
 	};
 	.removeBtn i{
 		font-size:12px;
 	}
 
-
+.acceptBtn{
+		border-radius:3px !important;
+		color: white;
+		background-color: #71CE4E;
+		padding: 5px 10px;
+		margin-top: 5px;
+	}
+	.acceptBtn:hover{
+		color: #71CE4E !important;
+		background-color: white;
+		border: 1px solid #71CE4E;
+	}
+	.acceptBtn i{
+		font-size:12px;
+	}
+	.refuseBtn{
+		border-radius:3px !important;
+		color: white;
+		background-color: #E33551;
+		padding: 5px 10px;
+	margin-top: 5px;
+	}
+	.refuseBtn:hover{
+		color: #E33551 !important;
+		background-color: white;
+		border: 1px solid #E33551;
+	}
+	.refuseBtn i{
+		font-size:12px;
+	}
 
 #notificationPanelSearch{
 	overflow: visible !important;
@@ -154,16 +192,42 @@
 #notificationPanelSearch.arrow_box::after{
 	left: 25%;
 }
-
+.main-container.vertical #notificationPanelSearch.arrow_box:before,
+.main-container.vertical #notificationPanelSearch.arrow_box:after{
+	left:40%;
+}
 #notificationPanelSearch{
 	bottom: 30% !important;
 	right: 27px !important;
 	top: 68px !important;
+	z-index: 100000;
+}
+
+@media (min-width: 993px) {
+	.main-container.vertical #notificationPanelSearch.arrow_box{
+		right: 0px !important;
+		top: 62px !important;
+		width: 450px !important;
+		bottom: 0px !important;
+		box-shadow: 0px 5px 5px 2px rgba(66, 66, 66, 0.37) !important;
+	}
+	.main-container.vertical #notificationPanelSearch.arrow_box:before, .main-container.vertical #notificationPanelSearch.arrow_box:after {
+	    border-width: 0px;
+	}
 }
  @media (min-width: 767px) and (max-width: 992px) {
  	#notificationPanelSearch.arrow_box::before,
 	#notificationPanelSearch.arrow_box::after{
 		left:216px;
+	}
+
+	.main-container.vertical #notificationPanelSearch.arrow_box:before,
+	.main-container.vertical #notificationPanelSearch.arrow_box:after{
+		left:65%;
+	}
+	.main-container.vertical #notificationPanelSearch .btn-reload-notif{
+	    font-size: 12px;
+		margin-right: -5px !important;
 	}
  }
 
@@ -184,6 +248,11 @@
 		right:207px;
 	}
 
+	.main-container.vertical #notificationPanelSearch.arrow_box:before,
+	.main-container.vertical #notificationPanelSearch.arrow_box:after{
+		left: unset !important;
+    	right: 153px;
+	}
 	.notifications .pageslide-list a .label{
 		height: 26px;
 		width: 26px;

@@ -105,5 +105,124 @@
 		"Retreive your password on {website}"=>'Réinitialisation du mot de passe sur {website}',
 		"New user on {website}"=>"Nouvel-le utilisateur-trice sur {website}",
 		"New professional account on {website}"=>"Nouveau compte professionel crée sur {website}",
+		
+
+
+
+
+		// post
+		"{who} writes a post on your wall"=>"{who} a écrit un post sur votre mur",
+		"{who} publishes a new post"=>"{who} a publié un post",
+		"{who} publishes new posts"=>"{who} a publié plusieurs posts",
+		"{where} publishes a new post"=>"{where} a publié un post",
+		"{where} publishes new posts"=>"{where} a publié plusieurs posts",
+		"{who} writes a post on the wall of {where}" => "{who} a écrit un post sur le mur de {where}",
+		"{who} writes a post on the wall of {where}" => "{who} a écrit un post sur le mur de {where}",
+		"{who} write posts on the wall of {where}" => "{who} ont écrit plusieurs posts sur le mur de {where}",
+		"{who} writes posts on the wall of {where}" => "{who} a écrit plusieurs posts sur le mur de {where}",
+		// add
+		"{who} write posts" => "{who} ont écrit plusieurs posts",
+		"{who} added a new event : {what} on {where}" => "{who} a ajouté un événement : {what} dans {where}",
+		"{who} added a new project : {what} on {where}" => "{who} a ajouté un projet : {what} dans {where}",
+		"{who} added a new classified : {what} on {where}" => "{who} a ajouté une nouvelle annonces : {what} dans {where}",
+		"{who} added a new point of interest : {what} on {where}" => "{who} a ajouté un point d'intéret : {what} dans {where}",
+		"{who} added a new proposal : {what} in {where}" => "{who} a ajouté une proposition : {what} sur {where}",
+		"{who} added a new action : {what} in {where}" => "{who} a ajouté une action : {what} sur {where}",
+		"{who} added a new room : {what} on {where}" => "{who} a ajouté une espace de décision : {what} sur {where}",
+
+		"{who} have added new events on {where}"=>"{who} ont ajouté plusieurs événements sur {where}",
+		"{who} have added new classifieds on {where}"=>"{who} ont ajouté plusieurs annonces sur {where}",
+		"{who} have added points of interest on {where}"=>"{who} ont ajouté des points d'intérêt sur {where}",
+		"{who} added points of interest on {where}"=>"{who} a ajouté plusieurs points d'intérêt sur {where}",
+		"{who} have added new projects on {where}"=>"{who} ont ajouté plusieurs projets sur {where}",
+		"{who} added new projects on {where}"=>"{who} a ajouté plusieurs projets sur {where}",
+		"{who} have added new events on {where}"=>"{who} ont ajouté plusieurs événements sur {where}",
+		"{who} added new events on {where}" => "{who} a ajouté plusieurs événements sur {where}",
+		"{who} have added new classifieds on {where}"=>"{who} ont ajouté plusieurs annonces sur {where}",
+		"{who} added new classifieds on {where}"=>"{who} a ajouté plusieurs annonces sur {where}",
+		"{who} added few proposals in {where}"=>"{who} a ajouté plusieurs proposition {where}",
+		"{who} added few actions in {where}"=> "{who} a ajouté plusieurs actions {where}",
+		"{who} have added few proposals in {where}"=>"{who} ont ajouté plusieurs proposition {where}",
+		"{who} have few actions in {where}"=> "{who} ont ajouté plusieurs actions {where}",
+		"{who} added new rooms in the co-space on {where}"=>"{who} a ajouté plusieurs salles dans l'espace co sur {where}",
+		"{who} have added new rooms in the co-space on {where}"=>"{who} ont ajouté plusieurs salles dans l'espace co sur {where}",
+
+		//VOTE
+		"{who} voted on {what} in {where}" => "{who} a voté sur {what} dans {where}",
+		"{who} have voted on {what} in {where}" => "{who} ont voté sur {what} dans {where}",
+		"{who} voted few times on {what} in {where}"=> "{who} a voté pluiseurs fois sur {what} dans {where}",
+		//AMEND
+		"{who} amended the proposal {what} in {where}" => "{who} a amendé la proposition {what} dans {where}",
+		"{who} have amended the proposal {what} in {where}" => "{who} ont amendé la proposition {what} dans {where}",
+		"{who} amended few times the proposal {what} in {where}"=>"{who} a amendé plusieurs fois la proposition {what} in {where}",
+
+		//FOLLOW
+		"{who} is following {where}" => "{who} suit {where}",
+		"{who} are following {where}" => "{who} suivent {where}",
+		"{who} is following you" => "{who} vous suit",
+		"{who} are following you" => "{who} vous suivent",
+
+		//ASK
+		"{who} wants to join {where}"=> "{who} veut rejoindre {where}",
+		"{who} want to join {where}"=> "{who} veulent rejoindre {where}",
+		"{who} wants to administrate {where}"=> "{who} veut administrer {where}",
+		"{who} want to administrate {where}"=> "{who} veulent administrer {where}",
+
+
+		//REACT
+		"{who} reacts on a news from {where}" => "{who} a réagi sur la publication de {where}",
+		"{who} react on a news from {where}" => "{who} ont réagi sur la publication de {where}",
+		"{who} reacts on your news {what}"=>"{who} a réagi sur votre publication {what}",
+		"{who} react on your news {what}"=>"{who} ont réagi sur votre publication {what}",
+		"{who} reacts on your comment on {where}"=>"{who} a réagi sur votre commentaire sur {where}",
+		"{who} react on your comment on {where}" => "{who} ont réagi à votre commentaire sur {where}",	
+
+		//DELETE
+		"{who} asks the suppression of {where}"=>"{who} demande la suppression de {where}",
+		"{who} stopped the pending suppression of {where}"=>"{who} a stoppé la suppresion de {where}",
+		"{who} deleted {where}"=>"{who} a supprimé {where}",
+
+
+		//JOIN
+		"{who} participates to {where}" => "{who} participe à {where}",
+		"{who} participate to {where}" => "{who} participent à {where}",
+		"{who} joins {where}" => "{who} a rejoint {where}",
+		"{who} join {where}" => "{who} ont rejoint {where}",
+		"{who} contributes {where}" => "{who} contribue à {where}",
+		"{who} contribute {where}" => "{who} contribuent à {where}",
+
+
+
+		//COMMENT
+		"{who} commented on your news {what}" => "{who} a commenté votre post {what}",
+		"{who} added comments on your news {what}" => "{who} ont commenté votre post {what}",
+		"{who} commented a news {what} posted on {where}" => "{who} a commenté le post {what} publié sur {where}",
+		"{who} added comments on a news {what} posted on {where}" => "{who} ont commenté le post {what} publié sur {where}",
+		"{who} added few comments on your news {what}" => "{who} a ajouté plusieurs commentaires sur votre post {what}",
+		"{who} added few comments on a news {what} posted on {where}" => "{who} a ajouté plusieurs commentaires sur le post {what} publié sur {where}",
+		"{who} answered to your comment posted on {where}" => "{who} a répondu à votre commentaire posté sur {where}" ,
+		"{who} added comments on your comments posted on {where}" => "{who} ont répondu à vos commentaires postés sur {where}",
+		"{who} added few comments on your comments posted on {where}" => "{who} a répondu plusieurs fois à votre commentaire posté sur {where}",
+		"{who} commented on proposal {what} in {where}" => "{who} a commenté la proposition {what} dans {where}",
+		"{who} added comments on proposal {what} in {where}" => "{who} ont commenté la proposition {what} dans {where}",
+		"{who} commented on action {what} in {where}" => "{who} a commenté l'action {what} dans {where}",
+		"{who} added comments on action {what} in {where}" => "{who} ont commenté l'action {what} dans {where}",
+		"{who} commented on discussion {what} in {where}" => "{who} a participé à la discussion {what} dans {where}",
+		"{who} added comments on discussion {what} in {where}" => "{who} ont participé à la discussion {what} dans {where}",
+		"{who} added few comments on proposal {what} in {where}"=>"{who} a commenté plusieurs fois la proposition {what} sur {where}",
+		"{who} added few comments on action {what} in {where}"=>"{who} a commenté plusieurs fois l'action {what} sur {where}",
+		"{who} commented on resolution {what} in {where}"=> "{who} a commenté la résolution {what} dans {where}",
+		"{who} added comments on resolution {what} in {where}"=>"{who} ont commenté la résolution {what} dans {where}",
+		"{who} added few comments on resolution {what} in {where}"=>"{who} a commenté plusieurs fois la résolution {what} dans {where}",
+		"of creation"=> "de création",
+		"shared"=>"partagé",
+
+
+
+
+		"There's something new in your network" => "Il y a du nouveau dans votre réseau",
+		"More than {count} notification(s) to discover" => "Plus que {count} notification(s) à découvrir",
+		"You can then change the password in your {where}" => "Vous pourrez ensuite changer le mot de passe dans vos {where}",
+		"settings" => "paramètres",
 );
 ?> 

@@ -1,11 +1,12 @@
 <?php 
-    $params = CO2::getThemeParams();
+    //$params = CO2::getThemeParams();
     $multiscopes = (empty($me) && isset( Yii::app()->request->cookies['multiscopes'] )) ? 
                             Yii::app()->request->cookies['multiscopes']->value : "{}";
     $preferences = Preference::getPreferencesByTypeId(@Yii::app()->session["userId"], Person::COLLECTION);
 ?>
 <script>
     var themeUrl = "<?php echo Yii::app()->theme->baseUrl;?>";
+    var themeParams = <?php echo json_encode(@$themeParams);?>;
     var domainName = "<?php echo Yii::app()->params["CO2DomainName"];?>";
     var userId = "<?php echo Yii::app()->session['userId']?>";
     var uploadUrl = "<?php echo Yii::app()->params['uploadUrl'] ?>";
@@ -47,9 +48,11 @@
             "url"    => Yii::app()->getModule( "co2" )->assetsUrl
         )); ?>,
         "cotools" : <?php echo json_encode( array(
+
             "module" => "cotools",
             "init"   => Yii::app()->getModule( "cotools" )->assetsUrl."/js/init.js" ,
             "form"   => Yii::app()->getModule( "cotools" )->assetsUrl."/js/dynForm.js" ,
+
         )); ?>
     };
     
@@ -175,8 +178,8 @@ var typeObj = {
     
     var globalTheme = "<?php echo Yii::app()->theme->name;?>";
 
-    var deviseTheme = <?php echo json_encode(@$params["devises"]) ?>;
-    var deviseDefault = <?php echo json_encode(@$params["deviseDefault"]) ?>;
+    var deviseTheme = <?php echo json_encode(@$themeParams["devises"]) ?>;
+    var deviseDefault = <?php echo json_encode(@$themeParams["deviseDefault"]) ?>;
 
     var rolesList=[ tradCategory.financier, tradCategory.partner, tradCategory.sponsor, tradCategory.organizor, tradCategory.president, tradCategory.director, tradCategory.speaker, tradCategory.intervener];
     var mapIconTop = {
@@ -259,7 +262,7 @@ var typeObj = {
     };
     var onchangeClick=true;
     var lastWindowUrl = location.hash;
-    var urlBackDocs = location.hash;
+    var urlBackHistory = location.hash;
     var allReadyLoadWindow=false;
     var navInSlug=false;
     var historyReplace=false;
@@ -306,7 +309,7 @@ var typeObj = {
               //  circuit.obj = JSON.parse(localStorage.getItem("circuit"));
             //Init mentions contact
             if(myContacts != null){
-                $.each(myContacts["people"], function (key,value){
+                $.each(myContacts["citoyens"], function (key,value){
                     if(typeof(value) != "undefined" ){
                         avatar="";
                         console.log(value);
@@ -430,7 +433,7 @@ var typeObj = {
                     allReadyLoadWindow = false;
                     onchangeClick=true;
                 }
-                urlBackDocs=lastWindowUrl;
+                urlBackHistory=lastWindowUrl;
                 lastWindowUrl = location.hash;
             }
         },

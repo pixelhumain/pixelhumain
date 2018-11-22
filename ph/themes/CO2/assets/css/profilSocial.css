@@ -244,6 +244,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     min-height: 280px;
     background-color: rgba(230,230,230,0.6);
     padding: 0px;
+    margin-top: 2px;
     padding-top: 0px !important;
     padding-bottom: 15px !important;
 }
@@ -446,7 +447,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 }
 
 .sub-menu-social.affix {
-    top: 80px !important;
+    top: 76px !important;
     position: fixed;
     right: 0;
     z-index: 100;
@@ -454,6 +455,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     -webkit-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.5);
     -moz-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.5);
     box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.5);
+}
+.main-container.vertical .sub-menu-social.affix {
+    right: 0px !important;
+    left: 53px;
+    width: initial !important;
 }
 @media (max-width: 767px) {
     .central-section{
@@ -601,7 +607,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 }
 
 .el-nowList:hover{
-    width: 300px;
+    /*width: 300px;*/
     float: right;
 }
 .el-nowList .address{
@@ -613,7 +619,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 
 .el-nowList:hover .elemt_name, 
 .el-nowList:hover .elemt_date {
-    width: 80%;
+    /*width: 80%;*/
 }
 
 .previewLocalActivity{
@@ -902,7 +908,7 @@ margin-top: 5px;
 
 }
 @media (max-width: 768px) {
-     .section-date {
+    .section-date {
         position: relative;
         float: left !important;
         left: 20px;
@@ -923,11 +929,17 @@ margin-top: 5px;
     .sub-menu-social {
         margin-top: -27px !important;
     }
-
+    .sub-menu-social.affix {
+        top:133px !important;
+        left: 0px !important;
+    }
     #social-header{
         padding-top: 0px !important;
-        margin-top: -8px !important;
+        margin-top: 7px !important;
     }
+    #vertical #affix-sub-menu{
+        box-shadow: none !important;
+    } 
 
 }
 

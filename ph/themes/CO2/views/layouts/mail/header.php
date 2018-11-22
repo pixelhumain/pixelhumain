@@ -1145,8 +1145,8 @@
           font-size: 12px;
           color: #777777; }
 
-      p {
-          color: #777777 !important; }
+     /* p {
+          color: #777777 !important; }*/
   </style>
 
   <style type="text/css" media="only screen and (max-width: 596px)">
