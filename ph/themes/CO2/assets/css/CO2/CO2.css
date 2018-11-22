@@ -1148,7 +1148,7 @@ a, a:hover, a:focus, a:active, a.active{
 }
 
 .bootbox{
-	z-index: 100000;
+	z-index: 200000;
 }
 
 

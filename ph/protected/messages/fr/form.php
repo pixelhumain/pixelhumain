@@ -189,6 +189,10 @@
 		"Make the ressource publicly visible"=>"Rendre la ressource visible publiquement",
 		"Add a new address" => "Ajouter une nouvelle adresse",
 		"You can&#146;t upload {netItems} items.  Item limit is {itemLimit}."=>"Vous ne pouvez pas ajouter {netItems} documents. La limite d'élément est de {itemLimit}.",
+		"Who is carrying the project"=>"Qui porte le projet",
+		"Add to the list"=>"Ajouter à la liste",
+		"Change the element"=>"Changer l&#146;élément ci-dessous",
+		
 
 	)
 
