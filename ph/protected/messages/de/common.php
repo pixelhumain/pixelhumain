@@ -1440,5 +1440,12 @@ return array(
 	"You are" => "Sie sind",
 	"Next to" => "Weiter zu",
 	"Notifications & Mails" => "Benachrichtigungen & Mails",
+	
+	"Notifications preferences" => "Einstellungen für Benachrichtigungen",
+	"Already follow" => "Folgt bereits",
+	"Already attendee" => "Bereits Teilnehmer",
+	"Already member" => "Bereits Mitglied",
+	"Already contributor" => "Schon Mitwirkender",
+	"In" => "in",
 );
 ?>
