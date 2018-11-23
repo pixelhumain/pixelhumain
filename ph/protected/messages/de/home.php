@@ -162,5 +162,12 @@
 		"They form a key part of the adventure" => "Sie sind ein wichtiger Teil des Abenteuers",
 		
 		"Graph View" => "Interessen Diagramm",
+		"No activity around you. Be the first to show that your territory is moving" => "Keine Aktivität in Ihrer Nähe. Seien Sie der Erste, der zeigt, dass sich Ihre Umgebung bewegt",
+		"Add an event, a point of interest, a classified" => "Fügen Sie eine Veranstaltung, einen besonderen Ort oder eine Klassifizierung hinzu",
+		"If nobody shares what he knows, nothing could be commonly bigger." => "Wenn niemand teilt, was er weiß, kann gemeinsam auch nichts größer werden.",
+		"Around me" => "Um mich herum",
+		"Be the first to reference an element on your territory" => "Seien Sie der Erste, der auf ein Element in Ihrer Umgebung verweist",
+		"You are the main protagonist to create its free and open map" => "Sie sind der Hauptakteur, um die eigene freie und offene Karte zu zeichnen",
+		"Reference your city hall, a NGO, a local business, a place or an initiative <b>you know around you</b>." => "Verweisen Sie auf Ihr Rathaus, eine NGO, ein lokales Unternehmen, einen Ort oder eine Initiative die <b>Sie aus Ihrer Nachbarschaft kennen</b>.",
 	);
 ?>
