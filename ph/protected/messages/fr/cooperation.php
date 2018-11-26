@@ -204,7 +204,7 @@ return array(
 
 
 	"Edit this space" => "modifier l'espace",
-	"You are not logged" => "Vous n'êtes pas connecté",
+	"You are not logged" => "Vous n'êtes pas connecté⋅e",
 	"My roles" => "Mes rôles",
 	"You have no role in" => "Vous n'avez aucun rôle dans",
 	"this projects" => "ce projet",
