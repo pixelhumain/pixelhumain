@@ -546,6 +546,7 @@ return array(
 	"Start search by tags"=>"Commencer la recherche par mots-clés",
 	"Launch invitations"=> "Lancer les invitations",
 	"My experiences"=>"Mes expériences",
+	"Open in another tab"=>"Ouvrir dans un autre onglet",
 	// Menu Button - Top menu
 	"My News Stream"=>"Mon Fil d'actualité",
 	"Newspaper" => "Journal",
