@@ -147,7 +147,7 @@ return array(
 	"Properties updated successfully" => "Les propriétés ont été modifiées avec succès",
 	"Task added successfully" => "La tâche a été ajoutée avec succès",
 	"TASK REMOVED SUCCESFULLY!!" => "La tâche a été supprimée avec succès",
-	"News added successfully!" => "News ajoutée avec succès!",
+	"News added successfully!" => "Publication ajoutée avec succès !",
 	"Thank you ! We are dealing it as quickly as possible. If there is more than 5 report, the news will be hidden" => "Merci !  S&#146;il y a plus de 3 signalements, le contenu est automatiquement soumis à la modération collective",
 	"You already reported this news as abuse" => "Vous avez déjà signalé cette news comme abus",
 	"You are going to declare an abuse : please fill the reason" => "Vous êtes en train de signaler un contenu abusif. Merci d'en préciser la raison",	
