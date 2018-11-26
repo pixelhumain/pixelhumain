@@ -23,7 +23,7 @@
 		"Share every kind of informations<br>Locate items to make it visible for everyone<br>And take part to the co-building of your territory!"=>"Teilen Sie jegliche Art Informationen<br>Stellen Sie Informationsdetails für alle zur Verfügung<br>Und beteiligen Sie sich am gemeinschaftlichen Aufbau Ihres Ihnen verbundenen Umfelds !",
 		"Create your page in few seconds,<br>then add more details,<br>according to your needs"=>"Erstellen Sie Ihre Seite in wenigen Sekunden,<br>fügen dann Einzelheiten,<br>je nach Ihren Bedürfnissen dazu",
 		"Make visble your project to all has never been so easy !<br>Create your project in few seconds,<br>then complete more according to your needs"=>"Stellen Sie Ihr Projekt für alle vor. Nie war es einfacher!!<br>Erstellen Sie Ihre Seite in wenigen Sekunden,<br>und ergänzen Sie nach Bedarf später.",
-		"Share links you like, to make them accessible to all"=>"Teile interessante Weblinks, um Sie allen zur Verfügung zu stellen",
+		"Share links you like, to make them accessible to all"=>"Teile interessante Weblinks, um diese allen zur Verfügung zu stellen",
 		"Indicate contacts linked to this page to give more opportunities for people to find you"=>"Erleichtern Sie Begegnungen durch Koordination der gezielt ausgesuchten Personen mit einem Link auf diese Seite",
 		"Who is organizing this event"=>"Wer organisiert diese Veranstaltung",
 		"Who organizes"=>"Wer organisiert",
