@@ -1414,7 +1414,7 @@ return array(
 	"What ?" => "Wie bitte?",
 	"Buuurk" => "Mehhh",
 	"Glad" => "Freude",
-	"Bothering" => "Wirklich besorgt",
+	"Bothering" => "Geht gar nicht!",
 	"Sad" => "Macht mich traurig",
 	"Amazing" => "Echt beeindruckend",
 	"Scaring" => "Ist ja beängstigend",
