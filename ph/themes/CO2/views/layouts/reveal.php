@@ -2,12 +2,30 @@
 <html lang="en">
 
 	<head>
-		<meta charset="utf-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		  <meta name="language" content="<?php echo Yii::app()->language; ?>" />
 
-		<title>reveal.js – The HTML Presentation Framework</title>
-
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-		<meta name="author" content="Hakim El Hattab">
+		  <title>
+    <?php 
+    $title = "";
+    if(isset($this->pageTitle)) $title = $this->pageTitle;
+    else if(isset($this->module->pageTitle)) $title = $this->module->pageTitle;
+    echo CHtml::encode( $title )?>
+  </title>
+  <?php 
+    $desc = "";
+    if(isset($this->desc)) $desc = $this->description;
+    else if(isset($this->module->description)) $desc = $this->module->description; ?>
+  <meta content="<?php echo CHtml::encode($title." , ".$desc); ?>" name="description" />
+  <?php 
+    $keywords = "";
+    if(isset($this->keywords)) $keywords = $this->keywords;
+    else if(isset($this->module->keywords)) $keywords = $this->module->keywords;?>
+  <meta name="keywords" lang="<?php echo Yii::app()->language; ?>" content="<?php echo CHtml::encode($keywords); ?>"> 
+		  
+		  <meta name="publisher" content="Pixel Humain on Github">
+		  <meta name="author" lang="<?php echo Yii::app()->language; ?>" content="Pixel Humain" />
+		  <meta name="robots" content="Index,Follow" />
 
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
