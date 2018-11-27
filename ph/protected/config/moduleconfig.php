@@ -22,5 +22,6 @@ $activeModules = array(
 	"survey",
 	"interop",
 	"eco",
-	"custom"
+	"custom",
+	"map"
 	);
