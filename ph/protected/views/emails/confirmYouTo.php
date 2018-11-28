@@ -29,7 +29,7 @@
 							<br><br>
 
 							<?php echo Yii::t("mail","If the link doesn&apos;t work, you can copy it in your browser&apos;s address"); ?> :
-							<br><div style="word-break: break-all;"><?php echo $url?></div>
+							<br><div style="word-break: break-all;"><br><i><?php echo $url?></i></div>
 
 						</th>
 					</tr>

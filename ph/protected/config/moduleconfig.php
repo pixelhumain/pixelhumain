@@ -12,17 +12,18 @@ $activeModules = array(
 	"copi",
 	"connect",
 	"places",
-	"ressources",
-	"classifieds",
+	//"ressources", //kill
+	//"classifieds",
 	"onepage",
 	"cooperation",
-	'terla',
+	//'terla',
 	'chat',
-	'cococarto', 
+	//'cococarto', 
 	"survey",
 	"interop",
 	"map",
 	"eco",
 	"custom",
-	"mynetwork"
+	//"mynetwork"
+	"map"
 	);

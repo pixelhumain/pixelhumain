@@ -51,6 +51,7 @@
 		"SHARING"=>"ENTRAIDE",
 		"Sharing ressources"=>"Partager des ressources",
 		"Print out" => "Imprimer",
+		"Graph View" => "Vue en graphe",
 		"Commons"=>"Pour le bien commun",
 		"Society 2.2.main"=>"Société 2.2.main",
 		"Open"=>"Libre",

@@ -38,6 +38,7 @@
 
 <!--<button class="btn btn-show-filters hidden-xs"><i class="fa fa-angle-down"></i> <?php echo Yii::t("common", "Filters") ?> <span class="topbar-badge badge animated bounceIn badge-warning bg-azure"></span></button>-->
 <?php } ?>
+<?php $visibleClass=(@$params["numberOfApp"]<=1) ? "hidden": ""; ?>
 <div id="territorial-menu" class="hidden-xs">
     <?php
         foreach ($params["pages"] as $key => $value) {

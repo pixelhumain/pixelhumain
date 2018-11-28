@@ -458,7 +458,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 }
 .main-container.vertical .sub-menu-social.affix {
     right: 0px !important;
-    left: 53px !important;
+    left: 53px;
     width: initial !important;
 }
 @media (max-width: 767px) {
@@ -908,7 +908,7 @@ margin-top: 5px;
 
 }
 @media (max-width: 768px) {
-     .section-date {
+    .section-date {
         position: relative;
         float: left !important;
         left: 20px;
@@ -929,11 +929,17 @@ margin-top: 5px;
     .sub-menu-social {
         margin-top: -27px !important;
     }
-
+    .sub-menu-social.affix {
+        top:133px !important;
+        left: 0px !important;
+    }
     #social-header{
         padding-top: 0px !important;
-        margin-top: -8px !important;
+        margin-top: 7px !important;
     }
+    #vertical #affix-sub-menu{
+        box-shadow: none !important;
+    } 
 
 }
 

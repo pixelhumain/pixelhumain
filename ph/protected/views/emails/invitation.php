@@ -92,6 +92,21 @@ $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.m
 							<p style="margin: 0;margin-bottom: 10px;color: #3c5665 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;text-align: left;line-height: 19px;font-size: 12px;">
 							<?php echo Yii::t("mail","If the link doesn&apos;t work, you can copy it in your browser&apos;s address") ?>
 							<div style="word-break: break-all;font-size: 12px;"><?php echo $urlValidation ?></div></p>
-	
-	<?php $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.mail.footer', array("name"=>$title, "url"=>$urlRedirect)); ?>
+						</th>
+					</tr>					
+				</table>
+	        </th>
+		</tr>
+
+		<tr style="padding: 0;vertical-align: top;text-align: left;">
+			<td style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 19px;font-size: 15px;">
+				
+				<?php $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.mail.footer'); ?>
+
+			</td>
+
+		</tr>
+
+	</tbody>
+</table>
 

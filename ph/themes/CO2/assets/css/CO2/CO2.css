@@ -138,7 +138,7 @@ header, .header {
 }
 header{
 	position: relative;
-	min-height: 50px;
+	/*min-height: 50px;*/
 }
 header .intro-text .name , 
 .header .intro-text .name {
@@ -278,6 +278,11 @@ section {
 #mainNav{
 	border:none;
 	background-color: rgb(252, 252, 252);
+	z-index: 100000
+}
+#mainNav.borderShadow{
+	box-shadow: 0px 2px 3px -3px rgba(0,0,0,0.5);
+    border-bottom: 1px solid #dadada;
 }
 #filters-menu{
 	display:none;
@@ -446,10 +451,6 @@ section {
 
 .navbar-custom .scopes .btn-scope {
     font-size: 12px;
-}
-
-.navbar-header{
-
 }
 
 .navbar-custom.affix .navbar-header .nc_map_min{
@@ -804,7 +805,7 @@ section {
 	    	display:block;
 	    }
         #vertical #affix-sub-menu{
-        	top: 54px;
+        	top: 66px;
             padding-left: 0px !important;
             box-shadow: 0px 3px 6px -2px rgba(0,0,0,0.5);
         }
@@ -923,7 +924,7 @@ a, a:hover, a:focus, a:active, a.active{
 	color: #34a853 !important;
 }
 
-#main-search-bar, #main-search-xs-bar{
+#main-search-bar, #main-search-xs-bar, #second-search-xs-bar{
 	padding: 10px;
     font-size: 14px;
     height: 40px;
@@ -944,7 +945,7 @@ a, a:hover, a:focus, a:active, a.active{
 	font-weight: 200;*/
 }
 @media (max-width: 767px){
-	#main-search-xs-bar{
+	#main-search-xs-bar, #second-search-xs-bar{
 		width: 80%;
 	}
 	#text-search-menu #dropdown-apps{
@@ -959,10 +960,22 @@ a, a:hover, a:focus, a:active, a.active{
 	    border-left: 0px !important;
 	    float: left;
 	}
+	#text-search-menu #dropdown-apps.padding{
+		padding: 4px 2px;
+	}
 	#text-search-menu #dropdown-apps #dropdownApps{
 		background: none;
 	    color: white;
 	    border: none;
+	}
+	.dropdown-result-global-search{
+		max-height: 70% !important;
+	    border-radius: 0px 0px 25px 25px;
+	    box-shadow: rgba(0, 0, 0, 0.4) 4px 10px 11px 1px;
+	    overflow-y: scroll;
+	    position: fixed;
+	    background-color: white;
+	    top: 106px;
 	}
 }
 #main-input-group{
@@ -971,7 +984,7 @@ a, a:hover, a:focus, a:active, a.active{
     -moz-box-shadow: 0px 0px 4px -1px rgba(0,0,0,0.5) ;
     box-shadow: 0px 0px 4px -1px rgba(0,0,0,0.5) ;
 }
-#main-search-bar-addon, #second-search-bar-addon, #main-search-xs-bar-addon{
+#main-search-bar-addon, #second-search-bar-addon, #main-search-xs-bar-addon, #second-search-xs-bar-addon{
 	border: 1px solid #dadada !important;
     background-color: #dadada !important;
     font-size: 14px;
@@ -1039,12 +1052,13 @@ a, a:hover, a:focus, a:active, a.active{
 
 .dropdown-main-menu{
 	position: fixed;
-	top: 20px;
-	right: 117px;
+	top: 65px;
+    right: 55px;
 	max-height: 400px;
 	background-color: transparent;
 	z-index: 100000;
 }
+
 .main-container.vertical .dropdown-main-menu{
 	top: 66px;
 	right: 5px;
@@ -1058,15 +1072,14 @@ a, a:hover, a:focus, a:active, a.active{
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
 }
 .dropdownApps-menuTop .dropdown-menu{
-    /* left: 63px; */
-    right: 135px !important;
-    top: 62px;
-	position: absolute;
-	width: 250px;
-	border: 1px solid #0003;
-	border-radius: 0px;
-	height: 170px;
-	z-index: 1000000;
+    left: 31px;
+    top: 5px;
+    position: absolute;
+    width: 250px;
+    border: 1px solid #0003;
+    border-radius: 0px;
+    height: 170px;
+    z-index: 1000000;
 }
 .dropdownApps-menuTop .dropdown-menu:before, .dropdownApps-menuTop .dropdown-menu:after{
 	left: 14% !important;
@@ -1104,6 +1117,7 @@ a, a:hover, a:focus, a:active, a.active{
 	right: 15px;
 	left: inherit;
 }
+
 .main-container.vertical .dropdown-main-menu .arrow_box:after, .main-container.vertical .dropdown-main-menu .arrow_box:before {
 	right: 23px;
 }
@@ -1495,8 +1509,11 @@ h3.title_panel_map{
 	padding: 0 10px;
 	border: none !important;
 }
-.btn-menu-apps{
-	border-right: 1px solid #e3e3e3 !important;
+.navbar-header .btn-menu-apps{
+	border: none;
+    padding: 13px 15px 7px 15px;
+    font-size: 20px;
+    background-color: white;
 }
 .menu-name-profil{
 	font-weight: 300;

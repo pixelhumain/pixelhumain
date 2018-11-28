@@ -128,7 +128,7 @@
 		"{who} added a new point of interest : {what} on {where}" => "{who} a ajouté un point d'intéret : {what} dans {where}",
 		"{who} added a new proposal : {what} in {where}" => "{who} a ajouté une proposition : {what} sur {where}",
 		"{who} added a new action : {what} in {where}" => "{who} a ajouté une action : {what} sur {where}",
-		"{who} added a new room : {what} in {where}" => "{who} a ajouté une espace de décision : {what} sur {where}",
+		"{who} added a new room : {what} on {where}" => "{who} a ajouté une espace de décision : {what} sur {where}",
 
 		"{who} have added new events on {where}"=>"{who} ont ajouté plusieurs événements sur {where}",
 		"{who} have added new classifieds on {where}"=>"{who} ont ajouté plusieurs annonces sur {where}",
@@ -222,5 +222,7 @@
 
 		"There's something new in your network" => "Il y a du nouveau dans votre réseau",
 		"More than {count} notification(s) to discover" => "Plus que {count} notification(s) à découvrir",
+		"You can then change the password in your {where}" => "Vous pourrez ensuite changer le mot de passe dans vos {where}",
+		"settings" => "paramètres",
 );
 ?> 

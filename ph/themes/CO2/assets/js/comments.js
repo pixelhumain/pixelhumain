@@ -28,11 +28,11 @@ function initCommentsTools(listObjects, type, canComment, parentId){
           sectionHtmlCount+="<span class='pull-left margin-left-5 totalCountReaction' data-count='"+totalReaction+"'>"+totalReaction+"</span>";
           sectionHtmlCount+="</a>"
         }
-        if(commentCount > 0){
+        /*if(commentCount > 0){
           sectionHtmlCount+="<span class='nbNewsComment pull-right newsAddComment' data-media-id='"+idMedia+"''>" + commentCount + " ";
           sectionHtmlCount+=(commentCount>1) ? trad.comments : trad.comment;
           sectionHtmlCount+="</span>";
-        }
+        }*/
         /*if(commentCount == 0 && idSession) lblCommentCount = "<i class='fa fa-comment'></i>  "+trad.commenton;
         if(commentCount == 1) lblCommentCount = "<i class='fa fa-comment'></i> <span class='nbNewsComment'>" + commentCount + "</span> "+trad.comment;
         if(commentCount > 1) lblCommentCount = "<i class='fa fa-comment'></i> <span class='nbNewsComment'>" + commentCount + "</span> "+trad.comments;
@@ -40,8 +40,14 @@ function initCommentsTools(listObjects, type, canComment, parentId){
 
         
         var actionOn="";
-        if(type=="news")
-          actionOn = '<a href="javascript:" class="newsAddComment letter-blue" data-media-id="'+idMedia+'"><i class="fa fa-comment"></i> '+trad.commenton+'</a>';
+        if(type=="news"){
+          labelComments=trad.commenton;
+          if(commentCount>0){
+            labelComments=commentCount+" "
+            labelComments+=(commentCount>1) ? trad.comments : trad.comment;
+          }
+          actionOn = '<a href="javascript:" class="newsAddComment letter-blue" data-media-id="'+idMedia+'"><i class="fa fa-comment"></i> '+labelComments+'</a>';
+        }
         else if (type=="comments"){
           countReplies=(typeof media.replies != "undefined") ? Object.keys(media.replies).length : 0;
           s=(countReplies > 1) ? "s" : "";

@@ -1,5 +1,5 @@
 <?php   HtmlHelper::registerCssAndScriptsFiles(array('/assets/css/menus/multi_tags_scopes.css'), Yii::app()->theme->baseUrl); 
-    $themeParams = CO2::getThemeParams();    
+    $themeParams = Yii::app()->session['paramsConfig'];//CO2::getThemeParams();    
     if(@$type=="cities")    { 
         $lblCreate = "";
         $themeParams["pages"]["#".$page]["mainTitle"] = "Rechercher une commune"; 
@@ -33,63 +33,73 @@
 
 <?php if(@$useHeader != false){ ?>
 <header id="<?php echo $menuApp; ?>">
-            <div id="affix-sub-menu" class="affix">
-                <div id="text-search-menu" class="col-md-12 col-sm-12 col-xs-12 no-padding">
-                <span class="dropdown dropdownApps" id="dropdown-apps">
-                    <button class="dropdown-toggle" type="button" id="dropdownApps" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-placement="bottom" title="Applications" alt="Applications">
-                          <i class="fa fa-th"></i>
-                        </button>
-                    </span>
-                    <input type="text" class="form-control main-search-bar pull-left" id="main-search-xs-bar" placeholder="<?php echo Yii::t("common", "What are you looking for")." ?"; ?>">
-                    <span class="text-white input-group-addon input-group-addon-xs pull-left main-search-bar-addon" id="main-search-xs-bar-addon" style="border-radius:0px !important;">
-                        <i class="fa fa-arrow-circle-right"></i>
-                    </span>
-        
-                </div>
-                <?php if(@$useFilter != false){ ?>
-                <div id="filter-scopes-menu" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="display: none;">
-                    <div id="scope-container" class="scope-menu no-padding">
-                        <div id="input-sec-search" class="col-xs-8 col-md-6 col-sm-6 col-lg-6">
-                            <div class="input-group shadow-input-header">
-                                  <span class="input-group-addon">
-                                    <i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>
-                                  </span>
-                                  <input type="text" class="form-control input-global-search" autocomplete="off"
-                                         id="searchOnCity" placeholder="<?php echo Yii::t("common","where ?") ?> ...">
-                                    <input id="searchTags" type="hidden" />
-                            </div>
-                            <div class="dropdown-result-global-search col-xs-12 col-sm-5 col-md-5 col-lg-5 no-padding" 
-                                style="max-height: 70%; display: none;">
-                                <div class="text-center" id="footerDropdownGS">
-                                <label class="text-dark"><i class="fa fa-ban"></i> Aucun résultat</label>
-                                    <br>
-                                </div>
-                            </div>
-                        </div>
-                        <button id="multiscopes-btn" class="btn btn-link letter-red btn-menu-scopes pull-left" data-type="multiscopes">
-                            <i class="fa fa-star"></i> 
-                            <span class="hidden-xs">
-                                <?php echo Yii::t("common","My favorites places"); ?> 
-                                (<span class="count-favorite"></span>)
-                            </span>
-                        </button>
-                        <button id="communexion-btn" class="btn btn-link letter-red btn-menu-scopes pull-left" data-type="communexion">
-                            <i class="fa fa-home"></i> 
-                            <span class="communexion-btn-label hidden-xs">
-                            </span> 
-                        </button>
-                        <div class="scopes-container col-md-12 col-sm-12 col-xs-12 no-padding margin-top-5">
+    <div id="affix-sub-menu" class="affix">
+        <div id="text-search-menu" class="col-md-12 col-sm-12 col-xs-12 no-padding">
+            <?php $addonXs="main-search-xs-bar-addon";
+                $searchXs="main-search-xs-bar";
+                $appPadding="";
+            if( in_array($subdomain, ["welcome", "page", "home"])){ 
+                $addonXs="second-search-xs-bar-addon";
+                $searchXs="second-search-xs-bar"; 
+                $appPadding="padding";
+            } ?>
+            <span class="dropdown dropdownApps <?php echo $appPadding ?>" id="dropdown-apps">
+                <button class="dropdown-toggle" type="button" id="dropdownApps" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-placement="bottom" title="Applications" alt="Applications">
+                      <i class="fa fa-th"></i>
+                </button>
+            </span>
+            <input type="text" class="form-control main-search-bar pull-left" id="<?php echo $searchXs ?>" placeholder="<?php echo Yii::t("common", "What are you looking for")." ?"; ?>">
+            <span class="text-white input-group-addon input-group-addon-xs pull-left main-search-bar-addon" id="<?php echo $addonXs ?>" style="border-radius:0px !important;">
+                <i class="fa fa-arrow-circle-right"></i>
+            </span>
+            <?php if( in_array($subdomain, ["welcome", "page", "home"])){ ?>
+                <div class="dropdown-result-global-search col-xs-12 no-padding"></div>
+            <?php } ?>
+        </div>
+        <?php if(@$useFilter != false){ ?>
+        <div id="filter-scopes-menu" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="display: none;">
+            <div id="scope-container" class="scope-menu no-padding">
+                <div id="input-sec-search" class="col-xs-8 col-md-6 col-sm-6 col-lg-6">
+                    <div class="input-group shadow-input-header">
+                          <span class="input-group-addon">
+                            <i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>
+                          </span>
+                          <input type="text" class="form-control input-global-search" autocomplete="off"
+                                 id="searchOnCity" placeholder="<?php echo Yii::t("common","where ?") ?> ...">
+                            <input id="searchTags" type="hidden" />
+                    </div>
+                    <div class="dropdown-result-global-search col-xs-12 col-sm-5 col-md-5 col-lg-5 no-padding" 
+                        style="max-height: 70%; display: none;">
+                        <div class="text-center" id="footerDropdownGS">
+                        <label class="text-dark"><i class="fa fa-ban"></i> Aucun résultat</label>
+                            <br>
                         </div>
                     </div>
                 </div>
-                <?php } ?>
-                <?php 
-                    
-                    $this->renderPartial($layoutPath.'menus/'.$menuApp, array("params"=>$themeParams, "subdomainName"=>$subdomainName, "useFilter"=>@$useFilter )); 
-                    if(@$useFilter != false)
-                        $this->renderPartial($layoutPath.'menus/filtersApp', array("params"=>$themeParams)); 
-                ?>
-                
+                <button id="multiscopes-btn" class="btn btn-link letter-red btn-menu-scopes pull-left" data-type="multiscopes">
+                    <i class="fa fa-star"></i> 
+                    <span class="hidden-xs">
+                        <?php echo Yii::t("common","My favorites places"); ?> 
+                        (<span class="count-favorite"></span>)
+                    </span>
+                </button>
+                <button id="communexion-btn" class="btn btn-link letter-red btn-menu-scopes pull-left" data-type="communexion">
+                    <i class="fa fa-home"></i> 
+                    <span class="communexion-btn-label hidden-xs">
+                    </span> 
+                </button>
+                <div class="scopes-container col-md-12 col-sm-12 col-xs-12 no-padding margin-top-5">
+                </div>
+            </div>
+        </div>
+        <?php } ?>
+        <?php 
+            
+            $this->renderPartial($layoutPath.'menus/'.$menuApp, array("params"=>$themeParams, "subdomainName"=>$subdomainName, "useFilter"=>@$useFilter )); 
+            if(@$useFilter != false)
+                $this->renderPartial($layoutPath.'menus/filtersApp', array("params"=>$themeParams)); 
+        ?>
+        
     </div>      
 
 </header>
@@ -129,8 +139,12 @@
             if(!$("#filters-nav").is(":visible")){
                 $("#vertical .btn-show-filters.hidden-xs").hide(350);
                 $("#filters-nav").show(200);
+                if(typeof themeParams.numberOfApp != "undefined" && themeParams.numberOfApp<=1)
+                    $("#mainNav").removeClass("borderShadow");
             }else{
                 $("#filters-nav").hide(350);
+                if(typeof themeParams.numberOfApp != "undefined" && themeParams.numberOfApp<=1)
+                    $("#mainNav").addClass("borderShadow");
                 $("#vertical .btn-show-filters.hidden-xs").show(200);
             }
             headerHeightPos(true);

@@ -11,7 +11,7 @@
 	<meta name="robots" content="Index,Follow" />
 	
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="shortcut icon" href="<?php echo $this->module->assetsUrl?>/images/logo.png"/>
+	<link rel="shortcut icon" href="/images/logo.png"/>
     <title><?php echo CHtml::encode( (isset($this->module->pageTitle))?$this->module->pageTitle:""); ?></title>
    
  <?php  
@@ -33,7 +33,7 @@
   <script type="text/javascript">
    var initT = new Object();
    var baseUrl = "<?php echo Yii::app()->getRequest()->getBaseUrl(true);?>";
-   var moduleId = "<?php echo $this->module->id?>";
+   var moduleId = "";
    debug = false;
    </script>
 </head>
