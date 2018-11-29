@@ -3189,12 +3189,28 @@ var dyFObj = {
 		saveCities : {},
 		bindActived : false,
 		initMap : function(){
-			mylog.log("initMap", !$('script[src="'+modules.map.assets+'/js/map.js"]').length, $('script[src="'+modules.map.assets+'/js/map.js"]').length);
-			if( !$('script[src="'+modules.map.assets+'/js/map.js"]').length ){
+			mylog.log("initMap");
+			
+			var ListPath = [
+				modules.map.assets+'/leaflet/leaflet.css',
+				modules.map.assets+'/leaflet/leaflet.js',
+				modules.map.assets+'/markercluster/MarkerCluster.css',
+				modules.map.assets+'/markercluster/MarkerCluster.Default.css',
+				modules.map.assets+'/markercluster/leaflet.markercluster.js',
+				modules.map.assets+'/js/map.js',
+				modules.map.assets+'/css/map.css',
+			];
 
-				lazyLoad( modules.map.assets+'/js/map.js', null, function() { mylog.log("initMap HERE"); dyFObj.formInMap.initMap(); } );
-				lazyLoad( modules.map.assets+'/js/map.js', null, function() { return } );
-			}
+			lazyLoadMany2( ListPath, function() { return true; }, true);
+			// alert("HERE");
+			
+
+
+			// if( !$('script[src="'+modules.map.assets+'/js/map.js"]').length ){
+
+			// 	lazyLoad( modules.map.assets+'/js/map.js', null, function() { mylog.log("initMap HERE"); dyFObj.formInMap.initMap(); } );
+			// 	lazyLoad( modules.map.assets+'/js/map.js', null, function() { return }, true );
+			// }
 			// else if( !$('script[src="'+modules.map.assets+'/css/map.css"]').length )
 			// 	lazyLoad( modules.map.assets+'/css/map.css', null, function() { dyFObj.formInMap.initMap(); });
 			// else{
@@ -3247,7 +3263,7 @@ var dyFObj = {
 				$("#mapLegende").addClass("hidden");
 
 			dyFObj.formInMap.newAddress(false);
-			// dyFObj.formInMap.initMap();
+			dyFObj.formInMap.initMap();
 
 			mylog.log("forminmap showMarkerNewElement END!");
 
@@ -3482,6 +3498,32 @@ var dyFObj = {
 				$('#sumery').show();
 				$('#divMapLocality').show();
 				$('#divNewAddress').hide();
+
+				var paramsMapLocality = {
+					container : "divMapLocality",
+					latLon : [ 39.74621, -104.98404],
+					activeCluster : false,
+					zoom : 16
+				};
+				var elt = { 
+					type : "citoyens",
+					geo : {
+						latitude :  39.74621,
+						longitude : -104.98404,
+					}
+				};
+				var opt = {
+					draggable: true
+				};
+				mapObj.init(paramsMapLocality);
+				var paramMarker = {
+					elt : elt,
+					addPopUp : false, 
+					center : true, 
+					opt : opt
+				};
+				mapObj.addMarker(paramMarker);
+
 			}else{
 				$('.formLocality').hide();
 				$('#sumery').hide();
