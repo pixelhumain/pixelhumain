@@ -111,7 +111,7 @@
 
         <?php if( $subdomain == "welcome" || 
                     $subdomain=="page" ||
-                    $subdomain=="home" ){ ?>
+                    $subdomain=="home" || $subdomain=="apropos" ){ ?>
         
             <div id="input-sec-search" class="hidden-xs col-sm-4 col-md-4 col-lg-4 margin-top-5">
                 <input type="text" class="form-control" id="second-search-bar" 

@@ -58,7 +58,7 @@
 								</tr>
 								<tr style="padding: 0;vertical-align: top;text-align: left;">
 									<th style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 19px;font-size: 15px;">
-										<p class="text-center footercopy" style="margin: 0;margin-bottom: 10px;color: #3c5665 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 20px 0px;text-align: center;line-height: 19px;font-size: 12px;font-style: italic;"><?php echo Yii::t("mail","Mail send from") ?> <?php echo Yii::app()->getRequest()->getBaseUrl(true) ?></p>
+										<p class="text-center footercopy" style="margin: 0;margin-bottom: 10px;color: #3c5665 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 20px 0px;text-align: center;line-height: 19px;font-size: 12px;font-style: italic;"><?php echo Yii::t("mail","Mail send from") ?> <?php echo $urlRedirect; ?></p>
 									</th>
 									<th class="expander" style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0 !important;margin: 0;text-align: left;line-height: 19px;font-size: 15px;visibility: hidden;width: 0;"></th>
 								</tr>
