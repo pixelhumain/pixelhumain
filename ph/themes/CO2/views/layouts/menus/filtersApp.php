@@ -101,7 +101,7 @@
           <div class="dropdown-menu arrow_box" aria-labelledby="dropdownTags">
               <div class="col-xs-12 no-padding margin-bottom-5">
                   <div class="form-group filterstags col-md-8 col-sm-8 col-xs-12 no-margin no-padding">
-                      <input id="tagsFilterInput" class="tagsFilterInput" type="" data-type="select2" name="tags" placeholder="#Tags" value="" style="width:100%;">       
+                      <input id="tagsFilterInput-xs" class="tagsFilterInput" type="" data-type="select2" name="tags" placeholder="#Tags" value="" style="width:100%;">       
                   </div>
                   <button class="btn btn-default letter-green col-xs-6 btn-tags-start-search no-margin padding-10"><i class="fa fa-arrow-circle-right"></i> <?php echo Yii::t("common", "Validate") ?></button>
                   <button class="btn btn-default letter-blue col-xs-6 btn-tags-refresh no-margin padding-10"><i class="fa fa-refresh"></i> <?php echo Yii::t("common", "Refresh") ?></button>

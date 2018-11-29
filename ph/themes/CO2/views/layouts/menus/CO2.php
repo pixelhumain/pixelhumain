@@ -121,7 +121,22 @@
                 </span>
                     <div class="dropdown-result-global-search hidden-xs col-sm-6 col-md-5 col-lg-5 no-padding"></div>
             </div>
+             <?php if($menuApp!="vertical" && @Yii::app()->session['paramsConfig']["numberOfApp"]==1 && @Yii::app()->session["paramsConfig"]["pages"]){
+             foreach (@Yii::app()->session["paramsConfig"]["pages"] as $key => $value) {
+                if(@$value["inMenu"]==true && @$value["open"]==true){ ?>
+                    <a href="javascript:;" data-hash="<?php echo $key; ?>" 
+                    class="<?php echo $key; ?>ModBtn lbh-menu-app btn btn-link pull-left btn-menu-to-app hidden-xs hidden-top link-submenu-header <?php if($subdomainName==$value["subdomainName"]) echo 'active'; ?>" style="line-height:27px;border:none;">
+                            
+                    <i class="fa fa-<?php echo $value["icon"]; ?>"></i>
+                    <span class="<?php echo str_replace("#","",$key); ?>ModSpan"><?php echo Yii::t("common", $value["subdomainName"]); ?></span>
+                    <span class="<?php echo @$value["notif"]; ?> topbar-badge badge animated bounceIn badge-warning"></span>
+                    </a>  
+            <?php   }
+                } 
+            } ?>
+       
         <?php } ?>
+        
         <!--Button to whow the map on horizontal map -->
         <button class="btn-show-map" style=""
                 title="<?php echo Yii::t("common", "Show the map"); ?>"

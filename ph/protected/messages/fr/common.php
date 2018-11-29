@@ -416,6 +416,7 @@ return array(
 	"unregistred" => "non inscrit⋅e",
 	"not activated" => "non activé⋅e",
 	"Invited to administrate"=>"Invité⋅e pour administrer",
+	'Write the keyword you want...'=>"Écrivez les mots-clés que vous souhaitez...",
 	//Attributes
 	"Me" => "Moi",
 	"Person" => "Citoyen",
