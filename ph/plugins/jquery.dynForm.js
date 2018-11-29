@@ -3188,11 +3188,38 @@ var dyFObj = {
 		addressesIndex : false,
 		saveCities : {},
 		bindActived : false,
+		initMap : function(){
+			mylog.log("initMap", !$('script[src="'+modules.map.assets+'/js/map.js"]').length, $('script[src="'+modules.map.assets+'/js/map.js"]').length);
+			if( !$('script[src="'+modules.map.assets+'/js/map.js"]').length ){
+
+				lazyLoad( modules.map.assets+'/js/map.js', null, function() { mylog.log("initMap HERE"); dyFObj.formInMap.initMap(); } );
+				lazyLoad( modules.map.assets+'/js/map.js', null, function() { return } );
+			}
+			// else if( !$('script[src="'+modules.map.assets+'/css/map.css"]').length )
+			// 	lazyLoad( modules.map.assets+'/css/map.css', null, function() { dyFObj.formInMap.initMap(); });
+			// else{
+			// 	var paramsMapLocality = {
+			// 		container : "divMapLocality",
+			// 		latLon : [ 39.74621, -104.98404],
+			// 		activeCluster : false,
+			// 		zoom : 16
+			// 	};
+			// 	mapObj.init(paramsMapLocality);
+			// 	var elt = { 
+			// 		type : "citoyens",
+			// 		geo : {
+			// 			latitude :  39.74621,
+			// 			longitude : -104.98404,
+			// 		}
+			// 	};
+			// 	var opt = {
+			// 		draggable: true
+			// 	};
+			// 	mapObj.addMarker(elt, false, true, opt);
+			// }
+		},
 		init : function(){
-
 			
-			
-
 			mylog.log("forminmap showMarkerNewElement");
 			mylog.log("formType", dyFObj.formInMap.formType);
 			$(".locationBtn").addClass("hidden");
@@ -3220,34 +3247,11 @@ var dyFObj = {
 				$("#mapLegende").addClass("hidden");
 
 			dyFObj.formInMap.newAddress(false);
-			//mylog.log("here");
-			//dyFInputs.locationObj.init();
+			// dyFObj.formInMap.initMap();
+
 			mylog.log("forminmap showMarkerNewElement END!");
 
-			var paramsMapLocality = {
-				container : "divMapLocality",
-				latLon : [ 39.74621, -104.98404],
-				activeCluster : false,
-				zoom : 16
-			};
 			
-			
-
-			mapObj.init(paramsMapLocality);
-			var elt = { 
-				type : "citoyens",
-				geo : {
-					latitude :  39.74621,
-					longitude : -104.98404,
-				}
-				
-			};
-
-			var opt = {
-				draggable: true
-			};
-
-			mapObj.addMarker(elt, false, true, opt);
 		},
 		initCountry : function(){
 			if ( 	typeof dySObj != "undefined" && 
