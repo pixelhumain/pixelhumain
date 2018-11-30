@@ -27,7 +27,10 @@ $this->renderPartial('webroot.themes.'.Yii::app()->theme->name.'.views.layouts.m
 							}
 
 							$nbN = $data["countData"] - count($data["data"]) ;
-							if( $nbN > 0 ){
+							if( $nbN == 1 ){
+								echo "<div style='padding-left:10px;'><p>".Yii::t("mail","Only one notification left to discover") ." </p></div>";
+
+							}else if( $nbN > 0 ){
 
 								$strNB = "<span style='color : #ea0040'>".$nbN."</span>";
 								echo "<div style='padding-left:10px;'><p>".Yii::t("mail","More than {count} notification(s) to discover", array("{count}" => $strNB)) ." </p></div>";

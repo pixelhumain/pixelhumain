@@ -227,6 +227,7 @@
 
 
 		"We got news for you." => "Il y a du nouveau.",
-		"You can manage your notifications {here}" => "Vous pouvez gérer vos notifications {here}"
+		"You can manage your notifications {here}" => "Vous pouvez gérer vos notifications {here}",
+		"Only one notification left to discover" => "Plus qu'une notification à découvrir",
 );
 ?> 
