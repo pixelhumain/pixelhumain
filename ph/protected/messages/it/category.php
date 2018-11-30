@@ -297,6 +297,8 @@
 	"Only posts" => "Solo i messaggi",
 	"Activity of communecters" => "Attività dei Communecters",
 	"Surveys" => "Sondaggi",
+		
+	"Are you searching an offer or you post one" => "Stai cercando un'offerta o ne pubblichi una",
 
 	);
 ?>
