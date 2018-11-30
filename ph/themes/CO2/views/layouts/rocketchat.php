@@ -6,9 +6,9 @@
         overflow: hidden;
         width: 100%; 
         height: 100%;
-        background-color:rgb(0,0,0,0.5); 
+        background-color:rgba(0,0,0,0.5); 
         border-left:3px solid #333;
-        z-index: 10000;
+        z-index: 200000;
     }
     #rocketchatModal .modal-content {
         position: fixed;
@@ -70,7 +70,7 @@
                 </button>
                 
                 <a href="https://chat.communecter.org" target="_blank" class="btn btn-default btn-sm  pull-right ">
-                    <i class=" fa fa-external-link" ></i>
+                    <i class=" fa fa-external-link" ></i> <span><?php echo Yii::t("common", "Open in another tab") ?></span>
                 </a>
 
                <a href="javascript:rcObj.newChannel()" class=" pull-right text-red btn btn-default btn-sm "  > 
@@ -225,7 +225,7 @@ var rcObj = {
                                        : "/group/"+rcObj.data.slug;
             }
         }else 
-            setTimeout( function () { history.pushState('', document.title, window.location.pathname);}, 1000);
+            setTimeout( function () { /*history.pushState('', document.title, window.location.pathname);*/}, 1000);
         
 
         if(rcObj.debugChat)alert( "RC goto : "+pathChannel );

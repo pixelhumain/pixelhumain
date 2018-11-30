@@ -153,5 +153,7 @@ return array(
 	"{who} have added new rooms in the co-space on {where}" => "{who} haben neue Räume im Coworking-Space auf {where} hinzugefügt",
 	"{who} voted few times on {what} in {where}" => "{who} stimmte mehrere Male über {what} in {where} ab",
 	"{who} amended few times the proposal {what} in {where}" => "{who} änderte mehrmals den Vorschlag {what} in {where}",
+	
+	"{who} added a new classified on {where}" => "{who} hat eine neue Kleinanzeige auf {where} hinzugefügt",
 );
 ?>

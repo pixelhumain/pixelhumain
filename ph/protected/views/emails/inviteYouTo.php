@@ -23,6 +23,8 @@ else{
 		$verbAction="contribute to";
 	else if ($verb=="participate")
 		$verbAction="participate to";
+  else
+    $verbAction="join";
 }
 
 if(in_array($parentType, [Organization::COLLECTION,Project::COLLECTION,Event::COLLECTION])){    

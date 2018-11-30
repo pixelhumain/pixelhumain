@@ -147,7 +147,7 @@ return array(
 	"Properties updated successfully" => "Les propriétés ont été modifiées avec succès",
 	"Task added successfully" => "La tâche a été ajoutée avec succès",
 	"TASK REMOVED SUCCESFULLY!!" => "La tâche a été supprimée avec succès",
-	"News added successfully!" => "News ajoutée avec succès!",
+	"News added successfully!" => "Publication ajoutée avec succès !",
 	"Thank you ! We are dealing it as quickly as possible. If there is more than 5 report, the news will be hidden" => "Merci !  S&#146;il y a plus de 3 signalements, le contenu est automatiquement soumis à la modération collective",
 	"You already reported this news as abuse" => "Vous avez déjà signalé cette news comme abus",
 	"You are going to declare an abuse : please fill the reason" => "Vous êtes en train de signaler un contenu abusif. Merci d'en préciser la raison",	
@@ -185,6 +185,7 @@ return array(
 	"The invitation is sent with success"=>"L&#146;invitation a été envoyée avec succès",
 	"This user is already connected and you already follow him"=>"Cet-te utilisateur-rice existe déjà et vous le-la suivez déjà",
 	"This user is already connected, but now you follow him"=>"Cet-te utilisateur-rice est déjà connecté-e et mais désormai vous le-la suivez",
+	"The bookmark is succesfully registered" => "Le marque page est enregistré avec succès",
 	//Infos
 	"Remove your last opinion before" => "Enlever le dernier opinion avant",
 	"You can't make any actions after reporting abuse !"=> "Vous ne pouvez plus agir après un signalement d'abus",
@@ -416,6 +417,7 @@ return array(
 	"unregistred" => "non inscrit⋅e",
 	"not activated" => "non activé⋅e",
 	"Invited to administrate"=>"Invité⋅e pour administrer",
+	'Write the keyword you want...'=>"Écrivez les mots-clés que vous souhaitez...",
 	//Attributes
 	"Me" => "Moi",
 	"Person" => "Citoyen",
@@ -546,6 +548,7 @@ return array(
 	"Start search by tags"=>"Commencer la recherche par mots-clés",
 	"Launch invitations"=> "Lancer les invitations",
 	"My experiences"=>"Mes expériences",
+	"Open in another tab"=>"Ouvrir dans un autre onglet",
 	// Menu Button - Top menu
 	"My News Stream"=>"Mon Fil d'actualité",
 	"Newspaper" => "Journal",
@@ -1275,7 +1278,7 @@ merci de renseigner votre code postal dans l'adresse de votre profil.",
 	"Research a name or e-mail address..." => "Recherchez un nom ou une adresse e-mail...",
 
 	"Invitation  accept" => "Invitation acceptée",
-	"Invite your friend" => "Invitez vos ami-e-s",
+	"Invite your friend" => "Invitez vos ami⋅e⋅s",
 	"Add an organization" => "Référencez une organisation",
 	"Create your network" => "Créez votre réseau",
 	"Reference a project" => "Ajoutez un projet",
