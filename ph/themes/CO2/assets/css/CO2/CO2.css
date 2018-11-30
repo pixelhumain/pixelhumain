@@ -2082,7 +2082,7 @@ margin-right: 5px;
 	left:40%;
 	right:0px;
 	background-color: white;
-	z-index: 150000;
+	z-index: 100000;
 }
 #modalDeleteAm, #modalAssignMe, #modalExplainGamification{
 	z-index: 100020;
