@@ -189,5 +189,9 @@
 		"<b>Private :</b> Event visible only by its attendees and create contents only for attendees and admins<br/><b>Public :</b> Event visible in search engine, agenda and communication available for all" => "<b>Privato :</b>Evento visibile solo dai suoi partecipanti e creare contenuti solo per i partecipanti e gli amministratori<br/><b>Pubblico :</b>Evento visibile nel motore di ricerca, agenda e comunicazione disponibile per tutti",
 		"<b>Private :</b> Project visible only by its contributors and create contents accessible only by its community<br/><b>Public :</b> Project visible in search engine and communication available for all" => "<b>Privato :</b> Progetto visibile solo dai suoi contributori e creare contenuti accessibili solo dalla sua comunità<br/><b>Pubblico :</b> Progetto visibile nel motore di ricerca e comunicazione disponibile per tutti",
 		"Add a new address" => "Aggiungere un nuovo indirizzo",
+		
+		"<b>Private :</b> Ressource visible only by person or community (member & admin) who post it<br/><b>Public :</b> Ressource visible by all" => "<b>Privato :</b> Risorse visibile solo da persone o comunità (membro & admin) che lo pubblicano<br/><b>Pubblico :</b> Risorse visibile da tutti",
+		"Make the ressource publicly visible" => "Rendere la risorsa visibile pubblicamente",
+		"You can&#146;t upload {netItems} items. Item limit is {itemLimit}." => "Non puoi caricare {netItems} articoli. Il limite dell&#146;articolo è {itemLimit}",
 	)
 ?>

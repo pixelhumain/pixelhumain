@@ -185,6 +185,7 @@ return array(
 	"The invitation is sent with success"=>"L&#146;invitation a été envoyée avec succès",
 	"This user is already connected and you already follow him"=>"Cet-te utilisateur-rice existe déjà et vous le-la suivez déjà",
 	"This user is already connected, but now you follow him"=>"Cet-te utilisateur-rice est déjà connecté-e et mais désormai vous le-la suivez",
+	"The bookmark is succesfully registered" => "Le marque page est enregistré avec succès",
 	//Infos
 	"Remove your last opinion before" => "Enlever le dernier opinion avant",
 	"You can't make any actions after reporting abuse !"=> "Vous ne pouvez plus agir après un signalement d'abus",

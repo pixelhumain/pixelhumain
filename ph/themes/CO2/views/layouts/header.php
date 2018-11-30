@@ -52,7 +52,7 @@
             <span class="text-white input-group-addon input-group-addon-xs pull-left main-search-bar-addon" id="<?php echo $addonXs ?>" style="border-radius:0px !important;">
                 <i class="fa fa-arrow-circle-right"></i>
             </span>
-            <?php if( in_array($subdomain, ["welcome", "page", "home"])){ ?>
+            <?php if( in_array($subdomain, ["welcome", "page", "home", "info"])){ ?>
                 <div class="dropdown-result-global-search col-xs-12 no-padding"></div>
             <?php } ?>
         </div>
