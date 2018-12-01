@@ -95,6 +95,8 @@ return array(
 	"File (CSV, JSON, XML)" => "Datei (CSV, JSON, XML)",
 	"You will need to fill field" => "Sie müssen das Feld ausfüllen",
 	"You can't to fill the source Other" => "Sie können die Quelle nicht anders füllen",
+	
+	"Key : " => "Schlüssel",
 );
 
 ?>
