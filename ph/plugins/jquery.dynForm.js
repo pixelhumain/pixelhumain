@@ -3515,6 +3515,7 @@ var dyFObj = {
 				var opt = {
 					draggable: true
 				};
+
 				mapObj.init(paramsMapLocality);
 				var paramMarker = {
 					elt : elt,
@@ -3523,6 +3524,21 @@ var dyFObj = {
 					opt : opt
 				};
 				mapObj.addMarker(paramMarker);
+
+				mapObj.addFct(0, 'dragend', function(){
+					var latLonMarker = mapObj.markerList[0].getLatLng();
+					dyFObj.formInMap.NE_lat = latLonMarker.lat;
+					dyFObj.formInMap.NE_lng = latLonMarker.lng;
+
+					alert(dyFObj.formInMap.NE_lat + " : " + dyFObj.formInMap.NE_lng);
+					//Sig.markerFindPlace.openPopup();
+				});
+
+				// Sig.markerFindPlace.on('dragend', function(){
+				// 	formInMap.NE_lat = Sig.markerFindPlace.getLatLng().lat;
+				// 	formInMap.NE_lng = Sig.markerFindPlace.getLatLng().lng;
+				// 	Sig.markerFindPlace.openPopup();
+				// });
 
 			}else{
 				$('.formLocality').hide();
