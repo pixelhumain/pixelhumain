@@ -869,12 +869,17 @@ var dyFObj = {
 	***************************************** */
 	drawAnswers : function (el,type,before,after) {
 		//alert("drawAnswers");
+		//list is filled in the page 
 	    var data = dyFObj.elementData;
 	    var prop = dyFObj[dyFObj.activeElem].dynForm.jsonSchema.properties;
 	    console.log("drawAnswers data",data);
 	    console.log("drawAnswers prop",prop);
 	    str = '<table class="table table-striped table-bordered table-hover">'+
 	        '<thead><tr>';
+	    
+	    /* ********************************
+	    Build TH title for the array
+	    ********************************** */
 	    if(before){
 	    	$.each(  before,function(ai,av) { 
 		        str += '<th>'+ai+'</th>';
@@ -882,9 +887,20 @@ var dyFObj = {
 	    }
 	    str += '<th>Date</th>';
 	    var keys = Object.keys( data );
-	    $.each(  data [ keys[0] ].answer,function(ai,av) { 
-	        str += '<th>'+((prop[ai] && prop[ai].placeholder) ? prop[ai].placeholder : ai)+'</th>';
+	    //find first Element containing an answer
+	    var firstIx = 0; 
+	    $.each(  data,function(ai,av) { 
+	    	if( data [ keys[firstIx] ] && data [ keys[firstIx] ].answer )
+	    		return;
+	    	else 
+	    		firstIx++;
 	    });
+	    
+	    if( data [ keys[firstIx] ] && data [ keys[firstIx] ].answer ){
+    		$.each(  data [ keys[firstIx] ].answer,function(ai,av) { 
+		        str += '<th>'+((prop[ai] && prop[ai].placeholder) ? prop[ai].placeholder : ai)+'</th>';
+		    });
+    	}
 	    if(after){
 	    	$.each( after,function(ai,av) { 
 	    		lbl = ai;
@@ -895,6 +911,13 @@ var dyFObj = {
 	    }
 	        
 	    str += '</tr></thead><tbody>';
+	    
+	    // ********************** END TH TITLES
+
+
+	    /* ********************************
+	    Filling every line of the array 
+	    ********************************** */
 	    //alert(Object.keys(data).length)
 	    $.each( data ,function(i,v) { 
 	        //LES REPONSE
@@ -923,7 +946,9 @@ var dyFObj = {
 			            str += "<td>"+ansV+"</td>";
 			        });
 			    
-			        
+			    /* ********************************
+			    ADD tools to each line
+			    ********************************** */
 		        if(after)
 		        {
 			    	$.each(  after,function(ai,av) 
