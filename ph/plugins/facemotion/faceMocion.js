@@ -117,7 +117,7 @@
 				
 				
 			});
-			$('.' + NombreSelector+ ', .text-emotion').off().on("mouseenter",function(e) {
+			$('.' + NombreSelector+ ', .text-emotion').off().on("mouseenter click",function(e) {
 				SelectorEmocion = $(this).parent().find("."+ NombreSelector);
 				xRate= ($(this).hasClass("text-emotion")) ? 20 : 20;
 				yRate=($(this).hasClass("text-emotion")) ? 60 : 60;
@@ -128,6 +128,10 @@
 					left: RatonX
 				});
 				$(".faceMocion").show();
+				$(".faceMocion").mouseleave(function(){
+					$(this).hide(800);
+				});
+			
 			});
 			$(document).mouseup(function(e) {
 				$(".faceMocion").hide();

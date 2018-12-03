@@ -156,38 +156,66 @@ function lazyLoad (js,css, callback, notBase) {
 
 var countLazyLoad = null;
 function lazyLoadMany (list, callback, notBase) { 
-  mylog.warn("lazyLoadMany",list.length, callback, notBase);
-  countLazyLoad = 0;
-  $.each(list,function(i,v) { 
-    var url = (notBase==true ? v : baseUrl+v);
-    mylog.log("LLM --> url",url);
-    if( url.indexOf("js")>0 && !$('script[src="'+url+'"]').length )
-    {
-      //!mylog.log("lazyLoad  before getScript",js);
-      $.getScript( url, function( data, textStatus, jqxhr ) {
-        //mylog.log("lazyLoad getScript");
-        //if (typeof dynform !== undefined) alert("script has been loaded!");
-        countLazyLoad++; 
-        if(typeof callback === "function")
-          callback(data);
-      });
-    } else if(url.indexOf("css")>0 ){
-      $("<link/>", {
-         rel: "stylesheet",
-         type: "text/css",
-         href: url 
-      }).appendTo("head");
-      countLazyLoad++;
-      if(typeof callback === "function")
-          callback();
-    } else {
-      mylog.error("lazyLoadMany notScript");
-      if( typeof callback === "function")
-          callback();
-    }
-  })
-    
-    
+	mylog.warn("lazyLoadMany",list.length, callback, notBase);
+	countLazyLoad = 0;
+	$.each(list,function(i,v) { 
+		var url = (notBase==true ? v : baseUrl+v);
+		mylog.log("LLM --> url",url);
+		if( url.indexOf("js")>0 && !$('script[src="'+url+'"]').length ){
+			//!mylog.log("lazyLoad  before getScript",js);
+			$.getScript( url, function( data, textStatus, jqxhr ) {
+			//mylog.log("lazyLoad getScript");
+			//if (typeof dynform !== undefined) alert("script has been loaded!");
+			countLazyLoad++; 
+			if(typeof callback === "function")
+				callback(data);
+			});
+		} else if(url.indexOf("css")>0 ){
+			$("<link/>", {
+				rel: "stylesheet",
+				type: "text/css",
+				href: url 
+			}).appendTo("head");
+			countLazyLoad++;
+			if(typeof callback === "function")
+				callback();
+		} else {
+			mylog.error("lazyLoadMany notScript");
+			if( typeof callback === "function")
+				callback();
+		}
+	}) 
+}
+
+var countLazyLoad2 = null;
+function lazyLoadMany2 (list, callback, notBase) { 
+	mylog.warn("lazyLoadMany",list.length, callback, notBase);
+	countLazyLoad2 = 0;
+	$.each(list,function(i,v) { 
+		var url = (notBase==true ? v : baseUrl+v);
+		mylog.log("LLM --> url",url);
+		if( url.indexOf("js")>0 && !$('script[src="'+url+'"]').length ){
+			//!mylog.log("lazyLoad  before getScript",js);
+			$.getScript( url, function( data, textStatus, jqxhr ) {
+				//mylog.log("lazyLoad getScript");
+				//if (typeof dynform !== undefined) alert("script has been loaded!");
+				countLazyLoad2++;
+			});
+		} else if(url.indexOf("css")>0 ){
+			$("<link/>", {
+				rel: "stylesheet",
+				type: "text/css",
+				href: url 
+			}).appendTo("head");
+			countLazyLoad2++;
+			
+		} else {
+			mylog.error("lazyLoadMany notScript");
+		}
+	});
+
+	if(typeof callback === "function")
+		callback();
 }
 
 var mylog = (function () {
@@ -382,7 +410,9 @@ function showAsColumn(resp,id)
 
 /* --------------------------------------------------------------- */
 
-function slugify (value,slug) {    
+function slugify (value,slug) {
+
+  mylog.log("slugify",value,slug);
 	var rExps=[
 	{re:/[\xC0-\xC6]/g, ch:'A'},
 	{re:/[\xE0-\xE6]/g, ch:'a'},

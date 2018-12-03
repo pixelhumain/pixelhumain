@@ -189,5 +189,23 @@
 		"of creation" => "der Schöpfung",
 		"shared" => "geteilt",
 		
+		"{where} publishes a new post" => "{where} veröffentlicht einen neuen Beitrag",
+		"{where} publishes new posts" => "{where} veröffentlicht neue Beiträge",
+		"{who} added a new event : {what} on {where}" => "{who} hat eine neue Veranstaltung hinzugefügt: {what} auf {where}",
+		"{who} added a new project : {what} on {where}" => "{who} hat ein neues Projekt hinzugefügt: {what} auf {where}",
+		"{who} added a new classified : {what} on {where}" => "{who} hat eine neue Kleinanzeige hinzugefügt: {what} auf {where}",
+		"{who} added a new point of interest : {what} on {where}" => "{who} hat einen besonderen Ort hinzugefügt: {what} auf {where}",
+		"{who} added a new proposal : {what} in {where}" => "{who} hat einen neuen Vorschlag hinzugefügt: {what} auf {where}",
+		"{who} added a new action : {what} in {where}" => "{who} hat eine neue Aktion hinzugefügt: {what} auf {where}",
+		"{who} added a new room : {what} on {where}" => "{who} hat einen neuen Raum hinzugefügt: {what} auf {where}",
+		"{who} reacts on a news from {where}" => "{who} reagiert auf eine Nachricht von {where}",
+		"{who} react on a news from {where}" => "{who} reagieren auf eine Nachricht von {where}",
+		"{who} reacts on your comment on {where}" => "{who} reagiert auf Ihren Kommentar zu {where}",
+		"{who} react on your comment on {where}" => "{who} reagieren auf Ihren Kommentar zu {where}",
+		"There's something new in your network" => "Es gibt etwas Neues in Ihrem Netzwerk",
+		"More than {count} notification(s) to discover" => "Mehr als {count} Benachrichtigung(en) zu entdecken",
+		"You can then change the password in your {where}" => "Sie können dann das Passwort in Ihrem {where} ändern",
+		"settings" => "Einstellungen",
+		
 );
 ?>
