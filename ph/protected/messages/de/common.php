@@ -816,7 +816,7 @@ return array(
 	"CHECKGEOCODAGE" => "Geokodierung überprüfen",
 	
 	"air" => "Luft",
-	"seed" => "Saat",
+	"seed" => "Sämling",
 	"germ" => "Keim",
 	"plant" => "Pflanze",
 	"tree" => "Baum",
