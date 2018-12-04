@@ -143,7 +143,6 @@ function abuseActionSuccess($this, data, action){
 }
 
 function initReactionTools(idObject, type){
-  //$.each(news, function(e,v){
   $("#footer-"+type+"-"+idObject+' .reaction-news').faceMocion({
         emociones:[
          {"emocion":"love","TextoEmocion":trad.ilove, "class" : "amo", "color": "text-red" },
@@ -545,7 +544,7 @@ function bindEventTextArea(idTextArea, idComment, contextType, isAnswer, parentC
     var html = '<div id="container-txtarea-'+parentCommentId+'" class="content-new-comment">' +
 
             '<img src="'+profilThumbImageUrlUser+'" class="img-responsive pull-left img-circle" '+
-            '  style="margin-right:10px;height:32px;">'+
+            '  style="margin-right:10px;height:32px;width:32px">'+
           
             '<div class="ctnr-txtarea">';
 
