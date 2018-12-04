@@ -207,5 +207,7 @@
 		"You can then change the password in your {where}" => "Sie können dann das Passwort in Ihrem {where} ändern",
 		"settings" => "Einstellungen",
 		
+		"We got news for you." => "Wir haben Nachrichten für Sie",
+		
 );
 ?>
