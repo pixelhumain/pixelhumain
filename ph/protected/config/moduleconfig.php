@@ -24,5 +24,6 @@ $activeModules = array(
 	"map",
 	"eco",
 	"custom",
-	"mynetwork"
+	"mynetwork",
+	"news"
 	);
