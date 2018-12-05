@@ -203,11 +203,13 @@
 		"{who} reacts on your comment on {where}" => "{who} reagiert auf Ihren Kommentar zu {where}",
 		"{who} react on your comment on {where}" => "{who} reagieren auf Ihren Kommentar zu {where}",
 		"There's something new in your network" => "Es gibt etwas Neues in Ihrem Netzwerk",
-		"More than {count} notification(s) to discover" => "Mehr als {count} Benachrichtigung(en) zu entdecken",
+		"More than {count} notification(s) to discover" => "Mehr als {count} Nachricht(en) zu entdecken",
 		"You can then change the password in your {where}" => "Sie können dann das Passwort in Ihrem {where} ändern",
 		"settings" => "Einstellungen",
 		
 		"We got news for you." => "Wir haben Nachrichten für Sie",
+		"You can manage your notifications {here}" => "Sie können Ihre Einstellungen zu den Nachrichten hier ändern",
+		"Only one notification left to discover" => "Eine Nachricht ist noch ungelesen",
 		
 );
 ?>
