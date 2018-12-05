@@ -53,7 +53,7 @@
 	"Edit properties" => "Bearbeite Eigenschaften",
 	"Create Chart<br/>Opening<br/>Values<br/>Governance<br/>To explain the aim and draw project conduct" => "Zeichne ein Diagramm<br/>Eröffnung<br/>Werte<br/>Form der Führung<br/>Um das Ziel und die Werte des Projekts zu erläutern",
 	"Add project's properties" => "Fügen Sie der Projektbeschreibung etwas hinzu",
-	"Degree of project's openness (0% = very closed, 100% = very opened)" => "Grad der Offenheit des Projekts (0% = sehr geschlossen, 100% = sehr offen)",
+	"Degree of project's openness (0% = very closed, 100% = very opened)" => "Grad der Offenheit des Projekts (0% = sehr verschlossen, 100% = sehr offen)",
 	"Add<br/>A new<br/>Property" => "Fügen Sie<br/>eine neue<br/>Eigenschaft hinzu",
 	"No contributor for this project" => "Niemand unterstützt das Projekt",
 	"Your project is updated" => "Ihr Projekt  wurde erfolgreich aktualisiert",

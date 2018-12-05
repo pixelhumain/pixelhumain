@@ -574,6 +574,7 @@ return array(
 	"Notifications"=>"Notifications",
 	"Messaging"=>"Messagerie",
 	"Menu"=>"Menu",
+	"Our values" => "Nos valeurs",
 	"search something ..."=>"rechercher quelque chose ...",
 	"search a page ..."=>"rechercher une page ...",
 	"search a city ..." =>"rechercher une commune",
