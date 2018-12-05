@@ -52,7 +52,10 @@
 								<tr style="padding: 0;vertical-align: top;text-align: left;">
 									<th style="color: #3c5665;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 0;margin: 0;text-align: left;line-height: 19px;font-size: 15px;">
 										<p class="text-center footercopy" style="margin: 0;margin-bottom: 10px;color: #3c5665 !important;font-family: Helvetica, Arial, sans-serif;font-weight: normal;padding: 20px 0px;text-align: center;line-height: 19px;font-size: 12px;font-style: italic;">
-											<?php echo Yii::t("mail","You can unsubscribe on mail received on turn off mail notication on your settings or you can choose parameters of mail notifications in the same space") ?> <a href="<?php echo Yii::app()->getRequest()->getBaseUrl(true).'/#settings.page.notificationsAccount' ?>"><?php echo Yii::t("mail","here") ?></a>
+											<?php 
+												$here = '<a href="'.Yii::app()->getRequest()->getBaseUrl(true).'/#settings.page.notificationsAccount">'.Yii::t("mail","here").'</a>';
+												echo Yii::t("mail","You can manage your notifications {here}", array("{here}" => $here) ) ; 
+											?>
 										</p>
 									</th>
 								</tr>

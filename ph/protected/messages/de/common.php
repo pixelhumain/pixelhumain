@@ -816,8 +816,8 @@ return array(
 	"CHECKGEOCODAGE" => "Geokodierung überprüfen",
 	
 	"air" => "Luft",
-	"seed" => "Saat",
-	"germ" => "Keim",
+	"seed" => "Samenkorn",
+	"germ" => "Keimling",
 	"plant" => "Pflanze",
 	"tree" => "Baum",
 	"forest" => "Wald",
@@ -1447,5 +1447,9 @@ return array(
 	"Already member" => "Bereits Mitglied",
 	"Already contributor" => "Schon Mitwirkender",
 	"In" => "in",
+	
+	"The bookmark is succesfully registered" => "Das Lesezeichen ist erfolgreich eingetragen worden",
+	"Write the keyword you want..." => "Schreiben Sie das gewünschte Keyword....",
+	"Open in another tab" => "Öffnen in einem neuen Tab",
 );
 ?>

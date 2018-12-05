@@ -143,7 +143,6 @@ function abuseActionSuccess($this, data, action){
 }
 
 function initReactionTools(idObject, type){
-  //$.each(news, function(e,v){
   $("#footer-"+type+"-"+idObject+' .reaction-news').faceMocion({
         emociones:[
          {"emocion":"love","TextoEmocion":trad.ilove, "class" : "amo", "color": "text-red" },
@@ -504,7 +503,39 @@ function bindEventTextArea(idTextArea, idComment, contextType, isAnswer, parentC
       dataType: "json"
     });
   }
+  function showOneComment(newComment, idComment, isAnswer, idNewComment, argval, mentionsArray){
+    textComent=mentionAndLinkify(idNewComment,newComment, true);
+    var classArgument = "";
+    if(argval == "up") classArgument = "bg-green-comment";
+    if(argval == "down") classArgument = "bg-red-comment";
+    if(argval == "") classArgument = "bg-white-comment";
+    imgCommentUser=(userConnected.profilThumbImageUrl!="")? baseUrl+userConnected.profilThumbImageUrl:assetPath+'/images/thumbnail-default.jpg';
+    var html = '<div class="col-xs-12 no-padding margin-top-5 item-comment '+classArgument+'" id="item-comment-'+idNewComment+'">'+
 
+            '<img src="'+imgCommentUser+'" class="img-responsive pull-left img-circle" '+
+            '  style="margin-right:5px;margin-top:10px;height:32px;width:32px;">'+
+          
+            '<span class="pull-left content-comment col-xs-12 no-padding">'+            
+            ' <span class="text-black col-xs-12 comment-container-white">'+
+            '   <span class="text-dark"><strong>'+userConnected.name+'</strong></span><br>'+
+            '   <span class="text-comment text-comment-'+idNewComment+'">'  + textComment + "</span>" +
+            ' </span><br>'+
+              '<small class="bold">' +
+                '<div class="col-xs-12 pull-left no-padding" id="footer-comments-'+idNewComment+'" style="padding-left:15px !important;"></div>'+
+              '</small>'+
+            '</span>'+  
+            '<div id="comments-list-'+idNewComment+'" class="hidden pull-left col-xs-11 no-padding answerCommentContainer"></div>' +
+              
+          '</div>';
+
+    if(!isAnswer){
+      $("#comments-list-<?php echo $idComment; ?>").prepend(html);
+      $("#comments-list-<?php echo $idComment; ?>").find(".noComment").remove();
+    }else{
+      $('#container-txtarea-'+idComment).after(html);
+    }
+    initCommentsTools({newComment}, "comments", true, idComment);
+  }
   function linkify(inputText) {
       var replacedText, replacePattern1, replacePattern2, replacePattern3;
 
@@ -545,7 +576,7 @@ function bindEventTextArea(idTextArea, idComment, contextType, isAnswer, parentC
     var html = '<div id="container-txtarea-'+parentCommentId+'" class="content-new-comment">' +
 
             '<img src="'+profilThumbImageUrlUser+'" class="img-responsive pull-left img-circle" '+
-            '  style="margin-right:10px;height:32px;">'+
+            '  style="margin-right:10px;height:32px;width:32px">'+
           
             '<div class="ctnr-txtarea">';
 
