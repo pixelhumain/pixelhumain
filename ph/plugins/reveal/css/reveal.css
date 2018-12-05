@@ -1589,3 +1589,46 @@ body {
 
 .zoomed .reveal .roll span:after {
   visibility: hidden; }
+
+
+/*************  POPUP   ************/
+
+.reveal .popup-tags {
+    color: red;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline;
+}
+
+.reveal .popup-section{
+  margin-top: 15px;
+  font-size: 12px;
+}
+
+.reveal .popup-subtitle {
+
+    font-weight: 400;
+    border-bottom: 1px solid lightgray;
+    margin-bottom: 5px;
+    width: 100%;
+    font-size: 14px;
+    color: black;
+    float: left;
+
+}
+
+.reveal .btn-more {
+
+  border-color: #D2D2D2 !important;
+  margin-top: 5px;
+  margin-bottom: 7px !important;
+  text-align: center;
+  color: #3C3C3C !important;
+  font-weight: 500;
+  border-radius: 10px 10px 10px 10px !important;
+  width: 100%;
+
+}
+.reveal .popup-info-profil{
+  margin-left: 10px;  
+}
