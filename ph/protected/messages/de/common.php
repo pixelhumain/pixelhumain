@@ -1451,5 +1451,7 @@ return array(
 	"The bookmark is succesfully registered" => "Das Lesezeichen ist erfolgreich eingetragen worden",
 	"Write the keyword you want..." => "Schreiben Sie das gewünschte Keyword....",
 	"Open in another tab" => "Öffnen in einem neuen Tab",
+	
+	"Our values" => "Unsere Werte",
 );
 ?>
