@@ -149,6 +149,15 @@
 		"Goodies we can pass around" => "Le chicche che possiamo passare",
 		"Read Us" => "Leggici",
 		"helps us to host our tools" => "ci aiuta ad ospitare i nostri utensili",
+		
+		"Graph View" => "Vista Grafica",
+		"No activity around you. Be the first to show that your territory is moving" => "Nessuna attività intorno a lei. Siate i primi a dimostrare che il vostro territorio è in movimento",
+		"Add an event, a point of interest, a classified" => "Aggiungi un evento, un punto di interesse, un classificato",
+		"If nobody shares what he knows, nothing could be commonly bigger." => "Se nessuno condivide cio' che sa, niente potrebbe essere piu' grande.",
+		"Around me" => "Intorno a me",
+		"Be the first to reference an element on your territory" => "Siate i primi a fare riferimento a un elemento del vostro territorio",
+		"You are the main protagonist to create its free and open map" => "Voi siete il protagonista principale per creare la sua mappa libera e aperta",
+		"Reference your city hall, a NGO, a local business, a place or an initiative <b>you know around you</b>." => "Riferimento il vostro municipio, una ONG, un'impresa locale, un luogo o un'iniziativa <b>che conoscete intorno a voi</b>.",
 
 	);
 ?>
