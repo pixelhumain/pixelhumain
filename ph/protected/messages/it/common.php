@@ -1140,8 +1140,7 @@ return array(
 	"Connected to your city" => "Connettiti alla tua città",
 	"Comment on" => "Commento",
 	"Answer" => "Rispondi",
-	"I like" => "Mi piace",
-	"I don&#146;t like" => "Non mi piace",
+	"I like" => "La mia opinione",
 	"I don&#146;t like" => "Non mi piace",
 	"Declare an abuse" => "Dichiarare un abuso",
 	"Your answer" => "La tua risposta",
@@ -1445,6 +1444,11 @@ return array(
 	"Please enter a value less than or equal to {0}." => "Si prega di inserire un valore inferiore o uguale a {0}.",
 	"Please enter a value greater than or equal to {0}." => "Si prega di inserire un valore maggiore o uguale a {0}.",
 	"Notifications & Mails" => "Notifiche e mail",
+	"The bookmark is succesfully registered" => "Il segnalibro è stato registrato con successo",
+	"Write the keyword you want..." => "Scrivi la parola chiave che vuoi....",
+	"Open in another tab" => "Apri in un'altra tab",
+	"Our values" => "I nostri valori",
+	"COMMUNECTER still needs your help, just by giving 1â‚¬ per month, It's the guarantee, we can continue building freely this great open, libre & societal network" => "COMMUNECTER ha ancora bisogno del tuo aiuto, basta dare 1 € al mese, è la garanzia, possiamo continuare a costruire sempre finanziariamente indipendente questa grande rete aperta, libera e sociale",
 		
 );
 ?>
