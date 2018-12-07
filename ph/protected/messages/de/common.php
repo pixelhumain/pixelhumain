@@ -1139,7 +1139,7 @@ return array(
 	"Connected to your city" => "Verbinden Sie sich mit Ihrer Stadt",
 	"Comment on" => "Kommentiere",
 	"Answer" => "Antwort",
-	"I like" => "Gefällt mir",
+	"I like" => "Meine Meinung",
 	"I don't like" => "Gefällt mir nicht",
 	"I don&#146;t like" => "Gefällt mir nicht",
 	"Declare an abuse" => "Einen Missbrauch melden",
@@ -1453,5 +1453,7 @@ return array(
 	"Open in another tab" => "Öffnen in einem neuen Tab",
 	
 	"Our values" => "Unsere Werte",
+	"COMMUNECTER still needs your help, just by giving 1â‚¬ per month, It's the guarantee, we can continue building freely this great open, libre & societal network" => "COMMUNECTER braucht immer noch Ihre Hilfe, nur indem Sie 1â'¬ pro Monat geben, es ist die Garantie, dass wir dieses große offene, freie & community Netzwerk weiterhin finanziell unabhängig aufbauen können",
+	
 );
 ?>
