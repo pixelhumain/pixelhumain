@@ -1526,5 +1526,7 @@ merci de renseigner votre code postal dans l'adresse de votre profil.",
 
 
 	"Notifications & Mails"=>"Notifications & E-mail",
+
+	"COMMUNECTER still needs your help, just by giving 1€ per month, It's the guarantee, we can continue building freely this great open, libre & societal network" => "Tu peux soutenir COMMUNECTER en donnant chaque mois, même 1€, c'est l'assurance de la pérennité d'un outils d'échange libre et gratuit. On a besoin de vous."
 );
 ?>
