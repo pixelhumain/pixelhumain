@@ -1139,7 +1139,7 @@ return array(
 	"Connected to your city" => "Verbinden Sie sich mit Ihrer Stadt",
 	"Comment on" => "Kommentiere",
 	"Answer" => "Antwort",
-	"I like" => "Gefällt mir",
+	"I like" => "Meine Meinung",
 	"I don't like" => "Gefällt mir nicht",
 	"I don&#146;t like" => "Gefällt mir nicht",
 	"Declare an abuse" => "Einen Missbrauch melden",
