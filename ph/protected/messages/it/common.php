@@ -1449,6 +1449,7 @@ return array(
 	"Write the keyword you want..." => "Scrivi la parola chiave che vuoi....",
 	"Open in another tab" => "Apri in un'altra tab",
 	"Our values" => "I nostri valori",
+	"COMMUNECTER still needs your help, just by giving 1â‚¬ per month, It's the guarantee, we can continue building freely this great open, libre & societal network" => "COMMUNECTER ha ancora bisogno del tuo aiuto, basta dare 1 € al mese, è la garanzia, possiamo continuare a costruire sempre finanziariamente indipendente questa grande rete aperta, libera e sociale",
 		
 );
 ?>
