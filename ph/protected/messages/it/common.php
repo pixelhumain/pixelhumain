@@ -1445,6 +1445,10 @@ return array(
 	"Please enter a value less than or equal to {0}." => "Si prega di inserire un valore inferiore o uguale a {0}.",
 	"Please enter a value greater than or equal to {0}." => "Si prega di inserire un valore maggiore o uguale a {0}.",
 	"Notifications & Mails" => "Notifiche e mail",
+	"The bookmark is succesfully registered" => "Il segnalibro è stato registrato con successo",
+	"Write the keyword you want..." => "Scrivi la parola chiave che vuoi....",
+	"Open in another tab" => "Apri in un'altra tab",
+	"Our values" => "I nostri valori",
 		
 );
 ?>
