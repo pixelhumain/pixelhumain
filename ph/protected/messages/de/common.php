@@ -1453,5 +1453,7 @@ return array(
 	"Open in another tab" => "Öffnen in einem neuen Tab",
 	
 	"Our values" => "Unsere Werte",
+	"COMMUNECTER still needs your help, just by giving 1â‚¬ per month, It's the guarantee, we can continue building freely this great open, libre & societal network" => "COMMUNECTER braucht immer noch Ihre Hilfe, nur indem Sie 1â'¬ pro Monat geben, es ist die Garantie, dass wir dieses große offene, freie & community Netzwerk weiterhin finanziell unabhängig aufbauen können",
+	
 );
 ?>
