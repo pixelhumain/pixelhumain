@@ -1,10 +1,10 @@
 {
-    "name" : "Les événements de Lille-Sud !",
+    "name" : "Haute Vallée de l'Aude",
     "mode" : "server",
     "skin" : {
-        "logo" : "http://csconnectes.eu/wp-content/uploads/2017/09/logotransparent-300x120.png",
-        "title" : "Les événements de Lille-Sud !",
-        "shortDescription" : "Vivez votre quartier",
+        "logo" : false,
+        "title" : "Haute Vallée de l'Aude",
+        "shortDescription" : "Toutes les initiatives du Haute Vallée de l'Aude",
         "displayScope" : false,
         "docs":true,
         "displayCommunexion" : true,
@@ -37,37 +37,31 @@
             "news":true,
             "directory":true,
             "gallery":true
-        }
-    },
- "filter" : {
-     "types" : false,
-        "linksTag" : {
-        }
         },
-        
-    "add" : {
-        "event" : true
+        "initmap" : [ 
+            43.0542733,
+            2.51247145749955 ]
     },
-    
+
     "result" : {
         "displayImage" : true,
         "displayType" : false,
         "fullLocality" : true,
-        "datesEvent" : true,
+        "datesEvent" : false,
         "displayShortDescription" : true
     },
     "request" : {
         "pagination" : 1000,
-        "searchType" : [
-            "events"
+        "sourceKey" :[
+            "poi"
         ],
-        
-        
-
-    "searchLocalityNAME": [
-        "Lille"
-    ],
-
-    "mainTag" : ["Lille-Sud"]
+        "parent" : {
+            "type" : "organizations",
+            "id" : "5bec0a4c6ff992d6208b457e",
+            "name" : "Poi"
+        },
+        "searchType" : [
+            "poi"
+        ]
     }
 }
