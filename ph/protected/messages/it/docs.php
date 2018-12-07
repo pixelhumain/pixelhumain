@@ -104,7 +104,7 @@
 		"Every point hides creativity and life" => "Ogni punto nasconde la creatività e la vita",
 		"Points of interests are centers of meeting, collective creation and are full of energy" => "I punti di interesse sono centri di incontro, di creazione collettiva e sono pieni di energia",
 		"Win points <span class='letter-red'>using {website}</span>.<br/><span class='letter-red'>Each link</span> you did with people, organizations, projects, events <span class='letter-red'>improve your score</span>.<br/> Later will be added <span class='letter-red'>exchanges of ressources</span>, <span class='letter-red'>the number of posts</span> and <span class='letter-red'>your activity on public policy</span>" => "Guadagna i punti <span class='letter-red'>usando {website}</span>.<br/><span class='letter-red'>Ogni link</span> che avete fatto con persone, organizzazioni, progetti, eventi <span class='letter-red'>migliora il vostro punteggio</span>.<br/> Successivamente verranno aggiunti <span class='letter-red'>scambi di risorse</span>, <span class='letter-red'>il numero di messaggi</span> e <span class='letter-red'>la vostra attività di politica pubblica</span>",
-		"Oggi hai <span class='letter-red'>{points} point</span>" => "Oggi avete <span class='letter-red'>{points} punti</span>",
-		"Oggi hai <span class='letter-red'>{punti} punti</span>" => "Oggi avete <span class='letter-red'>{points} punti</span>",
+		"You have today <span class='letter-red'>{points} point</span>" => "Oggi si ha <span class='letter-red'>{points} punto</span>",
+		"You have today <span class='letter-red'>{points} points</span>" => "Oggi si ha <span class='letter-red'>{points} punti</span>",
 	);
 ?>
