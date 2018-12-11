@@ -1,7 +1,7 @@
 <?php
 	return array(
 		"Commons" => "Commons",
-		"Open" => "Freiheit",
+		"Open" => "Offenheit",
 		"Our values" => "Unsere Werte",
 		"Choose which kind of form to complete" => "Wählen Sie aus, welches Formular Sie ausfüllen möchten",
 		"Add properties which defined your organization" => "Fügen Sie Eigenschaften hinzu, welche Ihre Organisation beschreiben",
@@ -30,7 +30,7 @@
 		"Edit charta" => "Bearbeiten Sie ein Polar-Diagramm",
 		"Add charta" => "Fügen Sie ein Polar-Diagramm hinzu",
 		"Define {what} as a common. It means to manage one or several resources openly and transparently whitout appropriating it"=>"Beschreiben Sie {what} als ein Gemeinschaftsgut. Dieses bedeutet, dass man eine oder mehrere Ressourcen auf eine offene und transparente Weise verwaltet, ohne sich ihrer zu bemächtigen",
-		"Indicate the values {what} openly defining its properties and describing them"=>"Geben Sie die Werte {what} der Offenheit an, indem sie Eigenschaften definieren und sie beschreiben.",
+		"Indicate the values {what} openly defining its properties and describing them"=>"Schätzen Sie die Werte {what} des Unternehmens ein, indem Sie Eigenschaften definieren und beschreiben.",
 		"{what} that manages one or several resources openly and transparently whitout appropriating it"=>"{what} die eine oder mehrere Ressourcen auf eine offene und transparente Weise verwaltet, ohne sie sich anzueignen",
 		"{what} that shows its values openly adding few properties and describing them"=>"{what} zeigt seine Werte in einer freien Weise, indem Eigenschaften angegeben und beschrieben werden",
 		"These forms are here to show the values {what} in order to give an overview about organization, manage and life {what}"=> "Diese Formulare können die Werte {what} zeigen, um einen Überblick über die Organisation, deren Managerment und Zustand {what} zu bekommen",
