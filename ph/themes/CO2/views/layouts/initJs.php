@@ -305,8 +305,8 @@ var typeObj = {
               "showMethod": "fadeIn",
               "hideMethod": "fadeOut"
             };
-            initFloopDrawer();
-            resizeInterface();
+            if(typeof initFloopDrawer != "undefined") initFloopDrawer();
+            if(typeof resizeInterface != "undefined") resizeInterface();
             initMyScopes();
             //if(typeof localStorage != "undefined" && typeof localStorage.circuit != "undefined")
               //  circuit.obj = JSON.parse(localStorage.getItem("circuit"));
@@ -508,7 +508,6 @@ function initMyScopes(){
     //var myScopes={};
     if( notNull(localStorage) && notNull(localStorage.myScopes) )
         myScopes = JSON.parse(localStorage.getItem("myScopes"));
-
     if( notNull(myScopes) && myScopes.userId == userId )  {
         myScopes.open={};
         myScopes.countActive = 0;

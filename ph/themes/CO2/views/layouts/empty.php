@@ -154,7 +154,7 @@ $this->renderPartial($layoutPath.'initJs',
 </head>
 
 <body class="body">
-  <div class="main-container col-md-12 col-sm-12 col-xs-12 no-padding">
+  <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
 
 <?php
     // $this->renderPartial( $layoutPath.'menus/'.$CO2DomainName, 
@@ -173,6 +173,7 @@ $this->renderPartial($layoutPath.'initJs',
 //var custom = {};            
   jQuery(document).ready(function() { 
       bindLBHLinks();
+       themeObj.init();
       $(".btn-show-mainmenu").click(function(){
           $("#dropdown-user").addClass("open");
       });

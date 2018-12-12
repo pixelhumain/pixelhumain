@@ -529,8 +529,8 @@ function bindEventTextArea(idTextArea, idComment, contextType, isAnswer, parentC
           '</div>';
 
     if(!isAnswer){
-      $("#comments-list-<?php echo $idComment; ?>").prepend(html);
-      $("#comments-list-<?php echo $idComment; ?>").find(".noComment").remove();
+      $("#comments-list-"+idComment).prepend(html);
+      $("#comments-list-"+idComment).find(".noComment").remove();
     }else{
       $('#container-txtarea-'+idComment).after(html);
     }
