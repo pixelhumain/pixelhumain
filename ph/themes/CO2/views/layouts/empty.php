@@ -72,13 +72,17 @@ $cssJS = array(
     '/js/dataHelpers.js'
 );
 HtmlHelper::registerCssAndScriptsFiles($cssJS, Yii::app()->getModule( "co2" )->getAssetsUrl() );
-  
-  
-  //$cs->registerScriptFile(Yii::app()->request->baseUrl. '/plugins/jQuery/jquery-2.1.1.min.js' );
   ?>
+  <script type="text/javascript">
+  var ListPath = [
+       "<?php echo Yii::app()->theme->baseUrl ?>/jQuery/jquery-2.1.1.min.js",
+      ];
+      lazyLoadMany2( ListPath, function() { return true; }, true);
+  </script>
   
   <?php 
 
+  //$cs->registerScriptFile(Yii::app()->request->baseUrl. '/plugins/jQuery/jquery-2.1.1.min.js' );
 $layoutPath = 'webroot.themes.'.Yii::app()->theme->name.'.views.layouts.';
 $me = isset(Yii::app()->session['userId']) ? Person::getById(Yii::app()->session['userId']) : null;
 $CO2DomainName = Yii::app()->params["CO2DomainName"];
