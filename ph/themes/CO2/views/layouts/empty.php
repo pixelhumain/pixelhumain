@@ -36,7 +36,7 @@ $cs->registerScriptFile(Yii::app() -> createUrl(Yii::app()->params["module"]["pa
   $cssJs = array(
     '/js/api.js',
     
-   /* '/plugins/bootstrap/css/bootstrap.min.css',
+    '/plugins/bootstrap/css/bootstrap.min.css',
     '/plugins/bootstrap/js/bootstrap.min.js' ,
     '/plugins/bootbox/bootbox.min.js' , 
 
@@ -55,12 +55,12 @@ $cs->registerScriptFile(Yii::app() -> createUrl(Yii::app()->params["module"]["pa
     '/plugins/cryptoJS-v3.1.2/rollups/aes.js',
     '/plugins/fine-uploader/jquery.fine-uploader/fine-uploader-gallery.css',
     '/plugins/fine-uploader/jquery.fine-uploader/jquery.fine-uploader.js',
-    '/plugins/fine-uploader/jquery.fine-uploader/fine-uploader-new.min.css'*/
+    '/plugins/fine-uploader/jquery.fine-uploader/fine-uploader-new.min.css'
   );
   HtmlHelper::registerCssAndScriptsFiles($cssJs, Yii::app()->request->baseUrl);
   
   $cssJs = array(
-    /*'/assets/vendor/bootstrap/js/bootstrap.min.js',
+    '/assets/vendor/bootstrap/js/bootstrap.min.js',
     '/assets/vendor/bootstrap/css/bootstrap.min.css',
     '/assets/css/freelancer.css',
     '/assets/css/CO2/CO2-boot.css',
@@ -68,7 +68,7 @@ $cs->registerScriptFile(Yii::app() -> createUrl(Yii::app()->params["module"]["pa
     '/assets/css/CO2/CO2.css',
     '/assets/css/plugins.css',
     '/assets/css/default/dynForm.css',
-    '/assets/js/coController.js',*/
+    '/assets/js/coController.js',
     
                 
   );
@@ -79,7 +79,7 @@ $cssJS = array(
 HtmlHelper::registerCssAndScriptsFiles($cssJS, Yii::app()->getModule( "co2" )->getAssetsUrl() );
   ?>
   <script type="text/javascript">
-  var ListPath = [
+    /*var ListPath = [
         "<?php echo Yii::app()->theme->baseUrl ?>/jQuery/jquery-2.1.1.min.js",
         '<?php echo Yii::app()->theme->baseUrl ?>/plugins/bootbox/bootbox.min.js' , 
         //'/plugins/font-awesome/css/font-awesome.min.css',
@@ -110,28 +110,8 @@ HtmlHelper::registerCssAndScriptsFiles($cssJS, Yii::app()->getModule( "co2" )->g
         '<?php echo Yii::app()->getModule( "co2" )->getAssetsUrl() ?>/assets/css/plugins.css',
         '<?php echo Yii::app()->getModule( "co2" )->getAssetsUrl() ?>/assets/css/default/dynForm.css',
         '<?php echo Yii::app()->getModule( "co2" )->getAssetsUrl() ?>/assets/js/coController.js',
-        /*"<?php echo Yii::app()->theme->baseUrl ?>/jQuery/jquery-2.1.1.min.js",
-        '<?php echo Yii::app()->theme->baseUrl ?>/plugins/bootstrap/css/bootstrap.min.css',
-        '<?php echo Yii::app()->theme->baseUrl ?>/plugins/bootstrap/js/bootstrap.min.js' ,
-        '<?php echo Yii::app()->theme->baseUrl ?>/plugins/bootbox/bootbox.min.js' , 
-        //'/plugins/font-awesome/css/font-awesome.min.css',
-        //'/plugins/font-awesome-custom/css/font-awesome.css',
-        '<?php echo Yii::app()->theme->baseUrl ?>/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.css',
-        '<?php echo Yii::app()->theme->baseUrl ?>/plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js' ,
-        '<?php echo Yii::app()->theme->baseUrl ?>/plugins/blockUI/jquery.blockUI.js' ,
-        '<?php echo Yii::app()->theme->baseUrl ?>/plugins/jquery-cookie/jquery.cookie.js' ,
-        '<?php echo Yii::app()->theme->baseUrl ?>/plugins/jquery-validation/dist/jquery.validate.min.js',
-        
-        '<?php echo Yii::app()->theme->baseUrl ?>/plugins/font-awesome/css/font-awesome.min.css',
-        '<?php echo Yii::app()->theme->baseUrl ?>/plugins/toastr/toastr.js' , 
-        '<?php echo Yii::app()->theme->baseUrl ?>/plugins/toastr/toastr.min.css',
-
-        '<?php echo Yii::app()->theme->baseUrl ?>/plugins/cryptoJS-v3.1.2/rollups/aes.js',
-        '<?php echo Yii::app()->theme->baseUrl ?>/plugins/fine-uploader/jquery.fine-uploader/fine-uploader-gallery.css',
-        '<?php echo Yii::app()->theme->baseUrl ?>/plugins/fine-uploader/jquery.fine-uploader/jquery.fine-uploader.js',
-        '<?php echo Yii::app()->theme->baseUrl ?>/plugins/fine-uploader/jquery.fine-uploader/fine-uploader-new.min.css'*/
       ];
-      lazyLoadMany2( ListPath, function() { return true; }, true);
+      lazyLoadMany2( ListPath, function() { return true; }, true);*/
   </script>
   
   <?php 
@@ -228,8 +208,10 @@ $this->renderPartial($layoutPath.'initJs',
   </div>
   
 <script type="text/javascript">
-//var custom = {};            
+//var custom = {};   
+
   jQuery(document).ready(function() { 
+
       bindLBHLinks();
        themeObj.init();
       $(".btn-show-mainmenu").click(function(){
