@@ -109,7 +109,7 @@
         
         <?php  if( isset(Yii::app()->session["userId"]) ){
                 $this->renderPartial($layoutPath.'.rocketchat'); 
-                $this->renderPartial($modulePath.'/news/modalShare', array());
+                //$this->renderPartial($modulePath.'/news/modalShare', array());
             } 
         ?>
         <div class="main-container col-md-12 col-sm-12 col-xs-12 <?php echo @Yii::app()->session['paramsConfig']["appRendering"] ?>">
