@@ -168,7 +168,7 @@ $this->renderPartial($layoutPath.'initJs',
 
     echo $content; ?> 
   </div>
-
+  
 <script type="text/javascript">
 //var custom = {};            
   jQuery(document).ready(function() { 

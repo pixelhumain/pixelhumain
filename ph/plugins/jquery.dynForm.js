@@ -5901,7 +5901,7 @@ var processUrl = {
 			img_arr_pos=1;
 	    }
 	    inputToSave="";
-	    widthMediaDescription="col-xs-12";
+	    widthMediaDescription="col-xs-12 margin-top-10";
 	    if(typeof(data.content) !="undefined" && typeof(data.content.imageSize) != "undefined"){
 	        if (data.content.videoLink){
 	            extractClass="extracted_thumb";
