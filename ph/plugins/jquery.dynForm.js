@@ -5901,35 +5901,47 @@ var processUrl = {
 			img_arr_pos=1;
 	    }
 	    inputToSave="";
+	    widthMediaDescription="col-xs-12";
 	    if(typeof(data.content) !="undefined" && typeof(data.content.imageSize) != "undefined"){
 	        if (data.content.videoLink){
 	            extractClass="extracted_thumb";
-	            width="100%";
-	            height="100%";
-
-	            aVideo='<a href="javascript:;" class="videoSignal text-white center"><i class="fa fa-3x fa-play-circle-o"></i><input type="hidden" class="videoLink" value="'+data.content.videoLink+'"/></a>';
+	            if(data.content.imageSize =="large" && (!notNull(action) || action=="show")){
+	                extractClass="extracted_thumb_large col-xs-12";
+	                width="100%";
+	                height="";
+	                faSize="4x";
+	            }
+	            else{
+	                extractClass="extracted_thumb col-xs-4";
+	                width="100%";
+	                height="100%";
+	                faSize="3x";
+	                widthMediaDescription="col-xs-8";
+	            }
+	            aVideo='<a href="javascript:;" class="videoSignal text-white center"><i class="fa fa-'+faSize+' fa-play-circle-o"></i><input type="hidden" class="videoLink" value="'+data.content.videoLink+'"/></a>';
 	            inputToSave+="<input type='hidden' class='video_link_value' value='"+data.content.videoLink+"'/>"+
 	            "<input type='hidden' class='media_type' value='video_link' />";   
 			}
 	        else{
 	            aVideo="";
 	            endAVideo="";
-	            if(data.content.imageSize =="large"){
-	                extractClass="extracted_thumb_large";
+	            if(data.content.imageSize =="large" && (!notNull(action) || action=="show")){
+	                extractClass="extracted_thumb_large col-xs-12";
 	                width="100%";
 	                height="";
 	            }
 	            else{
-	                extractClass="extracted_thumb";
+	                extractClass="extracted_thumb col-xs-4";
 	                width="100";
 	                height="100";
+	                widthMediaDescription="col-xs-8";
 	            }
 	            inputToSave+="<input type='hidden' class='media_type' value='img_link' />";
 			}
 			inputToSave+="<input type='hidden' class='size_img' value='"+data.content.imageSize+"'/>"
 	    }
 	    if (typeof(data.content) !="undefined" && typeof(data.content.image)!="undefined"){
-	        inc_image = '<div class="'+extractClass+'  col-xs-4 no-padding" id="extracted_thumb">'+aVideo;
+	        inc_image = '<div class="'+extractClass+' no-padding" id="extracted_thumb">'+aVideo;
 	        if(data.content.type=="img_link"){
 		        if(typeof(data.content.imageId) != "undefined"){
 			       inc_image += "<input type='hidden' id='deleteImageCommunevent"+id+"' value='"+data.content.imageId+"'/>";
@@ -5973,14 +5985,14 @@ var processUrl = {
 		else
 			mediaUrl="";
 		if((typeof(data.description) !="undefined" || typeof(data.name) != "undefined") && (data.description !="" || data.name != "")){
-			contentMedia='<div class="extracted_content col-xs-8 padding-20">'+
+			contentMedia='<div class="extracted_content '+widthMediaDescription+'">'+
 				'<a href="'+mediaUrl+'" target="_blank" class="lastUrl text-dark">';
 				if(typeof(data.name) != "undefined" && data.name!=""){
 					contentMedia+='<h4>'+data.name+'</h4></a>';
 					inputToSave+="<input type='hidden' class='name' value='"+data.name+"'/>";
 				}
 				if(typeof(data.description) != "undefined" && data.description!=""){
-					contentMedia+='<p>'+data.description+'</p>'+countThumbail+'>';
+					contentMedia+='<p>'+data.description+'</p>'+countThumbail;
 					if(typeof(data.name) == "undefined" || data.name=="")
 						contentMedia+='</a>';
 					inputToSave+="<input type='hidden' class='description' value='"+data.description+"'/>"; 
@@ -5995,7 +6007,7 @@ var processUrl = {
 		content="";
 		if(action == "save")
 			content += '<a href="javascript:;" class="removeMediaUrl"><i class="fa fa-times"></i></a>';
-	    content += '<div class="extracted_url padding-10">'+ inc_image +contentMedia+'</div>'+inputToSave;
+	    content += '<div class="extracted_url col-xs-12">'+ inc_image +contentMedia+'</div>'+inputToSave;
 	    return content;
 	},
 	getMediaVideo:function(data,action){
