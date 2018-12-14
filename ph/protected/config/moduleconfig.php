@@ -23,6 +23,7 @@ $activeModules = array(
 	"interop",
 	"map",
 	"eco",
+	"dda",
 	"custom",
 	"mynetwork",
 	"news"
