@@ -5663,7 +5663,7 @@ var processUrl = {
 		                if(extracted_url_send.indexOf("http")<0)
 		                	extracted_url_send = "http://"+extracted_url;
 		                $.ajax({
-							url: baseUrl+'/'+moduleId+"/news/extractprocess",
+							url: baseUrl+"/news/co/extractprocess",
 							data: {'url': extracted_url_send},
 							type: 'post',
 							dataType: 'json',
@@ -5739,7 +5739,7 @@ var processUrl = {
 		$(inputClass+" span.help-block").html(trad.waitWeFetch+" <i class='fa fa-spin fa-refresh'></i>");
 	
 		$.ajax({
-			url: baseUrl+'/'+moduleId+"/news/extractprocess",
+			url: baseUrl+"/news/extractprocess",
 			data: { 'url' : url },
 			type: 'post',
 			dataType: 'json',
