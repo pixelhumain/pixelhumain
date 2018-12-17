@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-
+<!-- ************* THEME CO LAYOUT reveal ************-->
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		  <meta name="language" content="<?php echo Yii::app()->language; ?>" />
