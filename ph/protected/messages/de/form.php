@@ -195,5 +195,11 @@
 		"You can&#146;t upload {netItems} items. Item limit is {itemLimit}." => "Sie können keine {netItems} Elemente hochladen. Das Elemente-Limit ist {itemLimit}.",
 		"<b>Private :</b> Ressource visible only by person or community (member & admin) who post it<br/><b>Public :</b> Ressource visible by all" => "<b>Privat:</b> Ressource nur von Person oder Community (Mitglied & Admin) sichtbar, die sie posten<br/><b>Public :</b>Ressource sichtbar für alle",
 		"Make the ressource publicly visible" => "Veröffentlichen Sie die Ressource für alle sichtbar",
+		"Who is carrying the project" => "Wer führt das Projekt durch",
+		"Add to the list" => "Zur Liste hinzufügen",
+		"Change the element" => "Ändern Sie das Element",
+		"Offer published by" => "Angebot veröffentlicht von",
+		"Classified published by" => "Kleinanzeige veröffentlicht von",
+		"Ressource published by" => "Ressource veröffentlicht von",
 	)
 ?>
