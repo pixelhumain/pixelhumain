@@ -210,6 +210,7 @@
 		"We got news for you." => "Wir haben Nachrichten für Sie",
 		"You can manage your notifications {here}" => "Sie können Ihre Einstellungen zu den Nachrichten hier ändern",
 		"Only one notification left to discover" => "Eine Nachricht ist noch ungelesen",
+		"Open Like Wikipedia and as connected as Facebook join the movement!" => "Frei wie Wikipedia und so vernetzt wie Facebook, schließen Sie sich der Bewegung an!",
 		
 );
 ?>
