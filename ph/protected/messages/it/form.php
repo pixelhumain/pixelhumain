@@ -193,5 +193,12 @@
 		"<b>Private :</b> Ressource visible only by person or community (member & admin) who post it<br/><b>Public :</b> Ressource visible by all" => "<b>Privato :</b> Risorse visibile solo da persone o comunità (membro & admin) che lo pubblicano<br/><b>Pubblico :</b> Risorse visibile da tutti",
 		"Make the ressource publicly visible" => "Rendere la risorsa visibile pubblicamente",
 		"You can&#146;t upload {netItems} items. Item limit is {itemLimit}." => "Non puoi caricare {netItems} articoli. Il limite dell&#146;articolo è {itemLimit}",
+		"Who is carrying the project" => "Chi porta il progetto",
+		"Add to the list" => "Aggiungi alla lista",
+		"Change the element" => "Cambiare l'elemento",
+		"Offer published by" => "Offerta pubblicata da",
+		"Classified published by" => "Annuncio pubblicato da",
+		"Ressource published by" => "Ressource pubblicato da",
 	)
+		
 ?>
