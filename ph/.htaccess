@@ -325,9 +325,8 @@ FileETag None
 # performance impact: http://goo.gl/Mluzd
 
 <IfModule mod_rewrite.c>
-  Options +FollowSymlinks
+# Options +FollowSymlinks
 # Options +SymLinksIfOwnerMatch
-  Options +FollowSymlinks
   RewriteEngine On
 # RewriteBase /
 </IfModule>
@@ -541,6 +540,10 @@ RedirectMatch 404 /\\.git(/|$)
 
 
 RewriteEngine On
+
+RewriteRule ^vendor/(.*)?$ / [F,L]
+RewriteRule ^composer\.(lock|json)$ / [F,L]
+
 #RewriteBase /ph/
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
