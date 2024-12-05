@@ -11,7 +11,7 @@
 		"Say Something" => "Exprimez-vous",
 		"You are going to declare this comment as abuse : please fill the reason ?" => "Ce commentaire contient un contenu abusif : pour quelle raison ?",
 		"Please fill a reason" => "Il faut compléter la raison pour déclarer un commmentaire abusif",
-		"You already declare this comment as abused." => "Vous avez déjà déclarer ce commentaire abusif",
+		"You already declare this comment as abused." => "Vous avez déjà déclaré ce commentaire comme étant abusif",
 		"Error calling the serveur : contact your administrator." => "Une erreur vient de se produire. Merci de contacter votre administrateur",
 		"Validate" => "Valider",
 		"Cancel" => "Annuler",
@@ -26,7 +26,7 @@
 		"Update your comment"=>"Modifier votre commentaire",
 		"Show more comments"=>"Voir plus de commentaires",
 		"Your comment is empty"=>"Votre commentaire est vide",
-		"Do you want to delete this comment"=>"Souhaitez-vous vraiment supprimer ce commentaire",
+		"Do you want to delete this comment"=>"Souhaitez-vous vraiment supprimer ce commentaire ?",
 		"Loading comments"=>"Chargement des commentaires",
 	)
 
